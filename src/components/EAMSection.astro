@@ -1,0 +1,329 @@
+---
+import { Settings, ArrowRight, ShieldCheck, Activity, TriangleAlert, CheckCircle, Layers, Warehouse, WrenchIcon } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+const stats = [
+  { value: t['eam.stat1.value'], label: t['eam.stat1.label'] },
+  { value: t['eam.stat2.value'], label: t['eam.stat2.label'] },
+  { value: t['eam.stat3.value'],  label: t['eam.stat3.label'] },
+  { value: t['eam.stat4.value'], label: t['eam.stat4.label'] },
+];
+
+const modules = [
+  { icon: WrenchIcon, title: t['eam.module1.title'], desc: t['eam.module1.desc'] },
+  { icon: Warehouse,  title: t['eam.module2.title'], desc: t['eam.module2.desc'] },
+  { icon: Layers,     title: t['eam.module3.title'], desc: t['eam.module3.desc'] },
+];
+
+const eamPath   = lang === 'es' ? '/servicios/eam' : '/en/services/eam';
+const learnPath = lang === 'es' ? '/servicios/eam' : '/en/services/eam';
+---
+
+<section id="eam" class="py-24 relative border-t border-brand-border/30 overflow-hidden">
+
+  <!-- Glow ambiental de fondo -->
+  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute top-1/3 right-0 w-[400px] h-[400px] bg-brand-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- ────────── SPLIT LAYOUT ────────── -->
+    <div class="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+
+      <!-- ══════════════════════════════════
+           COLUMNA IZQUIERDA — Contenido
+      ═══════════════════════════════════ -->
+      <div class="flex flex-col gap-8">
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 self-start px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/8 text-amber-400 text-xs font-mono font-semibold">
+          <Settings className="w-3.5 h-3.5" />
+          {t['eam.badge']}
+        </div>
+
+        <!-- Título -->
+        <div>
+          <p class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-2">{t['eam.title.prefix']}</p>
+          <h2 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-amber-500">
+              {t['eam.title.highlight']}
+            </span>
+          </h2>
+          <p class="mt-4 text-slate-400 leading-relaxed max-w-lg text-base">
+            {t['eam.subtitle']}
+          </p>
+          <p class="mt-2 text-xs font-mono text-slate-600 flex items-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
+            {t['eam.proof']}
+          </p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {stats.map(s => (
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border text-center">
+              <p class="text-base font-bold font-mono text-amber-400">{s.value}</p>
+              <p class="text-xs text-slate-500 mt-0.5 leading-tight">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Módulos -->
+        <div class="flex flex-col gap-3">
+          {modules.map(({ icon: Icon, title, desc }) => (
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-brand-surface/60 border border-brand-border hover:border-amber-500/40 transition-colors group">
+              <div class="shrink-0 w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors mt-0.5">
+                <Icon className="w-4 h-4 text-amber-400" />
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-white">{title}</p>
+                <p class="text-xs text-slate-500 leading-relaxed mt-0.5">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3">
+          <a href={eamPath}
+             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-brand-dark font-bold text-sm transition-all shadow-lg shadow-amber-500/20 hover:shadow-amber-400/30 hover:-translate-y-0.5">
+            {t['eam.cta.primary']}
+            <ArrowRight className="w-4 h-4" client:load />
+          </a>
+          <a href={learnPath}
+             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-brand-border hover:border-amber-500/40 text-slate-300 hover:text-amber-400 font-semibold text-sm transition-all hover:-translate-y-0.5">
+            {t['eam.cta.secondary']}
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════
+           COLUMNA DERECHA — Mockup Dashboard
+      ═══════════════════════════════════ -->
+      <div class="relative">
+        <!-- Halo de glow detrás del mockup -->
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-500/15 via-transparent to-brand-blue/10 rounded-3xl blur-2xl -z-10 scale-95"></div>
+
+        <div class="rounded-2xl border border-brand-border bg-brand-dark/70 backdrop-blur-md overflow-hidden shadow-2xl shadow-black/60">
+
+          <!-- ── Barra de título del app (simula window chrome) -->
+          <div class="flex items-center justify-between px-4 py-2.5 bg-brand-surface/80 border-b border-brand-border">
+            <div class="flex items-center gap-2">
+              <div class="w-2.5 h-2.5 rounded-full bg-status-error/80"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-status-warning/80"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-status-success/80"></div>
+              <span class="ml-2 text-xs font-mono text-slate-500">BaseLogic EAM · v2.4.1</span>
+            </div>
+            <!-- Toggle Bitemático (fake UI) -->
+            <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+              <span>Dark</span>
+              <div class="relative w-9 h-5 bg-brand-border rounded-full cursor-pointer">
+                <div class="absolute left-1 top-1 w-3 h-3 bg-amber-400 rounded-full transition-all"></div>
+              </div>
+              <span>Light</span>
+            </div>
+          </div>
+
+          <!-- ── Cuerpo del dashboard -->
+          <div class="p-4 space-y-4">
+
+            <!-- Cabecera de sección -->
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">
+                {lang === 'es' ? 'Estado de Activos Críticos' : 'Critical Asset Status'}
+              </h3>
+              <span class="text-xs font-mono text-brand-cyan flex items-center gap-1">
+                <Activity className="w-3 h-3" client:load />
+                {lang === 'es' ? 'En vivo' : 'Live'}
+              </span>
+            </div>
+
+            <!-- Asset Card — TRK-9023 -->
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border space-y-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-mono font-bold text-white">TRK-9023</p>
+                  <p class="text-xs text-slate-500">{lang === 'es' ? 'Camión Minero 793F' : 'Mining Truck 793F'}</p>
+                </div>
+                <span class="px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-status-success/15 text-status-success border border-status-success/30">
+                  {lang === 'es' ? 'OPERATIVO' : 'OPERATIONAL'}
+                </span>
+              </div>
+
+              <!-- Disponibilidad Mecánica -->
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-500 font-mono">
+                    {lang === 'es' ? 'Disponibilidad Mecánica' : 'Mechanical Availability'}
+                  </span>
+                  <span class="font-mono font-bold text-brand-cyan">94.2%</span>
+                </div>
+                <div class="h-1.5 bg-brand-border rounded-full overflow-hidden">
+                  <div class="h-full w-[94.2%] bg-gradient-to-r from-brand-cyan to-brand-blue rounded-full"></div>
+                </div>
+              </div>
+
+              <!-- Cumplimiento de Plan -->
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-500 font-mono">
+                    {lang === 'es' ? 'Cumplimiento Plan Mtto.' : 'Maintenance Plan Compliance'}
+                  </span>
+                  <span class="font-mono font-bold text-status-success">88.7%</span>
+                </div>
+                <div class="h-1.5 bg-brand-border rounded-full overflow-hidden">
+                  <div class="h-full w-[88.7%] bg-gradient-to-r from-status-success/80 to-status-success rounded-full"></div>
+                </div>
+              </div>
+
+              <!-- Stats de la máquina -->
+              <div class="grid grid-cols-3 gap-2 pt-1 border-t border-brand-border/60">
+                <div class="text-center">
+                  <p class="text-xs font-mono font-bold text-amber-400">12,480h</p>
+                  <p class="text-[10px] text-slate-600">{lang === 'es' ? 'Horómetro' : 'Hour Meter'}</p>
+                </div>
+                <div class="text-center border-x border-brand-border/60">
+                  <p class="text-xs font-mono font-bold text-slate-300">320h</p>
+                  <p class="text-[10px] text-slate-600">MTBF</p>
+                </div>
+                <div class="text-center">
+                  <p class="text-xs font-mono font-bold text-slate-300">3</p>
+                  <p class="text-[10px] text-slate-600">{lang === 'es' ? 'OTs Abiertas' : 'Open WOs'}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel de Alertas de Confiabilidad -->
+            <div class="space-y-2">
+              <p class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">
+                {lang === 'es' ? 'Alertas de Confiabilidad' : 'Reliability Alerts'}
+              </p>
+
+              <!-- Alerta warning -->
+              <div class="flex items-start gap-2 p-2.5 rounded-lg bg-status-warning/8 border border-status-warning/30">
+                <TriangleAlert className="w-3.5 h-3.5 text-status-warning shrink-0 mt-0.5" client:load />
+                <div>
+                  <p class="text-xs font-mono font-semibold text-status-warning">
+                    {lang === 'es' ? 'Vibración anómala · Motor E2' : 'Anomalous vibration · Engine E2'}
+                  </p>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    {lang === 'es' ? 'Generando OT-7741 automáticamente...' : 'Auto-generating WO-7741...'}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Alerta success -->
+              <div class="flex items-start gap-2 p-2.5 rounded-lg bg-status-success/8 border border-status-success/30">
+                <CheckCircle className="w-3.5 h-3.5 text-status-success shrink-0 mt-0.5" client:load />
+                <div>
+                  <p class="text-xs font-mono font-semibold text-status-success">
+                    {lang === 'es' ? 'OT-7698 cerrada · Cambio de aceite' : 'WO-7698 closed · Oil change'}
+                  </p>
+                  <p class="text-[10px] text-slate-500 mt-0.5">
+                    {lang === 'es' ? 'Trazabilidad registrada · CPP actualizado' : 'Traceability recorded · WAC updated'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tarjetita flotante — vs competitors -->
+        <div class="absolute -bottom-4 -left-4 bg-brand-surface border border-brand-border rounded-xl px-4 py-3 shadow-xl hidden lg:block">
+          <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1.5">{t['eam.vs.title']}</p>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono font-bold text-slate-400 line-through opacity-50">SAP PM</span>
+            <span class="text-slate-600">·</span>
+            <span class="text-xs font-mono font-bold text-slate-400 line-through opacity-50">IBM Maximo</span>
+          </div>
+          <p class="text-[10px] text-amber-400/80 font-mono mt-1">{t['eam.vs.sub']}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ────────── TECH STACK FOOTER ────────── -->
+    <div class="mt-16 pt-8 border-t border-brand-border/40">
+      <p class="text-center text-xs font-mono text-slate-600 uppercase tracking-widest mb-6">
+        {lang === 'es' ? 'Stack Enterprise del Producto' : 'Product Enterprise Stack'}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+
+        <!-- Angular 18 -->
+        <div class="group flex items-center gap-2.5 text-slate-600 hover:text-[#DD0031] transition-colors duration-300 cursor-default">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.25L2.25 5.75l1.5 13L12 21.75l8.25-3 1.5-13L12 2.25zm0 2.1l6.9 2.5-1.25 10.85L12 19.6l-5.65-1.9L5.1 6.85 12 4.35zm0 3.4L7.6 17h1.9l.85-2.15h3.3L14.5 17h1.9L12 7.75zm0 2.35l1.2 3H10.8L12 10.1z"/>
+          </svg>
+          <div>
+            <p class="text-xs font-mono font-bold tracking-wide">Angular 18</p>
+            <p class="text-[10px] text-slate-700 group-hover:text-slate-500 transition-colors">Signals</p>
+          </div>
+        </div>
+
+        <div class="w-px h-8 bg-brand-border/60"></div>
+
+        <!-- NestJS -->
+        <div class="group flex items-center gap-2.5 text-slate-600 hover:text-[#E0234E] transition-colors duration-300 cursor-default">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M14.131.047C11.771-.11 9.04.906 7.553 3.234c-.497.786-.801 1.698-.922 2.645-.12.946-.072 1.914.144 2.837.143.603.354 1.184.624 1.728l-.23.047c-.34.07-.672.17-.995.298-.323.128-.636.284-.93.468-.295.184-.566.396-.814.636-.248.24-.47.506-.665.793-.195.288-.36.596-.492.919-.131.323-.228.66-.288 1.006-.06.346-.082.699-.064 1.051.018.352.075.702.17 1.04.094.339.226.668.392.98.166.312.366.606.597.877.23.271.488.519.77.738.282.22.588.41.913.568.325.158.667.283 1.022.373.354.089.718.143 1.086.161.367.018.739.001 1.104-.05.366-.051.726-.14 1.072-.267.346-.126.679-.289.994-.486.315-.198.61-.43.88-.694.271-.263.513-.556.724-.874.211-.318.389-.66.531-1.015.141-.355.245-.725.31-1.103.064-.378.087-.762.07-1.145-.018-.382-.075-.762-.171-1.129-.095-.367-.229-.724-.398-1.065-.17-.34-.374-.663-.607-.96-.234-.297-.497-.568-.783-.808l.134-.077c.315-.195.602-.428.852-.697.25-.27.46-.573.624-.898.164-.325.279-.672.342-1.03.062-.358.07-.726.024-1.09-.047-.364-.148-.722-.3-1.06-.152-.337-.354-.654-.594-.938-.24-.284-.515-.535-.817-.748-.302-.213-.628-.387-.97-.519-.341-.132-.696-.221-1.057-.265C14.628.064 14.377.047 14.131.047zm-2.01 4.44c.173.013.342.048.502.103.16.055.311.13.45.224.14.094.266.206.375.333.11.127.2.27.268.422.068.152.113.313.133.48.02.167.016.337-.01.503-.027.166-.078.327-.152.478-.073.15-.17.29-.284.41-.115.12-.245.222-.386.304-.141.082-.292.143-.448.181-.157.038-.318.052-.477.043-.16-.008-.318-.04-.468-.094-.15-.054-.292-.13-.42-.226-.127-.096-.24-.212-.335-.342-.094-.13-.169-.274-.222-.426-.053-.152-.082-.312-.087-.474-.005-.162.014-.324.056-.481.042-.157.106-.308.19-.448.083-.14.185-.268.303-.38.118-.111.25-.206.392-.279.142-.073.293-.128.45-.163.156-.035.316-.05.476-.037zm-4.4 5.41c.12.003.239.018.356.045.116.027.229.066.336.117.107.051.208.113.3.185.092.073.175.155.249.247.073.092.135.193.184.3.048.107.083.22.104.335.02.116.026.234.018.35-.009.117-.031.232-.066.344-.035.111-.084.218-.144.317-.06.1-.132.191-.213.272-.08.08-.17.152-.267.21-.098.059-.202.105-.31.137-.108.032-.22.05-.333.054-.114.004-.228-.006-.339-.031-.111-.025-.218-.064-.319-.117-.1-.052-.193-.116-.278-.19-.084-.074-.159-.158-.222-.25-.064-.093-.115-.195-.153-.301-.038-.107-.062-.218-.073-.331-.011-.113-.009-.228.007-.34.016-.113.045-.224.087-.33.042-.107.096-.208.162-.301.065-.093.14-.178.224-.252.084-.074.177-.137.276-.186.1-.05.205-.086.315-.106.11-.02.222-.025.334-.017zm8.8 0c.113-.008.225-.003.335.017.11.02.215.056.315.106.1.049.192.112.276.186.084.074.16.159.224.252.066.093.12.194.162.301.042.106.071.217.087.33.016.112.018.227.007.34-.011.113-.035.224-.073.331-.038.106-.089.208-.153.301-.063.092-.138.176-.222.25-.085.074-.178.138-.278.19-.101.053-.208.092-.319.117-.111.025-.225.035-.339.031-.113-.004-.225-.022-.333-.054-.108-.032-.212-.078-.31-.137-.097-.058-.187-.13-.267-.21-.081-.081-.153-.172-.213-.272-.06-.099-.109-.206-.144-.317-.035-.112-.057-.227-.066-.344-.008-.116-.002-.234.018-.35.021-.115.056-.228.104-.335.049-.107.111-.208.184-.3.074-.092.157-.174.249-.247.092-.072.193-.134.3-.185.107-.051.22-.09.336-.117.117-.027.236-.042.356-.045z"/>
+          </svg>
+          <div>
+            <p class="text-xs font-mono font-bold tracking-wide">NestJS</p>
+            <p class="text-[10px] text-slate-700 group-hover:text-slate-500 transition-colors">Backend Framework</p>
+          </div>
+        </div>
+
+        <div class="w-px h-8 bg-brand-border/60"></div>
+
+        <!-- Prisma -->
+        <div class="group flex items-center gap-2.5 text-slate-600 hover:text-[#5A67D8] transition-colors duration-300 cursor-default">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21.8068 18.2848L13.5528.7565c-.207-.4382-.639-.7155-1.1286-.7156-.4897 0-.9222.277-1.1292.7152L2.266 18.2848c-.2071.4378-.1795.9542.072 1.3655.2515.4114.6985.6616 1.1805.6616h17.0378c.4819 0 .929-.2502 1.1805-.6616.2515-.4113.279-.9277.072-1.3655zm-2.5051.2356H4.8083L12.424 2.8114z"/>
+          </svg>
+          <div>
+            <p class="text-xs font-mono font-bold tracking-wide">Prisma</p>
+            <p class="text-[10px] text-slate-700 group-hover:text-slate-500 transition-colors">ORM</p>
+          </div>
+        </div>
+
+        <div class="w-px h-8 bg-brand-border/60"></div>
+
+        <!-- PostgreSQL -->
+        <div class="group flex items-center gap-2.5 text-slate-600 hover:text-[#336791] transition-colors duration-300 cursor-default">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.128 0a10.134 10.134 0 0 0-2.755.403l-.063.02C13.957.049 13.58 0 13.18 0 9.764 0 7.06 2.566 6.736 5.874c-1.023.268-1.977.704-2.816 1.308C2.113 8.176 1 10.196 1 12.486c0 2.37 1.252 4.058 3.049 4.964.027.29.067.573.12.848.362 1.893 1.424 3.066 2.93 3.308.218.35.46.618.667.804.151.135.318.272.504.38v.012c0 .561.382 1.02.866 1.02.112 0 .223-.024.327-.07.104.046.214.07.327.07.484 0 .866-.459.866-1.02V22.8c.186-.108.353-.245.504-.38.207-.186.449-.454.666-.803 1.507-.243 2.568-1.416 2.93-3.309.054-.277.094-.562.12-.853.78-.394 1.448-.977 1.955-1.705.788.273 1.673.407 2.638.342 2.988-.2 5.005-2.155 5.005-4.768 0-1.39-.609-2.789-1.573-3.702.073-.293.11-.597.11-.906 0-.666-.178-1.314-.494-1.89.228-.548.36-1.14.36-1.755 0-2.17-1.427-4.153-3.587-4.87zm-.048 1.044c1.769.576 2.99 2.246 2.99 4.102 0 .582-.127 1.137-.35 1.647.449.554.702 1.216.702 1.9 0 .267-.032.528-.094.78.824.77 1.3 1.963 1.3 3.055 0 2.067-1.558 3.653-4.026 3.817-1.144.077-2.124-.154-2.918-.605a6.186 6.186 0 0 1-.604 1.97c-.658 1.34-1.785 2.072-3.2 2.072-1.418 0-2.547-.732-3.205-2.072a6.192 6.192 0 0 1-.604-1.97c-.795.45-1.775.682-2.919.605C4.556 16.139 3 14.553 3 12.486c0-2.026 1.107-3.703 2.765-4.536C6.06 4.867 8.44 2.74 11.2 2.74c.442 0 .875.053 1.292.155a9.107 9.107 0 0 1 4.588-1.851zM12.023 5.5c-1.78 0-3.322.806-4.31 2.055l-.049.063c-.278.368-.497.776-.646 1.214-.7.313-1.326.799-1.793 1.454-.58.816-.882 1.775-.882 2.797 0 1.298.574 2.494 1.525 3.273-.058.352-.089.712-.089 1.078 0 2.45 1.42 4.226 3.45 4.226.93 0 1.688-.353 2.27-.892.582.539 1.34.892 2.27.892 2.03 0 3.45-1.776 3.45-4.226 0-.366-.031-.726-.089-1.078.95-.779 1.524-1.975 1.524-3.273 0-1.022-.302-1.981-.882-2.797-.467-.655-1.093-1.14-1.793-1.454-.15-.438-.368-.846-.646-1.214l-.049-.063C15.345 6.306 13.803 5.5 12.023 5.5z"/>
+          </svg>
+          <div>
+            <p class="text-xs font-mono font-bold tracking-wide">PostgreSQL</p>
+            <p class="text-[10px] text-slate-700 group-hover:text-slate-500 transition-colors">Database</p>
+          </div>
+        </div>
+
+        <div class="w-px h-8 bg-brand-border/60 hidden md:block"></div>
+
+        <!-- KVM / Cloud -->
+        <div class="group flex items-center gap-2.5 text-slate-600 hover:text-brand-cyan transition-colors duration-300 cursor-default hidden md:flex">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 7c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
+            <path d="M8 12h8M12 8v8"/>
+          </svg>
+          <div>
+            <p class="text-xs font-mono font-bold tracking-wide">KVM Cloud</p>
+            <p class="text-[10px] text-slate-700 group-hover:text-slate-500 transition-colors">Brasil · HA</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

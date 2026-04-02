@@ -1,0 +1,61 @@
+---
+import { ArrowRight, MapPin } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+const contactPath = lang === 'es' ? '/contacto' : '/en/contact';
+---
+
+<section class="py-24 border-t border-brand-border/30 relative overflow-hidden">
+
+  <!-- Glow ambiental -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] bg-gradient-to-r from-transparent via-brand-cyan/30 to-transparent"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[1px] bg-gradient-to-r from-transparent via-brand-border/60 to-transparent"></div>
+    <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-brand-cyan/5 rounded-full blur-[80px]"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 relative z-10">
+
+    <!-- Encabezado -->
+    <div class="mb-12">
+      <p class="text-xs font-mono text-brand-cyan uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+        <MapPin className="w-3.5 h-3.5" />
+        Santiago, Chile
+      </p>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+        {t['manifesto.title']}
+        <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-slate-300 to-brand-blue">
+          {t['manifesto.title.highlight']}
+        </span>
+      </h2>
+    </div>
+
+    <!-- Cuerpo tipo manifiesto con borde izquierdo -->
+    <div class="relative pl-6 md:pl-10 border-l-2 border-brand-cyan/40 mb-12">
+      <!-- Punto decorativo en el borde -->
+      <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-brand-cyan shadow-[0_0_10px_rgba(0,229,255,0.5)]"></div>
+
+      <p class="text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed font-light tracking-wide max-w-3xl">
+        {t['manifesto.body']}
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <a
+      href={contactPath}
+      class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-brand-cyan/40 text-brand-cyan hover:bg-brand-cyan/10 hover:border-brand-cyan font-semibold text-sm transition-all hover:-translate-y-0.5 font-mono"
+    >
+      {t['manifesto.cta']}
+      <ArrowRight className="w-4 h-4" />
+    </a>
+
+  </div>
+</section>

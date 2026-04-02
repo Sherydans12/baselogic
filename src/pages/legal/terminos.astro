@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import FooterSection from '../../components/FooterSection.astro';
+import { Scale, FileText } from 'lucide-react';
+
+const lang = 'es';
+---
+
+<Layout title="Términos de Servicio | BaseLogic">
+  <div class="fixed inset-0 bg-brand-dark z-0"></div>
+  <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-20"></div>
+
+  <div class="relative z-10">
+    <Navbar lang={lang} translatedPath="/en/legal/terms" />
+    
+    <main class="pt-32 pb-20 max-w-4xl mx-auto px-6">
+      
+      <div class="mb-12 border-b border-brand-border pb-8">
+        <div class="flex items-center gap-2 text-brand-blue mb-4">
+          <Scale class="w-5 h-5" />
+          <span class="font-mono text-sm">ACUERDO LEGAL</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">Términos de Servicio</h1>
+        <p class="text-slate-400 font-mono text-sm">Entrada en vigencia: Enero 2026</p>
+      </div>
+
+      <div class="space-y-12 text-slate-300 leading-relaxed text-lg">
+        
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">1. Aceptación de los Términos</h2>
+          <p>
+            Al contratar los servicios de <strong>BaseLogic</strong> (desarrollo de software, consultoría, auditoría), usted acepta cumplir con estos términos. Estos términos rigen la relación contractual entre BaseLogic y el Cliente (Agencia o Empresa Final).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">2. Propiedad Intelectual (Código)</h2>
+          <div class="bg-brand-surface border border-brand-border p-6 rounded-xl mb-4">
+             <p class="text-white font-medium mb-2">Cláusula White-Label:</p>
+             <p class="text-sm text-slate-400">
+               BaseLogic transfiere todos los derechos de propiedad intelectual del código desarrollado al Cliente <strong>una vez que el pago total del proyecto ha sido completado</strong>. Hasta ese momento, el código sigue siendo propiedad de BaseLogic.
+             </p>
+          </div>
+          <p>
+            BaseLogic se reserva el derecho de reutilizar fragmentos de código genérico, librerías open-source o metodologías propias (know-how) en otros proyectos, siempre que no contengan lógica de negocio específica o secretos comerciales del Cliente.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">3. Pagos y Facturación</h2>
+          <ul class="list-disc pl-6 space-y-2 text-slate-400">
+            <li>Los proyectos requieren un anticipo (generalmente 50%) para iniciar el desarrollo.</li>
+            <li>El saldo restante se abona contra entrega (despliegue en servidor de producción).</li>
+            <li>Las facturas tienen un plazo de pago de 15 días corridos. El retraso puede incurrir en intereses o suspensión del servicio de soporte.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">4. Garantía y Soporte</h2>
+          <p>
+            Ofrecemos un periodo de garantía de <strong>30 días</strong> post-entrega para corregir cualquier "bug" o error imputable al desarrollo original sin costo adicional. Esta garantía no cubre errores causados por mal uso del cliente, modificaciones de terceros o fallas en servicios externos (APIs de terceros, hosting ajeno).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">5. Limitación de Responsabilidad</h2>
+          <p>
+            En ningún caso BaseLogic será responsable por daños indirectos, lucro cesante o pérdida de datos derivados del uso del software. Nuestra responsabilidad máxima se limita al monto total pagado por el Cliente por el servicio específico.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">6. Jurisdicción</h2>
+          <p>
+            Cualquier disputa relacionada con estos términos se regirá por las leyes de la República de Chile y se someterá a la jurisdicción exclusiva de los tribunales de Santiago.
+          </p>
+        </section>
+
+      </div>
+
+    </main>
+
+    <FooterSection lang={lang} />
+  </div>
+</Layout>

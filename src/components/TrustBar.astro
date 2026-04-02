@@ -1,0 +1,33 @@
+---
+import { ShieldCheck, Code2, Users, Headphones } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+const stats = [
+  { icon: ShieldCheck, text: t['trust.stat1'], accent: 'text-brand-cyan' },
+  { icon: Code2,       text: t['trust.stat2'], accent: 'text-brand-blue' },
+  { icon: Users,       text: t['trust.stat3'], accent: 'text-brand-cyan' },
+  { icon: Headphones,  text: t['trust.stat4'], accent: 'text-brand-blue' },
+];
+---
+
+<div class="border-y border-brand-border/60 bg-brand-surface/40 backdrop-blur-sm">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x md:divide-brand-border/50">
+      {stats.map(({ icon: Icon, text, accent }) => (
+        <div class="flex items-center justify-center gap-2.5 px-4 py-1">
+          <Icon className={`w-4 h-4 shrink-0 ${accent}`} />
+          <span class="text-xs font-mono font-semibold text-slate-300 tracking-wide whitespace-nowrap">
+            {text}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

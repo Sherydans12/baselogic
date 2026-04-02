@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import '@fontsource/inter';
+import '@fontsource/fira-code';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+interface Props {
+  title?:       string;
+  description?: string;
+  image?:       string;
+  lang?:        'es' | 'en';
+}
+
+const {
+  title       = 'BaseLogic | Ingeniería de Software Enterprise & EAM para Industria Pesada',
+  description = 'BaseLogic | Ingeniería de Software Enterprise & EAM para Industria Pesada. Ecosistema TypeScript de extremo a extremo.',
+  image       = '/og-image.jpg',
+  lang        = 'es',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://baselogic.dev');
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="/flavicon.png" />
+		<link rel="apple-touch-icon" href="/flavicon.png" />
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="canonical" href={canonicalURL} />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Primary SEO -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph (LinkedIn, WhatsApp, Facebook) -->
+		<meta property="og:type"        content="website" />
+		<meta property="og:url"         content={canonicalURL} />
+		<meta property="og:title"       content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image"       content={new URL(image, canonicalURL)} />
+		<meta property="og:image:width"  content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:locale"      content={lang === 'es' ? 'es_CL' : 'en_US'} />
+		<meta property="og:site_name"   content="BaseLogic" />
+
+		<!-- Twitter / X Cards -->
+		<meta name="twitter:card"        content="summary_large_image" />
+		<meta name="twitter:title"       content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image"       content={new URL(image, canonicalURL)} />
+	</head>
+    <body class="bg-brand-dark text-white font-sans antialiased selection:bg-brand-cyan selection:text-brand-dark relative overflow-x-hidden">
+        
+        <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-30"></div>
+
+        <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            
+            <div class="absolute -top-[30%] -left-[10%] w-[70vw] h-[70vh] rounded-full bg-brand-cyan/20 animate-aurora"></div>
+            
+            <div class="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[60vh] rounded-full bg-brand-blue/20 animate-aurora" style="animation-delay: -10s; animation-duration: 25s;"></div>
+
+        </div>
+
+        <div class="relative z-10">
+            <slot />
+        </div>
+
+        <WhatsAppButton lang={lang} />
+
+    </body>
+</html>

@@ -1,0 +1,177 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import FooterSection from '../../../components/FooterSection.astro';
+import { Server, Database, ArrowRight, CheckCircle2, Terminal as TerminalIcon, Network, ShieldAlert, Cpu } from 'lucide-react';
+
+const lang = 'en';
+---
+
+<Layout title="API Integrations & Automation | BaseLogic">
+  
+  <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-30"></div>
+
+  <div class="relative z-10">
+    <Navbar lang={lang} translatedPath="/servicios/api" />
+    
+    <main class="pt-32 pb-20">
+      
+      <div class="max-w-7xl mx-auto px-6 mb-24">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-cyan/20 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-6">
+          <Server class="w-3 h-3" />
+          NestJS Microservices · EDA
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+          We Connect Enterprise <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">
+              Chaos.
+          </span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl leading-relaxed">
+          Your systems don't speak the same language. We build secure Middleware bridges that synchronize ERPs, E-commerce, and CRMs in real-time, handling thousands of events per minute.
+        </p>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start mb-32">
+        
+        <div class="relative group order-last lg:order-last">
+          <div class="absolute -inset-1 bg-gradient-to-r from-brand-cyan to-brand-blue rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+          <div class="relative bg-brand-dark border border-brand-border rounded-xl overflow-hidden shadow-2xl">
+            
+            <div class="bg-brand-surface border-b border-brand-border px-4 py-2 flex items-center gap-2">
+              <div class="flex gap-1.5">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div class="text-xs font-mono text-slate-500 ml-2">sync.controller.ts — NestJS</div>
+            </div>
+
+            <div class="p-6 font-mono text-xs md:text-sm overflow-x-auto leading-relaxed" is:raw>
+              <div class="text-slate-400">
+                <span class="text-slate-500">// Microservice with Redis/RabbitMQ transport</span><br>
+                <span class="text-brand-blue">import</span> { <span class="text-white">Controller</span> } <span class="text-brand-blue">from</span> <span class="text-green-400">'@nestjs/common'</span>;<br>
+                <span class="text-brand-blue">import</span> { <span class="text-white">EventPattern, Payload</span> } <span class="text-brand-blue">from</span> <span class="text-green-400">'@nestjs/microservices'</span>;<br>
+                <span class="text-brand-blue">import</span> { <span class="text-white">InjectQueue</span> } <span class="text-brand-blue">from</span> <span class="text-green-400">'@nestjs/bull'</span>;<br>
+                <br>
+                <span class="text-yellow-400">@Controller()</span><br>
+                <span class="text-brand-blue">export class</span> <span class="text-brand-cyan">SyncController</span> {<br>
+                &nbsp;&nbsp;<span class="text-brand-blue">constructor</span>(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-400">@InjectQueue(<span class="text-green-400">'erp-sync'</span>)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-brand-blue">private readonly</span> syncQueue: Queue,<br>
+                &nbsp;&nbsp;) {}<br>
+                <br>
+                &nbsp;&nbsp;<span class="text-slate-500">// Subscribe to real-time ERP events</span><br>
+                &nbsp;&nbsp;<span class="text-yellow-400">@EventPattern(<span class="text-green-400">'erp.stock.updated'</span>)</span><br>
+                &nbsp;&nbsp;<span class="text-brand-blue">async</span> <span class="text-blue-400">handleStockEvent</span>(<span class="text-yellow-400">@Payload()</span> event: StockUpdatedEvent) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-brand-blue">await</span> <span class="text-white">this</span>.syncQueue.add(<span class="text-green-400">'sync-inventory'</span>, event, {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attempts: <span class="text-orange-400">3</span>,<span class="text-slate-500"> // Auto-retry</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backoff: { type: <span class="text-green-400">'exponential'</span>, delay: <span class="text-orange-400">2000</span> },<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+                &nbsp;&nbsp;}<br>
+                }
+              </div>
+              
+              <div class="mt-6 pt-4 border-t border-white/5 text-brand-cyan">
+                $ nest start --watch<br>
+                <span class="text-slate-400">[NestJS] Microservice (Redis) listening...</span><br>
+                <span class="text-slate-400">[INFO] Subscribed → erp.stock.updated</span><br>
+                <span class="text-status-success">[SUCCESS] EVT-4402 queued → 1,420 records synced (38ms)</span>
+                <span class="animate-pulse">_</span>
+              </div>
+            </div>
+
+          </div>
+          <p class="text-center text-xs font-mono text-slate-600 mt-4">
+            *NestJS Microservice Controller · Event-Driven Architecture (Redis/RabbitMQ)
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-3xl font-bold mb-2">Critical Automation</h2>
+          <p class="text-sm font-mono text-brand-cyan mb-8">NestJS Microservices · TypeScript End-to-End</p>
+
+          <div class="space-y-8">
+            <div class="flex gap-4">
+              <div class="mt-1 bg-brand-cyan/10 p-2 rounded-lg h-fit border border-brand-cyan/20">
+                <Database class="w-5 h-5 text-brand-cyan" />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Event-Driven Architecture (EDA)</h3>
+                <p class="text-slate-400 text-sm">
+                  No more "every-hour" batch jobs. When a price or stock level changes in your ERP, your system updates in milliseconds — automatically, with no human intervention and zero data loss.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="mt-1 bg-brand-blue/10 p-2 rounded-lg h-fit border border-brand-blue/20">
+                <CheckCircle2 class="w-5 h-5 text-brand-blue" />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Legacy System Wrappers</h3>
+                <p class="text-slate-400 text-sm">
+                  Is your client's accounting system 15 years old and nobody wants to touch it? We connect it anyway. We build the modern bridge that exposes its data without modifying a single byte of the legacy system.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="mt-1 bg-purple-500/10 p-2 rounded-lg h-fit border border-purple-500/20">
+                <Server class="w-5 h-5 text-purple-400" />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white mb-2">Invoicing & ERPs</h3>
+                <p class="text-slate-400 text-sm">
+                  We connect Shopify, WooCommerce, SAP Business One, Oracle, and local e-invoicing systems. If your vendor has an API, we integrate it. If they don't, we build the bridge.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <a href="#contacto" class="inline-flex items-center gap-2 bg-brand-cyan text-brand-dark px-6 py-3 rounded-xl font-bold hover:bg-white transition-colors">
+              Analyze Integration <ArrowRight class="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+<div class="max-w-7xl mx-auto px-6 border-t border-brand-border pt-20 pb-32">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Reliability Engineering</h2>
+            <p class="text-slate-400">An integration is useless if it fails on Black Friday. Here is how we guarantee uptime.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="p-6 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-cyan/30 transition-colors">
+                <Network class="w-8 h-8 text-slate-400 mb-4" />
+                <h3 class="font-bold text-white mb-2">Queues & Retries</h3>
+                <p class="text-sm text-slate-400">
+                    If the client's ERP goes down, the sale isn't lost. The system buffers the request (Redis/RabbitMQ) and automatically retries until it succeeds.
+                </p>
+            </div>
+            
+            <div class="p-6 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-cyan/30 transition-colors">
+                <ShieldAlert class="w-8 h-8 text-slate-400 mb-4" />
+                <h3 class="font-bold text-white mb-2">Rate Limiting</h3>
+                <p class="text-sm text-slate-400">
+                    We protect the infrastructure from saturation by controlling how many requests per second each user or external service can make.
+                </p>
+            </div>
+            
+            <div class="p-6 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-cyan/30 transition-colors">
+                <Cpu class="w-8 h-8 text-slate-400 mb-4" />
+                <h3 class="font-bold text-white mb-2">Centralized Logs</h3>
+                <p class="text-sm text-slate-400">
+                    Control panel where you can see exactly what happened with "Order #4022". Full error traceability for rapid debugging.
+                </p>
+            </div>
+        </div>
+      </div>
+      
+    </main>
+
+    <FooterSection lang={lang} />
+  </div>
+</Layout>

@@ -1,0 +1,142 @@
+---
+import { 
+  LayoutTemplate, 
+  Workflow, 
+  Database, 
+  ServerCog, 
+  ArrowRight, 
+  Lock,
+  Zap
+} from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section id="servicios" class="py-24 relative overflow-hidden">
+  
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="text-center mb-20 max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        {t['services.title']} <br/>
+        <span class="text-brand-cyan">{t['services.title.highlight']}</span>
+      </h2>
+      <p class="text-slate-400">
+        {t['services.subtitle']}
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-24 items-center">
+      
+      <div class="relative p-6 border border-dashed border-slate-700 rounded-2xl bg-white/5 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+        <div class="absolute -top-3 left-6 bg-brand-dark px-2 text-xs font-mono text-slate-500 border border-slate-700 rounded">
+            {t['services.diagram.visual']}
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="h-24 bg-slate-700/30 rounded-lg animate-pulse"></div>
+          <div class="h-4 w-2/3 bg-slate-700/30 rounded"></div>
+          <div class="h-4 w-1/2 bg-slate-700/30 rounded"></div>
+        </div>
+        <p class="mt-4 text-center text-sm font-mono text-slate-500">{t['services.diagram.desc']}</p>
+      </div>
+
+      <div class="hidden md:flex justify-center absolute left-1/2 -translate-x-1/2 z-10">
+        <div class="bg-brand-dark p-2 rounded-full border border-brand-cyan shadow-[0_0_15px_rgba(0,229,255,0.3)]">
+          <Zap class="w-6 h-6 text-brand-cyan" />
+        </div>
+      </div>
+
+      <div class="relative p-8 border border-brand-cyan/30 rounded-2xl bg-gradient-to-br from-brand-surface to-brand-dark shadow-2xl overflow-hidden group">
+        <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
+        
+        <div class="absolute -top-3 left-6 bg-brand-cyan text-brand-dark px-2 text-xs font-mono font-bold rounded shadow-lg">
+            {t['services.diagram.logic']}
+        </div>
+        
+        <div class="relative z-10 grid grid-cols-2 gap-4">
+          <div class="p-3 bg-brand-dark/80 border border-brand-cyan/20 rounded-lg backdrop-blur-sm">
+            <div class="flex items-center gap-2 mb-2">
+              <Database class="w-4 h-4 text-brand-cyan" />
+              <span class="text-xs font-bold text-white">{t['services.diagram.data']}</span>
+            </div>
+            <div class="h-1 w-full bg-brand-cyan/20 rounded"></div>
+          </div>
+          
+          <div class="p-3 bg-brand-dark/80 border border-brand-cyan/20 rounded-lg backdrop-blur-sm">
+            <div class="flex items-center gap-2 mb-2">
+              <Lock class="w-4 h-4 text-brand-blue" />
+              <span class="text-xs font-bold text-white">{t['services.diagram.auth']}</span>
+            </div>
+            <div class="h-1 w-full bg-brand-blue/20 rounded"></div>
+          </div>
+
+          <div class="col-span-2 p-3 bg-brand-dark/80 border border-brand-cyan/20 rounded-lg backdrop-blur-sm flex items-center justify-between">
+             <div class="flex items-center gap-2">
+                <ServerCog class="w-4 h-4 text-brand-cyan" />
+                <span class="text-xs font-bold text-white">{t['services.diagram.api']}</span>
+             </div>
+             <span class="text-[10px] font-mono text-brand-status-success">● LIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      
+      <div class="group p-8 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(0,229,255,0.15)]">
+        <div class="w-12 h-12 bg-brand-blue/10 rounded-lg flex items-center justify-center mb-6 border border-brand-blue/20 group-hover:scale-110 transition-transform">
+          <LayoutTemplate class="w-6 h-6 text-brand-blue" />
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">{t['services.card1.title']}</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          {t['services.card1.desc']}
+        </p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-center gap-2 text-sm text-slate-300">
+            <span class="w-1.5 h-1.5 bg-brand-blue rounded-full"></span> {t['services.card1.item1']}
+          </li>
+          <li class="flex items-center gap-2 text-sm text-slate-300">
+            <span class="w-1.5 h-1.5 bg-brand-blue rounded-full"></span> {t['services.card1.item2']}
+          </li>
+          <li class="flex items-center gap-2 text-sm text-slate-300">
+            <span class="w-1.5 h-1.5 bg-brand-blue rounded-full"></span> {t['services.card1.item3']}
+          </li>
+        </ul>
+        <a href={lang === 'es' ? '/servicios/saas' : '/en/services/saas'} class="inline-flex items-center text-sm font-semibold text-brand-blue hover:text-brand-cyan transition-colors">
+        {t['services.card1.link']} <ArrowRight class="w-4 h-4 ml-1" />
+        </a>
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-all duration-300 hover:shadow-[0_0_30px_-10px_rgba(0,229,255,0.15)]">
+        <div class="w-12 h-12 bg-brand-cyan/10 rounded-lg flex items-center justify-center mb-6 border border-brand-cyan/20 group-hover:scale-110 transition-transform">
+          <Workflow class="w-6 h-6 text-brand-cyan" />
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">{t['services.card2.title']}</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          {t['services.card2.desc']}
+        </p>
+        <ul class="space-y-2 mb-8">
+          <li class="flex items-center gap-2 text-sm text-slate-300">
+            <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full"></span> {t['services.card2.item1']}
+          </li>
+          <li class="flex items-center gap-2 text-sm text-slate-300">
+            <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full"></span> {t['services.card2.item2']}
+          </li>
+          <li class="flex items-center gap-2 text-sm text-slate-300">
+            <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full"></span> {t['services.card2.item3']}
+          </li>
+        </ul>
+        <a href={lang === 'es' ? '/servicios/api' : '/en/services/api'} class="inline-flex items-center text-sm font-semibold text-brand-cyan hover:text-white transition-colors">
+        {t['services.card2.link']} <ArrowRight class="w-4 h-4 ml-1" />
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

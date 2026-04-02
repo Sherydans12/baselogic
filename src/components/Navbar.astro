@@ -1,0 +1,66 @@
+---
+import { Globe } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+  translatedPath?: string;
+}
+
+const { lang, translatedPath } = Astro.props;
+const t = ui[lang];
+
+// 1. Detectar ruta
+const pathname = Astro.url.pathname;
+
+// 2. Definir si es Home
+const isHome = lang === 'es' 
+  ? pathname === '/' 
+  : pathname === '/en' || pathname === '/en/';
+
+// 3. Prefijo para links (Scroll suave vs Redirección)
+const baseLink = lang === 'es' ? '/' : '/en';
+const linkPrefix = isHome ? '' : baseLink;
+
+// Lógica de idioma
+const defaultHome = lang === 'es' ? '/en' : '/';
+const targetUrl = translatedPath ? translatedPath : defaultHome;
+const toggleLabel = lang === 'es' ? 'EN' : 'ES';
+---
+
+<nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-brand-dark/80 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    
+    <a href={lang === 'es' ? '/' : '/en'} class="flex items-center group">
+      <img
+        src="/BaseLogic%20Logo.png"
+        alt="BaseLogic"
+        class="h-28 w-auto object-contain transition-opacity group-hover:opacity-80"
+      />
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+      
+      <a href={`${linkPrefix}#servicios`} class="hover:text-white transition-colors">{t['nav.solutions']}</a>
+      
+      <a href={`${linkPrefix}#sectores`} class="hover:text-white transition-colors">{t['nav.industries']}</a>
+      
+      <a href={`${linkPrefix}#stack`} class="hover:text-white transition-colors">{t['nav.tech']}</a>
+      <a href={`${linkPrefix}#metodo`} class="hover:text-white transition-colors">{t['nav.method']}</a>
+      <a href={`${linkPrefix}#faq`} class="hover:text-white transition-colors">{t['nav.faq']}</a>
+
+    </div>
+
+    <div class="hidden md:flex items-center gap-6">
+        <a href={lang === 'es' ? '/contacto' : '/en/contact'} class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all hover:border-brand-cyan/50 hover:text-brand-cyan hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+        {t['nav.cta']}
+        </a>
+
+        <a href={targetUrl} class="flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-brand-cyan transition-colors border-l border-white/10 pl-6">
+            <Globe class="w-3 h-3" />
+            {toggleLabel}
+        </a>
+    </div>
+
+  </div>
+</nav>

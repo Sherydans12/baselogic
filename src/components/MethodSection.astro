@@ -1,0 +1,94 @@
+---
+import { FileCode2, GitMerge, ShieldCheck, Container, ArrowRight } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section id="metodo" class="py-24 relative overflow-hidden bg-brand-dark border-t border-brand-border/30">
+  
+  <div class="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-cyan/20 to-transparent -translate-y-1/2 hidden md:block"></div>
+  
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-20">
+      <h2 class="text-3xl font-bold mb-4">{t['method.title']}</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">{t['method.subtitle']}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      
+      <div class="relative group">
+        <div class="h-full p-6 rounded-xl bg-brand-surface border border-brand-border group-hover:border-brand-cyan/50 transition-all duration-300 relative z-20">
+            <div class="text-xs font-mono text-brand-cyan mb-4 flex justify-between">
+                <span>{t['method.phase']} 01</span>
+                <span class="opacity-50">INIT</span>
+            </div>
+            <div class="mb-6 p-3 bg-brand-cyan/10 rounded-lg w-fit group-hover:scale-110 transition-transform duration-300">
+                <FileCode2 class="w-8 h-8 text-brand-cyan" />
+            </div>
+            <h3 class="font-bold text-white text-lg mb-3">{t['method.step1.title']}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                {t['method.step1.desc']}
+            </p>
+        </div>
+        <div class="hidden md:block absolute top-1/2 -right-6 w-8 h-0.5 bg-brand-border z-10"></div>
+      </div>
+
+      <div class="relative group">
+        <div class="h-full p-6 rounded-xl bg-brand-surface border border-brand-border group-hover:border-brand-blue/50 transition-all duration-300 relative z-20">
+            <div class="text-xs font-mono text-brand-blue mb-4 flex justify-between">
+                <span>{t['method.phase']} 02</span>
+                <span class="opacity-50">BUILD</span>
+            </div>
+            <div class="mb-6 p-3 bg-brand-blue/10 rounded-lg w-fit group-hover:scale-110 transition-transform duration-300">
+                <GitMerge class="w-8 h-8 text-brand-blue" />
+            </div>
+            <h3 class="font-bold text-white text-lg mb-3">{t['method.step2.title']}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                {t['method.step2.desc']}
+            </p>
+        </div>
+        <div class="hidden md:block absolute top-1/2 -right-6 w-8 h-0.5 bg-brand-border z-10"></div>
+      </div>
+
+      <div class="relative group">
+        <div class="h-full p-6 rounded-xl bg-brand-surface border border-brand-border group-hover:border-purple-500/50 transition-all duration-300 relative z-20">
+            <div class="text-xs font-mono text-purple-400 mb-4 flex justify-between">
+                <span>{t['method.phase']} 03</span>
+                <span class="opacity-50">TEST</span>
+            </div>
+            <div class="mb-6 p-3 bg-purple-500/10 rounded-lg w-fit group-hover:scale-110 transition-transform duration-300">
+                <ShieldCheck class="w-8 h-8 text-purple-400" />
+            </div>
+            <h3 class="font-bold text-white text-lg mb-3">{t['method.step3.title']}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                {t['method.step3.desc']}
+            </p>
+        </div>
+        <div class="hidden md:block absolute top-1/2 -right-6 w-8 h-0.5 bg-brand-border z-10"></div>
+      </div>
+
+      <div class="relative group">
+        <div class="h-full p-6 rounded-xl bg-brand-surface border border-brand-border group-hover:border-brand-status-success/50 transition-all duration-300 relative z-20">
+            <div class="text-xs font-mono text-brand-status-success mb-4 flex justify-between">
+                <span>{t['method.phase']} 04</span>
+                <span class="opacity-50">DEPLOY</span>
+            </div>
+            <div class="mb-6 p-3 bg-brand-status-success/10 rounded-lg w-fit group-hover:scale-110 transition-transform duration-300">
+                <Container class="w-8 h-8 text-brand-status-success" />
+            </div>
+            <h3 class="font-bold text-white text-lg mb-3">{t['method.step4.title']}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+                {t['method.step4.desc']}
+            </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

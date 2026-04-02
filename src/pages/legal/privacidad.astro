@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import FooterSection from '../../components/FooterSection.astro';
+import { Shield, Lock } from 'lucide-react';
+
+const lang = 'es';
+---
+
+<Layout title="Política de Privacidad | BaseLogic">
+  <div class="fixed inset-0 bg-brand-dark z-0"></div>
+  <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-20"></div>
+
+  <div class="relative z-10">
+    <Navbar lang={lang} translatedPath="/en/legal/privacy" />
+    
+    <main class="pt-32 pb-20 max-w-4xl mx-auto px-6">
+      
+      <div class="mb-12 border-b border-brand-border pb-8">
+        <div class="flex items-center gap-2 text-brand-cyan mb-4">
+          <Shield class="w-5 h-5" />
+          <span class="font-mono text-sm">PROTECCIÓN DE DATOS</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">Política de Privacidad</h1>
+        <p class="text-slate-400 font-mono text-sm">Última actualización: Enero 2026</p>
+      </div>
+
+      <div class="space-y-12 text-slate-300 leading-relaxed text-lg">
+        
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">1. Introducción</h2>
+          <p>
+            En <strong>BaseLogic</strong> ("nosotros", "nuestro"), respetamos su privacidad y estamos comprometidos a proteger los datos personales que comparte con nosotros. Esta política describe cómo recopilamos, usamos y protegemos su información cuando visita nuestro sitio web o contrata nuestros servicios de ingeniería.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">2. Información que Recopilamos</h2>
+          <p class="mb-4">Podemos recopilar los siguientes tipos de información:</p>
+          <ul class="list-disc pl-6 space-y-2 text-slate-400">
+            <li><strong>Información de Contacto:</strong> Nombre, correo electrónico, teléfono y empresa (cuando solicita una demo o auditoría).</li>
+            <li><strong>Datos Técnicos:</strong> Direcciones IP, tipo de navegador y datos de comportamiento en el sitio (para mejorar nuestra UX).</li>
+            <li><strong>Información del Proyecto:</strong> En el contexto de un servicio contratado, podemos tener acceso a credenciales de servidor, repositorios o bases de datos. Estos se tratan bajo estrictos acuerdos de confidencialidad (NDA).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">3. Uso de la Información</h2>
+          <p>Utilizamos sus datos exclusivamente para:</p>
+          <ul class="list-disc pl-6 space-y-2 text-slate-400 mt-4">
+            <li>Proveer, operar y mantener nuestros servicios de software.</li>
+            <li>Procesar transacciones y enviar avisos relacionados (facturas, confirmaciones).</li>
+            <li>Responder a sus comentarios, preguntas y solicitudes de soporte técnico.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">4. Seguridad de Datos</h2>
+          <p>
+            Implementamos medidas de seguridad de nivel industrial ("Industry Standard") para proteger su información. Esto incluye encriptación SSL/TLS en tránsito, almacenamiento encriptado en reposo (cuando aplica) y controles de acceso estrictos para nuestro equipo de desarrollo.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">5. Compartir Datos con Terceros</h2>
+          <p>
+            <strong>BaseLogic no vende sus datos.</strong> Solo compartimos información con proveedores de infraestructura crítica necesarios para operar (ej: AWS, Vercel, Stripe) bajo acuerdos de procesamiento de datos seguros.
+          </p>
+        </section>
+
+        <section>
+          <div class="bg-brand-surface border border-brand-border p-6 rounded-xl">
+            <h3 class="flex items-center gap-2 font-bold text-white mb-2">
+              <Lock class="w-4 h-4 text-brand-cyan" />
+              Sus Derechos
+            </h3>
+            <p class="text-sm text-slate-400">
+              Usted tiene derecho a acceder, corregir o eliminar sus datos personales en cualquier momento. Para ejercer estos derechos, contáctenos directamente en <a href="mailto:legal@baselogic.dev" class="text-brand-cyan hover:underline">legal@baselogic.dev</a>.
+            </p>
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <FooterSection lang={lang} />
+  </div>
+</Layout>

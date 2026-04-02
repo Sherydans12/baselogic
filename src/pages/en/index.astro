@@ -1,0 +1,38 @@
+---
+// Fíjate en los "../.." para salir de "en" y de "pages"
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import IndustriesSection from '../../components/IndustriesSection.astro';
+import EAMSection from '../../components/EAMSection.astro';
+import StackSection from '../../components/StackSection.astro';
+import MethodSection from '../../components/MethodSection.astro';
+import ManifestoSection from '../../components/ManifestoSection.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import FooterSection from '../../components/FooterSection.astro';
+---
+
+<Layout title="BaseLogic | Enterprise Software Engineering & EAM for Heavy Industry" description="BaseLogic builds enterprise software and industrial EAM solutions. End-to-end TypeScript ecosystem for complex operations." lang="en">
+	
+	<div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-30"></div>
+
+	<div class="relative z-10">
+		<Navbar lang="en" translatedPath="/" />
+		
+        <main>
+            <HeroSection lang="en" />
+            <TrustBar lang="en" />
+            <ServicesSection lang="en" />
+            <IndustriesSection lang="en" />
+            <EAMSection lang="en" />
+            <StackSection lang="en" />
+            <MethodSection lang="en" />
+            <ManifestoSection lang="en" />
+            <FAQSection lang="en" />
+            <FooterSection lang="en" />
+        </main>
+	</div>
+
+</Layout>

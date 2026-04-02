@@ -1,0 +1,86 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import FooterSection from '../../../components/FooterSection.astro';
+import { Scale, FileText } from 'lucide-react';
+
+const lang = 'en';
+---
+
+<Layout title="Terms of Service | BaseLogic">
+  <div class="fixed inset-0 bg-brand-dark z-0"></div>
+  <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-20"></div>
+
+  <div class="relative z-10">
+    <Navbar lang={lang} translatedPath="/legal/terminos" />
+    
+    <main class="pt-32 pb-20 max-w-4xl mx-auto px-6">
+      
+      <div class="mb-12 border-b border-brand-border pb-8">
+        <div class="flex items-center gap-2 text-brand-blue mb-4">
+          <Scale class="w-5 h-5" />
+          <span class="font-mono text-sm">LEGAL AGREEMENT</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">Terms of Service</h1>
+        <p class="text-slate-400 font-mono text-sm">Effective Date: January 2026</p>
+      </div>
+
+      <div class="space-y-12 text-slate-300 leading-relaxed text-lg">
+        
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+          <p>
+            By engaging <strong>BaseLogic</strong> services (software development, consulting, auditing), you agree to comply with these terms. These terms govern the contractual relationship between BaseLogic and the Client (Agency or End Company).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">2. Intellectual Property (Code)</h2>
+          <div class="bg-brand-surface border border-brand-border p-6 rounded-xl mb-4">
+             <p class="text-white font-medium mb-2">White-Label Clause:</p>
+             <p class="text-sm text-slate-400">
+               BaseLogic transfers all intellectual property rights of the final code to the Client <strong>once full payment for the project has been completed</strong>. Until that time, the code remains the property of BaseLogic.
+             </p>
+          </div>
+          <p>
+            BaseLogic reserves the right to reuse generic code snippets, open-source libraries, or proprietary methodologies (know-how) in other projects, provided they do not contain specific business logic or trade secrets of the Client.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">3. Payments and Billing</h2>
+          <ul class="list-disc pl-6 space-y-2 text-slate-400">
+            <li>Projects require an advance payment (usually 50%) to start development.</li>
+            <li>The remaining balance is due upon delivery (deployment to production server).</li>
+            <li>Invoices have a payment term of 15 calendar days. Delays may incur interest or suspension of support services.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">4. Warranty and Support</h2>
+          <p>
+            We offer a <strong>30-day</strong> post-delivery warranty period to correct any "bugs" or errors attributable to the original development at no additional cost. This warranty does not cover errors caused by client misuse, third-party modifications, or failures in external services (third-party APIs, external hosting).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">5. Limitation of Liability</h2>
+          <p>
+            In no event shall BaseLogic be liable for indirect damages, loss of profits, or data loss arising from the use of the software. Our maximum liability is limited to the total amount paid by the Client for the specific service.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-white mb-4">6. Jurisdiction</h2>
+          <p>
+            Any dispute related to these terms shall be governed by the laws of the Republic of Chile and submitted to the exclusive jurisdiction of the courts of Santiago.
+          </p>
+        </section>
+
+      </div>
+
+    </main>
+
+    <FooterSection lang={lang} />
+  </div>
+</Layout>

@@ -1,0 +1,90 @@
+---
+import { Mail, Linkedin } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<footer id="contacto" class="border-t border-brand-border bg-brand-dark pt-20 pb-10 relative overflow-hidden">
+  
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-brand-cyan/10 rounded-full blur-[100px] -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">
+          {t['footer.title']} <br />
+          <span class="text-brand-cyan">{t['footer.title.highlight']}</span>
+        </h2>
+        <p class="text-slate-400 text-lg mb-8 max-w-md">
+          {t['footer.desc']}
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+          <a href="mailto:hola@baselogic.dev" class="flex items-center gap-2 bg-brand-cyan text-brand-dark px-6 py-3 rounded-xl font-bold hover:bg-white transition-colors">
+            <Mail class="w-5 h-5" />
+            hola@baselogic.dev
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="flex items-center gap-2 border border-brand-border text-white px-6 py-3 rounded-xl font-medium hover:border-brand-blue hover:text-brand-blue transition-colors">
+            <Linkedin class="w-5 h-5" />
+            {t['footer.cta.linkedin']}
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 md:pl-20">
+        <div>
+          <h4 class="font-bold text-white mb-4">{t['footer.col1']}</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li>
+                <a href={lang === 'es' ? '/servicios/saas' : '/en/services/saas'} class="hover:text-brand-cyan transition-colors">
+                    {t['footer.col1.1']} </a>
+            </li>
+            <li>
+                <a href={lang === 'es' ? '/servicios/api' : '/en/services/api'} class="hover:text-brand-cyan transition-colors">
+                    {t['footer.col1.2']} </a>
+            </li>
+            <li>
+                <a href={lang === 'es' ? '/servicios/auditoria' : '/en/services/audit'} class="hover:text-brand-cyan transition-colors">
+                    {t['footer.col1.3']} </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-4">{t['footer.col2']}</h4>
+          <ul class="space-y-2 text-sm text-slate-400">
+        <li>
+            <a href={lang === 'es' ? '/legal/privacidad' : '/en/legal/privacy'} class="hover:text-brand-cyan transition-colors">
+                {t['footer.col2.1']}
+            </a>
+        </li>
+
+        <li>
+            <a href={lang === 'es' ? '/legal/terminos' : '/en/legal/terms'} class="hover:text-brand-cyan transition-colors">
+                {t['footer.col2.2']}
+            </a>
+        </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-brand-border/50 flex items-center justify-center gap-3 opacity-60">
+      <img
+        src="/BaseLogic%20Logo.png"
+        alt="BaseLogic"
+        class="h-5 w-auto object-contain"
+      />
+      <span class="font-mono text-xs text-slate-500">
+        {t['footer.copy']}
+      </span>
+    </div>
+
+  </div>
+</footer>

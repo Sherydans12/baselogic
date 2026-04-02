@@ -1,0 +1,57 @@
+---
+import { Plus } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+const faqs = [
+  { q: t['faq.q1'], a: t['faq.a1'] },
+  { q: t['faq.q2'], a: t['faq.a2'] },
+  { q: t['faq.q3'], a: t['faq.a3'] },
+  { q: t['faq.q4'], a: t['faq.a4'] },
+];
+---
+
+<section section id="faq" class="py-24 relative overflow-hidden">
+  <div class="max-w-3xl mx-auto px-6">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold mb-4">{t['faq.title']}</h2>
+      <p class="text-slate-400">{t['faq.subtitle']}</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group bg-brand-surface border border-brand-border rounded-xl overflow-hidden transition-all duration-300 open:border-brand-cyan/50 open:shadow-[0_0_20px_-5px_rgba(0,229,255,0.1)]">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none text-white font-medium hover:text-brand-cyan transition-colors">
+            <span>{faq.q}</span>
+            <span class="transition-transform duration-300 group-open:rotate-45">
+              <Plus class="w-5 h-5 text-slate-500 group-hover:text-brand-cyan" />
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-brand-border/50 pt-4 animate-fade-in">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Animación suave al abrir */
+  details[open] summary ~ * {
+    animation: sweep .3s ease-in-out;
+  }
+
+  @keyframes sweep {
+    0%    {opacity: 0; transform: translateY(-10px)}
+    100%  {opacity: 1; transform: translateY(0)}
+  }
+</style>

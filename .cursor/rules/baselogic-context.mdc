@@ -1,0 +1,69 @@
+---
+description: Contexto completo del proyecto BaseLogic Web v2.0 — identidad, diseño, i18n, EAM y reglas de ejecución
+alwaysApply: true
+---
+
+# BaseLogic Web — Contexto del Proyecto
+
+## Identidad y Modelo de Negocio
+BaseLogic es una firma de Ingeniería de Software con dos ejes:
+1. **Custom Software & White-Label:** Brazo técnico para agencias y empresas. Productos: SaaS, Dashboards, Integraciones API, Auditorías Técnicas.
+2. **Flagship Product:** **BaseLogic EAM** — plataforma de gestión de activos para Minería e Industria Pesada.
+
+**Valor Central (Mensaje Clave):** No vendemos software. Vendemos la infraestructura tecnológica para que la gran industria **nunca se detenga**. Misión: "Asegurar la Continuidad Operacional".
+
+**Estrategia web:** Vender servicios a medida usando BaseLogic EAM como prueba de autoridad técnica.
+
+## Stack Tecnológico
+
+### Web de Marketing (este repo)
+- **Framework:** Astro (SSG/SSR)
+- **Estilos:** Tailwind CSS v4 (`@theme` en `global.css`)
+- **Componentes interactivos:** React (`.tsx`) + Astro components (`.astro`)
+- **Iconos:** `lucide-react`
+- **i18n:** Rutas nativas (`/` ES · `/en/` EN) con diccionario en `src/i18n/ui.ts`
+
+### Producto BaseLogic EAM (stack a promocionar)
+- **Frontend:** Angular 18 (Signals)
+- **Backend:** NestJS + Prisma
+- **Base de datos:** PostgreSQL
+- **Infraestructura:** Cloud alta disponibilidad (KVM Brasil)
+- Al hablar de capacidades del EAM o Dashboards corporativos, referenciar este stack. NO mencionar React/Go en ese contexto.
+
+## Sistema de Diseño (Dark Enterprise / Cyberpunk)
+Usar **siempre** las variables CSS del proyecto. Nunca colores genéricos de Tailwind.
+
+| Token | Uso |
+|---|---|
+| `bg-brand-dark` (#0a0f14) | Fondo principal |
+| `bg-brand-surface` (#161c24) | Tarjetas y superficies |
+| `border-brand-border` (#2a3441) | Bordes |
+| `text-brand-cyan` (#00e5ff) | Acento principal neón |
+| `text-brand-blue` (#0066ff) | Acento secundario |
+| `brand-status-success/warning/error` | Semántica de estado |
+
+- **Tipografía:** `font-sans` (Inter) para texto · `font-mono` (Fira Code) para detalles técnicos
+- **Efectos:** `bg-grid-pattern`, auroras animadas, glassmorphism con bordes brillantes en hover
+
+## Producto: BaseLogic EAM
+Competencia directa: SAP PM · IBM Maximo (con mayor agilidad y precisión financiera).
+
+- **Arquitectura:** Multi-tenant, Multi-site. Jerarquía Contratos/Subcontratos por faena.
+- **Mantenimiento:** OT, Kits de Repuestos, horómetros con ajuste de componentes, análisis MTBF.
+- **Logística:** Control multi-bodega valorizado por CPP, reservas, stock negativo controlado.
+- **UX Industrial:** Bitemático (Dark/Light) para reducir fatiga visual en faena y oficina.
+
+### Vocabulario Obligatorio (SEO / Minería)
+Al redactar copies para el EAM o Industrias, usar estos términos:
+- "Disponibilidad Mecánica"
+- "Cumplimiento de Planes de Mantenimiento"
+- "Trazabilidad de Activos"
+- "MTBF" (Mean Time Between Failures)
+- "Costo Promedio Ponderado (CPP)"
+
+## Reglas de Ejecución
+1. **i18n obligatorio:** NUNCA hardcodear texto en componentes. Todo texto va en `src/i18n/ui.ts` con clave ES y EN.
+2. **Paridad de rutas:** Cada página nueva (`/servicios/x.astro`) requiere su contraparte (`/en/services/x.astro`).
+3. **Sin imágenes estáticas para EAM:** Simular interfaces con HTML/Tailwind (maquetas de código/dashboards).
+4. **Preservar arquitectura:** No romper el ruteo de Astro ni el sistema de i18n.
+5. **Código limpio y modular:** Componentes funcionales, sin comentarios obvios.

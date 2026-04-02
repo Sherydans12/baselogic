@@ -1,0 +1,172 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import FooterSection from '../../../components/FooterSection.astro';
+import { Settings, Download, ShieldCheck, Layers, Warehouse, WrenchIcon, CheckCircle } from 'lucide-react';
+import { ui } from '../../../i18n/ui';
+
+const lang = 'en';
+const t = ui[lang];
+
+const modules = [
+  { icon: WrenchIcon,  label: t['eam.pill1'] },
+  { icon: Settings,    label: t['eam.pill2'] },
+  { icon: Warehouse,   label: t['eam.pill3'] },
+  { icon: Layers,      label: t['eam.pill4'] },
+  { icon: Settings,    label: t['eam.pill5'] },
+  { icon: ShieldCheck, label: t['eam.pill6'] },
+  { icon: CheckCircle, label: t['eam.pill7'] },
+  { icon: Layers,      label: t['eam.pill8'] },
+];
+
+const highlights = [
+  'Angular 18 · Signals · Multi-tenant architecture',
+  'NestJS backend · Prisma ORM · PostgreSQL',
+  'KVM Cloud Brazil · 99.9% SLA · High Availability',
+  'REST API documented with Swagger / OpenAPI',
+];
+---
+
+<Layout title="BaseLogic EAM — Tech Sheet | BaseLogic" description="Download the official BaseLogic EAM technical sheet. Modules, enterprise stack, and industrial use cases for mining and heavy industry." lang="en">
+
+  <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-30"></div>
+
+  <div class="relative z-10">
+    <Navbar lang={lang} translatedPath="/servicios/eam" />
+
+    <main class="pt-32 pb-20">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <!-- ── PAGE HERO ── -->
+        <div class="mb-20 max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/8 text-amber-400 text-xs font-mono font-semibold mb-6">
+            <Settings class="w-3.5 h-3.5" />
+            {t['eam.landing.badge']}
+          </div>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-amber-500">
+              {t['eam.landing.title']}
+            </span>
+          </h1>
+          <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
+            {t['eam.landing.subtitle']}
+          </p>
+        </div>
+
+        <!-- ── MAIN GRID ── -->
+        <div class="grid lg:grid-cols-2 gap-12 xl:gap-20 items-start">
+
+          <!-- LEFT COLUMN: Modules + Stack -->
+          <div class="space-y-10">
+
+            <!-- Modules -->
+            <div>
+              <p class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-4">
+                System Modules
+              </p>
+              <div class="grid grid-cols-2 gap-3">
+                {modules.map(({ icon: Icon, label }) => (
+                  <div class="flex items-center gap-2.5 p-3 rounded-xl bg-brand-surface border border-brand-border hover:border-amber-500/30 transition-colors group">
+                    <div class="shrink-0 w-7 h-7 rounded-lg bg-amber-500/10 flex items-center justify-center group-hover:bg-amber-500/20 transition-colors">
+                      <Icon class="w-3.5 h-3.5 text-amber-400" />
+                    </div>
+                    <span class="text-xs font-mono text-slate-300">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div>
+              <p class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-4">
+                Enterprise Stack
+              </p>
+              <div class="space-y-2.5">
+                {highlights.map(item => (
+                  <div class="flex items-start gap-2.5 text-sm text-slate-400 font-mono">
+                    <span class="text-brand-cyan mt-0.5 shrink-0">›</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Competitor comparison -->
+            <div class="p-4 rounded-xl bg-brand-surface/60 border border-brand-border">
+              <p class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-3">
+                {t['eam.vs.title']}
+              </p>
+              <div class="flex items-center gap-4 mb-2">
+                <span class="text-sm font-mono font-bold text-slate-500 line-through opacity-50">SAP PM</span>
+                <span class="text-slate-700">·</span>
+                <span class="text-sm font-mono font-bold text-slate-500 line-through opacity-50">IBM Maximo</span>
+              </div>
+              <p class="text-xs text-amber-400/80 font-mono">{t['eam.vs.sub']}</p>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Lead Magnet -->
+          <div class="lg:sticky lg:top-28">
+            <div class="rounded-2xl border border-amber-500/20 bg-brand-surface shadow-2xl shadow-black/40 overflow-hidden">
+
+              <!-- Box header -->
+              <div class="px-6 pt-6 pb-5 border-b border-brand-border bg-gradient-to-br from-amber-500/8 to-transparent">
+                <div class="flex items-center gap-2 mb-3">
+                  <Download class="w-5 h-5 text-amber-400" />
+                  <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">PDF · 2.4 MB</span>
+                </div>
+                <h2 class="text-lg font-bold text-white leading-snug mb-2">
+                  {t['eam.landing.magnet.title']}
+                </h2>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  {t['eam.landing.magnet.desc']}
+                </p>
+              </div>
+
+              <!-- Form -->
+              <form class="p-6 space-y-4">
+                <div>
+                  <label class="block text-xs font-mono text-brand-cyan mb-2">
+                    {t['eam.landing.magnet.input']}
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="name@company.com"
+                    class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:border-amber-500/60 focus:ring-1 focus:ring-amber-500/30 outline-none transition-colors"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-brand-dark font-bold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-amber-500/20 hover:-translate-y-0.5 text-sm"
+                >
+                  <Download class="w-4 h-4" />
+                  {t['eam.landing.magnet.btn']}
+                </button>
+
+                <p class="text-center text-[11px] text-slate-600 leading-relaxed">
+                  {t['eam.landing.magnet.legal']}
+                </p>
+              </form>
+
+            </div>
+
+            <!-- Micro trust signal -->
+            <div class="flex items-center justify-center gap-2 mt-4">
+              <ShieldCheck class="w-3.5 h-3.5 text-slate-600" />
+              <span class="text-[11px] font-mono text-slate-600">
+                No spam · NDA available on request
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <FooterSection lang={lang} />
+  </div>
+
+</Layout>

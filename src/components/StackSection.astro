@@ -1,0 +1,152 @@
+---
+import { Server, Layers, Code2, Cpu, Database, Zap, Workflow, ShieldCheck, Container, GitBranch } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+
+const categories = [
+  {
+    key: 'backend',
+    label: t['stack.backend'],
+    icon: Server,
+    accent: 'brand-blue',
+    hoverBorder: 'hover:border-brand-blue/50',
+    iconBg: 'bg-brand-blue/10',
+    iconColor: 'text-brand-blue',
+    items: [
+      { icon: Layers,    name: 'NestJS',        tag: 'MODULAR',     tagColor: 'text-brand-blue' },
+      { icon: Code2,     name: 'Prisma ORM',    tag: 'TYPE-SAFE',   tagColor: 'text-brand-cyan' },
+      { icon: Workflow,  name: lang === 'es' ? 'Arquitectura Modular' : 'Modular Architecture', tag: 'MICROSERVICES', tagColor: 'text-slate-300' },
+    ],
+  },
+  {
+    key: 'frontend',
+    label: t['stack.frontend'],
+    icon: Cpu,
+    accent: 'brand-cyan',
+    hoverBorder: 'hover:border-brand-cyan/50',
+    iconBg: 'bg-brand-cyan/10',
+    iconColor: 'text-brand-cyan',
+    items: [
+      { icon: Zap,       name: 'Angular 18',    tag: 'SIGNALS',     tagColor: 'text-brand-cyan' },
+      { icon: Code2,     name: 'TypeScript',    tag: 'E2E SAFETY',  tagColor: 'text-brand-blue' },
+      { icon: Layers,    name: 'Tailwind CSS',  tag: 'DESIGN SYS.', tagColor: 'text-slate-300' },
+    ],
+  },
+  {
+    key: 'infra',
+    label: t['stack.infra'],
+    icon: Database,
+    accent: 'amber-400',
+    hoverBorder: 'hover:border-amber-500/50',
+    iconBg: 'bg-amber-500/10',
+    iconColor: 'text-amber-400',
+    items: [
+      { icon: Database,  name: 'PostgreSQL',    tag: 'ACID',        tagColor: 'text-amber-400' },
+      { icon: Zap,       name: 'Redis',         tag: 'CACHE/QUEUES',tagColor: 'text-yellow-400' },
+      { icon: Server,    name: 'KVM Brasil',    tag: 'HIGH AVAIL.', tagColor: 'text-slate-300' },
+    ],
+  },
+  {
+    key: 'integration',
+    label: t['stack.integration'],
+    icon: GitBranch,
+    accent: 'status-success',
+    hoverBorder: 'hover:border-status-success/50',
+    iconBg: 'bg-status-success/10',
+    iconColor: 'text-status-success',
+    items: [
+      { icon: Workflow,   name: 'CI/CD Pipelines', tag: 'AUTOMATED',  tagColor: 'text-status-success' },
+      { icon: ShieldCheck,name: 'Webhooks / REST',  tag: 'OPENAPI',   tagColor: 'text-brand-cyan' },
+      { icon: Container,  name: 'Docker',           tag: 'CONTAINERS', tagColor: 'text-slate-300' },
+    ],
+    auditLink: lang === 'es' ? '/servicios/auditoria' : '/en/services/audit',
+    auditLabel: lang === 'es' ? 'AUDITORÍA TÉCNICA →' : 'TECHNICAL AUDIT →',
+  },
+];
+---
+
+<section id="stack" class="py-24 bg-brand-dark relative border-t border-brand-border/30">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold mb-4">{t['stack.title']}</h2>
+      <p class="text-slate-400 max-w-2xl">{t['stack.subtitle']}</p>
+
+      <!-- Badge TypeScript E2E -->
+      <div class="inline-flex items-center gap-2 mt-4 px-3 py-1.5 rounded-full border border-brand-cyan/20 bg-brand-cyan/5 text-brand-cyan text-xs font-mono">
+        <Code2 className="w-3 h-3" client:load />
+        {lang === 'es' ? 'TypeScript · Extremo a Extremo · Angular + NestJS' : 'TypeScript · End-to-End · Angular + NestJS'}
+      </div>
+    </div>
+
+    <!-- Grid de categorías -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {categories.map(({ label, icon: CatIcon, hoverBorder, iconBg, iconColor, items, auditLink, auditLabel }) => (
+        <div class={`p-6 rounded-xl bg-brand-surface border border-brand-border ${hoverBorder} transition-colors group flex flex-col`}>
+
+          <!-- Cabecera de categoría -->
+          <div class="flex items-center gap-3 mb-6">
+            <div class={`p-2 rounded ${iconBg} ${iconColor}`}>
+              <CatIcon className="w-5 h-5" />
+            </div>
+            <h3 class="font-bold text-white text-sm leading-tight">{label}</h3>
+          </div>
+
+          <!-- Items -->
+          <ul class="space-y-3 flex-1">
+            {items.map(({ icon: ItemIcon, name, tag, tagColor }) => (
+              <li class="flex items-center justify-between text-sm text-slate-400 group-hover:text-slate-200 transition-colors">
+                <span class="flex items-center gap-2">
+                  <ItemIcon className="w-3 h-3 shrink-0" />
+                  {name}
+                </span>
+                <span class={`text-[10px] font-mono bg-slate-800/80 px-2 py-0.5 rounded whitespace-nowrap ${tagColor}`}>
+                  {tag}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Link a Auditoría (solo en la última tarjeta) -->
+          {auditLink && (
+            <a
+              href={auditLink}
+              class="text-xs font-mono text-status-success hover:text-status-success/80 hover:underline flex items-center gap-1 border-t border-white/5 pt-4 mt-4 transition-colors"
+            >
+              {auditLabel}
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Barra inferior: proof points -->
+    <div class="mt-12 pt-8 border-t border-brand-border/40 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+      <div>
+        <p class="text-xl font-bold font-mono text-brand-cyan">100%</p>
+        <p class="text-xs text-slate-500 mt-1">{lang === 'es' ? 'TypeScript · Sin any' : 'TypeScript · No any'}</p>
+      </div>
+      <div>
+        <p class="text-xl font-bold font-mono text-amber-400">E2E</p>
+        <p class="text-xs text-slate-500 mt-1">{lang === 'es' ? 'Type Safety en Producción' : 'Type Safety in Production'}</p>
+      </div>
+      <div>
+        <p class="text-xl font-bold font-mono text-status-success">HA</p>
+        <p class="text-xs text-slate-500 mt-1">{lang === 'es' ? 'Alta Disponibilidad · KVM BR' : 'High Availability · KVM BR'}</p>
+      </div>
+      <div>
+        <p class="text-xl font-bold font-mono text-brand-blue">ACID</p>
+        <p class="text-xs text-slate-500 mt-1">{lang === 'es' ? 'PostgreSQL · Datos Confiables' : 'PostgreSQL · Reliable Data'}</p>
+      </div>
+    </div>
+
+  </div>
+</section>

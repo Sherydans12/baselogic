@@ -1,0 +1,107 @@
+---
+import { HardHat, Truck, CreditCard, ShoppingBag, Stethoscope } from 'lucide-react';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<section id="sectores" class="py-24 border-t border-brand-border/30 bg-brand-dark relative">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">{t['ind.title']}</h2>
+            <p class="text-slate-400">{t['ind.subtitle']}</p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-6 auto-rows-auto">
+
+            <!-- Minería & Industria Pesada — Tarjeta Flagship (ocupa 2 columnas en md) -->
+            <div class="md:col-span-2 relative p-6 rounded-2xl bg-brand-surface border border-amber-500/40 hover:border-amber-400/70 transition-all duration-300 group overflow-hidden">
+                <!-- Glow de fondo -->
+                <div class="absolute inset-0 bg-gradient-to-br from-amber-500/8 via-transparent to-transparent rounded-2xl pointer-events-none"></div>
+                <!-- Borde superior decorativo -->
+                <div class="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
+
+                <div class="relative flex items-start gap-4">
+                    <div class="shrink-0 w-14 h-14 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center group-hover:bg-amber-500/25 group-hover:border-amber-400/50 transition-all duration-300">
+                        <HardHat className="w-7 h-7 text-amber-400" client:load />
+                    </div>
+
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap mb-2">
+                            <h3 class="font-bold text-white text-lg">{t['ind.1.title']}</h3>
+                            <span class="shrink-0 px-2 py-0.5 rounded-full text-xs font-mono font-semibold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                                {t['ind.1.badge']}
+                            </span>
+                        </div>
+                        <p class="text-sm text-slate-400 leading-relaxed">{t['ind.1.desc']}</p>
+                    </div>
+                </div>
+
+                <!-- Stats inline -->
+                <div class="relative mt-5 pt-5 border-t border-brand-border/50 grid grid-cols-3 gap-3">
+                    <div class="text-center">
+                        <p class="text-sm font-bold font-mono text-amber-400">+95%</p>
+                        <p class="text-xs text-slate-500 mt-0.5 leading-tight">
+                            {lang === 'es' ? 'Disponibilidad Mecánica' : 'Mechanical Availability'}
+                        </p>
+                    </div>
+                    <div class="text-center border-x border-brand-border/50">
+                        <p class="text-sm font-bold font-mono text-amber-400">MTBF</p>
+                        <p class="text-xs text-slate-500 mt-0.5 leading-tight">
+                            {lang === 'es' ? 'Análisis Predictivo' : 'Predictive Analytics'}
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm font-bold font-mono text-amber-400">CPP</p>
+                        <p class="text-xs text-slate-500 mt-0.5 leading-tight">
+                            {lang === 'es' ? 'Valorización de Stock' : 'Stock Valuation'}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logística & Transporte -->
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
+                    <Truck className="w-6 h-6 text-blue-400" client:load />
+                </div>
+                <h3 class="font-bold text-white mb-2">{t['ind.2.title']}</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">{t['ind.2.desc']}</p>
+            </div>
+
+            <!-- Fintech & Pagos -->
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition-colors">
+                    <CreditCard className="w-6 h-6 text-green-400" client:load />
+                </div>
+                <h3 class="font-bold text-white mb-2">{t['ind.3.title']}</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">{t['ind.3.desc']}</p>
+            </div>
+
+            <!-- E-Commerce B2B -->
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
+                    <ShoppingBag className="w-6 h-6 text-purple-400" client:load />
+                </div>
+                <h3 class="font-bold text-white mb-2">{t['ind.4.title']}</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">{t['ind.4.desc']}</p>
+            </div>
+
+            <!-- HealthTech -->
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-cyan/50 transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-rose-500/10 flex items-center justify-center mb-4 group-hover:bg-rose-500/20 transition-colors">
+                    <Stethoscope className="w-6 h-6 text-rose-400" client:load />
+                </div>
+                <h3 class="font-bold text-white mb-2">{t['ind.5.title']}</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">{t['ind.5.desc']}</p>
+            </div>
+
+        </div>
+    </div>
+</section>
