@@ -1,0 +1,38 @@
+---
+import { ArrowRight } from 'lucide-react';
+
+interface Props {
+  title: string;
+  label: string;
+  problem: string;
+  solution: string;
+  expectedResult: string;
+  relatedHref: string;
+  relatedLabel: string;
+}
+
+const { title, label, problem, solution, expectedResult, relatedHref, relatedLabel } = Astro.props;
+---
+
+<article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+  <p class="mb-4 text-sm font-bold uppercase tracking-wide text-brand-blue">{label}</p>
+  <h2 class="text-2xl font-black text-slate-950">{title}</h2>
+  <div class="mt-6 grid gap-4">
+    <div>
+      <h3 class="text-sm font-black uppercase tracking-wide text-slate-500">Problema</h3>
+      <p class="mt-2 leading-7 text-slate-700">{problem}</p>
+    </div>
+    <div>
+      <h3 class="text-sm font-black uppercase tracking-wide text-slate-500">Solucion</h3>
+      <p class="mt-2 leading-7 text-slate-700">{solution}</p>
+    </div>
+    <div>
+      <h3 class="text-sm font-black uppercase tracking-wide text-slate-500">Resultado esperado</h3>
+      <p class="mt-2 leading-7 text-slate-700">{expectedResult}</p>
+    </div>
+  </div>
+  <a href={relatedHref} class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-blue hover:text-slate-950">
+    {relatedLabel}
+    <ArrowRight class="h-4 w-4" />
+  </a>
+</article>

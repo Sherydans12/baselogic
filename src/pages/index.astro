@@ -1,37 +1,37 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import HeroSection from '../components/HeroSection.astro';
-import TrustBar from '../components/TrustBar.astro';
-import ServicesSection from '../components/ServicesSection.astro';
-import IndustriesSection from '../components/IndustriesSection.astro';
-import EAMSection from '../components/EAMSection.astro';
-import StackSection from '../components/StackSection.astro';
-import MethodSection from '../components/MethodSection.astro';
-import ManifestoSection from '../components/ManifestoSection.astro';
-import FAQSection from '../components/FAQSection.astro';
-import FooterSection from '../components/FooterSection.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import HomeHero from '../components/HomeHero.astro';
+import WhatWeDoSection from '../components/WhatWeDoSection.astro';
+import MainServicesSection from '../components/MainServicesSection.astro';
+import ProductsPreviewSection from '../components/ProductsPreviewSection.astro';
+import IndustriesUseCasesSection from '../components/IndustriesUseCasesSection.astro';
+import PlansPreviewSection from '../components/PlansPreviewSection.astro';
+import WhyBaseLogicSection from '../components/WhyBaseLogicSection.astro';
+import FinalCtaSection from '../components/FinalCtaSection.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import { seo } from '../data/seo';
+import { generalFaqs } from '../data/faqs';
+import { contact } from '../data/contact';
+import { baseSchema, faqSchema } from '../data/schema';
+
+const pageSeo = seo.home;
+const schema = [...baseSchema(pageSeo.description), faqSchema(generalFaqs)];
 ---
 
-<Layout title="BaseLogic | Ingeniería de Software B2B">
-	
-	<div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-30"></div>
-
-	<div class="relative z-10">
-		<Navbar lang="es" translatedPath="/en" />
-		
-		<main>
-			<HeroSection lang="es" />
-			<TrustBar lang="es" />
-			<ServicesSection lang="es" />
-			<IndustriesSection lang="es" />
-			<EAMSection lang="es" />
-			<StackSection lang="es" />
-			<MethodSection lang="es" />
-			<ManifestoSection lang="es" />
-			<FAQSection lang="es" />
-			<FooterSection lang="es" />
-		</main>
-	</div>
-
+<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.general}>
+  <SiteHeader />
+  <main>
+    <HomeHero />
+    <WhatWeDoSection />
+    <MainServicesSection />
+    <ProductsPreviewSection />
+    <IndustriesUseCasesSection />
+    <PlansPreviewSection />
+    <WhyBaseLogicSection />
+    <FaqBlock faqs={generalFaqs} />
+    <FinalCtaSection />
+  </main>
+  <SiteFooter />
 </Layout>

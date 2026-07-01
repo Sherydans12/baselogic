@@ -1,0 +1,66 @@
+---
+import { Mail, MapPin } from 'lucide-react';
+import { mainNavigation } from '../data/navigation';
+import { services } from '../data/services';
+import { products } from '../data/products';
+import { contact } from '../data/contact';
+import { site } from '../data/site';
+
+const visibleServices = services.filter((item) => item.status === 'active');
+---
+
+<footer class="border-t border-slate-200 bg-slate-950 text-white">
+  <div class="mx-auto max-w-7xl px-5 py-14 md:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_2fr]">
+      <div>
+        <img src="/BaseLogic%20Logo.png" alt="BaseLogic" class="mb-5 h-16 w-auto object-contain" />
+        <p class="max-w-md text-base leading-7 text-slate-300">
+          {site.tagline} Trabajamos con pymes y empresas en Chile que necesitan vender mejor, ordenar procesos y recibir soporte claro.
+        </p>
+        <div class="mt-6 grid gap-3 text-sm text-slate-300">
+          <a href={`mailto:${contact.email}`} class="inline-flex items-center gap-2 hover:text-brand-cyan">
+            <Mail class="h-4 w-4" />
+            {contact.email}
+          </a>
+          <span class="inline-flex items-center gap-2">
+            <MapPin class="h-4 w-4" />
+            {site.serviceArea}
+          </span>
+        </div>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-3">
+        <div>
+          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Navegacion</h2>
+          <ul class="space-y-3 text-sm">
+            {mainNavigation.map((item) => (
+              <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Servicios</h2>
+          <ul class="space-y-3 text-sm">
+            {visibleServices.map((item) => (
+              <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.shortTitle}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Productos</h2>
+          <ul class="space-y-3 text-sm">
+            {products.map((item) => (
+              <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.name.replace('BaseLogic ', '')}</a></li>
+            ))}
+            <li><a href="/legal/privacidad" class="text-slate-300 hover:text-brand-cyan">Privacidad</a></li>
+            <li><a href="/legal/terminos" class="text-slate-300 hover:text-brand-cyan">Terminos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-500">
+      BaseLogic © 2026. Soluciones digitales para pymes y empresas en Chile.
+    </div>
+  </div>
+</footer>

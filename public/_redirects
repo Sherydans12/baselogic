@@ -1,0 +1,12 @@
+/servicios/saas /servicios 301
+/servicios/api /servicios 301
+/servicios/auditoria /servicios 301
+/servicios/eam /productos/eam 301
+/en / 301
+/en/contact /contacto 301
+/en/services/saas /servicios 301
+/en/services/api /servicios 301
+/en/services/audit /servicios 301
+/en/services/eam /productos/eam 301
+/en/legal/privacy /legal/privacidad 301
+/en/legal/terms /legal/terminos 301

@@ -1,0 +1,32 @@
+---
+import { Globe2, Settings2, Wrench } from 'lucide-react';
+import SectionHeading from './SectionHeading.astro';
+import { home } from '../data/home';
+
+const icons = [Globe2, Settings2, Wrench];
+---
+
+<section class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <SectionHeading
+      eyebrow="Que hacemos"
+      title="Soluciones digitales que se entienden y se pueden usar"
+      text="Combinamos diseño web, sistemas simples y soporte para que tu negocio gane presencia, orden y continuidad."
+      align="center"
+    />
+    <div class="grid gap-5 md:grid-cols-3">
+      {home.whatWeDo.map((item, index) => {
+        const Icon = icons[index];
+        return (
+          <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-blue text-white">
+              <Icon class="h-6 w-6" />
+            </div>
+            <h3 class="text-xl font-bold text-slate-950">{item.title}</h3>
+            <p class="mt-3 leading-7 text-slate-600">{item.text}</p>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import DetailHero from './DetailHero.astro';
+import BenefitsList from './BenefitsList.astro';
+import FeatureList from './FeatureList.astro';
+import ProcessSteps from './ProcessSteps.astro';
+import FaqBlock from './FaqBlock.astro';
+import RelatedItems from './RelatedItems.astro';
+import ContactBand from './ContactBand.astro';
+import { services, serviceProcess } from '../data/services';
+import type { SeoEntry } from '../data/seo';
+import { baseSchema, breadcrumbSchema, faqSchema, serviceSchema } from '../data/schema';
+
+interface Props {
+  serviceId: string;
+  seoEntry: SeoEntry;
+}
+
+const { serviceId, seoEntry } = Astro.props;
+const service = services.find((item) => item.id === serviceId) as any;
+
+if (!service?.detailTitle) {
+  throw new Error(`Missing service detail content for ${serviceId}`);
+}
+
+const relatedItems = (service.related ?? [])
+  .map((id: string) => services.find((item) => item.id === id) as any)
+  .filter(Boolean)
+  .map((item: any) => ({
+    title: item.title,
+    href: item.href,
+    summary: item.summary,
+  }));
+
+const breadcrumbItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/servicios' },
+  { label: service.shortTitle },
+];
+const schema = [
+  ...baseSchema(seoEntry.description),
+  serviceSchema(service, seoEntry),
+  faqSchema(service.faqs),
+  breadcrumbSchema(breadcrumbItems),
+];
+---
+
+<Layout
+  title={seoEntry.title}
+  description={seoEntry.description}
+  canonicalPath={seoEntry.path}
+  schema={schema}
+  whatsappMessage={service.whatsappMessage}
+>
+  <SiteHeader />
+  <main>
+    <Breadcrumbs items={breadcrumbItems} />
+    <DetailHero
+      eyebrow="Servicio"
+      title={service.detailTitle}
+      text={service.detailSubtitle}
+      primaryLabel={service.primaryCta}
+      secondaryLabel={service.secondaryCta}
+      whatsappMessage={service.whatsappMessage}
+    />
+    <BenefitsList
+      title="Beneficios concretos"
+      text="El objetivo es que tu negocio tenga una solucion clara, facil de entender y preparada para crecer cuando haga falta."
+      items={service.benefits}
+    />
+    <FeatureList
+      title="Que incluye"
+      text="Definimos el alcance segun tu caso, pero estos son los elementos habituales que podemos considerar."
+      items={service.includes}
+    />
+    <FeatureList
+      title="Para quien es"
+      text="Pensado para empresas y pymes que necesitan avanzar sin lenguaje complicado ni procesos eternos."
+      items={service.idealFor}
+      variant="white"
+    />
+    <FeatureList
+      title="Casos de uso"
+      text="Algunos escenarios donde este servicio puede ayudar a vender mejor, ordenar informacion o reducir trabajo manual."
+      items={service.useCases}
+    />
+    <ProcessSteps steps={serviceProcess} />
+    <FaqBlock faqs={service.faqs} />
+    <RelatedItems items={relatedItems} />
+    <ContactBand
+      title="Conversemos sobre tu proyecto"
+      text="Cuéntanos que necesita tu negocio y te orientamos con una alternativa simple, realista y preparada para crecer."
+      primaryLabel={service.primaryCta}
+      secondaryLabel={service.secondaryCta}
+      whatsappMessage={service.whatsappMessage}
+    />
+  </main>
+  <SiteFooter />
+</Layout>

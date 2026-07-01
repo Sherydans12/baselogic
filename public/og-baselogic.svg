@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="48" fill="#F8FAFC"/>
+  <circle cx="1040" cy="120" r="240" fill="#E0F7FA"/>
+  <circle cx="155" cy="530" r="190" fill="#DDF7EC"/>
+  <rect x="82" y="78" width="1036" height="474" rx="36" fill="white" stroke="#D8E5EA" stroke-width="2"/>
+  <text x="122" y="166" fill="#0F766E" font-family="Arial, sans-serif" font-size="34" font-weight="700">BaseLogic</text>
+  <text x="122" y="278" fill="#0F172A" font-family="Arial, sans-serif" font-size="64" font-weight="800">
+    <tspan x="122" dy="0">Paginas web, sistemas</tspan>
+    <tspan x="122" dy="78">y automatizacion para pymes</tspan>
+  </text>
+  <text x="122" y="468" fill="#475569" font-family="Arial, sans-serif" font-size="32">
+    Soluciones digitales claras para empresas en Chile.
+  </text>
+  <rect x="850" y="430" width="190" height="54" rx="27" fill="#0F766E"/>
+  <text x="888" y="466" fill="white" font-family="Arial, sans-serif" font-size="22" font-weight="700">Cotizar</text>
+</svg>

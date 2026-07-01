@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ListingHero from '../../components/ListingHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FaqBlock from '../../components/FaqBlock.astro';
+import FinalCtaSection from '../../components/FinalCtaSection.astro';
+import { products } from '../../data/products';
+import { bookingFaqs } from '../../data/faqs';
+import { seo } from '../../data/seo';
+import { contact } from '../../data/contact';
+import { baseSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+
+const product = products.find((item) => item.id === 'booking')!;
+const pageSeo = seo.booking;
+const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(product, pageSeo), faqSchema(bookingFaqs)];
+---
+
+<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.booking}>
+  <SiteHeader />
+  <main>
+    <ListingHero eyebrow={product.eyebrow} title={product.name} text={product.tagline} />
+
+    <section class="bg-white py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1fr_0.9fr]">
+        <div>
+          <SectionHeading
+            title="Reservas claras para negocios que atienden por hora"
+            text={product.summary}
+          />
+          <p class="text-lg leading-8 text-slate-600">{product.audience}</p>
+          <a href="/contacto" class="mt-8 inline-flex rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white hover:bg-slate-950">
+            Cotizar Booking
+          </a>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <h2 class="text-2xl font-black text-slate-950">Que puede incluir</h2>
+          <ul class="mt-6 grid gap-4">
+            {product.features.map((feature) => (
+              <li class="rounded-2xl bg-white p-4 font-bold text-slate-800 shadow-sm">{feature}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-brand-soft py-20">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          title="Ideal para rubros con agenda, servicios y disponibilidad"
+          text="Booking ayuda a evitar conversaciones desordenadas, horarios perdidos y reservas sin seguimiento. El objetivo es que el cliente pueda pedir hora de forma simple y que el negocio vea todo con claridad."
+        />
+      </div>
+    </section>
+
+    <FaqBlock faqs={bookingFaqs} />
+    <FinalCtaSection />
+  </main>
+  <SiteFooter />
+</Layout>

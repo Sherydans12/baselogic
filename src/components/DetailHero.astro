@@ -1,0 +1,40 @@
+---
+import { ArrowRight, Mail } from 'lucide-react';
+import { createContactMailtoHref } from '../data/contact';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  primaryLabel: string;
+  secondaryLabel: string;
+  whatsappMessage: string;
+}
+
+const { eyebrow, title, text, primaryLabel, secondaryLabel, whatsappMessage } = Astro.props;
+const contactHref = createContactMailtoHref(whatsappMessage);
+---
+
+<section class="commercial-surface border-b border-slate-200 py-14 md:py-18">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    {eyebrow && <p class="mb-4 text-sm font-bold uppercase tracking-wide text-brand-blue">{eyebrow}</p>}
+    <h1 class="max-w-5xl text-4xl font-black tracking-tight text-slate-950 md:text-6xl">{title}</h1>
+    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">{text}</p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a
+        href="/contacto"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white transition hover:bg-slate-950"
+      >
+        {primaryLabel}
+        <ArrowRight class="h-5 w-5" />
+      </a>
+      <a
+        href={contactHref}
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-base font-bold text-slate-800 transition hover:border-brand-cyan hover:text-brand-blue"
+      >
+        <Mail class="h-5 w-5" />
+        {secondaryLabel}
+      </a>
+    </div>
+  </div>
+</section>

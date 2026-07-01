@@ -1,0 +1,91 @@
+---
+import { Mail, Menu, X } from 'lucide-react';
+import { mainNavigation, navigationCtas } from '../data/navigation';
+import { contact, createContactMailtoHref } from '../data/contact';
+
+const pathname = Astro.url.pathname;
+const contactHref = createContactMailtoHref(contact.whatsappMessages.general);
+
+const isActive = (href: string) => {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
+---
+
+<header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
+    <a href="/" class="flex items-center gap-3" aria-label="BaseLogic inicio">
+      <img src="/BaseLogic%20Logo.png" alt="BaseLogic" class="h-14 w-auto object-contain" />
+    </a>
+
+    <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex" aria-label="Navegacion principal">
+      {mainNavigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'transition-colors hover:text-brand-blue',
+            isActive(item.href) ? 'text-brand-blue' : 'text-slate-600',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      <a
+        href={contactHref}
+        class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-brand-cyan hover:text-brand-blue"
+      >
+        <Mail class="h-4 w-4" />
+        {navigationCtas.secondary.label}
+      </a>
+      <a
+        href={navigationCtas.primary.href}
+        class="inline-flex items-center rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/15 transition hover:bg-slate-950"
+      >
+        {navigationCtas.primary.label}
+      </a>
+    </div>
+
+    <details class="group relative lg:hidden">
+      <summary
+        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-sm"
+        aria-label="Abrir menu"
+      >
+        <Menu class="h-5 w-5 group-open:hidden" />
+        <X class="hidden h-5 w-5 group-open:block" />
+      </summary>
+      <div class="absolute right-0 mt-3 w-[min(88vw,360px)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/12">
+        <nav class="grid p-3" aria-label="Navegacion movil">
+          {mainNavigation.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                'rounded-xl px-4 py-3 text-base font-semibold transition hover:bg-slate-50',
+                isActive(item.href) ? 'text-brand-blue' : 'text-slate-700',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div class="grid gap-2 border-t border-slate-100 p-3">
+          <a
+            href={navigationCtas.primary.href}
+            class="rounded-xl bg-brand-blue px-4 py-3 text-center text-sm font-bold text-white"
+          >
+            {navigationCtas.primary.label}
+          </a>
+          <a
+            href={contactHref}
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold text-slate-700"
+          >
+            <Mail class="h-4 w-4" />
+            {navigationCtas.secondary.label}
+          </a>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>

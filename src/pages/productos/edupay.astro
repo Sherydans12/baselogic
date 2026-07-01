@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import DetailHero from '../../components/DetailHero.astro';
+import BenefitsList from '../../components/BenefitsList.astro';
+import FeatureList from '../../components/FeatureList.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import FaqBlock from '../../components/FaqBlock.astro';
+import RelatedItems from '../../components/RelatedItems.astro';
+import ContactBand from '../../components/ContactBand.astro';
+import { products } from '../../data/products';
+import { services, serviceProcess } from '../../data/services';
+import { seo } from '../../data/seo';
+import { contact } from '../../data/contact';
+import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+
+const product = products.find((item) => item.id === 'edupay') as any;
+const pageSeo = seo.edupay;
+const whatsappMessage = contact.whatsappMessages.edupay;
+const relatedItems = [
+  products.find((item) => item.id === 'booking'),
+  services.find((item) => item.id === 'sistemas-para-pymes'),
+  services.find((item) => item.id === 'automatizacion'),
+].filter(Boolean).map((item: any) => ({
+  title: item.name ?? item.title,
+  href: item.href,
+  summary: item.summary,
+}));
+
+const breadcrumbItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Productos', href: '/productos' },
+  { label: 'EduPay' },
+];
+const schema = [
+  ...baseSchema(pageSeo.description),
+  softwareApplicationSchema(product, pageSeo),
+  faqSchema(product.faqs),
+  breadcrumbSchema(breadcrumbItems),
+];
+---
+
+<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={whatsappMessage}>
+  <SiteHeader />
+  <main>
+    <Breadcrumbs items={breadcrumbItems} />
+    <DetailHero
+      eyebrow={product.eyebrow}
+      title="BaseLogic EduPay: pagos y cobranza para instituciones educativas"
+      text="EduPay ayuda a colegios, jardines, academias e instituciones educativas a ordenar pagos, cobranza, comunicacion financiera y seguimiento administrativo."
+      primaryLabel="Consultar por EduPay"
+      secondaryLabel="Solicitar evaluacion"
+      whatsappMessage={whatsappMessage}
+    />
+    <BenefitsList
+      title="Pensado para reducir trabajo manual"
+      text="La solucion se evalua segun el contexto de cada institucion, con foco en ordenar informacion financiera y mejorar la experiencia de apoderados."
+      items={product.benefits}
+    />
+    <FeatureList
+      title="Que puede incluir"
+      text="EduPay se conversa como una solucion vertical evaluable, no como una promesa cerrada sin revisar necesidades reales."
+      items={product.features}
+    />
+    <FeatureList
+      title="Casos de uso"
+      text="Escenarios habituales donde una institucion educativa puede necesitar mas orden y seguimiento."
+      items={product.useCases}
+      variant="white"
+    />
+    <ProcessSteps
+      title="Evaluacion e implementacion por etapas"
+      text="Primero entendemos el flujo actual de pagos y cobranza. Luego proponemos una implementacion acorde al tamano, urgencia y procesos de la institucion."
+      steps={serviceProcess}
+    />
+    <FaqBlock faqs={product.faqs} />
+    <RelatedItems items={relatedItems} />
+    <ContactBand
+      title="Conversemos sobre EduPay"
+      text="Si tu institucion necesita ordenar pagos, mensualidades, recordatorios o reportes, podemos revisar el caso y proponer una ruta realista."
+      primaryLabel="Consultar por EduPay"
+      secondaryLabel="Solicitar evaluacion"
+      whatsappMessage={whatsappMessage}
+    />
+  </main>
+  <SiteFooter />
+</Layout>

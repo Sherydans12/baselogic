@@ -1,0 +1,18 @@
+export const publicRoutes = [
+  '/',
+  '/servicios',
+  '/servicios/paginas-web',
+  '/servicios/landing-pages',
+  '/servicios/wordpress',
+  '/servicios/sistemas-para-pymes',
+  '/servicios/automatizacion',
+  '/productos',
+  '/productos/booking',
+  '/productos/edupay',
+  '/productos/eam',
+  '/planes',
+  '/casos-de-exito',
+  '/contacto',
+  '/legal/privacidad',
+  '/legal/terminos',
+];
