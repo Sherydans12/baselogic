@@ -10,9 +10,10 @@ interface Props {
   asset?: VisualAsset;
   ctaLabel?: string;
   ctaHref?: string;
+  visualAspectRatio?: string;
 }
 
-const { eyebrow, title, text, asset, ctaLabel, ctaHref } = Astro.props;
+const { eyebrow, title, text, asset, ctaLabel, ctaHref, visualAspectRatio } = Astro.props;
 const hasVisual = asset?.status === 'approved' && Boolean(asset.src);
 const hasCta = Boolean(ctaLabel && ctaHref);
 ---
@@ -34,7 +35,7 @@ const hasCta = Boolean(ctaLabel && ctaHref);
       )}
     </div>
     {hasVisual && (
-      <HeroVisual asset={asset} priority={true} />
+      <HeroVisual asset={asset} priority={true} aspectRatio={visualAspectRatio} />
     )}
   </div>
 </section>

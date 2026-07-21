@@ -24,6 +24,7 @@ const {
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'auto'}
       class="h-full w-full object-cover"
+      style={asset.objectPosition ? `object-position: ${asset.objectPosition};` : undefined}
     />
     {overlay && (
       <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/40 to-transparent mix-blend-multiply pointer-events-none"></div>

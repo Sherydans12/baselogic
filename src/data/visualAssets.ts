@@ -4,6 +4,7 @@ export interface VisualAsset {
   src: string;
   alt: string;
   status: AssetStatus;
+  objectPosition?: string;
 }
 
 export const visualAssets = {
@@ -21,9 +22,10 @@ export const visualAssets = {
       status: 'approved',
     } as VisualAsset,
     eamHero: {
-      src: '',
-      alt: '',
-      status: 'pending',
+      src: '/images/generated/products/eam-hero.webp',
+      alt: 'Supervisor en una operación industrial limpia revisando control de activos y mantenimiento con una tablet',
+      status: 'approved',
+      objectPosition: '50% 50%',
     } as VisualAsset,
   },
 };
