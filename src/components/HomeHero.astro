@@ -2,6 +2,8 @@
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { home } from '../data/home';
 import { contact, createContactMailtoHref } from '../data/contact';
+import HeroVisual from './HeroVisual.astro';
+import { visualAssets } from '../data/visualAssets';
 
 const contactHref = createContactMailtoHref(contact.whatsappMessages.general);
 ---
@@ -38,35 +40,6 @@ const contactHref = createContactMailtoHref(contact.whatsappMessages.general);
       </a>
     </div>
 
-    <div class="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-900/10">
-      <div class="rounded-[1.5rem] bg-slate-950 p-5 text-white">
-        <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-          <div>
-            <p class="text-sm font-bold text-brand-cyan">BaseLogic</p>
-            <p class="text-xs text-slate-400">Panel de solucion digital</p>
-          </div>
-          <span class="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">Activo</span>
-        </div>
-        <div class="grid gap-3">
-          {[
-            'Pagina web profesional',
-            'Formulario y correo',
-            'Reservas o procesos',
-            'Soporte y mejoras',
-          ].map((item) => (
-            <div class="flex items-center gap-3 rounded-2xl bg-white/7 p-4">
-              <CheckCircle2 class="h-5 w-5 text-brand-cyan" />
-              <span class="text-sm font-semibold text-slate-100">{item}</span>
-            </div>
-          ))}
-        </div>
-        <div class="mt-6 rounded-2xl bg-white p-4 text-slate-950">
-          <p class="text-sm font-bold">Una base clara para crecer</p>
-          <p class="mt-2 text-sm leading-6 text-slate-600">
-            Partimos con lo que tu negocio necesita hoy y dejamos espacio para sumar automatizaciones, sistemas o productos propios.
-          </p>
-        </div>
-      </div>
-    </div>
+    <HeroVisual asset={visualAssets.home.hero} priority={true} overlay={true} />
   </div>
 </section>

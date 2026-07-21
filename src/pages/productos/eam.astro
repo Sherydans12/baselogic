@@ -11,6 +11,7 @@ import { eamFaqs } from '../../data/faqs';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
 import { baseSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+import { visualAssets } from '../../data/visualAssets';
 
 const product = products.find((item) => item.id === 'eam')!;
 const pageSeo = seo.eam;
@@ -20,7 +21,7 @@ const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(pr
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.eam}>
   <SiteHeader />
   <main>
-    <ListingHero eyebrow={product.eyebrow} title={product.name} text={product.tagline} />
+    <ListingHero eyebrow={product.eyebrow} title={product.name} text={product.tagline} asset={visualAssets.products.eamHero} />
 
     <section class="bg-white py-20">
       <div class="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1fr_0.9fr]">

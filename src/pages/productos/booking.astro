@@ -11,6 +11,7 @@ import { bookingFaqs } from '../../data/faqs';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
 import { baseSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+import { visualAssets } from '../../data/visualAssets';
 
 const product = products.find((item) => item.id === 'booking')!;
 const pageSeo = seo.booking;
@@ -20,7 +21,14 @@ const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(pr
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.booking}>
   <SiteHeader />
   <main>
-    <ListingHero eyebrow={product.eyebrow} title={product.name} text={product.tagline} />
+    <ListingHero
+      eyebrow={product.eyebrow}
+      title={product.name}
+      text={product.tagline}
+      asset={visualAssets.products.bookingHero}
+      ctaLabel="Cotizar Booking"
+      ctaHref="/contacto"
+    />
 
     <section class="bg-white py-20">
       <div class="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1fr_0.9fr]">
@@ -30,9 +38,6 @@ const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(pr
             text={product.summary}
           />
           <p class="text-lg leading-8 text-slate-600">{product.audience}</p>
-          <a href="/contacto" class="mt-8 inline-flex rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white hover:bg-slate-950">
-            Cotizar Booking
-          </a>
         </div>
         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
           <h2 class="text-2xl font-black text-slate-950">Que puede incluir</h2>

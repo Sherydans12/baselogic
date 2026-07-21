@@ -1,0 +1,32 @@
+---
+import type { VisualAsset } from '../data/visualAssets';
+
+interface Props {
+  asset?: VisualAsset;
+  priority?: boolean;
+  aspectRatio?: string;
+  overlay?: boolean;
+}
+
+const {
+  asset,
+  priority = false,
+  aspectRatio = 'aspect-[16/10]',
+  overlay = false
+} = Astro.props;
+---
+
+{asset && asset.status === 'approved' && asset.src ? (
+  <div class={`relative w-full overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100 shadow-2xl shadow-slate-900/10 ${aspectRatio}`}>
+    <img
+      src={asset.src}
+      alt={asset.alt}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : 'auto'}
+      class="h-full w-full object-cover"
+    />
+    {overlay && (
+      <div class="absolute inset-0 bg-gradient-to-tr from-slate-900/40 to-transparent mix-blend-multiply pointer-events-none"></div>
+    )}
+  </div>
+) : null}
