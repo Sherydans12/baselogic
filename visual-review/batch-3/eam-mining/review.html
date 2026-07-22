@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BaseLogic — Visual Batch 3 Review (EAM Mining)</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-muted: #e2e8f0;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --accent: #0369a1;
+      --cyan: #0284c7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main { width: min(1600px, 100%); margin: 0 auto; padding: 40px 24px 72px; }
+    .page-header { margin-bottom: 48px; border-bottom: 2px solid var(--border); padding-bottom: 24px; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.04em; color: var(--text); }
+    .page-header p { max-width: 80ch; margin-bottom: 0; color: var(--muted); font-size: 1.05rem; }
+    .batch-section + .batch-section { margin-top: 48px; }
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+    .section-heading h2 { margin-bottom: 12px; color: var(--accent); }
+    .section-heading p { margin-bottom: 12px; color: var(--muted); font-weight: 700; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 720px), 1fr)); gap: 32px; }
+    .card { overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: 0 18px 45px rgb(15 23 42 / 0.08); }
+    .card-header { padding: 24px 24px 8px; }
+    .eyebrow { margin-bottom: 4px; color: var(--accent); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .card h3 { margin-bottom: 0; font-size: 1.4rem; }
+    .metadata { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 16px 24px 24px; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--border); }
+    .metadata > div { min-width: 0; padding: 12px; background: var(--surface); }
+    .metadata .metadata-path { grid-column: 1 / -1; }
+    dt { color: var(--muted); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+    dd { margin: 3px 0 0; overflow-wrap: anywhere; font-size: 0.9rem; font-weight: 600; }
+    .original-block { padding: 0 24px 24px; }
+    h4, figcaption { margin-bottom: 8px; font-size: 0.9rem; font-weight: 800; }
+    .original-frame, .crop-frame { overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-muted); }
+    .original-frame { display: grid; min-height: 260px; place-items: center; aspect-ratio: 16 / 10; }
+    .original-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .crop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 0 24px 24px; }
+    figure { margin: 0; }
+    .crop-frame { width: 100%; }
+    .crop-frame-portrait { aspect-ratio: 4 / 5; }
+    .crop-frame-square { aspect-ratio: 1 / 1; }
+    .crop-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+    .notes-block { padding: 0 24px 24px; }
+    .notes-textarea { width: 100%; min-height: 80px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; resize: vertical; }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <h1>BaseLogic EAM — Visual Review Batch 3 (Minería Chilena)</h1>
+      <p>Reorientación visual de BaseLogic EAM para el sector minero chileno y empresas contratistas (movimiento de tierra, perforación, izaje y mantenimiento de activos críticos). V1–V4 están rechazadas formalmente; V5–V6 permanecen pendientes de QA y no cuentan con aprobación.</p>
+    </header>
+
+    <section class="batch-section">
+      <div class="section-heading">
+        <h2>Micro-batch EAM Minería (V1–V6)</h2>
+        <p>6 variantes horizontales 16:10 con vistas responsive 4:5 y 1:1</p>
+      </div>
+      <div class="card-grid">
+
+        <!-- VARIANT V1 -->
+        <article class="card">
+          <header class="card-header">
+            <p class="eyebrow">Variante V1 · Alto Tonelaje & Control de Flota</p>
+            <h3>eam-mining-hero-v1.webp</h3>
+          </header>
+          <dl class="metadata">
+            <div><dt>Concepto</dt><dd>Control de flota en rajo abierto</dd></div>
+            <div><dt>Dimensiones</dt><dd>1920 × 1200 px (16:10)</dd></div>
+            <div><dt>Formato</dt><dd>WebP</dd></div>
+            <div><dt>Peso</dt><dd>20.36 KiB</dd></div>
+            <div><dt>Estado</dt><dd>Rechazada</dd></div>
+            <div><dt>QA</dt><dd>Dictamen formal V1–V4</dd></div>
+            <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-3/eam-mining/eam-mining-hero-v1.webp</dd></div>
+          </dl>
+          <div class="original-block">
+            <h4>Original Completo (16:10)</h4>
+            <div class="original-frame">
+              <img src="eam-mining-hero-v1.webp" alt="V1 — Alto Tonelaje y Control de Flota (Original 16:10)" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="crop-grid">
+            <figure>
+              <figcaption>Simulación Crop Mobile (4:5)</figcaption>
+              <div class="crop-frame crop-frame-portrait">
+                <img src="eam-mining-hero-v1.webp" alt="V1 Crop Mobile 4:5" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure>
+              <figcaption>Simulación Crop Card (1:1)</figcaption>
+              <div class="crop-frame crop-frame-square">
+                <img src="eam-mining-hero-v1.webp" alt="V1 Crop Cuadrado 1:1" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+          <div class="notes-block">
+            <h4>Notas de Evaluación & QA</h4>
+            <textarea class="notes-textarea" placeholder="Escribe observaciones de evaluación para V1..."></textarea>
+          </div>
+        </article>
+
+        <!-- VARIANT V2 -->
+        <article class="card">
+          <header class="card-header">
+            <p class="eyebrow">Variante V2 · Contratista Movimiento de Tierra</p>
+            <h3>eam-mining-hero-v2.webp</h3>
+          </header>
+          <dl class="metadata">
+            <div><dt>Concepto</dt><dd>Programación y movimiento de tierra</dd></div>
+            <div><dt>Dimensiones</dt><dd>1920 × 1200 px (16:10)</dd></div>
+            <div><dt>Formato</dt><dd>WebP</dd></div>
+            <div><dt>Peso</dt><dd>20.98 KiB</dd></div>
+            <div><dt>Estado</dt><dd>Rechazada</dd></div>
+            <div><dt>QA</dt><dd>Dictamen formal V1–V4</dd></div>
+            <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-3/eam-mining/eam-mining-hero-v2.webp</dd></div>
+          </dl>
+          <div class="original-block">
+            <h4>Original Completo (16:10)</h4>
+            <div class="original-frame">
+              <img src="eam-mining-hero-v2.webp" alt="V2 — Contratista de Movimiento de Tierra (Original 16:10)" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="crop-grid">
+            <figure>
+              <figcaption>Simulación Crop Mobile (4:5)</figcaption>
+              <div class="crop-frame crop-frame-portrait">
+                <img src="eam-mining-hero-v2.webp" alt="V2 Crop Mobile 4:5" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure>
+              <figcaption>Simulación Crop Card (1:1)</figcaption>
+              <div class="crop-frame crop-frame-square">
+                <img src="eam-mining-hero-v2.webp" alt="V2 Crop Cuadrado 1:1" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+          <div class="notes-block">
+            <h4>Notas de Evaluación & QA</h4>
+            <textarea class="notes-textarea" placeholder="Escribe observaciones de evaluación para V2..."></textarea>
+          </div>
+        </article>
+
+        <!-- VARIANT V3 -->
+        <article class="card">
+          <header class="card-header">
+            <p class="eyebrow">Variante V3 · Drilling & Perforación</p>
+            <h3>eam-mining-hero-v3.webp</h3>
+          </header>
+          <dl class="metadata">
+            <div><dt>Concepto</dt><dd>Inspección y perforación minera</dd></div>
+            <div><dt>Dimensiones</dt><dd>1920 × 1200 px (16:10)</dd></div>
+            <div><dt>Formato</dt><dd>WebP</dd></div>
+            <div><dt>Peso</dt><dd>18.25 KiB</dd></div>
+            <div><dt>Estado</dt><dd>Rechazada</dd></div>
+            <div><dt>QA</dt><dd>Dictamen formal V1–V4</dd></div>
+            <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-3/eam-mining/eam-mining-hero-v3.webp</dd></div>
+          </dl>
+          <div class="original-block">
+            <h4>Original Completo (16:10)</h4>
+            <div class="original-frame">
+              <img src="eam-mining-hero-v3.webp" alt="V3 — Drilling y Perforación (Original 16:10)" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="crop-grid">
+            <figure>
+              <figcaption>Simulación Crop Mobile (4:5)</figcaption>
+              <div class="crop-frame crop-frame-portrait">
+                <img src="eam-mining-hero-v3.webp" alt="V3 Crop Mobile 4:5" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure>
+              <figcaption>Simulación Crop Card (1:1)</figcaption>
+              <div class="crop-frame crop-frame-square">
+                <img src="eam-mining-hero-v3.webp" alt="V3 Crop Cuadrado 1:1" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+          <div class="notes-block">
+            <h4>Notas de Evaluación & QA</h4>
+            <textarea class="notes-textarea" placeholder="Escribe observaciones de evaluación para V3..."></textarea>
+          </div>
+        </article>
+
+        <!-- VARIANT V4 -->
+        <article class="card">
+          <header class="card-header">
+            <p class="eyebrow">Variante V4 · Grúas, Izaje & Mantenimiento</p>
+            <h3>eam-mining-hero-v4.webp</h3>
+          </header>
+          <dl class="metadata">
+            <div><dt>Concepto</dt><dd>Maniobra de izaje y componentes</dd></div>
+            <div><dt>Dimensiones</dt><dd>1920 × 1200 px (16:10)</dd></div>
+            <div><dt>Formato</dt><dd>WebP</dd></div>
+            <div><dt>Peso</dt><dd>17.49 KiB</dd></div>
+            <div><dt>Estado</dt><dd>Rechazada</dd></div>
+            <div><dt>QA</dt><dd>Dictamen formal V1–V4</dd></div>
+            <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-3/eam-mining/eam-mining-hero-v4.webp</dd></div>
+          </dl>
+          <div class="original-block">
+            <h4>Original Completo (16:10)</h4>
+            <div class="original-frame">
+              <img src="eam-mining-hero-v4.webp" alt="V4 — Grúas, Izaje y Mantenimiento (Original 16:10)" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="crop-grid">
+            <figure>
+              <figcaption>Simulación Crop Mobile (4:5)</figcaption>
+              <div class="crop-frame crop-frame-portrait">
+                <img src="eam-mining-hero-v4.webp" alt="V4 Crop Mobile 4:5" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure>
+              <figcaption>Simulación Crop Card (1:1)</figcaption>
+              <div class="crop-frame crop-frame-square">
+                <img src="eam-mining-hero-v4.webp" alt="V4 Crop Cuadrado 1:1" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+          <div class="notes-block">
+            <h4>Notas de Evaluación & QA</h4>
+            <textarea class="notes-textarea" placeholder="Escribe observaciones de evaluación para V4..."></textarea>
+          </div>
+        </article>
+
+        <!-- VARIANT V5 -->
+        <article class="card">
+          <header class="card-header">
+            <p class="eyebrow">Variante V5 · Ingreso pendiente de QA formal</p>
+            <h3>eam-mining-hero-v5.webp</h3>
+          </header>
+          <dl class="metadata">
+            <div><dt>Concepto</dt><dd>Flota y apoyo en faena minera</dd></div>
+            <div><dt>Dimensiones</dt><dd>1920 × 1200 px (16:10)</dd></div>
+            <div><dt>Formato</dt><dd>WebP</dd></div>
+            <div><dt>Peso</dt><dd>242.66 KiB</dd></div>
+            <div><dt>Estado</dt><dd>Pendiente de QA formal</dd></div>
+            <div><dt>Integración</dt><dd>Solo revisión; no público</dd></div>
+            <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-3/eam-mining/eam-mining-hero-v5.webp</dd></div>
+          </dl>
+          <div class="original-block">
+            <h4>Original Completo (16:10)</h4>
+            <div class="original-frame">
+              <img src="eam-mining-hero-v5.webp" alt="V5 — Flota y apoyo en faena minera (Original 16:10)" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="crop-grid">
+            <figure>
+              <figcaption>Simulación Crop Mobile (4:5)</figcaption>
+              <div class="crop-frame crop-frame-portrait">
+                <img src="eam-mining-hero-v5.webp" alt="V5 Crop Mobile 4:5" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure>
+              <figcaption>Simulación Crop Card (1:1)</figcaption>
+              <div class="crop-frame crop-frame-square">
+                <img src="eam-mining-hero-v5.webp" alt="V5 Crop Cuadrado 1:1" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+          <div class="notes-block">
+            <h4>Notas de Evaluación & QA</h4>
+            <textarea class="notes-textarea" placeholder="Escribe observaciones de evaluación para V5..."></textarea>
+          </div>
+        </article>
+
+        <!-- VARIANT V6 -->
+        <article class="card">
+          <header class="card-header">
+            <p class="eyebrow">Variante V6 · Ingreso pendiente de QA formal</p>
+            <h3>eam-mining-hero-v6.webp</h3>
+          </header>
+          <dl class="metadata">
+            <div><dt>Concepto</dt><dd>Mantenimiento de maquinaria en taller</dd></div>
+            <div><dt>Dimensiones</dt><dd>1920 × 1200 px (16:10)</dd></div>
+            <div><dt>Formato</dt><dd>WebP</dd></div>
+            <div><dt>Peso</dt><dd>272.10 KiB</dd></div>
+            <div><dt>Estado</dt><dd>Pendiente de QA formal</dd></div>
+            <div><dt>Integración</dt><dd>Solo revisión; no público</dd></div>
+            <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-3/eam-mining/eam-mining-hero-v6.webp</dd></div>
+          </dl>
+          <div class="original-block">
+            <h4>Original Completo (16:10)</h4>
+            <div class="original-frame">
+              <img src="eam-mining-hero-v6.webp" alt="V6 — Mantenimiento de maquinaria en taller (Original 16:10)" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="crop-grid">
+            <figure>
+              <figcaption>Simulación Crop Mobile (4:5)</figcaption>
+              <div class="crop-frame crop-frame-portrait">
+                <img src="eam-mining-hero-v6.webp" alt="V6 Crop Mobile 4:5" loading="lazy" decoding="async">
+              </div>
+            </figure>
+            <figure>
+              <figcaption>Simulación Crop Card (1:1)</figcaption>
+              <div class="crop-frame crop-frame-square">
+                <img src="eam-mining-hero-v6.webp" alt="V6 Crop Cuadrado 1:1" loading="lazy" decoding="async">
+              </div>
+            </figure>
+          </div>
+          <div class="notes-block">
+            <h4>Notas de Evaluación & QA</h4>
+            <textarea class="notes-textarea" placeholder="Escribe observaciones de evaluación para V6..."></textarea>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>
