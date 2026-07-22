@@ -77,6 +77,51 @@
             resize: vertical;
             min-height: 80px;
         }
+        .preview-label {
+            padding: 0.75rem 1.5rem 0;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .crop-previews {
+            display: grid;
+            grid-template-columns: 4fr 3fr;
+            gap: 1rem;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .crop-preview { min-width: 0; }
+        .crop-label {
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .crop-frame {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #cbd5e1;
+        }
+        .crop-frame.mobile { aspect-ratio: 4 / 5; }
+        .crop-frame.square { aspect-ratio: 1 / 1; }
+        .crop-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .crop-note {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
@@ -93,8 +138,8 @@
                 <div class="badge">V1</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> home-hero-v1.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 57.89 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 57.89 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/home/home-hero-v1.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí... (Ej: revisar espacio texto)"></textarea>
@@ -106,8 +151,8 @@
                 <div class="badge">V2</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> home-hero-v2.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 58.69 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 58.69 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/home/home-hero-v2.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -119,8 +164,8 @@
                 <div class="badge">V3</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> home-hero-v3.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 73.09 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 73.09 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/home/home-hero-v3.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -132,8 +177,8 @@
                 <div class="badge">V4</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> home-hero-v4.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 59.60 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 59.60 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/home/home-hero-v4.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -150,8 +195,8 @@
                 <div class="badge">V1</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> booking-hero-v1.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 44.90 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 44.90 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/booking/booking-hero-v1.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -163,8 +208,8 @@
                 <div class="badge">V2</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> booking-hero-v2.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 57.75 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 57.75 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/booking/booking-hero-v2.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -176,8 +221,8 @@
                 <div class="badge">V3</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> booking-hero-v3.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 53.03 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 53.03 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/booking/booking-hero-v3.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -189,8 +234,8 @@
                 <div class="badge">V4</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> booking-hero-v4.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 65.56 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 65.56 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/booking/booking-hero-v4.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
@@ -203,28 +248,152 @@
     <div class="grid">
         <div class="card">
             <div class="card-img-container"><img src="eam/eam-hero-v1.webp" alt="EAM V1" loading="lazy"></div>
+            <div class="preview-label">Fuente 1:1 en contenedor 16:10</div>
             <div class="card-body">
                 <div class="badge">V1</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> eam-hero-v1.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 97.06 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 97.06 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/eam/eam-hero-v1.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
+                <div class="crop-previews" aria-label="Simulaciones responsive de EAM V1">
+                    <div class="crop-preview">
+                        <div class="crop-label">Crop mobile 4:5</div>
+                        <div class="crop-frame mobile"><img src="eam/eam-hero-v1.webp" alt="EAM V1 en crop mobile 4:5" loading="lazy"></div>
+                    </div>
+                    <div class="crop-preview">
+                        <div class="crop-label">Card cuadrada 1:1</div>
+                        <div class="crop-frame square"><img src="eam/eam-hero-v1.webp" alt="EAM V1 en card cuadrada 1:1" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="crop-note">Crops centrados para detectar cortes de tablet, activo y persona.</div>
             </div>
         </div>
         <div class="card">
             <div class="card-img-container"><img src="eam/eam-hero-v2.webp" alt="EAM V2" loading="lazy"></div>
+            <div class="preview-label">Fuente 1:1 en contenedor 16:10</div>
             <div class="card-body">
                 <div class="badge">V2</div>
                 <div class="file-info">
                     <strong>Archivo:</strong> eam-hero-v2.webp<br>
-                    <strong>Dimensiones:</strong> 1920x1200 px<br>
-                    <strong>Peso:</strong> 102.52 KB<br>
+                    <strong>Dimensiones:</strong> 1024x1024 px<br>
+                    <strong>Peso:</strong> 102.52 KiB<br>
                     <strong>Ruta:</strong> visual-review/batch-1/eam/eam-hero-v2.webp
                 </div>
                 <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
+                <div class="crop-previews" aria-label="Simulaciones responsive de EAM V2">
+                    <div class="crop-preview">
+                        <div class="crop-label">Crop mobile 4:5</div>
+                        <div class="crop-frame mobile"><img src="eam/eam-hero-v2.webp" alt="EAM V2 en crop mobile 4:5" loading="lazy"></div>
+                    </div>
+                    <div class="crop-preview">
+                        <div class="crop-label">Card cuadrada 1:1</div>
+                        <div class="crop-frame square"><img src="eam/eam-hero-v2.webp" alt="EAM V2 en card cuadrada 1:1" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="crop-note">Crops centrados para detectar cortes de tablet, activo y persona.</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img-container"><img src="eam/eam-hero-v3.webp" alt="EAM V3" loading="lazy"></div>
+            <div class="preview-label">Vista original 16:10</div>
+            <div class="card-body">
+                <div class="badge">V3</div>
+                <div class="file-info">
+                    <strong>Archivo:</strong> eam-hero-v3.webp<br>
+                    <strong>Dimensiones:</strong> 1920x1200 px<br>
+                    <strong>Peso:</strong> 116.05 KiB<br>
+                    <strong>Ruta:</strong> visual-review/batch-1/eam/eam-hero-v3.webp
+                </div>
+                <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
+                <div class="crop-previews" aria-label="Simulaciones responsive de EAM V3">
+                    <div class="crop-preview">
+                        <div class="crop-label">Crop mobile 4:5</div>
+                        <div class="crop-frame mobile"><img src="eam/eam-hero-v3.webp" alt="EAM V3 en crop mobile 4:5" loading="lazy"></div>
+                    </div>
+                    <div class="crop-preview">
+                        <div class="crop-label">Card cuadrada 1:1</div>
+                        <div class="crop-frame square"><img src="eam/eam-hero-v3.webp" alt="EAM V3 en card cuadrada 1:1" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="crop-note">Crops centrados para detectar cortes de tablet, activo y persona.</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img-container"><img src="eam/eam-hero-v4.webp" alt="EAM V4" loading="lazy"></div>
+            <div class="preview-label">Vista original 16:10</div>
+            <div class="card-body">
+                <div class="badge">V4</div>
+                <div class="file-info">
+                    <strong>Archivo:</strong> eam-hero-v4.webp<br>
+                    <strong>Dimensiones:</strong> 1920x1200 px<br>
+                    <strong>Peso:</strong> 126.88 KiB<br>
+                    <strong>Ruta:</strong> visual-review/batch-1/eam/eam-hero-v4.webp
+                </div>
+                <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
+                <div class="crop-previews" aria-label="Simulaciones responsive de EAM V4">
+                    <div class="crop-preview">
+                        <div class="crop-label">Crop mobile 4:5</div>
+                        <div class="crop-frame mobile"><img src="eam/eam-hero-v4.webp" alt="EAM V4 en crop mobile 4:5" loading="lazy"></div>
+                    </div>
+                    <div class="crop-preview">
+                        <div class="crop-label">Card cuadrada 1:1</div>
+                        <div class="crop-frame square"><img src="eam/eam-hero-v4.webp" alt="EAM V4 en card cuadrada 1:1" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="crop-note">Crops centrados para detectar cortes de tablet, activo y persona.</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img-container"><img src="eam/eam-hero-v5.webp" alt="EAM V5" loading="lazy"></div>
+            <div class="preview-label">Vista original 16:10</div>
+            <div class="card-body">
+                <div class="badge">V5</div>
+                <div class="file-info">
+                    <strong>Archivo:</strong> eam-hero-v5.webp<br>
+                    <strong>Dimensiones:</strong> 1920x1200 px<br>
+                    <strong>Peso:</strong> 133.47 KiB<br>
+                    <strong>Ruta:</strong> visual-review/batch-1/eam/eam-hero-v5.webp
+                </div>
+                <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
+                <div class="crop-previews" aria-label="Simulaciones responsive de EAM V5">
+                    <div class="crop-preview">
+                        <div class="crop-label">Crop mobile 4:5</div>
+                        <div class="crop-frame mobile"><img src="eam/eam-hero-v5.webp" alt="EAM V5 en crop mobile 4:5" loading="lazy"></div>
+                    </div>
+                    <div class="crop-preview">
+                        <div class="crop-label">Card cuadrada 1:1</div>
+                        <div class="crop-frame square"><img src="eam/eam-hero-v5.webp" alt="EAM V5 en card cuadrada 1:1" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="crop-note">Crops centrados para detectar cortes de tablet, activo y persona.</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img-container"><img src="eam/eam-hero-v6.webp" alt="EAM V6" loading="lazy"></div>
+            <div class="preview-label">Vista original 16:10</div>
+            <div class="card-body">
+                <div class="badge">V6</div>
+                <div class="file-info">
+                    <strong>Archivo:</strong> eam-hero-v6.webp<br>
+                    <strong>Dimensiones:</strong> 1920x1200 px<br>
+                    <strong>Peso:</strong> 124.98 KiB<br>
+                    <strong>Ruta:</strong> visual-review/batch-1/eam/eam-hero-v6.webp
+                </div>
+                <textarea class="notes" placeholder="Escribe notas aquí..."></textarea>
+                <div class="crop-previews" aria-label="Simulaciones responsive de EAM V6">
+                    <div class="crop-preview">
+                        <div class="crop-label">Crop mobile 4:5</div>
+                        <div class="crop-frame mobile"><img src="eam/eam-hero-v6.webp" alt="EAM V6 en crop mobile 4:5" loading="lazy"></div>
+                    </div>
+                    <div class="crop-preview">
+                        <div class="crop-label">Card cuadrada 1:1</div>
+                        <div class="crop-frame square"><img src="eam/eam-hero-v6.webp" alt="EAM V6 en card cuadrada 1:1" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="crop-note">Crops centrados para detectar cortes de tablet, activo y persona.</div>
             </div>
         </div>
     </div>

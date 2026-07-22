@@ -1,5 +1,7 @@
 # BaseLogic — QA final de integración visual fase 1
 
+> **Nota de vigencia:** este QA report es el registro definitivo de la Fase Visual 1. El estado EAM pendiente descrito aquí fue posteriormente superado por el commit `e7a720e520a59b72921d5ffa26c45e399df444b8`, que integró EAM V6. El documento se conserva como snapshot histórico de su fecha y no representa el estado actual del sitio.
+
 **Fecha:** 20 de julio de 2026
 **Alcance:** Home, Booking y validación de EAM pendiente; revisión de `/productos`, `/contacto` y `/servicios`
 **Viewport de prueba:** desktop 1440 × 900 y mobile 390 × 844
@@ -48,8 +50,7 @@ No se generaron nuevas imágenes, no se hizo commit y no se realizó deploy.
 - Variantes de revisión y hoja de contacto bajo `visual-review/batch-1/`
 - `BASELOGIC_VISUAL_IDENTITY_PLAN.md`
 - `visual-review/batch-1/BASELOGIC_VISUAL_BATCH_1_REVIEW.md`
-- `BASELOGIC_VISUAL_INTEGRATION_PHASE_1_REPORT.md`
-- `BASELOGIC_VISUAL_INTEGRATION_PHASE_1_QA_REPORT.md`
+- `BASELOGIC_VISUAL_INTEGRATION_PHASE_1_QA_REPORT.md` — registro definitivo de la Fase Visual 1.
 
 ### Confirmación de alcance
 

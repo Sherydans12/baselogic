@@ -23,6 +23,7 @@ const {
       alt={asset.alt}
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'auto'}
+      decoding="async"
       class="h-full w-full object-cover"
       style={asset.objectPosition ? `object-position: ${asset.objectPosition};` : undefined}
     />

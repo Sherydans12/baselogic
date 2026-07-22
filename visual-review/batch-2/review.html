@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BaseLogic — Visual Batch 2 Review</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-muted: #e2e8f0;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --accent: #0369a1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    main { width: min(1600px, 100%); margin: 0 auto; padding: 40px 24px 72px; }
+    .page-header { margin-bottom: 48px; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.04em; }
+    .page-header p { max-width: 76ch; margin-bottom: 0; color: var(--muted); }
+    .batch-section + .batch-section { margin-top: 64px; }
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+    .section-heading h2 { margin-bottom: 12px; color: var(--accent); }
+    .section-heading p { margin-bottom: 12px; color: var(--muted); font-weight: 700; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 24px; }
+    .card { overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); box-shadow: 0 18px 45px rgb(15 23 42 / 0.08); }
+    .card-header { padding: 24px 24px 8px; }
+    .eyebrow { margin-bottom: 4px; color: var(--accent); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .card h3 { margin-bottom: 0; font-size: 1.35rem; }
+    .metadata { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin: 16px 24px 24px; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--border); }
+    .metadata > div { min-width: 0; padding: 12px; background: var(--surface); }
+    .metadata .metadata-path { grid-column: 1 / -1; }
+    dt { color: var(--muted); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+    dd { margin: 3px 0 0; overflow-wrap: anywhere; font-size: 0.9rem; }
+    .original-block { padding: 0 24px 24px; }
+    h4, figcaption { margin-bottom: 8px; font-size: 0.9rem; font-weight: 800; }
+    .original-frame, .crop-frame { overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-muted); }
+    .original-frame { display: grid; min-height: 260px; place-items: center; }
+    .original-frame img { display: block; width: 100%; height: 100%; max-height: 480px; object-fit: contain; }
+    .crop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 0 24px 24px; }
+    figure { margin: 0; }
+    .crop-frame { width: 100%; }
+    .crop-frame-portrait { aspect-ratio: 4 / 5; }
+    .crop-frame-square { aspect-ratio: 1 / 1; }
+    .crop-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+    @media (max-width: 640px) {
+      main { padding: 28px 16px 48px; }
+      .section-heading { display: block; }
+      .metadata { grid-template-columns: 1fr; margin-inline: 16px; }
+      .metadata .metadata-path { grid-column: auto; }
+      .card-header, .original-block { padding-inline: 16px; }
+      .crop-grid { gap: 12px; padding-inline: 16px; }
+      .original-frame { min-height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <h1>BaseLogic — Visual Batch 2 Review</h1>
+      <p>Hoja de revisión reconstruida desde los 26 assets reales. Cada tarjeta conserva el original completo y simula crops centrados 4:5 y 1:1 sin modificar los archivos WebP.</p>
+    </header>
+
+    <section class="batch-section" aria-labelledby="ecosistema-de-productos">
+      <div class="section-heading">
+        <h2 id="ecosistema-de-productos">1. Ecosistema de Productos</h2>
+        <p>V1–V4 · 4 variantes</p>
+      </div>
+      <div class="card-grid">
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Ecosistema de Productos</p>
+          <h3>Ecosistema de Productos — V1</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Ecosistema de Productos</dd></div>
+          <div><dt>Variante</dt><dd>V1</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>103.50 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/products/products-ecosystem-hero-v1.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="products/products-ecosystem-hero-v1.webp" alt="Ecosistema de Productos V1, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="products/products-ecosystem-hero-v1.webp" alt="Ecosistema de Productos V1, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="products/products-ecosystem-hero-v1.webp" alt="Ecosistema de Productos V1, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Ecosistema de Productos</p>
+          <h3>Ecosistema de Productos — V2</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Ecosistema de Productos</dd></div>
+          <div><dt>Variante</dt><dd>V2</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>94.25 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/products/products-ecosystem-hero-v2.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="products/products-ecosystem-hero-v2.webp" alt="Ecosistema de Productos V2, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="products/products-ecosystem-hero-v2.webp" alt="Ecosistema de Productos V2, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="products/products-ecosystem-hero-v2.webp" alt="Ecosistema de Productos V2, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Ecosistema de Productos</p>
+          <h3>Ecosistema de Productos — V3</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Ecosistema de Productos</dd></div>
+          <div><dt>Variante</dt><dd>V3</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>74.85 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/products/products-ecosystem-hero-v3.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="products/products-ecosystem-hero-v3.webp" alt="Ecosistema de Productos V3, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="products/products-ecosystem-hero-v3.webp" alt="Ecosistema de Productos V3, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="products/products-ecosystem-hero-v3.webp" alt="Ecosistema de Productos V3, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Ecosistema de Productos</p>
+          <h3>Ecosistema de Productos — V4</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Ecosistema de Productos</dd></div>
+          <div><dt>Variante</dt><dd>V4</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>93.59 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/products/products-ecosystem-hero-v4.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="products/products-ecosystem-hero-v4.webp" alt="Ecosistema de Productos V4, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="products/products-ecosystem-hero-v4.webp" alt="Ecosistema de Productos V4, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="products/products-ecosystem-hero-v4.webp" alt="Ecosistema de Productos V4, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="batch-section" aria-labelledby="edupay">
+      <div class="section-heading">
+        <h2 id="edupay">2. EduPay</h2>
+        <p>V1–V10 · 10 variantes</p>
+      </div>
+      <div class="card-grid">
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V1</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V1</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>72.24 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v1.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v1.webp" alt="EduPay V1, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v1.webp" alt="EduPay V1, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v1.webp" alt="EduPay V1, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V2</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V2</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>65.36 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v2.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v2.webp" alt="EduPay V2, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v2.webp" alt="EduPay V2, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v2.webp" alt="EduPay V2, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V3</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V3</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>92.10 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v3.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v3.webp" alt="EduPay V3, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v3.webp" alt="EduPay V3, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v3.webp" alt="EduPay V3, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V4</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V4</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>81.38 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v4.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v4.webp" alt="EduPay V4, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v4.webp" alt="EduPay V4, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v4.webp" alt="EduPay V4, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V5</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V5</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>39.65 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v5.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v5.webp" alt="EduPay V5, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v5.webp" alt="EduPay V5, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v5.webp" alt="EduPay V5, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V6</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V6</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>41.27 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v6.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v6.webp" alt="EduPay V6, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v6.webp" alt="EduPay V6, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v6.webp" alt="EduPay V6, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V7</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V7</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>40.36 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v7.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v7.webp" alt="EduPay V7, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v7.webp" alt="EduPay V7, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v7.webp" alt="EduPay V7, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V8</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V8</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>41.88 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v8.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v8.webp" alt="EduPay V8, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v8.webp" alt="EduPay V8, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v8.webp" alt="EduPay V8, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V9</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V9</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>415.87 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v9.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v9.webp" alt="EduPay V9, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v9.webp" alt="EduPay V9, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v9.webp" alt="EduPay V9, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">EduPay</p>
+          <h3>EduPay — V10</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>EduPay</dd></div>
+          <div><dt>Variante</dt><dd>V10</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>719.44 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/edupay/edupay-hero-v10.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="edupay/edupay-hero-v10.webp" alt="EduPay V10, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="edupay/edupay-hero-v10.webp" alt="EduPay V10, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="edupay/edupay-hero-v10.webp" alt="EduPay V10, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="batch-section" aria-labelledby="paginas-web">
+      <div class="section-heading">
+        <h2 id="paginas-web">3. Páginas Web</h2>
+        <p>V1–V4 · 4 variantes</p>
+      </div>
+      <div class="card-grid">
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Páginas Web</p>
+          <h3>Páginas Web — V1</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Páginas Web</dd></div>
+          <div><dt>Variante</dt><dd>V1</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>93.60 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/paginas-web/paginas-web-hero-v1.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="paginas-web/paginas-web-hero-v1.webp" alt="Páginas Web V1, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="paginas-web/paginas-web-hero-v1.webp" alt="Páginas Web V1, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="paginas-web/paginas-web-hero-v1.webp" alt="Páginas Web V1, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Páginas Web</p>
+          <h3>Páginas Web — V2</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Páginas Web</dd></div>
+          <div><dt>Variante</dt><dd>V2</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>62.12 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/paginas-web/paginas-web-hero-v2.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="paginas-web/paginas-web-hero-v2.webp" alt="Páginas Web V2, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="paginas-web/paginas-web-hero-v2.webp" alt="Páginas Web V2, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="paginas-web/paginas-web-hero-v2.webp" alt="Páginas Web V2, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Páginas Web</p>
+          <h3>Páginas Web — V3</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Páginas Web</dd></div>
+          <div><dt>Variante</dt><dd>V3</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>101.63 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/paginas-web/paginas-web-hero-v3.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="paginas-web/paginas-web-hero-v3.webp" alt="Páginas Web V3, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="paginas-web/paginas-web-hero-v3.webp" alt="Páginas Web V3, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="paginas-web/paginas-web-hero-v3.webp" alt="Páginas Web V3, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Páginas Web</p>
+          <h3>Páginas Web — V4</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Páginas Web</dd></div>
+          <div><dt>Variante</dt><dd>V4</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>107.91 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/paginas-web/paginas-web-hero-v4.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="paginas-web/paginas-web-hero-v4.webp" alt="Páginas Web V4, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="paginas-web/paginas-web-hero-v4.webp" alt="Páginas Web V4, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="paginas-web/paginas-web-hero-v4.webp" alt="Páginas Web V4, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="batch-section" aria-labelledby="sistemas-para-pymes">
+      <div class="section-heading">
+        <h2 id="sistemas-para-pymes">4. Sistemas para Pymes</h2>
+        <p>V1–V8 · 8 variantes</p>
+      </div>
+      <div class="card-grid">
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V1</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V1</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 768 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>109.05 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v1.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v1.webp" alt="Sistemas para Pymes V1, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v1.webp" alt="Sistemas para Pymes V1, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v1.webp" alt="Sistemas para Pymes V1, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V2</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V2</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1170 × 691 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>90.74 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v2.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v2.webp" alt="Sistemas para Pymes V2, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v2.webp" alt="Sistemas para Pymes V2, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v2.webp" alt="Sistemas para Pymes V2, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V3</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V3</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1170 × 691 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>92.01 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v3.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v3.webp" alt="Sistemas para Pymes V3, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v3.webp" alt="Sistemas para Pymes V3, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v3.webp" alt="Sistemas para Pymes V3, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V4</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V4</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1376 × 691 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>104.55 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v4.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v4.webp" alt="Sistemas para Pymes V4, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v4.webp" alt="Sistemas para Pymes V4, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v4.webp" alt="Sistemas para Pymes V4, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V5</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V5</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>38.11 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v5.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v5.webp" alt="Sistemas para Pymes V5, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v5.webp" alt="Sistemas para Pymes V5, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v5.webp" alt="Sistemas para Pymes V5, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V6</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V6</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>40.91 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v6.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v6.webp" alt="Sistemas para Pymes V6, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v6.webp" alt="Sistemas para Pymes V6, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v6.webp" alt="Sistemas para Pymes V6, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V7</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V7</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>40.19 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v7.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v7.webp" alt="Sistemas para Pymes V7, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v7.webp" alt="Sistemas para Pymes V7, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v7.webp" alt="Sistemas para Pymes V7, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      <article class="card">
+        <header class="card-header">
+          <p class="eyebrow">Sistemas para Pymes</p>
+          <h3>Sistemas para Pymes — V8</h3>
+        </header>
+        <dl class="metadata">
+          <div><dt>Nombre</dt><dd>Sistemas para Pymes</dd></div>
+          <div><dt>Variante</dt><dd>V8</dd></div>
+          <div><dt>Dimensiones reales</dt><dd>1920 × 1200 px</dd></div>
+          <div><dt>Formato</dt><dd>WebP</dd></div>
+          <div><dt>Peso</dt><dd>40.02 KiB</dd></div>
+          <div class="metadata-path"><dt>Ruta relativa</dt><dd>visual-review/batch-2/sistemas-pymes/sistemas-pymes-hero-v8.webp</dd></div>
+        </dl>
+        <div class="original-block">
+          <h4>Original completo</h4>
+          <div class="original-frame">
+            <img src="sistemas-pymes/sistemas-pymes-hero-v8.webp" alt="Sistemas para Pymes V8, imagen original completa" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="crop-grid">
+          <figure>
+            <figcaption>Preview 4:5</figcaption>
+            <div class="crop-frame crop-frame-portrait">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v8.webp" alt="Sistemas para Pymes V8, simulación de crop 4:5" loading="lazy" decoding="async">
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Preview 1:1</figcaption>
+            <div class="crop-frame crop-frame-square">
+              <img src="sistemas-pymes/sistemas-pymes-hero-v8.webp" alt="Sistemas para Pymes V8, simulación de crop 1:1" loading="lazy" decoding="async">
+            </div>
+          </figure>
+        </div>
+      </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+

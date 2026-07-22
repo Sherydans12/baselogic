@@ -53,8 +53,12 @@ const isActive = (href: string) => {
         class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-sm"
         aria-label="Abrir menu"
       >
-        <Menu class="h-5 w-5 group-open:hidden" />
-        <X class="hidden h-5 w-5 group-open:block" />
+        <span class="mobile-menu-icon mobile-menu-icon-open" aria-hidden="true">
+          <Menu class="h-5 w-5" />
+        </span>
+        <span class="mobile-menu-icon mobile-menu-icon-close" aria-hidden="true">
+          <X class="h-5 w-5" />
+        </span>
       </summary>
       <div class="absolute right-0 mt-3 w-[min(88vw,360px)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/12">
         <nav class="grid p-3" aria-label="Navegacion movil">
@@ -89,3 +93,21 @@ const isActive = (href: string) => {
     </details>
   </div>
 </header>
+
+<style>
+  .mobile-menu-icon {
+    display: inline-flex;
+  }
+
+  .mobile-menu-icon-close {
+    display: none;
+  }
+
+  details[open] > summary .mobile-menu-icon-open {
+    display: none;
+  }
+
+  details[open] > summary .mobile-menu-icon-close {
+    display: inline-flex;
+  }
+</style>
