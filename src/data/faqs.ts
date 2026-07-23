@@ -36,14 +36,24 @@ export const bookingFaqs = [
 
 export const eamFaqs = [
   {
-    question: '¿BaseLogic EAM es solo para mineria?',
+    question: '¿BaseLogic EAM sirve únicamente para minería?',
     answer:
-      'Tiene un foco fuerte en mineria y operaciones exigentes, pero tambien puede servir a empresas medianas que gestionan activos, mantenimiento, inventario y ordenes de trabajo.',
+      'No. La solución puede adaptarse a empresas de mantenimiento, contratistas y operaciones con activos físicos. La minería es el foco principal de esta página por las necesidades de control y trazabilidad de sus equipos.',
   },
   {
-    question: '¿Se puede evaluar por modulos?',
+    question: '¿Permite gestionar órdenes de trabajo?',
     answer:
-      'Si. Podemos revisar el alcance por etapas segun activos, inventario, mantenimiento, reportes y necesidades operacionales.',
+      'Sí. Puedes organizar trabajos, responsables, prioridades, avances, comentarios e historial asociado a los activos.',
+  },
+  {
+    question: '¿Puedo controlar repuestos y bodegas?',
+    answer:
+      'Sí. BaseLogic EAM incluye gestión de inventario, movimientos de stock y control por bodega.',
+  },
+  {
+    question: '¿Se puede adaptar al proceso de mi empresa?',
+    answer:
+      'La implementación se configura según los activos, responsables, bodegas y flujo de mantenimiento de cada operación.',
   },
 ];
 

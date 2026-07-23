@@ -62,9 +62,9 @@ export const seo = {
     path: '/productos/edupay',
   },
   eam: {
-    title: 'Gestion de activos, mantenimiento e inventario | BaseLogic EAM',
+    title: 'Software de mantenimiento para minería | BaseLogic EAM',
     description:
-      'BaseLogic EAM permite gestionar activos, mantenimiento, inventario, ordenes de trabajo y operaciones para mineria y empresas medianas.',
+      'Gestiona activos, órdenes de trabajo, mantenimiento preventivo, repuestos y trazabilidad de equipos pesados y flotas con BaseLogic EAM.',
     path: '/productos/eam',
   },
   caseStudies: {

@@ -23,9 +23,9 @@ export const visualAssets = {
     } as VisualAsset,
     eamHero: {
       src: '/images/generated/products/eam-hero.webp',
-      alt: 'Supervisor en una operación industrial limpia revisando control de activos y mantenimiento con una tablet',
+      alt: 'Técnico inspeccionando un camión minero de alto tonelaje con registro digital de mantenimiento',
       status: 'approved',
-      objectPosition: '50% 50%',
+      objectPosition: '80% 50%',
     } as VisualAsset,
   },
 };

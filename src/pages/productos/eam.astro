@@ -10,43 +10,114 @@ import { products } from '../../data/products';
 import { eamFaqs } from '../../data/faqs';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
-import { baseSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
 import { visualAssets } from '../../data/visualAssets';
 
 const product = products.find((item) => item.id === 'eam')!;
 const pageSeo = seo.eam;
-const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(product, pageSeo), faqSchema(eamFaqs)];
+const capabilities = [
+  {
+    title: 'Activos y hoja de vida',
+    text: 'Mantén organizada la información técnica, historial y estado de cada equipo, vehículo o componente.',
+  },
+  {
+    title: 'Órdenes de trabajo',
+    text: 'Registra trabajos, responsables, prioridades, avances y comentarios desde un flujo centralizado.',
+  },
+  {
+    title: 'Mantenimiento preventivo',
+    text: 'Planifica mantenimientos y alertas para evitar que las tareas críticas dependan de planillas o recordatorios informales.',
+  },
+  {
+    title: 'Repuestos e inventario',
+    text: 'Controla existencias, movimientos y disponibilidad de repuestos en tus bodegas.',
+  },
+  {
+    title: 'Trazabilidad operacional',
+    text: 'Consulta qué se hizo, cuándo se realizó, quién participó y qué materiales fueron utilizados.',
+  },
+  {
+    title: 'Indicadores de gestión',
+    text: 'Revisa el estado de activos, trabajos pendientes y actividad de mantenimiento desde una vista ordenada.',
+  },
+];
+
+const miningUseCases = [
+  {
+    title: 'Equipos de alto tonelaje',
+    text: 'Organiza mantenimiento e historial de camiones, excavadoras, cargadores y otros equipos pesados.',
+  },
+  {
+    title: 'Movimiento de tierra',
+    text: 'Centraliza el control de maquinaria utilizada en excavación, nivelación, carga y transporte.',
+  },
+  {
+    title: 'Perforación y drilling',
+    text: 'Registra activos, mantenimientos, intervenciones y repuestos asociados a equipos de perforación.',
+  },
+  {
+    title: 'Grúas e izaje',
+    text: 'Mantén trazabilidad de equipos, componentes, inspecciones y trabajos de mantenimiento.',
+  },
+  {
+    title: 'Flotas de apoyo',
+    text: 'Gestiona camionetas, vehículos de servicio y otros activos que apoyan la operación en terreno.',
+  },
+  {
+    title: 'Talleres y bodegas',
+    text: 'Conecta las órdenes de trabajo con repuestos, movimientos de inventario y responsables.',
+  },
+];
+
+const benefits = [
+  'Menos dependencia de planillas dispersas.',
+  'Mayor claridad sobre trabajos pendientes.',
+  'Historial técnico centralizado.',
+  'Mejor coordinación entre mantenimiento, terreno y bodega.',
+  'Información organizada para supervisores y administradores.',
+];
+
+const schema = [
+  ...baseSchema(pageSeo.description),
+  breadcrumbSchema([
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos', href: '/productos' },
+    { label: 'BaseLogic EAM', href: pageSeo.path },
+  ]),
+  softwareApplicationSchema(product, pageSeo),
+  faqSchema(eamFaqs),
+];
 ---
 
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.eam}>
   <SiteHeader />
   <main>
     <ListingHero
-      eyebrow={product.eyebrow}
-      title={product.name}
-      text={product.tagline}
+      eyebrow="BaseLogic EAM para minería y contratistas"
+      title="Controla el mantenimiento de equipos y activos críticos desde una sola plataforma"
+      text="Planifica mantenimientos, gestiona órdenes de trabajo y centraliza la trazabilidad de maquinaria pesada, flotas de apoyo, equipos de perforación, grúas, componentes y repuestos."
       asset={visualAssets.products.eamHero}
       ctaLabel="Cotizar EAM"
       ctaHref="/contacto"
       visualAspectRatio="aspect-[4/5] sm:aspect-[16/10]"
+      compactMobile={true}
     />
 
     <section class="bg-white py-20">
-      <div class="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1fr_0.9fr]">
-        <div>
-          <SectionHeading
-            title="Control para activos, mantenimiento, inventario y operaciones"
-            text={product.summary}
-          />
-          <p class="text-lg leading-8 text-slate-600">{product.audience}</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white">
-          <h2 class="text-2xl font-black">Modulos y capacidades</h2>
-          <ul class="mt-6 grid gap-4">
-            {product.features.map((feature) => (
-              <li class="rounded-2xl border border-white/10 bg-white/5 p-4 font-bold text-slate-100">{feature}</li>
-            ))}
-          </ul>
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          eyebrow="Control operacional"
+          title="Más control para operaciones donde cada detención importa"
+          text="BaseLogic EAM reúne activos, mantenimientos, repuestos y actividad técnica en un solo lugar. Tu equipo puede organizar el trabajo, consultar el historial de cada activo y mantener información actualizada para tomar mejores decisiones operacionales."
+        />
+
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((capability) => (
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <h3 class="text-xl font-black text-slate-950">{capability.title}</h3>
+              <p class="mt-3 leading-7 text-slate-600">{capability.text}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -54,9 +125,40 @@ const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(pr
     <section class="bg-slate-50 py-20">
       <div class="mx-auto max-w-7xl px-5 md:px-8">
         <SectionHeading
-          title="Pensado para operaciones con mayor exigencia"
-          text="EAM queda visible como producto avanzado para mineria, empresas medianas y equipos que necesitan trazabilidad sobre activos, ordenes de trabajo, mantenimiento, inventario y reportes operacionales."
+          eyebrow="Casos de uso"
+          title="Preparado para empresas que trabajan con activos críticos"
+          text="Organiza el mantenimiento y la trazabilidad de equipos, componentes y flotas que sostienen el trabajo diario en terreno."
         />
+
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {miningUseCases.map((useCase) => (
+            <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 class="text-xl font-black text-slate-950">{useCase.title}</h3>
+              <p class="mt-3 leading-7 text-slate-600">{useCase.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-950 py-20 text-white">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        <div>
+          <p class="mb-3 text-sm font-bold uppercase tracking-wide text-brand-cyan">Una plataforma adaptable</p>
+          <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Pensado para contratistas y operaciones intensivas en activos</h2>
+          <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+            BaseLogic EAM puede adaptarse a empresas de mantenimiento, movimiento de tierra, perforación, izaje, servicios de apoyo minero y otras operaciones que necesitan ordenar activos, trabajo técnico e inventario.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h3 class="text-xl font-black">Beneficios para el trabajo diario</h3>
+          <ul class="mt-5 grid gap-3">
+            {benefits.map((benefit) => (
+              <li class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 font-semibold text-slate-100">{benefit}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
 

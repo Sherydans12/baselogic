@@ -11,23 +11,49 @@ interface Props {
   ctaLabel?: string;
   ctaHref?: string;
   visualAspectRatio?: string;
+  compactMobile?: boolean;
 }
 
-const { eyebrow, title, text, asset, ctaLabel, ctaHref, visualAspectRatio } = Astro.props;
+const { eyebrow, title, text, asset, ctaLabel, ctaHref, visualAspectRatio, compactMobile = false } = Astro.props;
 const hasVisual = asset?.status === 'approved' && Boolean(asset.src);
 const hasCta = Boolean(ctaLabel && ctaHref);
 ---
 
-<section class="commercial-surface border-b border-slate-200 py-16 md:py-20">
+<section class:list={[
+  'commercial-surface border-b border-slate-200',
+  compactMobile ? 'py-4 sm:py-16 md:py-20' : 'py-16 md:py-20',
+]}>
   <div class={`mx-auto max-w-7xl px-5 md:px-8 ${hasVisual ? 'grid items-center gap-12 lg:grid-cols-[1fr_1fr]' : ''}`}>
     <div>
-      {eyebrow && <p class="mb-4 text-sm font-bold uppercase tracking-wide text-brand-blue">{eyebrow}</p>}
-      <h1 class="max-w-4xl text-4xl font-black tracking-tight text-slate-950 md:text-6xl">{title}</h1>
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">{text}</p>
+      {eyebrow && (
+        <p class:list={[
+          'text-sm font-bold uppercase tracking-wide text-brand-blue',
+          compactMobile ? 'mb-3 sm:mb-4' : 'mb-4',
+        ]}>
+          {eyebrow}
+        </p>
+      )}
+      <h1 class:list={[
+        'max-w-4xl font-black tracking-tight text-slate-950',
+        compactMobile ? 'text-[1.875rem] leading-8 sm:text-4xl sm:leading-[1.1] md:text-6xl' : 'text-4xl md:text-6xl',
+      ]}>
+        {title}
+      </h1>
+      <p class:list={[
+        'max-w-3xl text-slate-600',
+        compactMobile
+          ? 'mt-3 text-base leading-6 sm:mt-6 sm:text-lg sm:leading-8 md:text-xl'
+          : 'mt-6 text-lg leading-8 md:text-xl',
+      ]}>
+        {text}
+      </p>
       {hasCta && (
         <a
           href={ctaHref}
-          class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white transition hover:bg-slate-950"
+          class:list={[
+            'inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white transition hover:bg-slate-950',
+            compactMobile ? 'mt-4 sm:mt-8' : 'mt-8',
+          ]}
         >
           {ctaLabel}
           <ArrowRight class="h-5 w-5" />
