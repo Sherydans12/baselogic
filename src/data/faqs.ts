@@ -23,14 +23,34 @@ export const generalFaqs = [
 
 export const bookingFaqs = [
   {
-    question: '¿BaseLogic Booking sirve para negocios con varios servicios?',
+    question: '¿Qué tipos de negocios pueden usar BaseLogic Booking?',
     answer:
-      'Si. Esta pensado para negocios que trabajan con servicios, horarios, disponibilidad y clientes que necesitan reservar de forma simple.',
+      'Está pensado para profesionales y pymes que trabajan con horas, servicios, profesionales o espacios reservables, como centros de bienestar, barberías, peluquerías, estética y consultoría.',
   },
   {
-    question: '¿Se puede adaptar al rubro de mi negocio?',
+    question: '¿Puedo administrar varios profesionales?',
     answer:
-      'Si. Podemos ajustar servicios, agenda, mensajes y flujo de contacto segun el tipo de atencion que tenga tu negocio.',
+      'Sí. Puedes organizar profesionales, servicios y disponibilidad según la forma en que trabaja tu negocio.',
+  },
+  {
+    question: '¿Permite gestionar boxes, salas o recursos?',
+    answer:
+      'Sí. La disponibilidad puede considerar espacios o recursos necesarios para realizar determinados servicios.',
+  },
+  {
+    question: '¿Ayuda a evitar reservas duplicadas?',
+    answer:
+      'Sí. Booking considera la disponibilidad de profesionales y recursos antes de ofrecer un horario.',
+  },
+  {
+    question: '¿Se puede adaptar a los horarios de mi negocio?',
+    answer:
+      'Sí. Puedes definir horarios, pausas, bloqueos, excepciones y reglas de reserva según tu operación.',
+  },
+  {
+    question: '¿BaseLogic Booking sirve solo para un rubro?',
+    answer:
+      'No. La solución puede adaptarse a distintos negocios que trabajan con atención programada y reservas.',
   },
 ];
 

@@ -5,62 +5,372 @@ import SiteFooter from '../../components/SiteFooter.astro';
 import ListingHero from '../../components/ListingHero.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import FaqBlock from '../../components/FaqBlock.astro';
-import FinalCtaSection from '../../components/FinalCtaSection.astro';
+import {
+  ArrowRight,
+  Calendar,
+  Users,
+  MapPin,
+  ShieldCheck,
+  UserCheck,
+  Sliders,
+  MessageSquareOff,
+  Clock,
+  Building2,
+  Scissors,
+  Briefcase,
+  Layers,
+  CheckCircle2,
+  XCircle,
+  Check,
+} from 'lucide-react';
 import { products } from '../../data/products';
 import { bookingFaqs } from '../../data/faqs';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
-import { baseSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
 import { visualAssets } from '../../data/visualAssets';
 
 const product = products.find((item) => item.id === 'booking')!;
 const pageSeo = seo.booking;
-const schema = [...baseSchema(pageSeo.description), softwareApplicationSchema(product, pageSeo), faqSchema(bookingFaqs)];
+
+const problems = [
+  {
+    title: 'Mensajes dispersos',
+    text: 'Evita revisar diferentes conversaciones para confirmar quién reservó y a qué hora.',
+    icon: MessageSquareOff,
+  },
+  {
+    title: 'Horarios duplicados',
+    text: 'La disponibilidad considera profesionales, servicios y recursos antes de ofrecer una hora.',
+    icon: Clock,
+  },
+  {
+    title: 'Agenda difícil de administrar',
+    text: 'Mantén servicios, horarios y reservas organizados desde una experiencia centralizada.',
+    icon: Calendar,
+  },
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Configura tus servicios',
+    text: 'Define los servicios que ofreces, su duración y quiénes pueden realizarlos.',
+  },
+  {
+    number: '02',
+    title: 'Organiza profesionales y horarios',
+    text: 'Asigna disponibilidad, pausas, excepciones y horarios según cada profesional.',
+  },
+  {
+    number: '03',
+    title: 'Publica las horas disponibles',
+    text: 'Tus clientes visualizan opciones reales según el servicio, profesional, sucursal o recurso.',
+  },
+  {
+    number: '04',
+    title: 'Gestiona las reservas',
+    text: 'Mantén la agenda y la información de tus clientes organizada desde un solo lugar.',
+  },
+];
+
+const capabilities = [
+  {
+    title: 'Agenda y disponibilidad',
+    text: 'Organiza horarios semanales, bloqueos, excepciones y tiempos disponibles para cada servicio.',
+    icon: Calendar,
+  },
+  {
+    title: 'Servicios y profesionales',
+    text: 'Configura distintos servicios, duración, responsables y reglas de atención.',
+    icon: Users,
+  },
+  {
+    title: 'Sucursales y espacios',
+    text: 'Administra sucursales, boxes, salas u otros recursos necesarios para realizar una reserva.',
+    icon: MapPin,
+  },
+  {
+    title: 'Reservas sin superposición',
+    text: 'La disponibilidad considera horarios ocupados y recursos utilizados para reducir el riesgo de reservas duplicadas.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Información de clientes',
+    text: 'Mantén los datos necesarios para identificar y administrar las reservas de cada cliente.',
+    icon: UserCheck,
+  },
+  {
+    title: 'Reglas adaptables',
+    text: 'Define anticipación, intervalos, duración y tiempos entre citas según la operación de tu negocio.',
+    icon: Sliders,
+  },
+];
+
+const businessTypes = [
+  {
+    title: 'Salud y bienestar',
+    text: 'Kinesiólogos, terapeutas y centros que necesitan coordinar profesionales, horarios y boxes.',
+    icon: Building2,
+  },
+  {
+    title: 'Belleza y cuidado personal',
+    text: 'Peluquerías, barberías, salones de belleza y centros de estética.',
+    icon: Scissors,
+  },
+  {
+    title: 'Profesionales independientes',
+    text: 'Consultores, asesores y especialistas que atienden mediante horas programadas.',
+    icon: Briefcase,
+  },
+  {
+    title: 'Servicios con recursos',
+    text: 'Negocios que necesitan reservar salas, espacios, equipos o puestos de atención.',
+    icon: Layers,
+  },
+];
+
+const benefits = [
+  'Menos coordinación manual por mensajes.',
+  'Mayor claridad sobre la disponibilidad.',
+  'Servicios y profesionales organizados.',
+  'Menor riesgo de reservar dos veces el mismo horario.',
+  'Información centralizada.',
+  'Experiencia profesional desde celular o computador.',
+];
+
+const comparisons = [
+  {
+    title: 'Agenda manual',
+    text: 'Depende de revisar mensajes, llamadas y anotaciones.',
+    type: 'negative',
+  },
+  {
+    title: 'Calendario genérico',
+    text: 'Muestra eventos, pero no necesariamente entiende servicios, recursos o reglas de reserva.',
+    type: 'neutral',
+  },
+  {
+    title: 'BaseLogic Booking',
+    text: 'Organiza disponibilidad y reservas de acuerdo con la operación del negocio.',
+    type: 'positive',
+  },
+];
+
+const schema = [
+  ...baseSchema(pageSeo.description),
+  breadcrumbSchema([
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos', href: '/productos' },
+    { label: 'BaseLogic Booking', href: pageSeo.path },
+  ]),
+  softwareApplicationSchema(product, pageSeo),
+  faqSchema(bookingFaqs),
+];
 ---
 
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.booking}>
   <SiteHeader />
   <main>
+    {/* 1. HERO */}
     <ListingHero
       eyebrow={product.eyebrow}
-      title={product.name}
-      text={product.tagline}
+      title={product.tagline}
+      text="Centraliza servicios, profesionales, horarios y disponibilidad en una plataforma diseñada para negocios que trabajan con atención programada."
       asset={visualAssets.products.bookingHero}
-      ctaLabel="Cotizar Booking"
+      ctaLabel={product.ctaLabel}
       ctaHref="/contacto"
+      secondaryCtaLabel="Ver demo"
+      secondaryCtaHref={product.demoUrl}
+      secondaryCtaTarget="_blank"
+      secondaryCtaRel="noopener noreferrer"
+      secondaryCtaDataEvent="booking_demo_click"
     />
 
-    <section class="bg-white py-20">
-      <div class="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1fr_0.9fr]">
-        <div>
-          <SectionHeading
-            title="Reservas claras para negocios que atienden por hora"
-            text={product.summary}
-          />
-          <p class="text-lg leading-8 text-slate-600">{product.audience}</p>
+    {/* 2. INTRODUCCIÓN & PROBLEMA */}
+    <section class="bg-white py-20 border-b border-slate-100">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          eyebrow="Gestión de disponibilidad"
+          title="Deja de coordinar cada hora de forma manual"
+          text="Cuando las reservas llegan por distintos mensajes, llamadas o planillas, es fácil perder tiempo, duplicar horarios o dejar información desordenada. BaseLogic Booking reúne la agenda y la disponibilidad de tu negocio en un solo lugar."
+        />
+
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {problems.map((problem) => {
+            const Icon = problem.icon;
+            return (
+              <article class="rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 md:p-8 transition-all hover:border-slate-300 hover:bg-slate-50">
+                <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand-blue mb-5">
+                  <Icon class="h-6 w-6" />
+                </div>
+                <h3 class="text-xl font-black text-slate-950">{problem.title}</h3>
+                <p class="mt-3 leading-relaxed text-slate-600 text-base">{problem.text}</p>
+              </article>
+            );
+          })}
         </div>
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-          <h2 class="text-2xl font-black text-slate-950">Que puede incluir</h2>
-          <ul class="mt-6 grid gap-4">
-            {product.features.map((feature) => (
-              <li class="rounded-2xl bg-white p-4 font-bold text-slate-800 shadow-sm">{feature}</li>
+      </div>
+    </section>
+
+    {/* 3. CÓMO FUNCIONA */}
+    <section class="bg-slate-50 py-20 border-b border-slate-200/80">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          eyebrow="Paso a paso"
+          title="Configura tu negocio y comienza a recibir reservas"
+          text="Un proceso estructurado para llevar la operación de tu agenda a un entorno en línea claro y ordenado."
+        />
+
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step) => (
+            <div class="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col">
+              <span class="text-3xl font-black tracking-tight text-brand-blue/30 mb-2">{step.number}</span>
+              <h3 class="text-lg font-black text-slate-950">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600 flex-1">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* 4. CAPACIDADES PRINCIPALES */}
+    <section class="bg-white py-20 border-b border-slate-100">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          eyebrow="Funciones clave"
+          title="Capacidades principales de BaseLogic Booking"
+          text="Diseñado con las reglas operativas reales que requieren los negocios de atención programada."
+        />
+
+        <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article class="rounded-2xl border border-slate-200 bg-slate-50/50 p-6 md:p-7 shadow-sm transition hover:border-brand-blue/30 hover:bg-white hover:shadow-md">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10 text-brand-blue">
+                    <Icon class="h-5 w-5" />
+                  </div>
+                  <h3 class="text-xl font-black text-slate-950">{item.title}</h3>
+                </div>
+                <p class="leading-relaxed text-slate-600 text-sm">{item.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    {/* 5. TIPOS DE NEGOCIOS */}
+    <section class="bg-brand-soft/60 py-20 border-b border-slate-200/60">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <SectionHeading
+          eyebrow="Adaptabilidad"
+          title="Una agenda que se adapta a distintos servicios"
+          text="Optimiza la atención programada en distintos rubros que requieren coordinar horarios, profesionales y recursos."
+        />
+
+        <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {businessTypes.map((bType) => {
+            const Icon = bType.icon;
+            return (
+              <article class="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-white mb-4">
+                  <Icon class="h-5 w-5" />
+                </div>
+                <h3 class="text-lg font-black text-slate-950">{bType.title}</h3>
+                <p class="mt-2 leading-relaxed text-slate-600 text-sm">{bType.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    {/* 6. DIFERENCIACIÓN Y BENEFICIOS (SECCIÓN OSCURA) */}
+    <section class="bg-slate-950 py-20 text-white border-b border-slate-800">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        {/* Columna Izquierda: Diferenciación */}
+        <div>
+          <p class="mb-3 text-sm font-bold uppercase tracking-wide text-brand-cyan">Diferenciación operacional</p>
+          <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Más que un calendario compartido</h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-300">
+            BaseLogic Booking considera servicios, duración, profesionales, sucursales y recursos antes de mostrar una hora disponible. Así, la agenda representa mejor la forma real en que funciona tu negocio.
+          </p>
+
+          <div class="mt-8 space-y-4">
+            {comparisons.map((comp) => (
+              <div class:list={[
+                'rounded-xl border p-5 transition-all',
+                comp.type === 'positive'
+                  ? 'border-brand-cyan/40 bg-brand-cyan/10 text-white'
+                  : 'border-white/10 bg-white/5 text-slate-300',
+              ]}>
+                <div class="flex items-center gap-2.5">
+                  {comp.type === 'positive' ? (
+                    <CheckCircle2 class="h-5 w-5 text-brand-cyan shrink-0" />
+                  ) : comp.type === 'negative' ? (
+                    <XCircle class="h-5 w-5 text-rose-400 shrink-0" />
+                  ) : (
+                    <Clock class="h-5 w-5 text-slate-400 shrink-0" />
+                  )}
+                  <h3 class="font-bold text-lg text-white">{comp.title}</h3>
+                </div>
+                <p class="mt-2 text-sm leading-relaxed text-slate-300 pl-7.5">{comp.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Columna Derecha: Beneficios */}
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+          <h3 class="text-2xl font-black text-white">Una experiencia más ordenada para tu equipo y tus clientes</h3>
+          <p class="mt-2 text-sm text-slate-300">Beneficios directos al estructurar tus reservas con BaseLogic Booking:</p>
+          <ul class="mt-6 space-y-3.5">
+            {benefits.map((benefit) => (
+              <li class="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-3.5 text-sm font-semibold text-slate-100">
+                <Check class="h-5 w-5 text-brand-cyan shrink-0 mt-0.5" />
+                <span>{benefit}</span>
+              </li>
             ))}
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="bg-brand-soft py-20">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <SectionHeading
-          title="Ideal para rubros con agenda, servicios y disponibilidad"
-          text="Booking ayuda a evitar conversaciones desordenadas, horarios perdidos y reservas sin seguimiento. El objetivo es que el cliente pueda pedir hora de forma simple y que el negocio vea todo con claridad."
-        />
+    {/* 7. FAQS */}
+    <FaqBlock faqs={bookingFaqs} />
+
+    {/* 8. CTA FINAL (DEDICADO A BOOKING - SIN WHATSAPP) */}
+    <section class="relative overflow-hidden bg-gradient-to-r from-brand-blue via-blue-700 to-slate-900 py-20 text-white">
+      <div class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-blue-400/20 blur-3xl"></div>
+
+      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-5 md:px-8 lg:flex-row lg:items-center lg:justify-between relative z-10">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-200 shadow-sm border border-white/15">
+            BaseLogic Booking
+          </span>
+          <h2 class="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl leading-tight">
+            Ordena las reservas de tu negocio con BaseLogic Booking
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-blue-100">
+            Cuéntanos cómo administras actualmente tus horas y prepararemos una solución adaptada a tus servicios, profesionales y forma de atención.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3.5 sm:flex-row shrink-0">
+          <a
+            href="/contacto"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-slate-950 shadow-xl transition-all duration-200 hover:bg-brand-cyan hover:shadow-cyan-400/30 hover:-translate-y-0.5"
+          >
+            Cotizar Booking
+            <ArrowRight class="h-5 w-5" />
+          </a>
+        </div>
       </div>
     </section>
-
-    <FaqBlock faqs={bookingFaqs} />
-    <FinalCtaSection />
   </main>
   <SiteFooter />
 </Layout>

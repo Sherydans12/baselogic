@@ -50,9 +50,9 @@ export const seo = {
     path: '/productos',
   },
   booking: {
-    title: 'Sistema de reservas para negocios y pymes | BaseLogic Booking',
+    title: 'Sistema de reservas online para pymes | BaseLogic Booking',
     description:
-      'BaseLogic Booking ayuda a negocios y pymes a gestionar servicios, horarios, clientes y solicitudes de reserva.',
+      'Organiza servicios, profesionales, horarios y reservas en línea con BaseLogic Booking, una plataforma de agenda para pymes y profesionales en Chile.',
     path: '/productos/booking',
   },
   edupay: {

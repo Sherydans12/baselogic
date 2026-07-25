@@ -10,13 +10,33 @@ interface Props {
   asset?: VisualAsset;
   ctaLabel?: string;
   ctaHref?: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  secondaryCtaTarget?: string;
+  secondaryCtaRel?: string;
+  secondaryCtaDataEvent?: string;
   visualAspectRatio?: string;
   compactMobile?: boolean;
 }
 
-const { eyebrow, title, text, asset, ctaLabel, ctaHref, visualAspectRatio, compactMobile = false } = Astro.props;
+const {
+  eyebrow,
+  title,
+  text,
+  asset,
+  ctaLabel,
+  ctaHref,
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  secondaryCtaTarget,
+  secondaryCtaRel,
+  secondaryCtaDataEvent,
+  visualAspectRatio,
+  compactMobile = false,
+} = Astro.props;
 const hasVisual = asset?.status === 'approved' && Boolean(asset.src);
-const hasCta = Boolean(ctaLabel && ctaHref);
+const hasPrimaryCta = Boolean(ctaLabel && ctaHref);
+const hasSecondaryCta = Boolean(secondaryCtaLabel && secondaryCtaHref);
 ---
 
 <section class:list={[
@@ -47,17 +67,32 @@ const hasCta = Boolean(ctaLabel && ctaHref);
       ]}>
         {text}
       </p>
-      {hasCta && (
-        <a
-          href={ctaHref}
-          class:list={[
-            'inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white transition hover:bg-slate-950',
-            compactMobile ? 'mt-4 sm:mt-8' : 'mt-8',
-          ]}
-        >
-          {ctaLabel}
-          <ArrowRight class="h-5 w-5" />
-        </a>
+      {(hasPrimaryCta || hasSecondaryCta) && (
+        <div class:list={[
+          'flex flex-wrap items-center gap-4',
+          compactMobile ? 'mt-4 sm:mt-8' : 'mt-8',
+        ]}>
+          {hasPrimaryCta && (
+            <a
+              href={ctaHref}
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white transition hover:bg-slate-950"
+            >
+              {ctaLabel}
+              <ArrowRight class="h-5 w-5" />
+            </a>
+          )}
+          {hasSecondaryCta && (
+            <a
+              href={secondaryCtaHref}
+              target={secondaryCtaTarget}
+              rel={secondaryCtaRel}
+              data-event={secondaryCtaDataEvent}
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-base font-bold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
+            >
+              {secondaryCtaLabel}
+            </a>
+          )}
+        </div>
       )}
     </div>
     {hasVisual && (
