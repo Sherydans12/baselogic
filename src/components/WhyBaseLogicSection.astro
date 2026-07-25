@@ -1,23 +1,71 @@
 ---
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Search, Cpu, Rocket, LifeBuoy } from 'lucide-react';
 import SectionHeading from './SectionHeading.astro';
-import { home } from '../data/home';
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Diagnóstico & Claridad',
+    desc: 'Escuchamos la necesidad real de tu pyme y definimos la solución ideal sin tecnicismos confusos.',
+    icon: Search,
+  },
+  {
+    step: '02',
+    title: 'Prototipo Funcional',
+    desc: 'Construimos una propuesta visual e interactiva rápido para que veas cómo funcionará antes de lanzar.',
+    icon: Cpu,
+  },
+  {
+    step: '03',
+    title: 'Desarrollo & Despliegue',
+    desc: 'Código limpio, veloz y seguro, optimizado para conversión y adaptable a móviles.',
+    icon: Rocket,
+  },
+  {
+    step: '04',
+    title: 'Soporte Local Continuo',
+    desc: 'Acompañamiento post-lanzamiento en Chile para responder dudas, hacer mejoras y asegurar continuidad.',
+    icon: LifeBuoy,
+  },
+];
 ---
 
-<section class="bg-slate-50 py-20">
+<section class="bg-slate-50/70 py-20 md:py-28 border-b border-slate-200/80">
   <div class="mx-auto max-w-7xl px-5 md:px-8">
     <SectionHeading
       eyebrow="Por que BaseLogic"
-      title="Tecnologia moderna explicada en simple"
-      text="Nos importa que entiendas que se esta construyendo, por que sirve y como puede crecer sin volverse innecesariamente complejo."
+      title="Un proceso transparente pensado en resultados reales"
+      text="Nos importa que entiendas cada etapa del desarrollo, con entregas claras, tiempos cumplidos y soporte continuo en Chile."
+      align="center"
     />
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {home.why.map((item) => (
-        <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-5">
-          <CheckCircle2 class="h-5 w-5 text-brand-blue" />
-          <span class="font-bold text-slate-800">{item}</span>
-        </div>
-      ))}
+
+    <!-- Process Grid -->
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {processSteps.map((step) => {
+        const Icon = step.icon;
+        return (
+          <article class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl hover:shadow-slate-900/5">
+            <div>
+              <div class="flex items-center justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-brand-blue transition-colors group-hover:bg-brand-blue group-hover:text-white">
+                  <Icon class="h-6 w-6" />
+                </div>
+                <span class="text-2xl font-black tracking-tight text-slate-300 transition-colors group-hover:text-brand-blue">
+                  {step.step}
+                </span>
+              </div>
+
+              <h3 class="mt-5 text-xl font-bold text-slate-950">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{step.desc}</p>
+            </div>
+
+            <div class="mt-6 flex items-center gap-1.5 text-xs font-bold text-brand-blue">
+              <CheckCircle2 class="h-4 w-4 text-emerald-500" />
+              <span>Garantía de claridad</span>
+            </div>
+          </article>
+        );
+      })}
     </div>
   </div>
 </section>

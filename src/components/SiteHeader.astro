@@ -12,19 +12,21 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all">
   <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
-    <a href="/" class="flex items-center gap-3" aria-label="BaseLogic inicio">
-      <img src="/BaseLogic%20Logo%20Cropped.png" alt="BaseLogic" class="h-10 sm:h-11 md:h-12 w-auto object-contain" />
+    <a href="/" class="group flex items-center gap-3 transition-transform duration-200 hover:scale-[1.01] active:scale-[0.99]" aria-label="BaseLogic inicio">
+      <img src="/BaseLogic%20Logo%20Cropped.png" alt="BaseLogic" class="h-10 sm:h-11 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-90" />
     </a>
 
-    <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex" aria-label="Navegacion principal">
+    <nav class="hidden items-center gap-1.5 text-sm font-medium text-slate-600 lg:flex" aria-label="Navegacion principal">
       {mainNavigation.map((item) => (
         <a
           href={item.href}
           class:list={[
-            'transition-colors hover:text-brand-blue',
-            isActive(item.href) ? 'text-brand-blue' : 'text-slate-600',
+            'rounded-full px-3.5 py-1.5 transition-all duration-200',
+            isActive(item.href)
+              ? 'bg-blue-50/80 font-semibold text-brand-blue'
+              : 'text-slate-600 hover:bg-slate-100/70 hover:text-slate-900',
           ]}
         >
           {item.label}
@@ -35,14 +37,14 @@ const isActive = (href: string) => {
     <div class="hidden items-center gap-3 lg:flex">
       <a
         href={contactHref}
-        class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-brand-cyan hover:text-brand-blue"
+        class="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-2xs transition-all duration-200 hover:border-brand-blue/30 hover:bg-slate-50 hover:text-brand-blue"
       >
-        <Mail class="h-4 w-4" />
+        <Mail class="h-4 w-4 text-slate-500" />
         {navigationCtas.secondary.label}
       </a>
       <a
         href={navigationCtas.primary.href}
-        class="inline-flex items-center rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/15 transition hover:bg-slate-950"
+        class="inline-flex items-center rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-blue-600/20 transition-all duration-200 hover:bg-slate-950 hover:shadow-lg hover:shadow-slate-950/20 hover:-translate-y-0.5 active:translate-y-0"
       >
         {navigationCtas.primary.label}
       </a>
@@ -50,7 +52,7 @@ const isActive = (href: string) => {
 
     <details class="group relative lg:hidden">
       <summary
-        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-sm"
+        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-800 shadow-sm transition hover:bg-slate-50 active:scale-95"
         aria-label="Abrir menu"
       >
         <span class="mobile-menu-icon mobile-menu-icon-open" aria-hidden="true">
@@ -60,30 +62,30 @@ const isActive = (href: string) => {
           <X class="h-5 w-5" />
         </span>
       </summary>
-      <div class="absolute right-0 mt-3 w-[min(88vw,360px)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/12">
-        <nav class="grid p-3" aria-label="Navegacion movil">
+      <div class="absolute right-0 mt-3 w-[min(88vw,360px)] overflow-hidden rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-xl shadow-2xl shadow-slate-900/15">
+        <nav class="grid p-3 gap-1" aria-label="Navegacion movil">
           {mainNavigation.map((item) => (
             <a
               href={item.href}
               class:list={[
-                'rounded-xl px-4 py-3 text-base font-semibold transition hover:bg-slate-50',
-                isActive(item.href) ? 'text-brand-blue' : 'text-slate-700',
+                'rounded-xl px-4 py-3 text-base font-semibold transition-all duration-150',
+                isActive(item.href) ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-700 hover:bg-slate-50',
               ]}
             >
               {item.label}
             </a>
           ))}
         </nav>
-        <div class="grid gap-2 border-t border-slate-100 p-3">
+        <div class="grid gap-2 border-t border-slate-100 p-3 bg-slate-50/50">
           <a
             href={navigationCtas.primary.href}
-            class="rounded-xl bg-brand-blue px-4 py-3 text-center text-sm font-bold text-white"
+            class="rounded-xl bg-brand-blue px-4 py-3 text-center text-sm font-bold text-white shadow-md shadow-blue-600/15"
           >
             {navigationCtas.primary.label}
           </a>
           <a
             href={contactHref}
-            class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold text-slate-700"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-2xs"
           >
             <Mail class="h-4 w-4" />
             {navigationCtas.secondary.label}

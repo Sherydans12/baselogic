@@ -8,38 +8,73 @@ import { visualAssets } from '../data/visualAssets';
 const contactHref = createContactMailtoHref(contact.whatsappMessages.general);
 ---
 
-<section class="commercial-surface border-b border-slate-200">
-  <div class="mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-center gap-12 px-5 py-16 md:px-8 lg:grid-cols-[1.08fr_0.92fr]">
-    <div>
-      <p class="mb-5 inline-flex rounded-full border border-brand-cyan/30 bg-white px-4 py-2 text-sm font-bold text-brand-blue shadow-sm">
-        Soluciones digitales para pymes y empresas en Chile
-      </p>
-      <h1 class="max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-6xl">
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 border-b border-slate-200/80 py-16 md:py-24">
+  <!-- Subtle Aurora / Light Glow Background -->
+  <div class="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-cyan-400/10 blur-[120px]"></div>
+  <div class="pointer-events-none absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[100px]"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[1.08fr_0.92fr]">
+    <div class="relative z-10">
+      <!-- Trust badges container -->
+      <div class="mb-6 flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/20 bg-blue-50/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-blue shadow-2xs">
+          <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Soporte 100% Local en Chile
+        </span>
+        <span class="inline-flex items-center rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-2xs">
+          ⚡ Puesta en marcha rápida
+        </span>
+      </div>
+
+      <h1 class="max-w-4xl text-4xl font-black leading-[1.15] tracking-tight text-slate-950 md:text-6xl">
         {home.hero.title}
       </h1>
+      
       <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
         {home.hero.subtitle}
       </p>
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+
+      <div class="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
         <a
           href={home.hero.primaryCta.href}
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white shadow-xl shadow-blue-700/15 transition hover:bg-slate-950"
+          class="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-7 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 hover:bg-slate-950 hover:shadow-xl hover:shadow-slate-950/20 hover:-translate-y-0.5 active:translate-y-0"
         >
           {home.hero.primaryCta.label}
-          <ArrowRight class="h-5 w-5" />
+          <ArrowRight class="h-5 w-5 transition-transform group-hover:translate-x-1" />
         </a>
         <a
           href={home.hero.secondaryCta.href}
-          class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-base font-bold text-slate-800 transition hover:border-brand-cyan hover:text-brand-blue"
+          class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/90 px-7 py-4 text-base font-bold text-slate-800 shadow-sm transition-all duration-200 hover:border-brand-blue/40 hover:bg-slate-50 hover:text-brand-blue"
         >
           {home.hero.secondaryCta.label}
         </a>
       </div>
-      <a href={contactHref} class="mt-5 inline-flex text-sm font-semibold text-slate-600 hover:text-brand-blue">
-        Prefieres partir por correo? Hablemos con contexto simple.
+
+      <!-- Quick Context Email Link & Feature Highlights -->
+      <div class="mt-8 grid gap-2 pt-4 border-t border-slate-200/60 text-xs font-medium text-slate-500 sm:grid-cols-3">
+        <div class="flex items-center gap-1.5">
+          <span class="text-emerald-500 font-bold">✓</span> Sin costos ocultos
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-emerald-500 font-bold">✓</span> Asesoría clara y sin tecnicismos
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-emerald-500 font-bold">✓</span> Prototipo en 7 días
+        </div>
+      </div>
+
+      <a href={contactHref} class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-blue transition-colors">
+        <span>Prefieres partir por correo?</span>
+        <span class="underline underline-offset-4 text-brand-blue font-bold">Escríbenos directamente →</span>
       </a>
     </div>
 
-    <HeroVisual asset={visualAssets.home.hero} priority={true} overlay={true} />
+    <!-- Enhanced Visual Showcase Frame -->
+    <div class="relative">
+      <div class="absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-cyan-400/30 via-blue-500/20 to-indigo-500/30 blur-2xl opacity-75"></div>
+      <div class="relative overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/15">
+        <HeroVisual asset={visualAssets.home.hero} priority={true} overlay={true} />
+      </div>
+    </div>
   </div>
 </section>
