@@ -1,77 +1,135 @@
 ---
-import { Globe2, Settings2, Wrench, ShieldCheck, Zap, Sparkles } from 'lucide-react';
-import SectionHeading from './SectionHeading.astro';
-import { home } from '../data/home';
-import { visualAssets } from '../data/visualAssets';
+import { ArrowRight, Globe2, Cpu, Layers } from 'lucide-react';
 
-const icons = [Globe2, Settings2, Wrench];
-const badges = ['Presencia & Ventas', 'Orden Operativo', 'Respaldo Directo'];
+const commercialRoutes = [
+  {
+    code: 'RUTA 01 · PRESENCIA Y CAPTACIÓN',
+    icon: Globe2,
+    profile: 'Pymes, comercios y empresas de servicios',
+    title: 'Necesito presencia digital y captar consultas reales',
+    description:
+      'Para negocios que requieren proyectar confianza comercial fuera de redes sociales, explicar su oferta con claridad y recibir contactos calificados.',
+    solutions: [
+      { label: 'Páginas web corporativas y comerciales', href: '/servicios/paginas-web' },
+      { label: 'Landing pages para campañas y servicios', href: '/servicios/landing-pages' },
+      { label: 'Sitios WordPress autogestionables', href: '/servicios/wordpress' },
+      { label: 'Planes referenciales desde $149.000', href: '/planes' },
+    ],
+    ctaLabel: 'Cotizar sitio web',
+    ctaHref: '/contacto?servicio=paginas-web#formulario',
+  },
+  {
+    code: 'RUTA 02 · SISTEMAS Y AUTOMATIZACIÓN',
+    icon: Cpu,
+    profile: 'Operaciones que superaron las planillas dispersas',
+    title: 'Necesito ordenar procesos internos o un sistema a medida',
+    description:
+      'Cuando la operación depende de hojas de cálculo desconectadas y mensajes sueltos, diseñamos paneles internos, flujos y automatizaciones por etapas.',
+    solutions: [
+      { label: 'Sistemas y paneles administrativos a medida', href: '/servicios/sistemas-para-pymes' },
+      { label: 'Automatización de avisos, estados y reportes', href: '/servicios/automatizacion' },
+      { label: 'Formularios internos, roles y trazabilidad', href: '/servicios/sistemas-para-pymes' },
+      { label: 'Escenarios operativos por rubro', href: '/casos-de-exito' },
+    ],
+    ctaLabel: 'Evaluar mi proceso',
+    ctaHref: '/contacto?servicio=sistemas-para-pymes#formulario',
+  },
+  {
+    code: 'RUTA 03 · PLATAFORMAS BASELOGIC',
+    icon: Layers,
+    profile: 'Minería, educación, servicios por hora y comercio',
+    title: 'Busco implementar una plataforma especializada BaseLogic',
+    description:
+      'Software vertical desarrollado por BaseLogic para resolver ciclos operacionales complejos con arquitectura probada y adaptación a tu organización.',
+    solutions: [
+      { label: 'BaseLogic EAM · Activos, OT, compras y bodega', href: '/productos/eam' },
+      { label: 'BaseLogic EduPay · Gestión financiera escolar', href: '/productos/edupay' },
+      { label: 'BaseLogic Booking · Agenda y recursos por hora', href: '/productos/booking' },
+      { label: 'BaseLogic POS · Punto de venta (Piloto)', href: '/productos/pos' },
+    ],
+    ctaLabel: 'Explorar plataformas',
+    ctaHref: '/productos',
+  },
+];
 ---
 
-<section class="relative bg-slate-50/70 py-20 md:py-28 border-b border-slate-200/80 overflow-hidden">
-  <!-- Soft background blur circles -->
-  <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[300px] w-[800px] rounded-full bg-cyan-400/5 blur-[120px]"></div>
-
+<section
+  id="rutas-comerciales"
+  aria-labelledby="rutas-heading"
+  class="border-b border-slate-200 bg-white py-16 md:py-20"
+>
   <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <SectionHeading
-      eyebrow="Qué hacemos"
-      title="Soluciones digitales que se entienden y se pueden usar"
-      text="Combinamos desarrollo web profesional, sistemas a medida y soporte en Chile para que tu negocio gane presencia, orden operacional y continuidad."
-      align="center"
-    />
-
-    <!-- Main Grid: Visual Feature Card + 3 Interactive Pillars -->
-    <div class="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-      <!-- Left: Nature-Tech Visual Feature Card -->
-      <div class="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-3 shadow-xl shadow-slate-900/5 transition-all duration-300 hover:shadow-2xl hover:shadow-slate-900/10">
-        <div class="relative aspect-[16/10] overflow-hidden rounded-2xl bg-slate-100">
-          <img
-            src={visualAssets.home.natureTech.src}
-            alt={visualAssets.home.natureTech.alt}
-            loading="lazy"
-            decoding="async"
-            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
-          
-          <div class="absolute bottom-5 left-5 right-5 text-white">
-            <h4 class="text-xl font-bold leading-snug text-white md:text-2xl">
-              Tecnología pensada para resolver, no para complicar
-            </h4>
-            <p class="mt-1 text-sm text-slate-200">
-              Unimos la fluidez digital con el soporte humano cercano en Chile.
-            </p>
-          </div>
-        </div>
+    <div class="flex flex-col justify-between gap-4 border-b border-slate-200 pb-8 lg:flex-row lg:items-end">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
+          01 / SEGMENTACIÓN Y RUTAS DE ENTRADA
+        </span>
+        <h2 id="rutas-heading" class="mt-2 text-2xl font-black tracking-tight text-slate-950 md:text-4xl">
+          Identifica la ruta técnica adecuada para la etapa de tu empresa
+        </h2>
       </div>
+      <p class="max-w-md text-sm leading-6 text-slate-600">
+        No ofrecemos la misma plantilla para todo. Estructuramos nuestras capacidades según el nivel de madurez operativa que necesitas resolver hoy.
+      </p>
+    </div>
 
-      <!-- Right: 3 Interactive Feature Cards -->
-      <div class="grid gap-4">
-        {home.whatWeDo.map((item, index) => {
-          const Icon = icons[index];
-          const badge = badges[index];
-          return (
-            <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-blue/30 hover:shadow-md">
-              <div class="flex items-start gap-4">
-                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-brand-blue transition-colors group-hover:bg-brand-blue group-hover:text-white">
-                  <Icon class="h-6 w-6" />
-                </div>
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">
-                    {badge}
-                  </span>
-                  <h3 class="text-lg font-bold text-slate-950 md:text-xl">
-                    {item.title}
-                  </h3>
-                  <p class="mt-2 text-sm leading-relaxed text-slate-600">
-                    {item.text}
-                  </p>
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      {commercialRoutes.map((route) => {
+        const Icon = route.icon;
+        return (
+          <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/70 p-6 transition hover:border-brand-blue/40 hover:bg-white hover:shadow-md">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-brand-blue">
+                  {route.code}
+                </span>
+                <div class="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-brand-blue">
+                  <Icon class="h-4 w-4" />
                 </div>
               </div>
-            </article>
-          );
-        })}
-      </div>
+
+              <p class="mt-3 font-mono text-xs font-medium text-slate-500">
+                Perfil: {route.profile}
+              </p>
+              <h3 class="mt-1.5 text-xl font-black leading-snug text-slate-950">
+                {route.title}
+              </h3>
+              <p class="mt-2.5 text-sm leading-6 text-slate-600">
+                {route.description}
+              </p>
+
+              <div class="mt-5 border-t border-slate-200/80 pt-4">
+                <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                  Alcances y rutas directas
+                </span>
+                <ul class="mt-2.5 space-y-2 text-sm">
+                  {route.solutions.map((item) => (
+                    <li>
+                      <a
+                        href={item.href}
+                        class="group flex items-center justify-between rounded-lg border border-slate-200/80 bg-white px-3 py-2 text-xs font-semibold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
+                      >
+                        <span>{item.label}</span>
+                        <ArrowRight class="h-3.5 w-3.5 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-blue" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-2">
+              <a
+                href={route.ctaHref}
+                class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-blue"
+              >
+                {route.ctaLabel}
+                <ArrowRight class="h-4 w-4" />
+              </a>
+            </div>
+          </article>
+        );
+      })}
     </div>
   </div>
 </section>

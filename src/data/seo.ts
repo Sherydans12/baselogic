@@ -44,10 +44,16 @@ export const seo = {
     path: '/servicios/automatizacion',
   },
   products: {
-    title: 'Productos y plataformas BaseLogic | Booking, EduPay y EAM',
+    title: 'Productos y plataformas BaseLogic | Booking, EduPay, EAM y POS',
     description:
-      'Conoce las plataformas de BaseLogic para reservas online, gestión financiera escolar y control de activos, abastecimiento y mantenimiento.',
+      'Conoce las plataformas de BaseLogic para reservas online, gestión financiera escolar, control de activos y punto de venta e inventario en implementación piloto.',
     path: '/productos',
+  },
+  pos: {
+    title: 'Punto de venta e inventario (Piloto) | BaseLogic POS',
+    description:
+      'BaseLogic POS es un sistema en desarrollo e implementación piloto para comercios que necesitan ordenar catálogo, presentaciones de precio, caja, ventas en efectivo y saldos de inventario.',
+    path: '/productos/pos',
   },
   booking: {
     title: 'Sistema de reservas online para pymes | BaseLogic Booking',

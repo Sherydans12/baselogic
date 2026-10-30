@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import ListingHero from '../../components/ListingHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FaqBlock from '../../components/FaqBlock.astro';
+import FinalCtaSection from '../../components/FinalCtaSection.astro';
+import { products } from '../../data/products';
+import { seo } from '../../data/seo';
+import { contact } from '../../data/contact';
+import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
+
+const product = products.find((item) => item.id === 'pos')!;
+const pageSeo = seo.pos;
+
+const verifiedCapabilities = [
+  {
+    code: '01 · CATÁLOGO',
+    title: 'Catálogo de productos y presentaciones',
+    text: 'Organización de productos con soporte para distintas presentaciones y niveles de precio (por unidad, pack o formato de venta).',
+  },
+  {
+    code: '02 · SESIÓN DE CAJA',
+    title: 'Apertura y control de caja',
+    text: 'Registro estructurado de apertura de sesión de caja con monto inicial y trazabilidad de las operaciones registradas en el turno.',
+  },
+  {
+    code: '03 · VENTAS',
+    title: 'Registro de ventas en efectivo',
+    text: 'Flujo de venta ágil orientado a mostrador con cálculo de totales, vuelto y asociación directa de cada ítem vendido.',
+  },
+  {
+    code: '04 · KARDEX Y SALDOS',
+    title: 'Movimientos de inventario y saldos',
+    text: 'Actualización de existencias a partir de entradas, salidas y ventas registradas, manteniendo visibilidad sobre el stock disponible.',
+  },
+];
+
+const posFaqs = [
+  {
+    question: '¿En qué etapa se encuentra BaseLogic POS?',
+    answer:
+      'BaseLogic POS se encuentra actualmente en etapa de desarrollo activo e implementación piloto supervisada. Evaluamos cada comercio caso a caso para asegurar que el alcance actual cubra su operación diaria.',
+  },
+  {
+    question: '¿Qué capacidades están verificadas hoy en el piloto?',
+    answer:
+      'El núcleo verificado abarca administración de catálogo y presentaciones de precio, apertura de caja, registro de ventas en efectivo, movimientos de inventario y consulta de saldos de stock.',
+  },
+  {
+    question: '¿Cómo puedo postular o evaluar una implementación piloto?',
+    answer:
+      'Puedes enviarnos tu contexto mediante el formulario de contacto seleccionando «BaseLogic POS (Piloto)». Revisamos el tipo de comercio, volumen de productos y requerimientos antes de definir la puesta en marcha.',
+  },
+];
+
+const schema = [
+  ...baseSchema(pageSeo.description),
+  breadcrumbSchema([
+    { label: 'Inicio', href: '/' },
+    { label: 'Productos', href: '/productos' },
+    { label: 'BaseLogic POS', href: pageSeo.path },
+  ]),
+  softwareApplicationSchema(product, pageSeo),
+  faqSchema(posFaqs),
+];
+---
+
+<Layout
+  title={pageSeo.title}
+  description={pageSeo.description}
+  canonicalPath={pageSeo.path}
+  schema={schema}
+  whatsappMessage={contact.whatsappMessages.products}
+>
+  <SiteHeader />
+  <main>
+    <ListingHero
+      eyebrow="BaseLogic POS · En desarrollo e implementación piloto"
+      title="Control de catálogo, apertura de caja, ventas en efectivo y saldos de inventario"
+      text="Plataforma de punto de venta e inventario diseñada para comercios que necesitan dejar atrás los cuadernos y planillas sueltas mediante una implementación piloto acompañada."
+      ctaLabel="Consultar piloto POS"
+      ctaHref="/contacto?producto=pos#formulario"
+    />
+
+    <section class="bg-white py-20 border-b border-slate-200/80">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-900">
+          Estado del producto: En desarrollo · Implementación piloto supervisada
+        </div>
+
+        <SectionHeading
+          eyebrow="Capacidades verificadas"
+          title="Alcance funcional actual del núcleo POS"
+          text="Comunicamos con transparencia las funcionalidades reales que hoy componen el sistema para evaluar su calce con la operación de tu local."
+        />
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {verifiedCapabilities.map((item) => (
+            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
+                {item.code}
+              </span>
+              <h3 class="mt-2 text-xl font-black text-slate-950">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <FaqBlock faqs={posFaqs} />
+    <FinalCtaSection />
+  </main>
+  <SiteFooter />
+</Layout>

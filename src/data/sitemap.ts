@@ -10,6 +10,7 @@ export const publicRoutes = [
   '/productos/booking',
   '/productos/edupay',
   '/productos/eam',
+  '/productos/pos',
   '/planes',
   '/casos-de-exito',
   '/contacto',

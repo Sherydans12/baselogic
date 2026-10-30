@@ -1,80 +1,353 @@
 ---
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Layers, Cpu, Terminal } from 'lucide-react';
 import { home } from '../data/home';
 import { contact, createContactMailtoHref } from '../data/contact';
-import HeroVisual from './HeroVisual.astro';
-import { visualAssets } from '../data/visualAssets';
 
 const contactHref = createContactMailtoHref(contact.whatsappMessages.general);
+
+const architecturePanes = [
+  {
+    id: 'web',
+    tabLabel: '01 · Web y Captación',
+    code: 'ARQ-01 · PRESENCIA COMERCIAL',
+    title: 'Sitios web, landing pages y captación estructurada',
+    subtitle: 'Para empresas que necesitan proyectar solidez técnica y convertir búsquedas o campañas en oportunidades reales.',
+    flowSteps: [
+      {
+        stage: 'ENTRADA',
+        node: 'Visita desde Google, campaña o referencia directa',
+        detail: 'Carga estática de alta velocidad, estructura SEO base y propuesta comercial clara.',
+      },
+      {
+        stage: 'CONVERSIÓN',
+        node: 'Formulario con validación y trazabilidad UTM',
+        detail: 'Captura de requerimiento, origen de campaña y validación antispam en servidor.',
+      },
+      {
+        stage: 'CONTINUIDAD',
+        node: 'Recepción ordenada y evolución por etapas',
+        detail: 'Notificación estructurada al equipo comercial y base lista para escalar a nuevos módulos.',
+      },
+    ],
+    deliverables: ['Páginas web corporativas', 'Landing pages de campaña', 'WordPress autogestionable', 'SEO técnico base'],
+    links: [
+      { label: 'Ver páginas web', href: '/servicios/paginas-web' },
+      { label: 'Ver planes referenciales', href: '/planes' },
+    ],
+  },
+  {
+    id: 'sistemas',
+    tabLabel: '02 · Sistemas y Flujos',
+    code: 'ARQ-02 · INGENIERÍA A MEDIDA',
+    title: 'Sistemas web a medida y automatización de procesos',
+    subtitle: 'Para operaciones que superaron las planillas dispersas y requieren paneles internos, roles y trazabilidad.',
+    flowSteps: [
+      {
+        stage: 'CAPTURA',
+        node: 'Solicitudes, órdenes o registros de terreno/oficina',
+        detail: 'Formularios internos con reglas de negocio y permisos diferenciados por rol.',
+      },
+      {
+        stage: 'PROCESAMIENTO',
+        node: 'Panel centralizado y automatización de avisos',
+        detail: 'Consolidación de estados, alertas por correo y eliminación de doble digitación.',
+      },
+      {
+        stage: 'CONTROL',
+        node: 'Historial trazable y reportes para jefaturas',
+        detail: 'Visibilidad clara de cuellos de botella, responsables e indicadores operativos.',
+      },
+    ],
+    deliverables: ['Paneles administrativos', 'Intranets operativas', 'Automatización de avisos', 'Integración de datos'],
+    links: [
+      { label: 'Sistemas para pymes', href: '/servicios/sistemas-para-pymes' },
+      { label: 'Automatización', href: '/servicios/automatizacion' },
+    ],
+  },
+  {
+    id: 'plataformas',
+    tabLabel: '03 · Plataformas Propias',
+    code: 'ARQ-03 · SOFTWARE VERTICAL BASELOGIC',
+    title: 'Plataformas especializadas por industria',
+    subtitle: 'Software propio desarrollado por BaseLogic para operaciones intensivas en activos, educación, reservas y comercio.',
+    flowSteps: [
+      {
+        stage: 'MINERÍA Y ACTIVOS',
+        node: 'BaseLogic EAM · Ciclo de mantenimiento y bodega',
+        detail: 'Activos y hoja de vida → Órdenes de trabajo → Abastecimiento → Kardex → Costos.',
+      },
+      {
+        stage: 'EDUCACIÓN Y SERVICIOS',
+        node: 'BaseLogic EduPay y BaseLogic Booking',
+        detail: 'Gestión de aranceles y cobranza escolar (EduPay) y agendas multiprofesional (Booking).',
+      },
+      {
+        stage: 'COMERCIO (PILOTO)',
+        node: 'BaseLogic POS · Punto de venta e inventario',
+        detail: 'Catálogo, presentaciones de precio, apertura de caja, ventas en efectivo y saldos.',
+      },
+    ],
+    deliverables: ['BaseLogic EAM', 'BaseLogic EduPay', 'BaseLogic Booking', 'BaseLogic POS (Piloto)'],
+    links: [
+      { label: 'Explorar catálogo de productos', href: '/productos' },
+      { label: 'Ver BaseLogic EAM', href: '/productos/eam' },
+    ],
+  },
+];
 ---
 
-<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/50 border-b border-slate-200/80 py-16 md:py-24">
-  <!-- Subtle Aurora / Light Glow Background -->
-  <div class="pointer-events-none absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-cyan-400/10 blur-[120px]"></div>
-  <div class="pointer-events-none absolute top-1/2 -left-40 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[100px]"></div>
-
-  <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-[1.08fr_0.92fr]">
+<section
+  id="hero"
+  aria-labelledby="hero-heading"
+  class="relative overflow-hidden border-b border-slate-200 bg-slate-50 bg-tech-grid-light py-12 md:py-20"
+>
+  <div class="mx-auto grid max-w-7xl items-start gap-10 px-5 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+    <!-- Columna Izquierda: Propuesta de Valor y Compromisos -->
     <div class="relative z-10">
-      <!-- Trust badges container -->
-      <div class="mb-6 flex flex-wrap items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/20 bg-blue-50/80 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-blue shadow-2xs">
-          <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <div class="mb-5 flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-3.5 py-1.5 font-mono text-xs font-semibold text-slate-800 shadow-2xs">
+          <span class="h-2 w-2 rounded-full bg-brand-blue"></span>
           Región de Coquimbo · Atención a todo Chile
         </span>
-        <span class="inline-flex items-center rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-2xs">
-          Claridad operacional y evolución por etapas
+        <span class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 font-mono text-xs font-semibold text-brand-blue">
+          Claridad operacional
         </span>
       </div>
 
-      <h1 class="max-w-4xl text-4xl font-black leading-[1.15] tracking-tight text-slate-950 md:text-6xl">
+      <h1
+        id="hero-heading"
+        class="max-w-3xl text-3xl font-black leading-[1.12] tracking-tight text-slate-950 sm:text-4xl md:text-5xl lg:text-[3.35rem]"
+      >
         {home.hero.title}
       </h1>
-      
-      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+
+      <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
         {home.hero.subtitle}
       </p>
 
-      <div class="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
         <a
-          href={home.hero.primaryCta.href}
-          class="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-7 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 hover:bg-slate-950 hover:shadow-xl hover:shadow-slate-950/20 hover:-translate-y-0.5 active:translate-y-0"
+          href="/contacto#formulario"
+          class="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-slate-950"
         >
           {home.hero.primaryCta.label}
-          <ArrowRight class="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </a>
         <a
-          href={home.hero.secondaryCta.href}
-          class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/90 px-7 py-4 text-base font-bold text-slate-800 shadow-sm transition-all duration-200 hover:border-brand-blue/40 hover:bg-slate-50 hover:text-brand-blue"
+          href="#rutas-comerciales"
+          class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-base font-bold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
         >
-          {home.hero.secondaryCta.label}
+          Explorar soluciones y productos
         </a>
       </div>
 
-      <!-- Quick Context Email Link & Feature Highlights -->
-      <div class="mt-8 grid gap-2 pt-4 border-t border-slate-200/60 text-xs font-medium text-slate-500 sm:grid-cols-3">
-        <div class="flex items-center gap-1.5">
-          <span class="text-emerald-500 font-bold">✓</span> Alcance definido antes de iniciar
+      <dl class="mt-8 grid gap-3 border-t border-slate-200/90 pt-5 text-xs text-slate-600 sm:grid-cols-3">
+        <div class="rounded-xl border border-slate-200/80 bg-white/90 p-3">
+          <dt class="flex items-center gap-1.5 font-bold text-slate-900">
+            <CheckCircle2 class="h-4 w-4 shrink-0 text-brand-blue" />
+            Alcance documentado
+          </dt>
+          <dd class="mt-1 leading-5 text-slate-600">
+            Definimos requerimientos, entregables y límites antes de iniciar.
+          </dd>
         </div>
-        <div class="flex items-center gap-1.5">
-          <span class="text-emerald-500 font-bold">✓</span> Planificación clara y sin tecnicismos
+        <div class="rounded-xl border border-slate-200/80 bg-white/90 p-3">
+          <dt class="flex items-center gap-1.5 font-bold text-slate-900">
+            <CheckCircle2 class="h-4 w-4 shrink-0 text-brand-blue" />
+            Evolución por etapas
+          </dt>
+          <dd class="mt-1 leading-5 text-slate-600">
+            Partimos por el cuello de botella prioritario y escalamos con orden.
+          </dd>
         </div>
-        <div class="flex items-center gap-1.5">
-          <span class="text-emerald-500 font-bold">✓</span> Acompañamiento e implementación por etapas
+        <div class="rounded-xl border border-slate-200/80 bg-white/90 p-3">
+          <dt class="flex items-center gap-1.5 font-bold text-slate-900">
+            <CheckCircle2 class="h-4 w-4 shrink-0 text-brand-blue" />
+            Ingeniería en Chile
+          </dt>
+          <dd class="mt-1 leading-5 text-slate-600">
+            Desarrollo propio, trato directo y acompañamiento continuo.
+          </dd>
         </div>
-      </div>
+      </dl>
 
-      <a href={contactHref} class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-blue transition-colors">
-        <span>¿Prefieres partir por correo?</span>
-        <span class="underline underline-offset-4 text-brand-blue font-bold">Escríbenos directamente →</span>
-      </a>
+      <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium text-slate-500">
+        <span>¿Prefieres enviar tu consulta por correo directo?</span>
+        <a
+          href={contactHref}
+          class="font-bold text-brand-blue underline underline-offset-4 hover:text-slate-950"
+        >
+          contacto@baselogic.cl →
+        </a>
+      </div>
     </div>
 
-    <!-- Enhanced Visual Showcase Frame -->
-    <div class="relative">
-      <div class="absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-cyan-400/30 via-blue-500/20 to-indigo-500/30 blur-2xl opacity-75"></div>
-      <div class="relative overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white shadow-2xl shadow-slate-900/15">
-        <HeroVisual asset={visualAssets.home.hero} priority={true} overlay={true} />
+    <!-- Columna Derecha: Esquemático Interactivo de Arquitectura Operativa -->
+    <div class="relative rounded-2xl border border-slate-800 bg-[#090d16] p-4 sm:p-5 text-slate-100 shadow-xl">
+      <!-- Barra superior del esquemático con distinción explícita de vista conceptual -->
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <img
+            src="/BaseLogic%20Logo%20Cropped.png"
+            alt="BaseLogic"
+            class="h-6 w-auto object-contain brightness-110"
+          />
+          <span class="font-mono text-[11px] font-medium text-slate-400">
+            · Mapa de capacidades
+          </span>
+        </div>
+        <span class="rounded border border-slate-700 bg-slate-900 px-2.5 py-0.5 font-mono text-[11px] text-cyan-300">
+          Esquema conceptual interactivo
+        </span>
+      </div>
+
+      <!-- Pestañas accesibles por teclado (WAI-ARIA Tablist) -->
+      <div
+        role="tablist"
+        aria-label="Frentes de solución de BaseLogic"
+        class="mt-3 grid grid-cols-1 gap-1.5 rounded-xl bg-slate-900/90 p-1.5 sm:grid-cols-3"
+        data-hero-tablist
+      >
+        {architecturePanes.map((pane, idx) => (
+          <button
+            type="button"
+            role="tab"
+            id={`hero-tab-${pane.id}`}
+            aria-selected={idx === 0 ? 'true' : 'false'}
+            aria-controls={`hero-panel-${pane.id}`}
+            tabindex={idx === 0 ? 0 : -1}
+            data-hero-tab={pane.id}
+            class:list={[
+              'rounded-lg px-3 py-2 text-left sm:text-center font-mono text-xs font-semibold transition',
+              idx === 0
+                ? 'bg-brand-blue text-white shadow-xs'
+                : 'text-slate-300 hover:bg-slate-800/80 hover:text-white',
+            ]}
+          >
+            {pane.tabLabel}
+          </button>
+        ))}
+      </div>
+
+      <!-- Paneles del esquemático -->
+      <div class="mt-4">
+        {architecturePanes.map((pane, idx) => (
+          <div
+            role="tabpanel"
+            id={`hero-panel-${pane.id}`}
+            aria-labelledby={`hero-tab-${pane.id}`}
+            tabindex="0"
+            hidden={idx !== 0}
+            data-hero-panel={pane.id}
+            class="space-y-4 focus:outline-none"
+          >
+            <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3.5">
+              <div class="font-mono text-[11px] font-semibold uppercase tracking-wider text-cyan-400">
+                {pane.code}
+              </div>
+              <h2 class="mt-1 text-base font-bold text-white sm:text-lg">{pane.title}</h2>
+              <p class="mt-1 text-xs leading-5 text-slate-300">{pane.subtitle}</p>
+            </div>
+
+            <!-- Flujo esquemático en 3 etapas -->
+            <ol class="grid gap-2.5" aria-label={`Flujo de trabajo para ${pane.title}`}>
+              {pane.flowSteps.map((step, stepIdx) => (
+                <li class="rounded-xl border border-slate-800/90 bg-slate-900/40 p-3">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+                      ETAPA 0{stepIdx + 1} · {step.stage}
+                    </span>
+                    <span class="font-mono text-[10px] text-slate-400">Flujo modelado</span>
+                  </div>
+                  <p class="mt-1 text-xs font-bold text-white sm:text-sm">{step.node}</p>
+                  <p class="mt-0.5 text-xs leading-5 text-slate-300">{step.detail}</p>
+                </li>
+              ))}
+            </ol>
+
+            <!-- Entregables y enlaces reales -->
+            <div class="flex flex-wrap items-center gap-1.5 pt-1">
+              {pane.deliverables.map((item) => (
+                <span class="rounded-md border border-slate-800 bg-slate-900 px-2.5 py-1 font-mono text-[11px] text-slate-300">
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-800 pt-3">
+              <span class="font-mono text-[11px] text-slate-400">
+                Rutas directas del catálogo:
+              </span>
+              <div class="flex flex-wrap items-center gap-3">
+                {pane.links.map((link) => (
+                  <a
+                    href={link.href}
+                    class="inline-flex items-center gap-1 font-mono text-xs font-semibold text-cyan-300 hover:text-white underline underline-offset-4"
+                  >
+                    {link.label} →
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function initHeroTabs() {
+    const tablist = document.querySelector('[data-hero-tablist]');
+    if (!tablist) return;
+
+    const tabs = Array.from(tablist.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-hero-panel]'));
+
+    const activateTab = (targetTab: HTMLButtonElement, focus = false) => {
+      const targetId = targetTab.getAttribute('data-hero-tab');
+      tabs.forEach((tab) => {
+        const isSelected = tab === targetTab;
+        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        tab.tabIndex = isSelected ? 0 : -1;
+        tab.classList.toggle('bg-brand-blue', isSelected);
+        tab.classList.toggle('text-white', isSelected);
+        tab.classList.toggle('shadow-xs', isSelected);
+        tab.classList.toggle('text-slate-300', !isSelected);
+      });
+
+      panels.forEach((panel) => {
+        const isMatch = panel.getAttribute('data-hero-panel') === targetId;
+        panel.hidden = !isMatch;
+      });
+
+      if (focus) {
+        targetTab.focus();
+      }
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab, false));
+
+      tab.addEventListener('keydown', (event: KeyboardEvent) => {
+        let nextIndex: number | null = null;
+        if (event.key === 'ArrowRight') {
+          nextIndex = (index + 1) % tabs.length;
+        } else if (event.key === 'ArrowLeft') {
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (event.key === 'Home') {
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          nextIndex = tabs.length - 1;
+        }
+
+        if (nextIndex !== null) {
+          event.preventDefault();
+          activateTab(tabs[nextIndex], true);
+        }
+      });
+    });
+  }
+
+  initHeroTabs();
+</script>

@@ -4,13 +4,12 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import HomeHero from '../components/HomeHero.astro';
 import WhatWeDoSection from '../components/WhatWeDoSection.astro';
+import OperationalClaritySection from '../components/OperationalClaritySection.astro';
 import MainServicesSection from '../components/MainServicesSection.astro';
 import ProductsPreviewSection from '../components/ProductsPreviewSection.astro';
 import IndustriesUseCasesSection from '../components/IndustriesUseCasesSection.astro';
 import PlansPreviewSection from '../components/PlansPreviewSection.astro';
-import WhyBaseLogicSection from '../components/WhyBaseLogicSection.astro';
 import FinalCtaSection from '../components/FinalCtaSection.astro';
-import FaqBlock from '../components/FaqBlock.astro';
 import { seo } from '../data/seo';
 import { generalFaqs } from '../data/faqs';
 import { contact } from '../data/contact';
@@ -20,17 +19,22 @@ const pageSeo = seo.home;
 const schema = [...baseSchema(pageSeo.description), faqSchema(generalFaqs)];
 ---
 
-<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.general}>
+<Layout
+  title={pageSeo.title}
+  description={pageSeo.description}
+  canonicalPath={pageSeo.path}
+  schema={schema}
+  whatsappMessage={contact.whatsappMessages.general}
+>
   <SiteHeader />
   <main>
     <HomeHero />
     <WhatWeDoSection />
+    <OperationalClaritySection />
     <MainServicesSection />
     <ProductsPreviewSection />
     <IndustriesUseCasesSection />
     <PlansPreviewSection />
-    <WhyBaseLogicSection />
-    <FaqBlock faqs={generalFaqs} />
     <FinalCtaSection />
   </main>
   <SiteFooter />

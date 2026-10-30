@@ -1,97 +1,190 @@
 ---
-import { ArrowRight, Calendar, CreditCard, ShieldAlert, CheckCircle2 } from 'lucide-react';
-import SectionHeading from './SectionHeading.astro';
-import { products } from '../data/products';
-import { visualAssets } from '../data/visualAssets';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
-const productVisuals = {
-  booking: visualAssets.products.bookingHero,
-  edupay: visualAssets.products.edupayHero,
-  eam: visualAssets.products.eamHero,
-};
-
-const productIcons = {
-  booking: Calendar,
-  edupay: CreditCard,
-  eam: ShieldAlert,
-};
+const productShowcase = [
+  {
+    id: 'eam',
+    code: 'PLATAFORMA 01 · MINERÍA, CONTRATISTAS Y FLOTAS',
+    name: 'BaseLogic EAM',
+    modality: 'Implementación empresarial configurable',
+    modalityStyle: 'border-blue-200 bg-blue-50 text-brand-blue',
+    tagline: 'Ciclo operativo conectado para activos críticos, abastecimiento y bodegas.',
+    summary:
+      'Conecta el mantenimiento técnico con el abastecimiento y el control de inventario para trazabilidad real en operaciones intensivas en maquinaria y equipos.',
+    schematicNodes: [
+      '01. Activos y hoja de vida',
+      '02. Órdenes y planificación',
+      '03. Compras y abastecimiento',
+      '04. Bodega, recepción y Kardex',
+      '05. Imputación de costos',
+    ],
+    capabilities: [
+      'Historial técnico y jerarquía de equipos, vehículos y componentes',
+      'Órdenes de trabajo preventivas y correctivas con responsables',
+      'Control de existencias por bodega y movimientos vinculados a OT',
+    ],
+    href: '/productos/eam',
+    ctaLabel: 'Ver arquitectura de BaseLogic EAM',
+  },
+  {
+    id: 'edupay',
+    code: 'PLATAFORMA 02 · COLEGIOS E INSTITUCIONES EDUCATIVAS',
+    name: 'BaseLogic EduPay',
+    modality: 'Solución vertical por evaluación institucional',
+    modalityStyle: 'border-blue-200 bg-blue-50 text-brand-blue',
+    tagline: 'Gestión financiera escolar, cobranza y conciliación estructurada.',
+    summary:
+      'Ordena el ciclo financiero de colegios, jardines e instituciones educativas, conectando la administración de aranceles con la visibilidad para sostenedores y familias.',
+    schematicNodes: [
+      '01. Aranceles, matrículas y becas',
+      '02. Cuotas y compromisos',
+      '03. Seguimiento de cobranza',
+      '04. Conciliación y reportes',
+    ],
+    capabilities: [
+      'Estructuración de planes de cobro, descuentos y estados por alumno',
+      'Reducción de consultas manuales sobre mensualidades y vencimientos',
+      'Preparado conceptualmente para convivir con la gestión académica',
+    ],
+    href: '/productos/edupay',
+    ctaLabel: 'Explorar BaseLogic EduPay',
+  },
+  {
+    id: 'booking',
+    code: 'PLATAFORMA 03 · SALUD, BIENESTAR Y SERVICIOS POR HORA',
+    name: 'BaseLogic Booking',
+    modality: 'Implementación guiada y adaptable',
+    modalityStyle: 'border-blue-200 bg-blue-50 text-brand-blue',
+    tagline: 'Agenda multiprofesional, recursos físicos y reservas sin superposición.',
+    summary:
+      'Organiza la disponibilidad de especialistas, boxes, salas y servicios para que tus clientes reserven en línea respetando las reglas reales de tu operación.',
+    schematicNodes: [
+      '01. Catálogo de servicios',
+      '02. Reglas de profesionales',
+      '03. Asignación de boxes/salas',
+      '04. Reserva guiada y ficha',
+    ],
+    capabilities: [
+      'Disponibilidad combinada entre profesional y espacio físico requerido',
+      'Configuración de duraciones, pausas operativas, bloqueos y sucursales',
+      'Registro centralizado de clientes e historial de atenciones',
+    ],
+    href: '/productos/booking',
+    ctaLabel: 'Conocer BaseLogic Booking',
+  },
+  {
+    id: 'pos',
+    code: 'PLATAFORMA 04 · COMERCIO Y PUNTO DE VENTA',
+    name: 'BaseLogic POS',
+    modality: 'En desarrollo · Implementación piloto supervisada',
+    modalityStyle: 'border-amber-300 bg-amber-50 text-amber-900',
+    tagline: 'Catálogo, presentaciones de precio, caja y control de stock.',
+    summary:
+      'Plataforma en desarrollo e implementación piloto para comercios que necesitan ordenar su operación de mostrador e inventario con acompañamiento directo.',
+    schematicNodes: [
+      '01. Catálogo y presentaciones',
+      '02. Apertura de sesión de caja',
+      '03. Ventas en efectivo',
+      '04. Movimientos y saldos',
+    ],
+    capabilities: [
+      'Administración de catálogo con múltiples presentaciones y precios',
+      'Control de apertura de caja y registro de ventas en efectivo',
+      'Movimientos de inventario y consulta de saldos disponibles',
+    ],
+    href: '/productos/pos',
+    ctaLabel: 'Consultar piloto de BaseLogic POS',
+  },
+];
 ---
 
-<section class="bg-white py-20 md:py-28 border-b border-slate-200/80">
+<section
+  id="productos"
+  aria-labelledby="productos-heading"
+  class="border-b border-slate-200 bg-white py-16 md:py-20"
+>
   <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <SectionHeading
-      eyebrow="Productos BaseLogic"
-      title="Plataformas propias para necesidades operacionales reales"
-      text="Soluciones de software diseñadas en Chile para distintos sectores: Booking organiza agendas y disponibilidad, EduPay estructura la gestión financiera escolar y EAM centraliza el control de activos, abastecimiento y mantenimiento."
-    />
+    <div class="flex flex-col justify-between gap-4 border-b border-slate-200 pb-8 lg:flex-row lg:items-end">
+      <div class="max-w-3xl">
+        <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
+          04 / PORTAFOLIO DE PRODUCTOS PROPIOS
+        </span>
+        <h2 id="productos-heading" class="mt-2 text-2xl font-black tracking-tight text-slate-950 md:text-4xl">
+          Cuatro plataformas BaseLogic diseñadas para operaciones específicas
+        </h2>
+        <p class="mt-2 text-sm leading-6 text-slate-600 md:text-base">
+          Además de desarrollar proyectos a medida, construimos plataformas propias con arquitectura modular para sectores con alta exigencia operativa.
+        </p>
+      </div>
+      <div class="shrink-0">
+        <a
+          href="/productos"
+          class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
+        >
+          Ver catálogo de productos
+          <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+    </div>
 
-    <div class="mt-12 grid gap-8 lg:grid-cols-3">
-      {products.map((product) => {
-        const visual = productVisuals[product.id as keyof typeof productVisuals];
-        const Icon = productIcons[product.id as keyof typeof productIcons];
-        const isFeatured = product.id === 'booking';
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {productShowcase.map((product) => (
+        <article class="flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs transition hover:border-brand-blue/40 hover:shadow-md">
+          <div>
+            <!-- Cabecera Esquemática de Módulos (Distinción explícita de ilustración conceptual) -->
+            <div class="border-b border-slate-800 bg-[#090d16] p-5 text-white">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+                  {product.code}
+                </span>
+                <span class="rounded border border-slate-700 bg-slate-900 px-2 py-0.5 font-mono text-[10px] text-slate-300">
+                  Esquema de módulos del sistema
+                </span>
+              </div>
 
-        return (
-          <article class:list={[
-            'group relative flex flex-col overflow-hidden rounded-3xl border transition-all duration-300 hover:-translate-y-1',
-            isFeatured
-              ? 'border-brand-blue/40 bg-gradient-to-b from-blue-50/60 via-white to-white shadow-xl shadow-blue-600/10 hover:shadow-2xl hover:shadow-blue-600/20'
-              : 'border-slate-200/90 bg-white shadow-sm hover:border-slate-300 hover:shadow-xl hover:shadow-slate-900/10',
-          ]}>
-            <!-- Top Visual Image Container -->
-            <div class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
-              {visual && visual.src ? (
-                <img
-                  src={visual.src}
-                  alt={visual.alt}
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={visual.objectPosition ? `object-position: ${visual.objectPosition};` : undefined}
-                />
-              ) : (
-                <div class="flex h-full items-center justify-center bg-slate-100 text-slate-400">
-                  <Icon class="h-12 w-12" />
-                </div>
-              )}
-            </div>
-
-            <!-- Content Area -->
-            <div class="flex flex-1 flex-col p-6 md:p-7">
-              <h3 class="text-2xl font-black text-slate-950">{product.name}</h3>
-              <p class="mt-1 text-sm font-semibold text-brand-blue">{product.tagline}</p>
-              <p class="mt-3 leading-relaxed text-slate-600 text-sm">{product.summary}</p>
-
-              <!-- Feature Checkmarks -->
-              <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-700">
-                <li class="flex items-center gap-2">
-                  <CheckCircle2 class="h-4 w-4 text-emerald-500 shrink-0" />
-                  <span>Evaluación de alcance y acompañamiento en Chile</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <CheckCircle2 class="h-4 w-4 text-emerald-500 shrink-0" />
-                  <span>Interfaz clara y alineada a la operación real</span>
-                </li>
-              </ul>
-
-              <div class="mt-6 pt-2">
-                <a
-                  href={product.href}
-                  class:list={[
-                    'inline-flex w-full items-center justify-center gap-2 rounded-full py-3 px-4 text-sm font-bold transition-all duration-200',
-                    isFeatured
-                      ? 'bg-brand-blue text-white shadow-md shadow-blue-600/20 hover:bg-slate-950 hover:shadow-lg'
-                      : 'border border-slate-200 bg-slate-50 text-slate-800 hover:border-brand-blue/30 hover:bg-brand-blue hover:text-white',
-                  ]}
-                >
-                  {product.ctaLabel}
-                  <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {product.schematicNodes.map((node) => (
+                  <span class="rounded-md border border-slate-800 bg-slate-900/90 px-2.5 py-1 font-mono text-[11px] font-medium text-slate-200">
+                    {node}
+                  </span>
+                ))}
               </div>
             </div>
-          </article>
-        );
-      })}
+
+            <!-- Cuerpo de la Tarjeta -->
+            <div class="p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3 class="text-2xl font-black text-slate-950">{product.name}</h3>
+                <span class:list={['rounded-full border px-3 py-1 font-mono text-[11px] font-semibold', product.modalityStyle]}>
+                  {product.modality}
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm font-bold text-brand-blue">{product.tagline}</p>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{product.summary}</p>
+
+              <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs font-medium text-slate-700">
+                {product.capabilities.map((cap) => (
+                  <li class="flex items-start gap-2">
+                    <CheckCircle2 class="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
+                    <span class="leading-5">{cap}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-100 bg-slate-50/70 px-6 py-4">
+            <a
+              href={product.href}
+              class="inline-flex w-full items-center justify-between text-sm font-bold text-slate-900 transition hover:text-brand-blue"
+            >
+              <span>{product.ctaLabel}</span>
+              <ArrowRight class="h-4 w-4" />
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>

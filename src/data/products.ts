@@ -81,6 +81,25 @@ export const products = [
     ctaLabel: 'Cotizar EAM',
     status: 'active',
   },
+  {
+    id: 'pos',
+    name: 'BaseLogic POS',
+    href: '/productos/pos',
+    eyebrow: 'Comercio y punto de venta · En desarrollo e implementación piloto',
+    tagline: 'Catálogo, presentaciones de precio, caja y control de stock para comercios.',
+    summary:
+      'Sistema de punto de venta e inventario en etapa de desarrollo e implementación piloto supervisada, enfocado en ordenar catálogo, presentaciones, apertura de caja, ventas en efectivo y saldos de inventario.',
+    audience: 'Comercios, distribuidoras locales, almacenes, tiendas especializadas y negocios con venta presencial.',
+    features: [
+      'Catálogo y presentaciones de precio',
+      'Apertura y sesión de caja',
+      'Registro de ventas en efectivo',
+      'Movimientos de inventario',
+      'Control de saldos de stock',
+    ],
+    ctaLabel: 'Consultar piloto POS',
+    status: 'pilot',
+  },
 ];
 
 export type Product = (typeof products)[number];
