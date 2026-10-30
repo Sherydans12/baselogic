@@ -1,0 +1,26 @@
+name = "baselogic-contact-api"
+main = "src/index.ts"
+compatibility_date = "2025-02-01"
+
+# Ruta en producción sobre la zona de Cloudflare (no desplegar sin aprobación explícita):
+# routes = [
+#   { pattern = "baselogic.cl/api/contact*", zone_name = "baselogic.cl" },
+#   { pattern = "www.baselogic.cl/api/contact*", zone_name = "baselogic.cl" }
+# ]
+
+[vars]
+CONTACT_FROM_EMAIL = "BaseLogic · Notificaciones Web <notificaciones@baselogic.cl>"
+CONTACT_TO_EMAIL = "contacto@baselogic.cl"
+ALLOWED_ORIGINS = "https://baselogic.cl,https://www.baselogic.cl"
+ALLOW_LOCALHOST = "false"
+
+# Rate Limiting distribuido nativo de Cloudflare Workers (consistente en el Edge sin costo de escrituras KV)
+[[unsafe.bindings]]
+name = "CONTACT_RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 5, period = 60 }
+
+# Secretos que DEBEN configurarse vía CLI (nunca en texto plano en el repositorio):
+# npx wrangler secret put RESEND_API_KEY
+# npx wrangler secret put TURNSTILE_SECRET_KEY (opcional)

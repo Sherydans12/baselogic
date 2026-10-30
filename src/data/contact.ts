@@ -9,6 +9,7 @@ export const projectTypes = [
   'BaseLogic Booking',
   'BaseLogic EduPay',
   'BaseLogic EAM',
+  'BaseLogic POS (Piloto)',
   'Soporte mensual',
   'No estoy seguro',
 ];
