@@ -23,11 +23,11 @@ const initialState: FormState = {
 };
 
 const buildLeadMessage = (form: FormState) => [
-  'Hola BaseLogic, quiero cotizar un proyecto digital.',
+  'Hola BaseLogic, quiero cotizar o evaluar un proyecto tecnológico.',
   '',
   `Nombre: ${form.name}`,
   `Email: ${form.email}`,
-  `Telefono de contacto: ${form.phone}`,
+  `Teléfono de contacto: ${form.phone}`,
   `Empresa o negocio: ${form.company || 'No indicado'}`,
   `Tipo de proyecto: ${form.projectType}`,
   `Presupuesto aproximado: ${form.budget}`,
@@ -40,7 +40,7 @@ export default function LeadForm() {
 
   const leadMessage = useMemo(() => buildLeadMessage(form), [form]);
   const mailtoHref = useMemo(
-    () => createMailtoHref('Cotizacion de proyecto digital', leadMessage),
+    () => createMailtoHref('Cotización de proyecto digital', leadMessage),
     [leadMessage],
   );
 
@@ -86,7 +86,7 @@ export default function LeadForm() {
 
         <div className="grid gap-4 md:grid-cols-2">
           <label htmlFor="lead-phone" className="grid gap-2 text-sm font-bold text-slate-700">
-            Telefono de contacto
+            Teléfono de contacto
             <input
               id="lead-phone"
               name="phone"
@@ -172,7 +172,7 @@ export default function LeadForm() {
         </a>
       </div>
       <p className="mt-4 text-sm leading-6 text-slate-500">
-        Este formulario abre tu correo con la informacion prellenada para enviarla a BaseLogic. No muestra confirmaciones automaticas sin envio real.
+        Este formulario prepara tu correo con la información estructurada para enviarla directamente a BaseLogic.
       </p>
     </form>
   );

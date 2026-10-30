@@ -2,51 +2,51 @@ import { site } from './site';
 
 export const seo = {
   home: {
-    title: 'BaseLogic | Paginas web, sistemas y automatizacion para pymes en Chile',
+    title: 'BaseLogic | Sitios web, automatización y software empresarial en Chile',
     description:
-      'Creamos paginas web, sistemas simples, automatizacion, soporte digital y productos propios para pymes y empresas en Chile.',
+      'Desarrollamos sitios web profesionales, automatizaciones y software empresarial para organizar procesos, controlar operaciones y acompañar el crecimiento de negocios en Chile.',
     path: '/',
   },
   services: {
-    title: 'Servicios digitales para pymes | BaseLogic',
+    title: 'Servicios digitales y software para empresas | BaseLogic',
     description:
-      'Paginas web, landing pages, WordPress, sistemas simples, automatizacion y soporte digital para pymes en Chile.',
+      'Páginas web, landing pages, WordPress, sistemas a medida, automatización y continuidad digital para pymes y empresas en Chile.',
     path: '/servicios',
   },
   webPages: {
-    title: 'Paginas web profesionales para pymes en Chile | BaseLogic',
+    title: 'Páginas web profesionales para pymes y empresas en Chile | BaseLogic',
     description:
-      'Creamos paginas web profesionales, claras, rapidas y adaptadas a celular para pymes y empresas en Chile.',
+      'Creamos páginas web profesionales, claras, rápidas y adaptadas a celular para pymes y empresas en Chile.',
     path: '/servicios/paginas-web',
   },
   landingPages: {
     title: 'Landing pages para captar clientes | BaseLogic',
     description:
-      'Disenamos landing pages para campanas, promociones, servicios especificos, captacion por correo y formularios.',
+      'Diseñamos landing pages para campañas, promociones, servicios específicos, captación de leads y formularios de conversión.',
     path: '/servicios/landing-pages',
   },
   wordpress: {
     title: 'Sitios WordPress autogestionables para empresas | BaseLogic',
     description:
-      'Sitios WordPress profesionales para empresas que necesitan editar textos, imagenes y contenidos desde un panel simple.',
+      'Sitios WordPress profesionales para empresas que necesitan editar textos, imágenes y contenidos desde un panel simple.',
     path: '/servicios/wordpress',
   },
   pymeSystems: {
-    title: 'Sistemas simples para pymes | BaseLogic',
+    title: 'Sistemas a medida para pymes y empresas | BaseLogic',
     description:
-      'Creamos sistemas simples para pymes que necesitan ordenar clientes, reservas, pagos, inventario, solicitudes y reportes.',
+      'Desarrollamos sistemas claros para pymes y empresas que necesitan ordenar clientes, reservas, pagos, inventario, solicitudes y reportes.',
     path: '/servicios/sistemas-para-pymes',
   },
   automation: {
-    title: 'Automatizacion de procesos para pymes | BaseLogic',
+    title: 'Automatización de procesos para pymes y empresas | BaseLogic',
     description:
       'Automatizamos tareas repetitivas para pymes y empresas: formularios, notificaciones, recordatorios, seguimiento y reportes.',
     path: '/servicios/automatizacion',
   },
   products: {
-    title: 'Productos digitales BaseLogic | Booking, EduPay y EAM',
+    title: 'Productos y plataformas BaseLogic | Booking, EduPay y EAM',
     description:
-      'Conoce los productos BaseLogic para reservas, pagos educativos y gestion de activos, mantenimiento e inventario.',
+      'Conoce las plataformas de BaseLogic para reservas online, gestión financiera escolar y control de activos, abastecimiento y mantenimiento.',
     path: '/productos',
   },
   booking: {
@@ -56,43 +56,43 @@ export const seo = {
     path: '/productos/booking',
   },
   edupay: {
-    title: 'Pagos y cobranza para colegios | BaseLogic EduPay',
+    title: 'Gestión financiera y cobranza escolar | BaseLogic EduPay',
     description:
-      'BaseLogic EduPay ayuda a instituciones educativas a evaluar una solucion para pagos, cobranza, mensualidades, recordatorios y reportes.',
+      'BaseLogic EduPay ayuda a colegios, jardines e instituciones educativas a ordenar mensualidades, pagos, cobranza, conciliación y seguimiento administrativo.',
     path: '/productos/edupay',
   },
   eam: {
-    title: 'Software de mantenimiento para minería | BaseLogic EAM',
+    title: 'Software de activos, abastecimiento y mantenimiento | BaseLogic EAM',
     description:
-      'Gestiona activos, órdenes de trabajo, mantenimiento preventivo, repuestos y trazabilidad de equipos pesados y flotas con BaseLogic EAM.',
+      'Gestiona activos, órdenes de trabajo, mantenimiento preventivo, abastecimiento, bodegas y trazabilidad operacional con BaseLogic EAM.',
     path: '/productos/eam',
   },
   caseStudies: {
-    title: 'Casos de uso y soluciones digitales | BaseLogic',
+    title: 'Soluciones y escenarios de aplicación por rubro | BaseLogic',
     description:
-      'Ejemplos de soluciones digitales por rubro para pymes: reservas, paginas web, pagos educativos, automatizacion e inventario.',
+      'Escenarios de aplicación y soluciones digitales por rubro para empresas en Chile: reservas, presencia web, gestión financiera escolar, automatización y control de activos.',
     path: '/casos-de-exito',
   },
   plans: {
-    title: 'Planes web y soporte digital para pymes | BaseLogic',
+    title: 'Planes web y continuidad digital para empresas | BaseLogic',
     description:
-      'Planes referenciales para presencia digital, sitios web, soporte mensual, automatizacion y sistemas simples para pymes.',
+      'Planes referenciales para presencia digital, sitios web, continuidad mensual, automatización y sistemas iniciales para pymes y empresas.',
     path: '/planes',
   },
   contact: {
-    title: 'Cotiza tu proyecto digital | BaseLogic',
+    title: 'Cotiza tu proyecto o solicita una evaluación | BaseLogic',
     description:
-      'Cuéntanos que necesita tu negocio y te orientamos con una solucion digital clara para web, sistemas, automatizacion o soporte.',
+      'Cuéntanos qué necesita tu negocio y definamos una solución clara en desarrollo web, sistemas a medida, automatización o plataformas BaseLogic.',
     path: '/contacto',
   },
   privacy: {
-    title: 'Politica de privacidad | BaseLogic',
-    description: 'Politica de privacidad de BaseLogic para usuarios, clientes y visitantes del sitio web.',
+    title: 'Política de privacidad | BaseLogic',
+    description: 'Política de privacidad de BaseLogic (SENAS TECNOLOGÍAS SpA) para usuarios, clientes y visitantes del sitio web.',
     path: '/legal/privacidad',
   },
   terms: {
-    title: 'Terminos de servicio | BaseLogic',
-    description: 'Terminos de servicio aplicables a proyectos, soporte y soluciones digitales de BaseLogic.',
+    title: 'Términos de servicio | BaseLogic',
+    description: 'Términos de servicio aplicables a propuestas, proyectos, soporte y soluciones digitales de BaseLogic (SENAS TECNOLOGÍAS SpA).',
     path: '/legal/terminos',
   },
 };

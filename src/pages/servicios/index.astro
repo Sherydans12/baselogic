@@ -21,15 +21,15 @@ const schema = [...baseSchema(pageSeo.description), faqSchema(generalFaqs)];
   <main>
     <ListingHero
       eyebrow="Servicios"
-      title="Servicios digitales para pymes que necesitan vender, ordenar y crecer"
-      text="Creamos paginas web, landing pages, sitios WordPress, sistemas simples, automatizacion y soporte digital con un lenguaje claro y foco comercial."
+      title="Servicios digitales y sistemas para empresas que necesitan vender, ordenar y evolucionar"
+      text="Desarrollamos páginas web, landing pages, sitios WordPress, sistemas a medida, automatización y continuidad digital con alcance claro y foco operacional."
     />
 
     <section class="bg-white py-20">
       <div class="mx-auto max-w-7xl px-5 md:px-8">
         <SectionHeading
           title="Elige un punto de partida"
-          text="Si no tienes claro que necesitas, podemos orientarte desde el problema: presencia digital, reservas, pagos, inventario, automatizacion o soporte."
+          text="Si no tienes claro qué necesitas, podemos orientarte desde el problema: presencia digital, reservas, pagos, inventario, automatización o soporte continuo."
         />
         <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
@@ -45,7 +45,7 @@ const schema = [...baseSchema(pageSeo.description), faqSchema(generalFaqs)];
                 ))}
               </ul>
               <a href={service.href} class="mt-6 inline-flex rounded-full bg-white px-4 py-2 text-sm font-bold text-brand-blue ring-1 ring-slate-200 hover:ring-brand-cyan">
-                Cotizar o conocer mas
+                Cotizar o conocer más
               </a>
             </article>
           ))}

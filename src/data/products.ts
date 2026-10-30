@@ -27,7 +27,7 @@ export const products = [
     eyebrow: 'Producto educativo',
     tagline: 'Pagos y cobranza para colegios, jardines e instituciones educativas.',
     summary:
-      'Solucion vertical para ordenar pagos, mensualidades, cobranza, comunicacion financiera y seguimiento administrativo en instituciones educativas.',
+      'Solución vertical para ordenar pagos, mensualidades, cobranza, comunicación financiera y seguimiento administrativo en instituciones educativas.',
     audience: 'Colegios, jardines infantiles, academias e instituciones educativas.',
     features: [
       'Pagos y mensualidades',
@@ -39,30 +39,30 @@ export const products = [
     benefits: [
       'Menos trabajo manual',
       'Mejor seguimiento financiero',
-      'Informacion mas ordenada',
-      'Evaluacion segun requerimiento',
+      'Información más ordenada',
+      'Evaluación según requerimiento',
     ],
     useCases: [
       'Ordenar mensualidades y estados de pago',
       'Reducir consultas repetidas sobre compromisos pendientes',
       'Dar mejor visibilidad administrativa al equipo',
-      'Evaluar un portal de pagos adaptado a la institucion',
+      'Evaluar un portal de pagos adaptado a la institución',
     ],
     faqs: [
       {
         question: '¿EduPay es un producto cerrado?',
         answer:
-          'Se presenta como solucion vertical disponible para evaluacion comercial o implementacion segun requerimiento. Revisamos el caso antes de prometer un alcance cerrado.',
+          'Se presenta como solución vertical disponible para evaluación comercial o implementación según requerimiento. Revisamos el caso antes de prometer un alcance cerrado.',
       },
       {
         question: '¿Sirve para colegios y jardines?',
         answer:
-          'Si. El foco esta en instituciones educativas que necesitan ordenar pagos, mensualidades, cobranza, recordatorios y seguimiento.',
+          'Sí. El foco está en instituciones educativas que necesitan ordenar pagos, mensualidades, cobranza, recordatorios y seguimiento.',
       },
       {
         question: '¿Puede mejorar la experiencia de apoderados?',
         answer:
-          'Ese es uno de los objetivos: entregar informacion mas clara y reducir conversaciones manuales sobre pagos y estados pendientes.',
+          'Ese es uno de los objetivos: entregar información más clara y reducir conversaciones manuales sobre pagos y estados pendientes.',
       },
     ],
     ctaLabel: 'Consultar EduPay',

@@ -26,16 +26,16 @@ const schema = [...baseSchema(pageSeo.description), faqSchema(caseStudyFaqs), br
   <main>
     <Breadcrumbs items={breadcrumbItems} />
     <ListingHero
-      eyebrow="Casos de uso"
-      title="Casos de uso y soluciones por rubro"
-      text="Estos ejemplos muestran escenarios tipicos de solucion para pymes y empresas. No son testimonios ni nombres de clientes reales."
+      eyebrow="Escenarios por rubro"
+      title="Soluciones y escenarios de aplicación por rubro"
+      text="Estos escenarios representan problemas operacionales frecuentes en pymes, educación e industria, junto con la arquitectura de solución que implementa BaseLogic."
     />
 
     <section class="bg-white py-14">
       <div class="mx-auto max-w-7xl px-5 md:px-8">
         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
           <p class="text-lg font-semibold leading-8 text-slate-700">
-            Como todavia no todos los casos publicos pueden mostrarse con nombre, esta pagina usa ejemplos anonimos para explicar problemas frecuentes, soluciones posibles y resultados esperados.
+            Nota de transparencia: Los siguientes bloques describen escenarios representativos de aplicación por industria para ilustrar problemas frecuentes, arquitecturas posibles y resultados operacionales esperados, resguardando la confidencialidad de nuestros clientes.
           </p>
         </div>
       </div>
@@ -49,12 +49,12 @@ const schema = [...baseSchema(pageSeo.description), faqSchema(caseStudyFaqs), br
       </div>
     </section>
 
-    <FaqBlock faqs={caseStudyFaqs} title="Sobre estos ejemplos" />
+    <FaqBlock faqs={caseStudyFaqs} title="Sobre estos escenarios" />
 
     <ContactBand
-      title="¿Quieres una solucion para tu rubro?"
-      text="Cuéntanos que tipo de negocio tienes y que proceso quieres ordenar. Podemos orientarte hacia una web, una landing, Booking, EduPay, EAM, automatizacion o soporte."
-      primaryLabel="Quiero una solucion para mi rubro"
+      title="¿Buscas una solución para tu rubro?"
+      text="Cuéntanos qué tipo de negocio tienes y qué proceso necesitas ordenar. Podemos orientarte hacia una web, una landing, Booking, EduPay, EAM, automatización o soporte."
+      primaryLabel="Evaluar solución para mi rubro"
       secondaryLabel="Cotizar proyecto"
       whatsappMessage={contact.whatsappMessages.caseStudies}
     />

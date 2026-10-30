@@ -1,31 +1,31 @@
 export const industries = [
   {
-    name: 'Barberias y centros esteticos',
-    need: 'Reservas, servicios, horarios, recordatorios y presencia digital.',
+    name: 'Barberías y centros estéticos',
+    need: 'Reservas en línea, organización de profesionales, disponibilidad de boxes y presencia digital.',
   },
   {
-    name: 'Restaurantes y cafeterias',
-    need: 'Carta online, reservas, promociones, pedidos simples y contacto directo.',
+    name: 'Comercios, minimarkets y locales',
+    need: 'Control de catálogo, apertura de caja, ventas, movimientos de inventario y presencia comercial.',
   },
   {
-    name: 'Consultas medicas',
-    need: 'Agenda, informacion clara, contacto, pagos y seguimiento de pacientes.',
+    name: 'Consultas médicas y profesionales',
+    need: 'Agenda programada, información clara de especialidades, captación de consultas y seguimiento.',
   },
   {
-    name: 'Gimnasios y canchas',
-    need: 'Reservas, membresias, horarios, pagos y comunicacion con clientes.',
+    name: 'Gimnasios, centros deportivos y recintos',
+    need: 'Reserva de espacios o cupos, horarios, planes y comunicación directa con clientes.',
   },
   {
-    name: 'Colegios y jardines',
-    need: 'Pagos, cobranza, comunicacion y presencia institucional.',
+    name: 'Colegios, jardines e instituciones',
+    need: 'Gestión de mensualidades, seguimiento de cobranza, conciliación y portales institucionales.',
   },
   {
-    name: 'Tiendas y negocios locales',
-    need: 'Catalogos, tiendas simples, contacto y soporte digital.',
+    name: 'Minería, contratistas y flotas',
+    need: 'Hoja de vida de activos, órdenes de trabajo, abastecimiento, bodegas, Kardex y trazabilidad.',
   },
   {
-    name: 'Empresas con procesos internos',
-    need: 'Paneles, reportes, inventario, clientes y automatizacion.',
+    name: 'Empresas de servicios y operaciones',
+    need: 'Paneles administrativos, automatización de flujos, reportes e integración de procesos internos.',
   },
 ];
 

@@ -1,23 +1,23 @@
 export const generalFaqs = [
   {
-    question: 'No se que solucion necesito, ¿me pueden orientar?',
+    question: 'No sé qué solución necesito, ¿me pueden orientar?',
     answer:
-      'Si. Revisamos tu caso, entendemos el objetivo del negocio y te proponemos una alternativa clara segun alcance, presupuesto y prioridad.',
+      'Sí. Revisamos tu caso, entendemos el objetivo operacional o comercial del negocio y te proponemos una alternativa clara según alcance, prioridad y etapa.',
   },
   {
-    question: '¿Trabajan con pymes de cualquier ciudad de Chile?',
+    question: '¿Trabajan con empresas de cualquier ciudad de Chile?',
     answer:
-      'Si. Atendemos empresas y pymes en Chile de forma remota, con reuniones simples y seguimiento claro durante el proyecto.',
+      'Sí. Operamos desde la Región de Coquimbo y atendemos empresas e instituciones en todo Chile de forma remota, con seguimiento estructurado en cada etapa.',
   },
   {
-    question: '¿Puedo partir con algo pequeno y crecer despues?',
+    question: '¿Puedo partir con un alcance acotado y evolucionar después?',
     answer:
-      'Si. La idea es construir una base profesional que pueda crecer hacia nuevas secciones, automatizaciones, sistemas o soporte mensual.',
+      'Sí. Nuestro enfoque es construir una base bien estructurada que pueda crecer por etapas hacia nuevas secciones, automatizaciones, módulos o integraciones.',
   },
   {
-    question: '¿Ofrecen soporte despues de publicar?',
+    question: '¿Ofrecen soporte y continuidad después de publicar?',
     answer:
-      'Si. Podemos apoyar con mantencion, backups, cambios menores, hosting, correos y mejoras continuas mediante planes o acuerdos mensuales.',
+      'Sí. Apoyamos con mantención, respaldos, cambios menores, alojamiento, cuentas de correo y evolución continua mediante planes o acuerdos mensuales.',
   },
 ];
 
@@ -58,39 +58,39 @@ export const eamFaqs = [
   {
     question: '¿BaseLogic EAM sirve únicamente para minería?',
     answer:
-      'No. La solución puede adaptarse a empresas de mantenimiento, contratistas y operaciones con activos físicos. La minería es el foco principal de esta página por las necesidades de control y trazabilidad de sus equipos.',
+      'No. La solución se adapta a empresas de mantenimiento, contratistas, obras civiles y operaciones intensivas en activos físicos. La minería y los contratistas industriales son el foco principal por sus exigencias de control operacional y trazabilidad.',
   },
   {
     question: '¿Permite gestionar órdenes de trabajo?',
     answer:
-      'Sí. Puedes organizar trabajos, responsables, prioridades, avances, comentarios e historial asociado a los activos.',
+      'Sí. Puedes organizar trabajos, responsables, prioridades, avances, comentarios e historial técnico asociado a los activos.',
   },
   {
-    question: '¿Puedo controlar repuestos y bodegas?',
+    question: '¿Puedo controlar repuestos, abastecimiento y bodegas?',
     answer:
-      'Sí. BaseLogic EAM incluye gestión de inventario, movimientos de stock y control por bodega.',
+      'Sí. BaseLogic EAM contempla gestión de inventario, movimientos de stock, recepción y control por bodega vinculados a la operación.',
   },
   {
     question: '¿Se puede adaptar al proceso de mi empresa?',
     answer:
-      'La implementación se configura según los activos, responsables, bodegas y flujo de mantenimiento de cada operación.',
+      'Sí. La implementación se evalúa y configura según los activos, responsables, contratos, bodegas y flujo de mantenimiento de cada operación.',
   },
 ];
 
 export const caseStudyFaqs = [
   {
-    question: '¿Estos son testimonios reales?',
+    question: '¿Estos casos corresponden a clientes específicos publicados?',
     answer:
-      'No. Son casos de uso anonimos y escenarios tipicos para explicar como se podria resolver un problema frecuente por rubro.',
+      'Son escenarios de aplicación representativos diseñados para explicar cómo abordamos problemas operacionales frecuentes en distintos rubros sin exponer información privada de clientes.',
   },
   {
-    question: '¿Pueden adaptar una solucion a mi negocio?',
+    question: '¿Pueden adaptar una solución al flujo real de mi empresa?',
     answer:
-      'Si. Primero revisamos tu rubro, proceso actual, urgencia y presupuesto para proponer una solucion ajustada a tu realidad.',
+      'Sí. Primero levantamos tu proceso actual, restricciones y prioridades para proponer una arquitectura o implementación ajustada a tu operación.',
   },
   {
-    question: '¿Puedo partir por una solucion pequena?',
+    question: '¿Puedo partir por una primera etapa acotada?',
     answer:
-      'Si. Muchas veces conviene partir con una web, una landing, una agenda o una automatizacion puntual y crecer despues.',
+      'Sí. Recomendamos abordar primero el cuello de botella principal —ya sea presencia comercial, agenda, cobros o control de inventario— y escalar por módulos.',
   },
 ];

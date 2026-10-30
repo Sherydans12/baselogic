@@ -14,19 +14,19 @@ export const projectTypes = [
 ];
 
 export const budgetRanges = [
-  'Aun no lo tengo definido',
+  'Aún no lo tengo definido',
   'Hasta $300.000',
   '$300.000 a $700.000',
   '$700.000 a $1.500.000',
-  'Mas de $1.500.000',
-  'Prefiero recibir orientacion',
+  'Más de $1.500.000',
+  'Prefiero recibir orientación',
 ];
 
 export const contact = {
   email: site.email,
   whatsapp: site.whatsapp,
   responseNote:
-    'Despues de recibir tu correo revisamos el contexto, te orientamos sobre la mejor alternativa y coordinamos los siguientes pasos para una propuesta clara.',
+    'Después de recibir tu correo revisamos el contexto, te orientamos sobre la mejor alternativa y coordinamos los siguientes pasos para una propuesta clara.',
   whatsappMessages: {
     general:
       'Hola BaseLogic, quiero cotizar un proyecto digital para mi negocio.',
@@ -37,13 +37,13 @@ export const contact = {
     booking:
       'Hola BaseLogic, me interesa BaseLogic Booking para gestionar reservas.',
     edupay:
-      'Hola BaseLogic, quiero consultar por BaseLogic EduPay para una institucion educativa.',
+      'Hola BaseLogic, quiero consultar por BaseLogic EduPay para una institución educativa.',
     eam:
       'Hola BaseLogic, me interesa BaseLogic EAM para activos, mantenimiento e inventario.',
     plans:
-      'Hola BaseLogic, quiero orientacion sobre los planes disponibles.',
+      'Hola BaseLogic, quiero orientación sobre los planes disponibles.',
     caseStudies:
-      'Hola BaseLogic, quiero una solucion digital para mi rubro.',
+      'Hola BaseLogic, quiero una solución digital para mi rubro.',
   },
 };
 
@@ -58,4 +58,4 @@ export const createMailtoHref = (subject: string, body: string) =>
   `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 export const createContactMailtoHref = (message = contact.whatsappMessages.general) =>
-  createMailtoHref('Cotizacion de proyecto digital', message);
+  createMailtoHref('Cotización de proyecto digital', message);

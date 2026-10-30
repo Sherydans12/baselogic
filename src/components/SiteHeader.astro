@@ -18,7 +18,7 @@ const isActive = (href: string) => {
       <img src="/BaseLogic%20Logo%20Cropped.png" alt="BaseLogic" class="h-10 sm:h-11 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-90" />
     </a>
 
-    <nav class="hidden items-center gap-1.5 text-sm font-medium text-slate-600 lg:flex" aria-label="Navegacion principal">
+    <nav class="hidden items-center gap-1.5 text-sm font-medium text-slate-600 lg:flex" aria-label="Navegación principal">
       {mainNavigation.map((item) => (
         <a
           href={item.href}
@@ -53,7 +53,7 @@ const isActive = (href: string) => {
     <details class="group relative lg:hidden">
       <summary
         class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-800 shadow-sm transition hover:bg-slate-50 active:scale-95"
-        aria-label="Abrir menu"
+        aria-label="Abrir menú"
       >
         <span class="mobile-menu-icon mobile-menu-icon-open" aria-hidden="true">
           <Menu class="h-5 w-5" />
@@ -63,7 +63,7 @@ const isActive = (href: string) => {
         </span>
       </summary>
       <div class="absolute right-0 mt-3 w-[min(88vw,360px)] overflow-hidden rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-xl shadow-2xl shadow-slate-900/15">
-        <nav class="grid p-3 gap-1" aria-label="Navegacion movil">
+        <nav class="grid p-3 gap-1" aria-label="Navegación móvil">
           {mainNavigation.map((item) => (
             <a
               href={item.href}
