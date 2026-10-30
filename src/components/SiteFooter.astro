@@ -31,7 +31,7 @@ const visibleServices = services.filter((item) => item.status === 'active');
 
       <div class="grid gap-8 sm:grid-cols-3">
         <div>
-          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Navegacion</h2>
+          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Navegación</h2>
           <ul class="space-y-3 text-sm">
             {mainNavigation.map((item) => (
               <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.label}</a></li>
@@ -53,14 +53,15 @@ const visibleServices = services.filter((item) => item.status === 'active');
               <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.name.replace('BaseLogic ', '')}</a></li>
             ))}
             <li><a href="/legal/privacidad" class="text-slate-300 hover:text-brand-cyan">Privacidad</a></li>
-            <li><a href="/legal/terminos" class="text-slate-300 hover:text-brand-cyan">Terminos</a></li>
+            <li><a href="/legal/terminos" class="text-slate-300 hover:text-brand-cyan">Términos</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-500">
-      BaseLogic © 2026. Soluciones digitales para pymes y empresas en Chile.
+    <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-400">
+      <p>BaseLogic © 2026. BaseLogic es una marca de {site.legalEntity}.</p>
+      <p class="mt-1 text-slate-500">{site.serviceArea}</p>
     </div>
   </div>
 </footer>

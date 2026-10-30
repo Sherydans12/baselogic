@@ -1,36 +1,36 @@
 export const home = {
   hero: {
-    title: 'Paginas web, sistemas y automatizacion para pymes que quieren crecer',
+    title: 'Tecnología que conecta y simplifica tu operación',
     subtitle:
-      'En BaseLogic creamos soluciones digitales simples, profesionales y escalables para que tu negocio venda mejor, ordene sus procesos y deje de depender de tareas manuales.',
+      'Desarrollamos sitios web profesionales, automatizaciones y software empresarial para organizar procesos, mejorar el control operativo y acompañar el crecimiento de tu negocio en Chile.',
     primaryCta: { label: 'Cotizar proyecto', href: '/contacto' },
     secondaryCta: { label: 'Ver servicios', href: '/servicios' },
   },
   whatWeDo: [
     {
-      title: 'Paginas web profesionales',
-      text: 'Creamos sitios claros, rapidos y preparados para que tu empresa se vea confiable y reciba mas consultas.',
+      title: 'Páginas web profesionales',
+      text: 'Creamos sitios claros, rápidos y preparados para que tu empresa proyecte confianza y convierta visitas en consultas reales.',
     },
     {
-      title: 'Sistemas simples para pymes',
-      text: 'Ordenamos reservas, clientes, pagos, inventario y reportes con herramientas hechas para tu operacion diaria.',
+      title: 'Sistemas y gestión operacional',
+      text: 'Ordenamos reservas, clientes, pagos, inventario y reportes con herramientas diseñadas para la operación diaria de tu negocio.',
     },
     {
-      title: 'Automatizacion y soporte',
-      text: 'Reducimos tareas repetitivas y acompanamos tu presencia digital con mantencion y mejoras continuas.',
+      title: 'Automatización y continuidad digital',
+      text: 'Reducimos tareas repetitivas, conectamos información y acompañamos tu operación con soporte y evolución por etapas.',
     },
   ],
   why: [
-    'Lenguaje claro',
-    'Soluciones utiles',
-    'Escalabilidad',
-    'Soporte',
-    'Tecnologia moderna',
-    'Productos propios',
+    'Claridad operacional',
+    'Soluciones útiles',
+    'Evolución por etapas',
+    'Acompañamiento en Chile',
+    'Ingeniería aplicada',
+    'Software propio',
   ],
   finalCta: {
-    title: 'Cuentanos que necesita tu negocio y te orientamos con una solucion clara',
-    text: 'Podemos ayudarte a partir con una pagina web, ordenar procesos con un sistema simple o evaluar un producto BaseLogic para tu rubro.',
+    title: 'Cuéntanos qué necesita tu negocio y definamos una ruta clara',
+    text: 'Podemos ayudarte a partir con una presencia web profesional, estructurar procesos con un sistema a medida o evaluar una plataforma BaseLogic para tu sector.',
     href: '/contacto',
     label: 'Cotizar proyecto',
   },
