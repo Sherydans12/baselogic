@@ -1,334 +1,123 @@
 ---
-import { ArrowRight, AlertTriangle, CheckCircle2 } from 'lucide-react';
+/**
+ * OperationalClaritySection.astro
+ * Sección 3 de la Home: Contraste visual directo Antes / Ahora
+ * («Del desorden manual a la claridad operacional — Menos caos. Más control.»).
+ */
+import { Check, ChevronRight, Sparkles, X } from 'lucide-react';
 
-const processScenarios = [
-  {
-    id: 'eam',
-    tabLabel: '01 · Activos, Bodega y Costos (EAM)',
-    domain: 'Minería, contratistas y operaciones intensivas en activos',
-    beforeTitle: 'Operación fragmentada (Planillas y mensajes sueltos)',
-    beforePoints: [
-      {
-        stage: 'Hoja de vida dispersa',
-        detail: 'Intervenciones de equipos registradas en archivos separados sin historial técnico consolidado.',
-      },
-      {
-        stage: 'Compras sin vínculo a OT',
-        detail: 'Solicitudes de repuestos por correo o teléfono sin asociar el gasto a la orden de trabajo ni al activo.',
-      },
-      {
-        stage: 'Bodega sin trazabilidad',
-        detail: 'Salidas de materiales sin Kardex actualizado ni imputación clara de costos por equipo o faena.',
-      },
-    ],
-    afterTitle: 'Ciclo operativo conectado en BaseLogic EAM',
-    afterPipeline: [
-      {
-        step: '01 · ACTIVOS',
-        node: 'Ficha técnica y hoja de vida',
-        detail: 'Estructura jerárquica de equipos, componentes, horómetros e historial de intervenciones.',
-      },
-      {
-        step: '02 · ÓRDENES (OT)',
-        node: 'Planificación preventiva y correctiva',
-        detail: 'Asignación de responsables, prioridades, tareas técnicas y requerimientos de materiales.',
-      },
-      {
-        step: '03 · ABASTECIMIENTO',
-        node: 'Solicitudes y órdenes de compra',
-        detail: 'Flujo de abastecimiento vinculado al requerimiento operacional para evitar compras sin respaldo.',
-      },
-      {
-        step: '04 · BODEGA Y KARDEX',
-        node: 'Recepción, existencias y entregas',
-        detail: 'Control de stock por bodega, movimientos trazables y despacho contra orden de trabajo.',
-      },
-      {
-        step: '05 · COSTOS',
-        node: 'Imputación y trazabilidad por activo',
-        detail: 'Visibilidad de qué repuestos y trabajos se aplicaron en cada equipo, contrato o centro de costo.',
-      },
-    ],
-    ctaLabel: 'Ver ciclo completo de BaseLogic EAM',
-    ctaHref: '/productos/eam',
-  },
-  {
-    id: 'booking',
-    tabLabel: '02 · Agenda y Recursos (Booking)',
-    domain: 'Centros de salud, bienestar, estética, consultoría y servicios por hora',
-    beforeTitle: 'Operación fragmentada (Coordinación manual)',
-    beforePoints: [
-      {
-        stage: 'Cruces de disponibilidad',
-        detail: 'Doble asignación de horas o de boxes/salas por confirmar turnos manualmente en múltiples canales.',
-      },
-      {
-        stage: 'Interrupción constante',
-        detail: 'Horas del equipo invertidas en responder qué horarios quedan libres para cada profesional.',
-      },
-      {
-        stage: 'Clientes sin historial ordenado',
-        detail: 'Datos de pacientes o clientes repartidos en libretas y chats sin registro centralizado.',
-      },
-    ],
-    afterTitle: 'Flujo de reservas estructurado en BaseLogic Booking',
-    afterPipeline: [
-      {
-        step: '01 · CATÁLOGO',
-        node: 'Definición de servicios y duraciones',
-        detail: 'Configuración de prestaciones, tiempos de atención, pausas operativas y sucursales.',
-      },
-      {
-        step: '02 · REGLAS',
-        node: 'Profesionales y espacios físicos (boxes/salas)',
-        detail: 'Cruce de reglas de horario por especialista y disponibilidad del recurso o box requerido.',
-      },
-      {
-        step: '03 · RESERVA ONLINE',
-        node: 'Selección guiada sin superposición',
-        detail: 'El cliente visualiza únicamente bloques válidos según las reglas definidas por el negocio.',
-      },
-      {
-        step: '04 · GESTIÓN',
-        node: 'Agenda centralizada y ficha de clientes',
-        detail: 'Panel administrativo con calendario por profesional, bloqueos de horario e historial de atenciones.',
-      },
-    ],
-    ctaLabel: 'Conocer BaseLogic Booking',
-    ctaHref: '/productos/booking',
-  },
-  {
-    id: 'edupay',
-    tabLabel: '03 · Gestión Financiera Escolar (EduPay)',
-    domain: 'Colegios, jardines infantiles, academias e instituciones educativas',
-    beforeTitle: 'Operación fragmentada (Planillas de cobro aisladas)',
-    beforePoints: [
-      {
-        stage: 'Aranceles y becas en hojas separadas',
-        detail: 'Dificultad para mantener consistencia entre matrículas, descuentos por alumno y compromisos de pago.',
-      },
-      {
-        stage: 'Conciliación manual lenta',
-        detail: 'Revisión de comprobantes uno a uno para identificar a qué estudiante y cuota corresponde cada abono.',
-      },
-      {
-        stage: 'Baja visibilidad para sostenedores',
-        detail: 'Reportes de morosidad y recaudación que tardan días en consolidarse al cierre de cada mes.',
-      },
-    ],
-    afterTitle: 'Flujo financiero estructurado en BaseLogic EduPay',
-    afterPipeline: [
-      {
-        step: '01 · ESTRUCTURA',
-        node: 'Aranceles, matrículas, becas y convenios',
-        detail: 'Modelado de planes de cobro anuales, descuentos y asignación por estudiante y apoderado.',
-      },
-      {
-        step: '02 · COMPROMISOS',
-        node: 'Generación de cuotas y estados de cuenta',
-        detail: 'Calendario claro de vencimientos, saldos pendientes e historial para administración y familias.',
-      },
-      {
-        step: '03 · COBRANZA',
-        node: 'Registro de pagos y seguimiento',
-        detail: 'Comunicación financiera ordenada para reducir consultas repetitivas en secretaría o recaudación.',
-      },
-      {
-        step: '04 · CONTROL',
-        node: 'Conciliación y reportes administrativos',
-        detail: 'Visibilidad consolidada para dirección y sostenedores, preparada para convivir con el ecosistema académico.',
-      },
-    ],
-    ctaLabel: 'Explorar BaseLogic EduPay',
-    ctaHref: '/productos/edupay',
-  },
+const beforeItems = [
+  'Información dispersa en múltiples planillas',
+  'Tareas manuales y repetitivas todos los días',
+  'Falta de trazabilidad sobre cobros, stock o equipos',
+  'Errores operativos y reprocesos constantes',
+  'Decisiones tomadas sin datos actualizados',
+];
+
+const afterItems = [
+  'Procesos automatizados y flujos claros',
+  'Información centralizada en una sola plataforma',
+  'Trazabilidad operativa de punta a punta',
+  'Menos errores y mayor control del equipo',
+  'Decisiones respaldadas por indicadores reales',
 ];
 ---
 
-<section
-  id="claridad-operacional"
-  aria-labelledby="claridad-heading"
-  class="border-b border-slate-800 bg-[#090d16] bg-tech-grid-dark py-16 text-white md:py-20"
->
-  <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <div class="flex flex-col justify-between gap-4 border-b border-slate-800 pb-8 lg:flex-row lg:items-end">
-      <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 rounded border border-slate-700 bg-slate-900 px-3 py-1 font-mono text-xs text-cyan-300">
-          02 / DEMOSTRACIÓN DE PROCESOS · ESQUEMA COMPARATIVO CONCEPTUAL
-        </div>
-        <h2 id="claridad-heading" class="mt-3 text-2xl font-black tracking-tight text-white md:text-4xl">
-          Qué significa «Claridad operacional» en la práctica
-        </h2>
-        <p class="mt-2 text-sm leading-6 text-slate-300 md:text-base">
-          Compara cómo cambia la trazabilidad de una operación cuando pasa de planillas y mensajes fragmentados a un flujo estructurado por etapas.
-        </p>
-      </div>
+<section class="relative overflow-hidden bg-[#0a0f14] py-16 text-white md:py-22">
+  <!-- Iluminación ambiental suave en azul y cian (sin grillas técnicas) -->
+  <div class="pointer-events-none absolute -top-32 left-1/4 h-[420px] w-[420px] rounded-full bg-brand-blue/15 blur-[130px]"></div>
+  <div class="pointer-events-none absolute -bottom-32 right-10 h-[420px] w-[420px] rounded-full bg-brand-cyan/12 blur-[130px]"></div>
 
-      <!-- Pestañas accesibles por teclado -->
-      <div
-        role="tablist"
-        aria-label="Seleccionar proceso operativo para comparar"
-        class="grid grid-cols-1 gap-1.5 rounded-xl border border-slate-800 bg-slate-900/90 p-1.5 sm:grid-cols-3"
-        data-clarity-tablist
-      >
-        {processScenarios.map((scenario, idx) => (
-          <button
-            type="button"
-            role="tab"
-            id={`clarity-tab-${scenario.id}`}
-            aria-selected={idx === 0 ? 'true' : 'false'}
-            aria-controls={`clarity-panel-${scenario.id}`}
-            tabindex={idx === 0 ? 0 : -1}
-            data-clarity-tab={scenario.id}
-            class:list={[
-              'rounded-lg px-3.5 py-2 text-left sm:text-center font-mono text-xs font-semibold transition',
-              idx === 0
-                ? 'bg-brand-blue text-white shadow-xs'
-                : 'text-slate-300 hover:bg-slate-800 hover:text-white',
-            ]}
-          >
-            {scenario.tabLabel}
-          </button>
-        ))}
-      </div>
+  <div class="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
+    <div class="max-w-2xl">
+      <p class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-brand-cyan">
+        Del desorden manual a la claridad operacional
+      </p>
+      <h2 class="mt-2.5 text-3xl font-black leading-[1.08] tracking-tight text-white md:text-4xl">
+        Menos caos. Más control.
+      </h2>
+      <p class="mt-3 text-base leading-relaxed text-slate-300">
+        Deja atrás los procesos manuales, las planillas aisladas y la información dispersa. Con BaseLogic, tu operación funciona conectada en un solo lugar.
+      </p>
     </div>
 
-    <div class="mt-8">
-      {processScenarios.map((scenario, idx) => (
-        <div
-          role="tabpanel"
-          id={`clarity-panel-${scenario.id}`}
-          aria-labelledby={`clarity-tab-${scenario.id}`}
-          tabindex="0"
-          hidden={idx !== 0}
-          data-clarity-panel={scenario.id}
-          class="focus:outline-none"
-        >
-          <div class="mb-4 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
-            <span class="font-mono">Rubro objetivo: <strong class="text-slate-200">{scenario.domain}</strong></span>
-            <span class="font-mono text-[11px] text-slate-400">
-              Nota: Diagrama conceptual de flujo de negocio (no representa datos de clientes reales).
-            </span>
-          </div>
+    <div class="relative mt-10 grid items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
+      <!-- Conector circular central en Desktop -->
+      <div class="pointer-events-none hidden lg:flex absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 h-12 w-12 items-center justify-center rounded-full border-2 border-brand-cyan/60 bg-[#0a0f14] text-brand-cyan shadow-[0_0_30px_rgba(0,229,255,0.3)]">
+        <ChevronRight class="h-5 w-5" />
+      </div>
 
-          <div class="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
-            <!-- Columna Antes: Operación Fragmentada -->
-            <div class="rounded-2xl border border-red-900/50 bg-slate-900/70 p-6">
-              <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-                <AlertTriangle class="h-4 w-4 shrink-0" />
-                Antes · Fricción operativa habitual
-              </div>
-              <h3 class="mt-2 text-lg font-bold text-white">{scenario.beforeTitle}</h3>
-
-              <ul class="mt-5 space-y-3">
-                {scenario.beforePoints.map((pt) => (
-                  <li class="rounded-xl border border-slate-800 bg-slate-950/70 p-4">
-                    <p class="text-sm font-bold text-slate-100">{pt.stage}</p>
-                    <p class="mt-1 text-xs leading-5 text-slate-300">{pt.detail}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <!-- Columna Después: Operación Conectada -->
-            <div class="flex flex-col justify-between rounded-2xl border border-cyan-500/30 bg-slate-900/90 p-6">
-              <div>
-                <div class="flex items-center justify-between gap-2">
-                  <span class="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-cyan-300">
-                    <CheckCircle2 class="h-4 w-4 shrink-0 text-emerald-400" />
-                    Después · Flujo estructurado
-                  </span>
-                  <span class="rounded border border-slate-700 bg-slate-950 px-2.5 py-0.5 font-mono text-[11px] text-slate-300">
-                    Esquema de arquitectura
-                  </span>
-                </div>
-                <h3 class="mt-2 text-lg font-bold text-white">{scenario.afterTitle}</h3>
-
-                <ol class="mt-5 grid gap-2.5 sm:grid-cols-2">
-                  {scenario.afterPipeline.map((stage) => (
-                    <li class="rounded-xl border border-slate-800 bg-slate-950/80 p-3.5">
-                      <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-300">
-                        {stage.step}
-                      </span>
-                      <p class="mt-1 text-sm font-bold text-white">{stage.node}</p>
-                      <p class="mt-1 text-xs leading-5 text-slate-300">{stage.detail}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 pt-4">
-                <span class="font-mono text-xs text-slate-400">
-                  Evaluación técnica adaptada al alcance de cada organización.
-                </span>
-                <a
-                  href={scenario.ctaHref}
-                  class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-bold text-slate-950 transition hover:bg-cyan-300"
-                >
-                  {scenario.ctaLabel}
-                  <ArrowRight class="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </div>
+      <!-- Tarjeta Izquierda: ANTES -->
+      <div class="flex flex-col rounded-3xl border border-white/10 bg-[#121922]/90 p-6 shadow-xl sm:p-7">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-rose-500/20 px-3 py-1 text-xs font-extrabold text-rose-400 ring-1 ring-rose-500/30">
+            <span class="h-1.5 w-1.5 rounded-full bg-rose-400"></span>
+            Antes
+          </span>
+          <h3 class="text-lg font-extrabold text-white">
+            Procesos manuales y dispersos
+          </h3>
         </div>
-      ))}
+
+        <div class="mt-5 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+          <img
+            src="/images/generated/home/before-manual-chaos.jpg"
+            alt="Operación saturada por carpetas físicas, notas adhesivas y múltiples planillas desconectadas"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[16/9] w-full object-cover object-center opacity-90"
+          />
+        </div>
+
+        <ul class="mt-6 space-y-3">
+          {
+            beforeItems.map((item) => (
+              <li class="flex items-center gap-3 text-sm font-medium text-slate-300">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose-500/20 text-rose-400">
+                  <X class="h-3 w-3 stroke-[2.5]" />
+                </span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Tarjeta Derecha: AHORA -->
+      <div class="flex flex-col rounded-3xl border border-brand-blue/40 bg-gradient-to-b from-[#10203b]/90 to-[#0d1728]/95 p-6 shadow-[0_24px_60px_-15px_rgba(0,102,255,0.28)] sm:p-7">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-3 py-1 text-xs font-extrabold text-white shadow-sm shadow-brand-blue/40">
+            <Sparkles class="h-3 w-3 text-brand-cyan" />
+            Ahora
+          </span>
+          <h3 class="text-lg font-extrabold text-white">
+            Tu operación en un solo lugar
+          </h3>
+        </div>
+
+        <div class="mt-5 overflow-hidden rounded-2xl border border-brand-cyan/25 bg-slate-900">
+          <img
+            src="/images/generated/home/after-operational-clarity.jpg"
+            alt="Ejecutiva revisando una plataforma centralizada BaseLogic con indicadores claros y procesos en orden"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[16/9] w-full object-cover object-center"
+          />
+        </div>
+
+        <ul class="mt-6 space-y-3">
+          {
+            afterItems.map((item) => (
+              <li class="flex items-center gap-3 text-sm font-semibold text-white">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-cyan/20 text-brand-cyan ring-1 ring-brand-cyan/40">
+                  <Check class="h-3 w-3 stroke-[2.5]" />
+                </span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-  function initClarityTabs() {
-    const tablist = document.querySelector('[data-clarity-tablist]');
-    if (!tablist) return;
-
-    const tabs = Array.from(tablist.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
-    const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-clarity-panel]'));
-
-    const activateTab = (targetTab: HTMLButtonElement, focus = false) => {
-      const targetId = targetTab.getAttribute('data-clarity-tab');
-      tabs.forEach((tab) => {
-        const isSelected = tab === targetTab;
-        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
-        tab.tabIndex = isSelected ? 0 : -1;
-        tab.classList.toggle('bg-brand-blue', isSelected);
-        tab.classList.toggle('text-white', isSelected);
-        tab.classList.toggle('shadow-xs', isSelected);
-        tab.classList.toggle('text-slate-300', !isSelected);
-      });
-
-      panels.forEach((panel) => {
-        const isMatch = panel.getAttribute('data-clarity-panel') === targetId;
-        panel.hidden = !isMatch;
-      });
-
-      if (focus) {
-        targetTab.focus();
-      }
-    };
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => activateTab(tab, false));
-
-      tab.addEventListener('keydown', (event: KeyboardEvent) => {
-        let nextIndex: number | null = null;
-        if (event.key === 'ArrowRight') {
-          nextIndex = (index + 1) % tabs.length;
-        } else if (event.key === 'ArrowLeft') {
-          nextIndex = (index - 1 + tabs.length) % tabs.length;
-        } else if (event.key === 'Home') {
-          nextIndex = 0;
-        } else if (event.key === 'End') {
-          nextIndex = tabs.length - 1;
-        }
-
-        if (nextIndex !== null) {
-          event.preventDefault();
-          activateTab(tabs[nextIndex], true);
-        }
-      });
-    });
-  }
-
-  initClarityTabs();
-</script>

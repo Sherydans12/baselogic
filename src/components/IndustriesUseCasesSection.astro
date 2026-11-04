@@ -1,100 +1,171 @@
 ---
-import { ArrowRight } from 'lucide-react';
-import { caseStudies } from '../data/caseStudies';
-import { serviceProcess } from '../data/services';
+/**
+ * IndustriesUseCasesSection.astro
+ * Sección 6 de la Home: Bloque ejecutivo en 2 columnas sobre fondo #0a0f14:
+ * - Izquierda: Soluciones por rubro (Comercio y pymes, Educación, Minería e industria)
+ * - Derecha: Nuestra metodología en 4 etapas claras y trazables.
+ */
+import { ArrowRight, Check, GraduationCap, HardHat, Store } from 'lucide-react';
 
-const featuredScenarios = caseStudies.slice(0, 4);
+const industries = [
+  {
+    title: 'Comercio y pymes',
+    subtitle: 'Ventas, reservas, inventario y presencia digital en orden.',
+    icon: Store,
+    focusLabel: 'Foco operacional',
+    capabilities: [
+      'Agenda y reservas online 24/7',
+      'Punto de venta y control de stock',
+      'Sitios comerciales orientados a conversión',
+    ],
+    href: '/soluciones',
+  },
+  {
+    title: 'Educación',
+    subtitle: 'Soluciones para colegios, sostenedores y centros de formación.',
+    icon: GraduationCap,
+    focusLabel: 'Foco institucional',
+    capabilities: [
+      'Cobro de aranceles y matrículas online',
+      'Conciliación automática de pagos',
+      'Reportes financieros para sostenedores',
+    ],
+    href: '/productos/edupay',
+  },
+  {
+    title: 'Minería e industria',
+    subtitle: 'Software robusto para entornos de alta exigencia operacional.',
+    icon: HardHat,
+    focusLabel: 'Foco en terreno',
+    capabilities: [
+      'Control de activos y flota pesada',
+      'Órdenes de trabajo (OT) preventivas',
+      'Bodega técnica y repuestos críticos',
+    ],
+    href: '/productos/eam',
+  },
+];
+
+const steps = [
+  {
+    number: '1',
+    title: 'Entendemos tu operación',
+    description: 'Analizamos tus procesos actuales, cuellos de botella y objetivos comerciales.',
+  },
+  {
+    number: '2',
+    title: 'Diseñamos la solución',
+    description: 'Definimos alcance técnico, arquitectura y plan de implementación por etapas.',
+  },
+  {
+    number: '3',
+    title: 'Desarrollamos e integramos',
+    description: 'Construcción iterativa, pruebas de calidad e integración con tus sistemas.',
+  },
+  {
+    number: '4',
+    title: 'Te acompañamos',
+    description: 'Puesta en marcha, soporte directo en Chile y evolución continua.',
+  },
+];
 ---
 
-<section
-  id="soluciones-y-metodo"
-  aria-labelledby="soluciones-metodo-heading"
-  class="border-b border-slate-200 bg-slate-50 py-16 md:py-20"
->
-  <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <div class="flex flex-col justify-between gap-4 border-b border-slate-200 pb-8 lg:flex-row lg:items-end">
-      <div class="max-w-3xl">
-        <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
-          05 / ESCENARIOS POR RUBRO Y METODOLOGÍA DE TRABAJO
-        </span>
-        <h2 id="soluciones-metodo-heading" class="mt-2 text-2xl font-black tracking-tight text-slate-950 md:text-4xl">
-          Aplicación práctica por industria y ejecución estructurada por etapas
-        </h2>
-      </div>
-      <div class="shrink-0">
-        <a
-          href="/casos-de-exito"
-          class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
-        >
-          Ver todos los escenarios por rubro
-          <ArrowRight class="h-4 w-4" />
-        </a>
-      </div>
-    </div>
+<section class="relative overflow-hidden bg-[#0a0f14] py-16 text-white md:py-22">
+  <div class="pointer-events-none absolute top-0 left-1/3 h-[420px] w-[420px] rounded-full bg-brand-blue/12 blur-[140px]"></div>
 
-    <div class="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-      <!-- Columna Izquierda: Escenarios Representativos -->
-      <div>
-        <div class="mb-4 flex items-center justify-between">
-          <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-600">
-            Escenarios de aplicación representativos (No clientes nominales)
-          </h3>
-        </div>
-
-        <div class="grid gap-4 sm:grid-cols-2">
-          {featuredScenarios.map((scenario) => (
-            <article class="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-2xs">
-              <div>
-                <span class="inline-block rounded border border-slate-200 bg-slate-50 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-slate-600">
-                  {scenario.label}
-                </span>
-                <h4 class="mt-2.5 text-base font-black text-slate-950">{scenario.title}</h4>
-                <p class="mt-2 text-xs leading-5 text-slate-600">
-                  <strong class="font-semibold text-slate-800">Problema habitual:</strong> {scenario.problem}
-                </p>
-                <p class="mt-2 text-xs leading-5 text-slate-600">
-                  <strong class="font-semibold text-brand-blue">Enfoque BaseLogic:</strong> {scenario.solution}
-                </p>
-              </div>
-              <div class="mt-4 border-t border-slate-100 pt-3">
-                <a
-                  href={scenario.relatedHref}
-                  class="inline-flex items-center gap-1 text-xs font-bold text-brand-blue hover:text-slate-950"
-                >
-                  {scenario.relatedLabel}
-                  <ArrowRight class="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      <!-- Columna Derecha: Metodología en 4 Etapas -->
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs">
-        <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
-          Criterio de ingeniería · Sin promesas irreales
-        </span>
-        <h3 class="mt-1.5 text-xl font-black text-slate-950">
-          Cómo planificamos y ejecutamos cada proyecto
-        </h3>
-        <p class="mt-2 text-xs leading-5 text-slate-600">
-          Reemplazamos los plazos universales arbitrarios por una planificación realista basada en el alcance técnico de tu requerimiento.
+  <div class="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:divide-x lg:divide-white/10">
+      <!-- Columna Izquierda: Soluciones por Rubro -->
+      <div class="lg:pr-10">
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-brand-cyan">
+          Soluciones por rubro
         </p>
+        <h2 class="mt-2.5 text-3xl font-black leading-[1.1] tracking-tight text-white md:text-4xl">
+          Conocimiento de tu industria, resultados en tu operación
+        </h2>
 
-        <ol class="mt-5 space-y-3.5">
-          {serviceProcess.map((step, index) => (
-            <li class="flex items-start gap-3.5 rounded-xl border border-slate-200/80 bg-slate-50/70 p-3.5">
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-blue font-mono text-xs font-bold text-white">
-                0{index + 1}
-              </span>
-              <div>
-                <h4 class="text-sm font-bold text-slate-950">{step.title}</h4>
-                <p class="mt-1 text-xs leading-5 text-slate-600">{step.text}</p>
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          {
+            industries.map((ind) => {
+              const Icon = ind.icon;
+              return (
+                <a
+                  href={ind.href}
+                  class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#121922] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/50"
+                >
+                  <div>
+                    <div class="flex items-start gap-2.5">
+                      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-blue/20 text-brand-cyan ring-1 ring-brand-blue/30">
+                        <Icon class="h-4 w-4" />
+                      </span>
+                      <div>
+                        <h3 class="text-sm font-extrabold text-white">{ind.title}</h3>
+                        <p class="mt-1 text-[11px] leading-relaxed text-slate-400">
+                          {ind.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 rounded-xl border border-white/10 bg-[#0d131a] p-3">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.14em] text-brand-cyan/90">
+                      {ind.focusLabel}
+                    </p>
+                    <ul class="mt-2 space-y-1.5">
+                      {ind.capabilities.map((cap) => (
+                        <li class="flex items-start gap-2 text-[11px] leading-snug text-slate-300">
+                          <Check class="mt-0.5 h-3 w-3 shrink-0 text-brand-cyan" />
+                          <span>{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </a>
+              );
+            })
+          }
+        </div>
+
+        <div class="mt-6">
+          <a
+            href="/soluciones"
+            class="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan underline decoration-brand-cyan/40 underline-offset-8 transition hover:text-white"
+          >
+            <span>Ver todas las industrias y casos de aplicación</span>
+            <ArrowRight class="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Nuestra Metodología en 4 Pasos -->
+      <div class="lg:pl-10">
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.22em] text-brand-cyan">
+          Nuestra metodología
+        </p>
+        <h2 class="mt-2.5 text-2xl font-black leading-[1.15] tracking-tight text-white md:text-3xl">
+          Un proceso claro, resultados concretos
+        </h2>
+
+        <div class="relative mt-8 space-y-6">
+          <!-- Línea vertical conectora -->
+          <div class="pointer-events-none absolute left-5 top-4 bottom-4 w-px bg-gradient-to-b from-brand-blue via-brand-cyan/60 to-transparent"></div>
+
+          {
+            steps.map((step) => (
+              <div class="relative flex items-start gap-4">
+                <div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-brand-blue bg-[#0a0f14] text-sm font-black text-white shadow-[0_0_20px_rgba(0,102,255,0.35)]">
+                  {step.number}
+                </div>
+                <div class="pt-0.5">
+                  <h3 class="text-sm font-extrabold text-white">{step.title}</h3>
+                  <p class="mt-1 text-xs leading-relaxed text-slate-400">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-            </li>
-          ))}
-        </ol>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>

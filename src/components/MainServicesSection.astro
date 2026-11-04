@@ -1,129 +1,101 @@
 ---
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+/**
+ * MainServicesSection.astro
+ * Sección 4 de la Home: Nuestros Servicios (Presencia digital, Automatización de procesos, Desarrollo de software).
+ */
+import { Check, Code2, Monitor, Settings2 } from 'lucide-react';
 
 const servicePillars = [
   {
-    code: 'PILAR 01 · PRESENCIA COMERCIAL',
-    title: 'Sitios web profesionales, landing pages y autogestión',
-    summary:
-      'Construimos sitios rápidos, claros y orientados a conversión para empresas que necesitan presentar sus servicios con rigor comercial y captar oportunidades.',
-    deliverables: [
-      'Arquitectura de información y redacción orientada a claridad comercial',
-      'Diseño responsive validado en móvil, tablet y escritorio',
-      'Formularios con validación en servidor, protección antispam y trazabilidad UTM',
-      'Implementación estática de alto rendimiento o WordPress autogestionable según el caso',
-    ],
-    links: [
-      { label: 'Páginas web profesionales', href: '/servicios/paginas-web' },
-      { label: 'Landing pages de campaña', href: '/servicios/landing-pages' },
-      { label: 'WordPress autogestionable', href: '/servicios/wordpress' },
+    title: 'Presencia digital',
+    description:
+      'Sitios web profesionales que comunican con claridad, convierten visitas en oportunidades y se integran con tu operación.',
+    icon: Monitor,
+    items: [
+      'Sitios corporativos y comerciales a medida',
+      'Landing pages orientadas a captación',
+      'Integración de formularios, analítica y contacto',
     ],
   },
   {
-    code: 'PILAR 02 · SOFTWARE A MEDIDA',
-    title: 'Sistemas web y paneles operativos para pymes y empresas',
-    summary:
-      'Desarrollamos aplicaciones internas y portales web cuando la operación diaria supera la capacidad de las planillas compartidas y requiere trazabilidad.',
-    deliverables: [
-      'Modelado de datos para clientes, solicitudes, órdenes, inventario o cobros',
-      'Paneles administrativos con perfiles de acceso diferenciados por rol',
-      'Flujos de aprobación, estados operacionales y bitácora de actividad',
-      'Despliegue por etapas comenzando por el problema operativo prioritario',
-    ],
-    links: [
-      { label: 'Sistemas para pymes y empresas', href: '/servicios/sistemas-para-pymes' },
-      { label: 'Evaluar requerimiento a medida', href: '/contacto?servicio=sistemas-para-pymes#formulario' },
+    title: 'Automatización de procesos',
+    description:
+      'Conectamos tus herramientas, eliminamos tareas manuales repetitivas y ordenamos el flujo de información de tu equipo.',
+    icon: Settings2,
+    items: [
+      'Automatizaciones operativas a medida',
+      'Integración entre sistemas y plataformas',
+      'Alertas, reportes y flujos de trabajo claros',
     ],
   },
   {
-    code: 'PILAR 03 · AUTOMATIZACIÓN Y CONTINUIDAD',
-    title: 'Automatización de procesos, integraciones y soporte',
-    summary:
-      'Conectamos herramientas existentes, automatizamos notificaciones y acompañamos la operación para reducir digitación manual y asegurar continuidad técnica.',
-    deliverables: [
-      'Notificaciones automáticas y derivación estructurada de consultas',
-      'Recordatorios programados y consolidación periódica de reportes',
-      'Integración entre formularios, correo corporativo y sistemas internos',
-      'Planes de mantención, respaldos y evolución continua en Chile',
-    ],
-    links: [
-      { label: 'Automatización de procesos', href: '/servicios/automatizacion' },
-      { label: 'Planes y continuidad digital', href: '/planes' },
+    title: 'Desarrollo de software',
+    description:
+      'Construimos sistemas web a medida y plataformas propias para resolver desafíos reales de gestión y operación.',
+    icon: Code2,
+    items: [
+      'Sistemas web, portales y paneles internos',
+      'Integraciones mediante APIs con terceros',
+      'Arquitectura escalable y acompañamiento continuo',
     ],
   },
 ];
 ---
 
-<section
-  id="servicios"
-  aria-labelledby="servicios-heading"
-  class="border-b border-slate-200 bg-slate-50 py-16 md:py-20"
->
+<section id="servicios" class="bg-white py-16 md:py-22 border-b border-slate-200/70">
   <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <div class="flex flex-col justify-between gap-4 border-b border-slate-200 pb-8 lg:flex-row lg:items-end">
-      <div class="max-w-2xl">
-        <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
-          03 / INGENIERÍA Y SERVICIOS TECNOLÓGICOS
-        </span>
-        <h2 id="servicios-heading" class="mt-2 text-2xl font-black tracking-tight text-slate-950 md:text-4xl">
-          Desarrollo web, sistemas a medida y automatización con alcance claro
+    <div class="grid items-end gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        <p class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-500">
+          Nuestros servicios
+        </p>
+        <h2 class="mt-2.5 text-3xl font-black leading-[1.1] tracking-tight text-slate-950 md:text-4xl">
+          Tecnología para una operación más simple y conectada
         </h2>
       </div>
-      <div class="shrink-0">
-        <a
-          href="/servicios"
-          class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
-        >
-          Ver catálogo completo de servicios
-          <ArrowRight class="h-4 w-4" />
-        </a>
-      </div>
+      <p class="text-base leading-relaxed text-slate-600 lg:pb-1">
+        Desde la presencia digital hasta sistemas empresariales complejos, te acompañamos en todo el ciclo de evolución tecnológica de tu organización.
+      </p>
     </div>
 
-    <div class="mt-10 space-y-5">
-      {servicePillars.map((pillar) => (
-        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs transition hover:border-brand-blue/30 md:p-8">
-          <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div>
-              <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
-                {pillar.code}
-              </span>
-              <h3 class="mt-2 text-xl font-black text-slate-950 md:text-2xl">
-                {pillar.title}
-              </h3>
-              <p class="mt-3 text-sm leading-6 text-slate-600 md:text-base">
-                {pillar.summary}
-              </p>
-
-              <div class="mt-5 flex flex-wrap gap-2">
-                {pillar.links.map((link) => (
-                  <a
-                    href={link.href}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-800 transition hover:border-brand-blue hover:bg-blue-50 hover:text-brand-blue"
-                  >
-                    <span>{link.label}</span>
-                    <ArrowRight class="h-3.5 w-3.5" />
-                  </a>
-                ))}
+    <div class="mt-12 grid divide-y divide-slate-200/80 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+      {
+        servicePillars.map((pillar, idx) => {
+          const Icon = pillar.icon;
+          const paddingClass =
+            idx === 0
+              ? 'pb-8 lg:pb-0 lg:pr-8'
+              : idx === 1
+                ? 'py-8 lg:py-0 lg:px-8'
+                : 'pt-8 lg:pt-0 lg:pl-8';
+          return (
+            <div class={paddingClass}>
+              <div class="flex items-start gap-4">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-brand-blue ring-1 ring-blue-100">
+                  <Icon class="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 class="text-lg font-black tracking-tight text-slate-950">
+                    {pillar.title}
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">
+                    {pillar.description}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div class="rounded-xl border border-slate-200/90 bg-slate-50/80 p-5">
-              <div class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                Entregables y criterios técnicos incluidos
-              </div>
-              <ul class="mt-3 grid gap-2.5 text-sm text-slate-700">
-                {pillar.deliverables.map((item) => (
-                  <li class="flex items-start gap-2.5">
-                    <CheckCircle2 class="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
-                    <span class="leading-5">{item}</span>
+              <ul class="mt-5 space-y-2.5 pl-1">
+                {pillar.items.map((item) => (
+                  <li class="flex items-center gap-2.5 text-sm font-medium text-slate-700">
+                    <Check class="h-4 w-4 shrink-0 text-brand-blue" />
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
-        </article>
-      ))}
+          );
+        })
+      }
     </div>
   </div>
 </section>
