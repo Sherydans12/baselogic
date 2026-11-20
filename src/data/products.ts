@@ -25,44 +25,54 @@ export const products = [
     name: 'BaseLogic EduPay',
     href: '/productos/edupay',
     eyebrow: 'Producto educativo',
-    tagline: 'Pagos y cobranza para colegios, jardines e instituciones educativas.',
+    tagline: 'Gestión escolar, finanzas y comunidad en un mismo ecosistema.',
     summary:
-      'Solución vertical para ordenar pagos, mensualidades, cobranza, comunicación financiera y seguimiento administrativo en instituciones educativas.',
+      'Un ecosistema escolar para conectar gestión académica, finanzas, familias y comunidad educativa.',
     audience: 'Colegios, jardines infantiles, academias e instituciones educativas.',
     features: [
-      'Pagos y mensualidades',
-      'Seguimiento de cobranza',
-      'Panel administrativo',
-      'Recordatorios y reportes',
-      'Mejor experiencia para apoderados',
+      'Gestión académica',
+      'Finanzas escolares',
+      'Portal para familias',
     ],
     benefits: [
       'Menos trabajo manual',
       'Mejor seguimiento financiero',
       'Información más ordenada',
-      'Evaluación según requerimiento',
+      'Seguimiento para el equipo administrativo',
     ],
     useCases: [
       'Ordenar mensualidades y estados de pago',
       'Reducir consultas repetidas sobre compromisos pendientes',
       'Dar mejor visibilidad administrativa al equipo',
-      'Evaluar un portal de pagos adaptado a la institución',
+      'Presentar información financiera clara a los apoderados',
     ],
     faqs: [
       {
-        question: '¿EduPay es un producto cerrado?',
+        question: '¿EduPay es solo un sistema para registrar pagos?',
         answer:
-          'Se presenta como solución vertical disponible para evaluación comercial o implementación según requerimiento. Revisamos el caso antes de prometer un alcance cerrado.',
+          'EduPay reúne la gestión académica, EduPay Finanzas y espacios para la comunidad en una propuesta integral para el colegio.',
       },
       {
-        question: '¿Sirve para colegios y jardines?',
+        question: '¿Qué reúne el Portal EduPay para las familias?',
         answer:
-          'Sí. El foco está en instituciones educativas que necesitan ordenar pagos, mensualidades, cobranza, recordatorios y seguimiento.',
+          'El portal está pensado como un espacio para consultar mensualidades, movimientos, comprobantes e información escolar desde el celular o el computador.',
       },
       {
-        question: '¿Puede mejorar la experiencia de apoderados?',
+        question: '¿Cómo se organiza la información académica?',
         answer:
-          'Ese es uno de los objetivos: entregar información más clara y reducir conversaciones manuales sobre pagos y estados pendientes.',
+          'EduPay Académico organiza la estructura de años escolares, cursos, asignaturas y participantes, y propone reunir los procesos de seguimiento escolar en un mismo entorno.',
+      },
+      {
+        question: '¿Quiénes participan en el ecosistema?',
+        answer: 'La propuesta reúne a dirección, administración, docentes, estudiantes, apoderados y equipos de apoyo en espacios adecuados a sus responsabilidades.',
+      },
+      {
+        question: '¿Cómo se aborda la información sensible de estudiantes?',
+        answer: 'Los procesos de convivencia y apoyo requieren accesos diferenciados y medidas acordes con la sensibilidad de cada registro.',
+      },
+      {
+        question: '¿Cómo se implementa y se acompaña al equipo?',
+        answer: 'Conocemos los procesos y prioridades del establecimiento para preparar una propuesta de implementación, capacitación y acompañamiento.',
       },
     ],
     ctaLabel: 'Consultar EduPay',
@@ -73,11 +83,11 @@ export const products = [
     name: 'BaseLogic EAM',
     href: '/productos/eam',
     eyebrow: 'Minería y contratistas',
-    tagline: 'Control de activos, mantenimiento, órdenes de trabajo y repuestos.',
+    tagline: 'Activos, mantenimiento y abastecimiento para una operación conectada.',
     summary:
-      'Plataforma para minería, contratistas y otras operaciones intensivas en activos que necesitan centralizar mantenimiento, inventario y trazabilidad.',
+      'Gestión de activos, mantenimiento, compras y bodegas para operaciones que necesitan trazabilidad y control.',
     audience: 'Minería, mantenimiento, movimiento de tierra, perforación, izaje, flotas, talleres y bodegas.',
-    features: ['Activos', 'Órdenes de trabajo', 'Mantenimiento preventivo', 'Repuestos e inventario', 'Trazabilidad operacional'],
+    features: ['Activos y órdenes de trabajo', 'Mantenimiento preventivo y correctivo', 'Compras y bodegas', 'Repuestos e inventario', 'Trazabilidad operacional'],
     ctaLabel: 'Cotizar EAM',
     status: 'active',
   },
@@ -85,10 +95,10 @@ export const products = [
     id: 'pos',
     name: 'BaseLogic POS',
     href: '/productos/pos',
-    eyebrow: 'Comercio y punto de venta · En desarrollo e implementación piloto',
-    tagline: 'Catálogo, presentaciones de precio, caja y control de stock para comercios.',
+    eyebrow: 'Comercio y punto de venta',
+    tagline: 'Ventas, caja e inventario para la gestión diaria del comercio.',
     summary:
-      'Sistema de punto de venta e inventario en etapa de desarrollo e implementación piloto supervisada, enfocado en ordenar catálogo, presentaciones, apertura de caja, ventas en efectivo y saldos de inventario.',
+      'Una plataforma comercial que conecta el mostrador, la caja y el inventario con la gestión del negocio.',
     audience: 'Comercios, distribuidoras locales, almacenes, tiendas especializadas y negocios con venta presencial.',
     features: [
       'Catálogo y presentaciones de precio',
@@ -97,7 +107,7 @@ export const products = [
       'Movimientos de inventario',
       'Control de saldos de stock',
     ],
-    ctaLabel: 'Consultar piloto POS',
+    ctaLabel: 'Consultar POS',
     status: 'pilot',
   },
 ];

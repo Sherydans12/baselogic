@@ -6,6 +6,7 @@ interface Props {
   title: string;
   text: string;
   primaryLabel?: string;
+  primaryHref?: string;
   secondaryLabel?: string;
   whatsappMessage: string;
 }
@@ -14,6 +15,7 @@ const {
   title,
   text,
   primaryLabel = 'Cotizar proyecto',
+  primaryHref = '/contacto',
   secondaryLabel = 'Enviar correo',
   whatsappMessage,
 } = Astro.props;
@@ -24,18 +26,18 @@ const contactHref = createContactMailtoHref(whatsappMessage);
   <div class="mx-auto flex max-w-7xl flex-col gap-8 px-5 md:px-8 lg:flex-row lg:items-center lg:justify-between">
     <div class="max-w-3xl">
       <h2 class="text-3xl font-black tracking-tight md:text-4xl">{title}</h2>
-      <p class="mt-4 text-lg leading-8 text-blue-50">{text}</p>
+      <p class="mt-4 text-lg leading-8 text-white">{text}</p>
     </div>
     <div class="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
       <a
-        href="/contacto"
-        class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-bold text-brand-blue transition hover:bg-slate-950 hover:text-white"
+        href={primaryHref}
+        class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-bold text-brand-blue transition hover:bg-slate-950 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
       >
         {primaryLabel}
       </a>
       <a
         href={contactHref}
-        class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-base font-bold text-white transition hover:bg-white hover:text-brand-blue"
+        class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-base font-bold text-white transition hover:bg-white hover:text-brand-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
       >
         <Mail class="h-5 w-5" />
         {secondaryLabel}

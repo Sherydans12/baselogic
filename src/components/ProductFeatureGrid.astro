@@ -1,0 +1,24 @@
+---
+import { CheckCircle2 } from 'lucide-react';
+interface Feature { title: string; text: string; icon: typeof CheckCircle2 }
+interface Props { title: string; description: string; features: Feature[] }
+const { title, description, features } = Astro.props;
+---
+<section id="funcionalidades" aria-labelledby="product-features-heading" class="scroll-mt-24 bg-white py-14 md:py-16">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-12">
+      <h2 id="product-features-heading" class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl">{title}</h2>
+      <p class="max-w-xl text-base leading-relaxed text-[#405578]">{description}</p>
+    </div>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((feature) => {
+        const Icon = feature.icon;
+        return <article class="rounded-2xl border border-[#dce8f8] bg-[#f8fbff] p-5 sm:p-6">
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eaf2ff] text-[#0964ef]"><Icon class="h-5 w-5" aria-hidden="true" /></span>
+          <h3 class="mt-4 text-lg font-extrabold leading-snug tracking-[-0.02em] text-[#0b1a4c]">{feature.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#405578]">{feature.text}</p>
+        </article>;
+      })}
+    </div>
+  </div>
+</section>

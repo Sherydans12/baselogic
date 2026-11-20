@@ -21,6 +21,21 @@ export const generalFaqs = [
   },
 ];
 
+export const quoteFaqs = [
+  {
+    question: '¿Los precios publicados son definitivos?',
+    answer:
+      'Son valores referenciales. La propuesta puede variar según el alcance, las integraciones, el soporte requerido y los servicios externos de cada proyecto.',
+  },
+  {
+    question: '¿Qué pasa después de enviar una consulta?',
+    answer:
+      'Revisamos el contexto de tu proyecto, te orientamos sobre las alternativas y coordinamos los siguientes pasos para preparar una propuesta clara.',
+  },
+];
+
+export const homeFaqs = [...generalFaqs, ...quoteFaqs];
+
 export const bookingFaqs = [
   {
     question: '¿Qué tipos de negocios pueden usar BaseLogic Booking?',
@@ -52,6 +67,14 @@ export const bookingFaqs = [
     answer:
       'No. La solución puede adaptarse a distintos negocios que trabajan con atención programada y reservas.',
   },
+  {
+    question: '¿Incluye pagos y recordatorios?',
+    answer: 'El recorrido propuesto incorpora comunicación con los clientes y opciones de pago para acompañar la reserva y la atención.',
+  },
+  {
+    question: '¿Los clientes pueden modificar una reserva por su cuenta?',
+    answer: 'La experiencia de atención contempla cambios de agenda y opciones para que el cliente gestione sus citas con mayor comodidad.',
+  },
 ];
 
 export const eamFaqs = [
@@ -73,7 +96,19 @@ export const eamFaqs = [
   {
     question: '¿Se puede adaptar al proceso de mi empresa?',
     answer:
-      'Sí. La implementación se evalúa y configura según los activos, responsables, contratos, bodegas y flujo de mantenimiento de cada operación.',
+      'Sí. La implementación considera los activos, responsables, contratos, bodegas y flujos de trabajo de cada operación.',
+  },
+  {
+    question: '¿Puedo organizar compras y recepción de materiales?',
+    answer: 'EAM organiza compras, proveedores y recepción de materiales junto con la información de bodega.',
+  },
+  {
+    question: '¿Qué información de costos puedo consultar?',
+    answer: 'La información de materiales y costos permite dar contexto a las intervenciones y al seguimiento de la operación.',
+  },
+  {
+    question: '¿Qué sucede en faenas con conectividad variable?',
+    answer: 'Las condiciones de acceso y continuidad en faena se consideran al diseñar la implementación para tu operación.',
   },
 ];
 

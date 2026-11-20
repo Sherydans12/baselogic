@@ -1,16 +1,16 @@
 ---
+import { ArrowRight, Check, CheckCircle2, Mail, Target } from 'lucide-react';
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import Breadcrumbs from './Breadcrumbs.astro';
-import DetailHero from './DetailHero.astro';
-import BenefitsList from './BenefitsList.astro';
-import FeatureList from './FeatureList.astro';
-import ProcessSteps from './ProcessSteps.astro';
-import FaqBlock from './FaqBlock.astro';
+import HomeFaqSection from './HomeFaqSection.astro';
 import RelatedItems from './RelatedItems.astro';
 import ContactBand from './ContactBand.astro';
 import { services, serviceProcess } from '../data/services';
+import { serviceVisuals } from '../data/serviceVisuals';
+import type { ServiceVisualId } from '../data/serviceVisuals';
+import { createContactMailtoHref } from '../data/contact';
 import type { SeoEntry } from '../data/seo';
 import { baseSchema, breadcrumbSchema, faqSchema, serviceSchema } from '../data/schema';
 
@@ -20,20 +20,20 @@ interface Props {
 }
 
 const { serviceId, seoEntry } = Astro.props;
-const service = services.find((item) => item.id === serviceId) as any;
+const service = services.find((item) => item.id === serviceId);
+const visual = serviceVisuals[serviceId as ServiceVisualId];
 
-if (!service?.detailTitle) {
-  throw new Error(`Missing service detail content for ${serviceId}`);
+if (!service?.detailTitle || !visual) {
+  throw new Error(`Missing service detail content or visual for ${serviceId}`);
 }
 
-const relatedItems = (service.related ?? [])
-  .map((id: string) => services.find((item) => item.id === id) as any)
-  .filter(Boolean)
-  .map((item: any) => ({
-    title: item.title,
-    href: item.href,
-    summary: item.summary,
-  }));
+const ServiceIcon = visual.icon;
+const contactHref = `/contacto?servicio=${encodeURIComponent(service.id)}#formulario`;
+const mailHref = createContactMailtoHref(service.whatsappMessage);
+const relatedItems = service.related
+  .map((id) => services.find((item) => item.id === id))
+  .filter((item): item is NonNullable<typeof item> => Boolean(item))
+  .map((item) => ({ title: item.title, href: item.href, summary: item.summary }));
 
 const breadcrumbItems = [
   { label: 'Inicio', href: '/' },
@@ -58,42 +58,155 @@ const schema = [
   <SiteHeader />
   <main>
     <Breadcrumbs items={breadcrumbItems} />
-    <DetailHero
-      eyebrow="Servicio"
-      title={service.detailTitle}
-      text={service.detailSubtitle}
-      primaryLabel={service.primaryCta}
-      secondaryLabel={service.secondaryCta}
-      whatsappMessage={service.whatsappMessage}
-    />
-    <BenefitsList
-      title="Beneficios concretos"
-      text="El objetivo es que tu negocio cuente con una solución clara, fácil de comprender y preparada para evolucionar cuando haga falta."
-      items={service.benefits}
-    />
-    <FeatureList
-      title="Qué incluye"
-      text="Definimos el alcance según tu caso, considerando los siguientes componentes habituales:"
-      items={service.includes}
-    />
-    <FeatureList
-      title="Para quién es"
-      text="Pensado para empresas y pymes que necesitan avanzar con planificación clara y sin complejidades innecesarias."
-      items={service.idealFor}
-      variant="white"
-    />
-    <FeatureList
-      title="Casos de uso"
-      text="Escenarios habituales donde este servicio ayuda a captar consultas, estructurar información o reducir trabajo manual."
-      items={service.useCases}
-    />
-    <ProcessSteps steps={serviceProcess} />
-    <FaqBlock faqs={service.faqs} />
-    <RelatedItems items={relatedItems} />
+
+    <section class="border-b border-[#dce8f8] bg-[#f7faff] py-10 sm:py-12 lg:py-14">
+      <div class="mx-auto grid max-w-7xl items-center gap-9 px-5 md:px-8 lg:grid-cols-[1fr_0.92fr] lg:gap-14">
+        <div>
+          <p class="inline-flex items-center gap-2 text-sm font-bold text-[#1558c6]">
+            <ServiceIcon class="h-4 w-4" aria-hidden="true" />
+            {service.tag}
+          </p>
+          <h1 class="mt-4 max-w-2xl text-3xl font-black leading-[1.1] tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl xl:text-[2.8rem]">
+            {service.detailTitle}
+          </h1>
+          <p class="mt-5 max-w-2xl text-base leading-relaxed text-[#405578] sm:text-lg">
+            {service.detailSubtitle}
+          </p>
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href={contactHref} class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0964ef] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#064bb7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+              {service.primaryCta}
+              <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </a>
+            <a href="#alcance" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#c9daf1] bg-white px-5 py-3 text-sm font-bold text-[#0754c9] transition-colors hover:border-[#0964ef] hover:bg-[#edf5ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+              Conocer el alcance
+            </a>
+          </div>
+          <a href={mailHref} class="mt-4 inline-flex items-center gap-2 py-2 text-sm font-semibold text-[#315b98] underline decoration-[#9fbce5] underline-offset-4 hover:text-[#0754c9] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+            <Mail class="h-4 w-4" aria-hidden="true" />
+            {service.secondaryCta}
+          </a>
+        </div>
+
+        <div class="overflow-hidden rounded-3xl border border-[#d9e7f8] bg-white shadow-[0_18px_45px_-32px_rgba(16,74,170,0.4)]">
+          <div class:list={[
+            'overflow-hidden bg-[#edf5ff]',
+            'aspect-video',
+          ]}>
+            <img
+              src={visual.image}
+              alt={visual.imageAlt}
+              width={visual.imageStyle === 'photo' ? 1376 : 1671}
+              height={visual.imageStyle === 'photo' ? 768 : 941}
+              fetchpriority="high"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="flex items-start gap-4 px-5 py-5 sm:px-6">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eaf2ff] text-[#0964ef]">
+              <ServiceIcon class="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div>
+              <p class="font-extrabold text-[#0b1a4c]">{visual.visualTitle}</p>
+              <p class="mt-1 text-sm leading-relaxed text-[#405578]">{visual.visualText}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Beneficios del servicio" class="border-b border-[#dce8f8] bg-white">
+      <div class="mx-auto grid max-w-7xl grid-cols-2 gap-x-5 gap-y-4 px-5 py-6 md:px-8 lg:grid-cols-4 lg:gap-6">
+        {service.benefits.map((benefit) => (
+          <div class="flex items-center gap-2.5 text-sm font-bold leading-snug text-[#18315d]">
+            <CheckCircle2 class="h-5 w-5 shrink-0 text-[#0964ef]" aria-hidden="true" />
+            <span>{benefit}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="alcance" aria-labelledby="service-includes-heading" class="scroll-mt-24 bg-white py-14 md:py-16">
+      <div class="mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+        <div>
+          <h2 id="service-includes-heading" class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl">Qué incluye</h2>
+          <p class="mt-4 max-w-md text-base leading-relaxed text-[#405578]">
+            Definimos el alcance según tu caso, considerando los siguientes componentes habituales.
+          </p>
+          <a href={contactHref} class="group mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#0754c9] hover:text-[#0b1a4c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+            Conversemos sobre tu proyecto
+            <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </a>
+        </div>
+        <ul class="grid gap-x-8 sm:grid-cols-2">
+          {service.includes.map((item) => (
+            <li class="flex gap-3 border-b border-[#e2ebf7] py-4 text-[0.95rem] font-semibold leading-relaxed text-[#243b61]">
+              <Check class="mt-1 h-4 w-4 shrink-0 text-[#0964ef]" strokeWidth={2.5} aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="bg-[#f1f6ff] py-14 md:py-16">
+      <div class="mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <h2 class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c]">Para quién es</h2>
+          <p class="mt-3 max-w-xl text-base leading-relaxed text-[#405578]">Un punto de partida para equipos y negocios con necesidades como estas.</p>
+          <ul class="mt-6 grid gap-3">
+            {service.idealFor.map((item) => (
+              <li class="flex items-start gap-3 text-[0.95rem] leading-relaxed text-[#243b61]">
+                <CheckCircle2 class="mt-0.5 h-5 w-5 shrink-0 text-[#0964ef]" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-3xl bg-white p-6 sm:p-8">
+          <div class="flex items-center gap-3">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eaf2ff] text-[#0964ef]">
+              <Target class="h-5 w-5" aria-hidden="true" />
+            </span>
+            <h2 class="text-2xl font-extrabold tracking-[-0.025em] text-[#0b1a4c]">Casos de uso</h2>
+          </div>
+          <ul class="mt-5 grid gap-3 border-t border-[#e2ebf7] pt-5">
+            {service.useCases.map((item) => (
+              <li class="flex items-start gap-3 text-[0.95rem] leading-relaxed text-[#405578]">
+                <ArrowRight class="mt-1 h-4 w-4 shrink-0 text-[#0964ef]" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-14 md:py-16">
+      <div class="mx-auto max-w-7xl px-5 md:px-8">
+        <div class="grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-10">
+          <h2 class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl">Un proceso claro, de principio a fin</h2>
+          <p class="max-w-xl text-base leading-relaxed text-[#405578]">Avanzamos por etapas para definir una solución útil y comprensible para tu negocio.</p>
+        </div>
+        <ol class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
+          {serviceProcess.map((step, index) => (
+            <li class="border-t-2 border-[#bcd8fc] pt-4">
+              <span class="text-sm font-extrabold text-[#0964ef]">{String(index + 1).padStart(2, '0')}</span>
+              <h3 class="mt-2 text-lg font-extrabold leading-snug text-[#0b1a4c]">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#405578]">{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <HomeFaqSection faqs={service.faqs} />
+    <RelatedItems items={relatedItems} title="También puede interesarte" />
     <ContactBand
       title="Conversemos sobre tu proyecto"
       text="Cuéntanos qué necesita tu negocio y te orientamos con una alternativa clara, realista y preparada para evolucionar."
       primaryLabel={service.primaryCta}
+      primaryHref={contactHref}
       secondaryLabel={service.secondaryCta}
       whatsappMessage={service.whatsappMessage}
     />

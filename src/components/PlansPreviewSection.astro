@@ -1,78 +1,95 @@
 ---
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Layers3, Monitor, Settings2 } from 'lucide-react';
 import { plans, plansNotes } from '../data/plans';
+
+const planIcons = [Monitor, Layers3, Settings2];
 ---
 
-<section class="border-t border-slate-200/70 bg-white py-20 md:py-24">
-  <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-blue">Planes referenciales</p>
-      <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-950 md:text-4xl">
-        Puntos de partida claros para cotizar
-      </h2>
-      <p class="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
+<section id="planes-referenciales" aria-labelledby="home-plans-heading" class="bl-home-section bl-home-section--white">
+  <div class="bl-home-section__container">
+    <header class="bl-home-section__header">
+      <div>
+        <p class="bl-home-section__eyebrow">Planes referenciales</p>
+        <h2 id="home-plans-heading" class="bl-home-section__title">
+          Puntos de partida claros <span class="text-brand-blue">para cotizar</span>
+        </h2>
+      </div>
+      <p class="bl-home-section__lede">
         Los planes ayudan a orientar el alcance inicial. Si tu operación requiere un desarrollo a medida o un producto propio, lo evaluamos contigo.
       </p>
-    </div>
+    </header>
 
-    <div class="mt-12 grid gap-6 lg:grid-cols-3">
-      {plans.map((plan, idx) => {
-        const isFeatured = idx === 1;
+    <div class="mt-7 grid items-stretch gap-4 md:mt-8 lg:grid-cols-3 lg:gap-5">
+      {plans.map((plan, index) => {
+        const PlanIcon = planIcons[index];
+        const isFeatured = index === 1;
         return (
-          <article
-            class:list={[
-              'relative flex flex-col justify-between rounded-3xl p-7 transition-all duration-300',
-              isFeatured
-                ? 'border-2 border-brand-blue/30 bg-[#f8fbff] shadow-[0_20px_50px_-24px_rgba(0,102,255,0.16)]'
-                : 'border border-slate-200/90 bg-white shadow-[0_14px_34px_-22px_rgba(10,15,20,0.08)] hover:border-brand-blue/25',
-            ]}
-          >
-            <div>
-              <div class="flex items-center justify-between gap-2">
-                <h3 class="text-xl font-extrabold tracking-tight text-slate-950">{plan.name}</h3>
-                {isFeatured && (
-                  <span class="rounded-full bg-brand-blue/10 px-2.5 py-0.5 text-[11px] font-bold text-brand-blue">
-                    Más solicitado
-                  </span>
-                )}
-              </div>
-              <div class="mt-4 flex items-baseline gap-2">
-                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Desde</span>
-                <span class="text-3xl font-extrabold tracking-tight text-slate-950 md:text-4xl">{plan.price}</span>
-              </div>
-              <p class="mt-4 text-sm leading-relaxed text-slate-600">{plan.summary}</p>
-              <ul class="mt-6 space-y-2.5 border-t border-slate-200/70 pt-5 text-sm text-slate-700">
+          <article class:list={[
+              'flex min-w-0 flex-col rounded-3xl border p-6 sm:p-7 lg:p-5',
+            isFeatured
+              ? 'border-[#8dbaff] bg-[#f0f6ff] shadow-[0_18px_38px_-30px_rgba(0,78,190,0.42)]'
+              : 'border-[#dce8f8] bg-[#f8fbff]',
+          ]}>
+            <div class="flex min-h-12 items-center justify-between gap-3">
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#0964ef] ring-1 ring-[#d7e6fb]">
+                <PlanIcon class="h-6 w-6" aria-hidden="true" />
+              </span>
+              {isFeatured && (
+                <span class="rounded-full bg-[#dceaff] px-3 py-1.5 text-xs font-bold text-[#0750bd]">
+                  Más solicitado
+                </span>
+              )}
+            </div>
+
+            <h3 class="mt-5 text-xl font-extrabold tracking-[-0.025em] text-[#0b1a4c]">{plan.name}</h3>
+            <div class="mt-4 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <span class="text-sm font-semibold text-[#405578]">Desde</span>
+              <span class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl lg:text-3xl">{plan.price}</span>
+            </div>
+            <p class="mt-4 text-[0.96rem] leading-relaxed text-[#405578] lg:min-h-[4.75rem]">{plan.summary}</p>
+
+            <div class="mt-6 border-t border-[#d9e5f5] pt-5">
+              <p class="text-sm font-bold text-[#0b1a4c]">Incluye</p>
+              <ul class="mt-3 grid gap-3 text-sm leading-5 text-[#31466d]">
                 {plan.includes.map((item) => (
                   <li class="flex items-start gap-2.5">
-                    <span class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
-                      <Check class="h-2.5 w-2.5" />
-                    </span>
+                    <Check class="mt-0.5 h-4 w-4 shrink-0 text-[#0964ef]" strokeWidth={2.5} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div class="mt-6 border-t border-slate-100 pt-4">
-              <p class="text-xs leading-relaxed text-slate-500">
-                <strong class="font-semibold text-slate-700">Ideal para:</strong> {plan.idealFor}
+            <div class="mt-auto pt-6">
+              <p class="border-t border-[#d9e5f5] pt-4 text-sm leading-relaxed text-[#405578]">
+                <strong class="font-bold text-[#0b1a4c]">Ideal para:</strong> {plan.idealFor}
               </p>
+              <a
+                href={`/planes#plan-${plan.id}`}
+                aria-label={`Ver detalle del plan ${plan.name}`}
+                class:list={[
+                  'group mt-5 flex min-h-12 items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#075be8]',
+                  isFeatured
+                    ? 'border-[#0964ef] bg-[#0964ef] text-white hover:border-[#064bb7] hover:bg-[#064bb7]'
+                    : 'border-[#c9daf1] bg-white text-[#0754c9] hover:border-[#0964ef] hover:bg-[#edf5ff]',
+                ]}
+              >
+                Ver detalle del plan
+                <ArrowRight class="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </a>
             </div>
           </article>
         );
       })}
     </div>
 
-    <div class="mt-8 flex flex-col items-start justify-between gap-5 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-5 md:flex-row md:items-center md:px-7">
-      <div class="space-y-1 text-xs leading-relaxed text-slate-500 md:text-sm">
+    <div class="mt-6 flex flex-col gap-4 border-t border-[#dce8f8] pt-5 md:flex-row md:items-center md:justify-between md:gap-8">
+      <div class="max-w-4xl space-y-1 text-sm leading-relaxed text-[#405578]">
         {plansNotes.map((note) => <p>{note}</p>)}
       </div>
-      <a
-        href="/planes"
-        class="inline-flex shrink-0 items-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-blue"
-      >
-        Ver detalle de planes
-        <ArrowRight class="h-4 w-4" />
+      <a href="/planes" class="group inline-flex shrink-0 items-center gap-2 self-start py-2 text-sm font-bold text-[#0754c9] transition-colors hover:text-[#0b1a4c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8] md:self-center">
+        Ver todos los planes
+        <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
       </a>
     </div>
   </div>

@@ -2,11 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import ListingHero from '../components/ListingHero.astro';
 import ContactOptions from '../components/ContactOptions.astro';
 import LeadForm from '../components/LeadForm';
 import { seo } from '../data/seo';
 import { baseSchema } from '../data/schema';
+import '../styles/interior-pages.css';
 
 const pageSeo = seo.contact;
 const schema = baseSchema(pageSeo.description);
@@ -14,19 +14,103 @@ const schema = baseSchema(pageSeo.description);
 
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema}>
   <SiteHeader />
-  <main>
-    <ListingHero
-      eyebrow="Contacto"
-      title="Cotiza tu proyecto o solicita una evaluación"
-      text="Cuéntanos qué necesita tu empresa. Revisamos el contexto, definimos el alcance adecuado y avanzamos con una propuesta clara y estructurada."
-    />
+  <main class="interior-page contact-page">
+    <div class="interior-shell contact-layout">
+      <header class="contact-intro">
+        <div class="contact-intro__copy">
+          <h1 class="interior-title">Cotiza tu <span>proyecto</span></h1>
+          <p class="interior-lede">Cuéntanos si necesitas un sitio web, una automatización o un sistema para tu empresa.</p>
+        </div>
+        <div class="contact-intro__visual" aria-hidden="true"></div>
+      </header>
 
-    <section class="bg-slate-50 py-20">
-      <div class="mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-[1fr_0.75fr]">
+      <div class="contact-form">
         <LeadForm client:load />
+      </div>
+
+      <div class="contact-options">
         <ContactOptions />
       </div>
-    </section>
+    </div>
   </main>
   <SiteFooter />
 </Layout>
+
+<style>
+  .contact-page {
+    padding-block: clamp(1.25rem, 4.75vw, 4rem) clamp(2.5rem, 6vw, 5rem);
+    background: linear-gradient(125deg, #e8f3ff, #f5f8fd 60%);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-areas: 'intro' 'form' 'options';
+    gap: 1.25rem;
+  }
+
+  .contact-intro {
+    --interior-lede-color: #deebff;
+
+    grid-area: intro;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: #0c2957;
+    color: white;
+  }
+
+  .contact-intro__copy {
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background: radial-gradient(ellipse at 100% 0%, #1b5097, transparent 68%);
+  }
+
+  .contact-intro h1 {
+    font-size: clamp(2.35rem, 5vw, 4.25rem);
+    text-wrap: pretty;
+  }
+
+  .contact-intro h1 span {
+    color: #a3e8ff;
+  }
+
+  .contact-intro .interior-lede {
+    max-width: 44ch;
+    margin-top: 0.875rem;
+  }
+
+  .contact-intro__visual {
+    display: none;
+  }
+
+  .contact-form {
+    grid-area: form;
+    min-width: 0;
+  }
+
+  .contact-options {
+    grid-area: options;
+  }
+
+  @media (min-width: 57rem) {
+    .contact-layout {
+      grid-template: 'intro form' auto 'options form' 1fr / minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: start;
+      gap: 1.625rem clamp(1.5rem, 3.5vw, 3rem);
+    }
+
+    .contact-intro h1 {
+      max-width: 10ch;
+    }
+
+    .contact-intro__copy {
+      padding-bottom: 1rem;
+    }
+
+    .contact-intro__visual {
+      display: block;
+      height: clamp(10rem, 19vw, 15rem);
+      background:
+        linear-gradient(180deg, #0c2957, rgb(12 41 87 / 40%) 28%, transparent 65%),
+        url('/images/generated/home/home-hero.webp') center 58% / cover;
+    }
+  }
+</style>

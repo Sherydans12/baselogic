@@ -1,0 +1,255 @@
+---
+const industries = [
+  {
+    title: 'Educación',
+    href: '/productos/edupay',
+    icon: '/images/operational-clarity/icono-educacion.svg',
+  },
+  {
+    title: 'Comercio y Pymes',
+    href: '/productos/pos',
+    icon: '/images/operational-clarity/icono-comercio.svg',
+  },
+  {
+    title: 'Operaciones e Industria',
+    href: '/productos/eam',
+    icon: '/images/operational-clarity/icono-fabrica.svg',
+  },
+];
+
+const capabilities = [
+  {
+    title: 'Desarrollo a medida',
+    description: 'Sistemas y aplicaciones adaptadas a los procesos reales de tu negocio.',
+    href: '/servicios/sistemas-para-pymes',
+    icon: '/images/operational-clarity/icono-desarrollo.svg',
+  },
+  {
+    title: 'Integraciones y procesos',
+    description: 'Conecta tus herramientas, centraliza la información y mantén el control.',
+    href: '/servicios/automatizacion',
+    icon: '/images/operational-clarity/icono-integraciones.svg',
+  },
+  {
+    title: 'Resultados medibles',
+    description: 'Más control, mejor trazabilidad y decisiones con datos reales.',
+    href: '/casos-de-exito',
+    icon: '/images/operational-clarity/icono-resultados.svg',
+  },
+];
+---
+
+<section
+  id="claridad-operacional"
+  aria-labelledby="connected-clarity-heading"
+  class="bl-home-section bl-home-section--soft scroll-mt-20"
+>
+  <div class="bl-home-section__container">
+    <header class="bl-home-section__header" data-motion-reveal>
+      <div>
+        <p class="bl-home-section__eyebrow">Claridad operacional</p>
+        <h2 id="connected-clarity-heading" class="bl-home-section__title">
+          Soluciones digitales que conectan personas,
+          <span class="text-brand-blue">procesos y resultados</span>
+        </h2>
+      </div>
+      <p class="bl-home-section__lede">
+        Software propio, integraciones y desarrollos a medida para simplificar la operación de tu organización.
+      </p>
+    </header>
+
+    <div class="mt-6 grid gap-4 sm:gap-5 lg:grid-cols-12 lg:gap-4">
+      <a
+        href="/servicios/automatizacion"
+        data-motion-reveal
+        style="--home-motion-delay: 0ms"
+        class="bl-home-card bl-home-card--interactive group relative isolate min-h-[240px] overflow-hidden bg-[#eaf2ff] p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_44px_-30px_rgba(0,102,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/60 focus-visible:ring-offset-2 sm:min-h-[260px] sm:p-6 lg:col-span-7 lg:min-h-[220px] lg:p-5"
+      >
+        <div class="relative z-10 flex items-start gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white bg-white/75 shadow-sm">
+            <img
+              src="/images/operational-clarity/icono-automatizacion.svg"
+              alt=""
+              aria-hidden="true"
+              width="32"
+              height="32"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <span class="pt-1">
+            <span class="block text-xl font-extrabold leading-tight tracking-tight text-[#0c1738] sm:text-2xl lg:text-xl">
+              Automatiza tu operación
+            </span>
+            <span class="mt-2 block max-w-[420px] text-sm leading-relaxed text-[#31466d] sm:text-base">
+              Digitaliza tareas, reduce tiempos y minimiza errores en tus procesos diarios.
+            </span>
+          </span>
+        </div>
+
+        <img
+          src="/images/operational-clarity/esfera-digital.png"
+          alt=""
+          aria-hidden="true"
+          width="1510"
+          height="564"
+          loading="lazy"
+          decoding="async"
+          class="pointer-events-none absolute -bottom-2 right-[-4%] w-[72%] max-w-[520px] transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </a>
+
+      <article
+        data-motion-reveal
+        style="--home-motion-delay: 55ms"
+        class="bl-home-card min-h-[240px] bg-[#eaf2ff] p-5 sm:min-h-[260px] sm:p-6 lg:col-span-5 lg:min-h-[220px] lg:p-5"
+      >
+        <div class="flex items-start gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white bg-white/75 shadow-sm">
+            <img
+              src="/images/operational-clarity/icono-industria-barras.svg"
+              alt=""
+              aria-hidden="true"
+              width="32"
+              height="32"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <div class="pt-1">
+            <h3 class="text-xl font-extrabold leading-tight tracking-tight text-[#0c1738] sm:text-2xl lg:text-xl">
+              Enfocado en tu industria
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#31466d] sm:text-base">
+              Soluciones para educación, comercio, operaciones e industria.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-2.5 sm:gap-3 lg:mt-4">
+          {industries.map((industry) => (
+            <a
+              href={industry.href}
+              class="group/industry flex min-h-[104px] flex-col items-center justify-center gap-2 rounded-2xl border border-white/90 bg-white/75 px-2 py-3 text-center shadow-[0_8px_18px_-14px_rgba(0,78,190,0.35)] transition hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_12px_24px_-16px_rgba(0,78,190,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/60 lg:min-h-[82px] lg:gap-1 lg:py-2"
+            >
+              <img
+                src={industry.icon}
+                alt=""
+                aria-hidden="true"
+                width="36"
+                height="36"
+                loading="lazy"
+                decoding="async"
+                class="h-9 w-9 transition-transform group-hover/industry:scale-105 lg:h-7 lg:w-7"
+              />
+              <span class="text-xs font-semibold leading-tight text-[#0c1738] sm:text-sm">
+                {industry.title}
+              </span>
+            </a>
+          ))}
+        </div>
+      </article>
+
+      <a
+        href="/productos"
+        data-motion-reveal
+        style="--home-motion-delay: 0ms"
+        class="bl-home-card bl-home-card--interactive group relative isolate flex min-h-[330px] flex-col overflow-hidden bg-[#eaf2ff] p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_44px_-30px_rgba(0,102,255,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/60 focus-visible:ring-offset-2 sm:min-h-[340px] sm:p-6 lg:col-span-4 lg:min-h-[300px] lg:p-5"
+      >
+        <div class="relative z-10 flex items-start gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white bg-white/75 shadow-sm">
+            <img
+              src="/images/operational-clarity/icono-claridad-cap.svg"
+              alt=""
+              aria-hidden="true"
+              width="32"
+              height="32"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <span class="pt-1">
+            <span class="block text-xl font-extrabold leading-tight tracking-tight text-[#0c1738] sm:text-2xl lg:text-xl">
+              Software propio para tus necesidades
+            </span>
+            <span class="mt-2 block text-sm leading-relaxed text-[#31466d] sm:text-base">
+              Plataformas especializadas, modulares y en constante evolución.
+            </span>
+          </span>
+        </div>
+
+        <img
+          src="/images/operational-clarity/capas-software-3d.png"
+          alt=""
+          aria-hidden="true"
+          width="876"
+          height="748"
+          loading="lazy"
+          decoding="async"
+          class="pointer-events-none relative mx-auto mt-auto w-[78%] max-w-[230px] object-contain transition-transform duration-500 group-hover:scale-[1.02] lg:max-w-[190px]"
+        />
+      </a>
+
+      <a
+        href="/productos"
+        data-motion-reveal
+        style="background-image: url('/images/operational-clarity/fondo-plataformas.svg'); --home-motion-delay: 55ms"
+        class="bl-home-card bl-home-card--interactive clarity-platform-card group relative isolate flex min-h-[330px] flex-col overflow-hidden px-5 py-5 text-white shadow-[0_20px_44px_-26px_rgba(0,42,130,0.45)] transition duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-offset-2 sm:min-h-[340px] sm:px-6 sm:py-6 lg:col-span-8 lg:min-h-[300px] lg:p-5"
+      >
+        <span class="relative z-10 block text-xl font-extrabold leading-tight tracking-tight sm:text-2xl lg:text-xl">
+          Plataformas que operan contigo
+        </span>
+        <span class="relative z-10 mt-1.5 block max-w-[620px] text-sm leading-relaxed text-white/95 sm:text-base">
+          Gestiona, controla y haz crecer tu operación desde un solo ecosistema.
+        </span>
+        <img
+          src="/images/operational-clarity/dashboard-operacional.png"
+          alt="Panel de métricas operacionales con indicadores, gráficos y navegación por áreas."
+          width="1568"
+          height="768"
+          loading="lazy"
+          decoding="async"
+          class="relative z-10 mx-auto mt-4 w-full max-w-[620px] object-contain transition-transform duration-500 group-hover:scale-[1.01] sm:mt-5 lg:mt-3 lg:max-w-[520px]"
+        />
+      </a>
+
+      {capabilities.map((capability, index) => (
+        <a
+          href={capability.href}
+          data-motion-reveal
+          style={`--home-motion-delay: ${Math.min((index + 2) * 55, 220)}ms`}
+          class="bl-home-card bl-home-card--interactive group flex min-h-[132px] flex-col justify-center bg-[#eef4fd] p-5 transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_32px_-24px_rgba(0,78,190,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/60 focus-visible:ring-offset-2 sm:min-h-[140px] sm:p-6 lg:col-span-4 lg:min-h-[128px] lg:p-5"
+        >
+          <span class="flex items-center gap-3.5">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white bg-white/75">
+              <img
+                src={capability.icon}
+                alt=""
+                aria-hidden="true"
+                width="30"
+                height="30"
+                loading="lazy"
+                decoding="async"
+                class="h-[30px] w-[30px] transition-transform duration-300 group-hover:scale-105"
+              />
+            </span>
+            <span class="text-lg font-extrabold leading-tight tracking-tight text-[#0c1738] sm:text-xl">
+              {capability.title}
+            </span>
+          </span>
+          <span class="mt-3 pl-1 text-sm leading-relaxed text-[#31466d] sm:text-base">
+            {capability.description}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .clarity-platform-card {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>

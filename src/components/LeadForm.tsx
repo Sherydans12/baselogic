@@ -1,6 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { AlertCircle, CheckCircle2, Loader2, Mail, RotateCcw, Send, ShieldCheck } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { AlertCircle, CheckCircle2, ChevronDown, Loader2, Mail, RotateCcw, Send } from 'lucide-react';
 import { budgetRanges, createMailtoHref, projectTypes } from '../data/contact';
+import { plans } from '../data/plans';
+import '../styles/lead-form.css';
 
 type FormState = {
   name: string;
@@ -54,6 +56,7 @@ const QUERY_PROJECT_MAP: Record<string, string> = {
   landing: 'Landing page',
   'landing-pages': 'Landing page',
   wordpress: 'WordPress',
+  'webs-estaticas': 'Página web',
   sistemas: 'Sistema para pyme',
   'sistemas-para-pymes': 'Sistema para pyme',
   automatizacion: 'Automatización',
@@ -62,6 +65,8 @@ const QUERY_PROJECT_MAP: Record<string, string> = {
   eam: 'BaseLogic EAM',
   pos: 'BaseLogic POS (Piloto)',
   soporte: 'Soporte mensual',
+  'soporte-digital': 'Soporte mensual',
+  productos: 'No estoy seguro',
 };
 
 const buildLeadMessage = (form: FormState) =>
@@ -85,6 +90,9 @@ export default function LeadForm() {
   const [serverMessage, setServerMessage] = useState<string>('');
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [referenceId, setReferenceId] = useState<string>('');
+  const formElement = useRef<HTMLFormElement>(null);
+  const errorSummary = useRef<HTMLDivElement>(null);
+  const successHeading = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -110,10 +118,26 @@ export default function LeadForm() {
       .trim()
       .toLowerCase();
 
-    if (requestedKey && QUERY_PROJECT_MAP[requestedKey]) {
-      setForm((prev) => ({ ...prev, projectType: QUERY_PROJECT_MAP[requestedKey] }));
+    const requestedType = QUERY_PROJECT_MAP[requestedKey];
+    const plan = plans.find(({ id }) => id === params.get('plan'));
+    if (typeof requestedType === 'string' || plan) {
+      setForm((current) => ({
+        ...current,
+        projectType: typeof requestedType === 'string' ? requestedType : 'No estoy seguro',
+        message: current.message || (plan ? `Quiero cotizar el plan ${plan.name}.` : ''),
+      }));
     }
   }, []);
+
+  useEffect(() => {
+    if (status === 'success') {
+      successHeading.current?.focus();
+    }
+    if (status === 'error') {
+      const firstInvalid = formElement.current?.querySelector<HTMLElement>('[aria-invalid="true"]');
+      (firstInvalid ?? errorSummary.current)?.focus();
+    }
+  }, [status]);
 
   const leadMessage = useMemo(() => buildLeadMessage(form), [form]);
   const mailtoHref = useMemo(
@@ -197,94 +221,64 @@ export default function LeadForm() {
 
   if (status === 'success') {
     return (
-      <div
-        id="formulario"
-        role="status"
-        aria-live="polite"
-        className="rounded-2xl border border-emerald-200 bg-white p-6 md:p-8 shadow-sm"
-      >
-        <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800">
-          <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+      <section id="formulario" aria-labelledby="lead-success-title" className="lead-panel lead-success">
+        <p role="status" className="lead-success__reference">
+          <CheckCircle2 width={19} height={19} aria-hidden="true" />
           Solicitud recibida · Ref: {referenceId}
-        </div>
-
-        <h3 className="mt-4 text-2xl font-black text-slate-950">
-          Recibimos tu consulta correctamente
-        </h3>
-        <p className="mt-2 text-base leading-7 text-slate-600">
-          Hemos notificado al equipo de BaseLogic en{' '}
-          <strong className="font-semibold text-slate-900">contacto@baselogic.cl</strong>. Revisaremos el
-          contexto de tu requerimiento y te responderemos directamente a{' '}
-          <strong className="font-semibold text-slate-900">{form.email}</strong> con los siguientes pasos.
         </p>
-
-        <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-          <div className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">
-            Resumen registrado
+        <h2 id="lead-success-title" ref={successHeading} tabIndex={-1}>Recibimos tu consulta</h2>
+        <p className="lead-panel__description">
+          El equipo de BaseLogic revisará tu requerimiento y te responderá a <strong>{form.email}</strong> con los siguientes pasos.
+        </p>
+        <dl className="lead-success__details">
+          <div>
+            <dt>Contacto</dt>
+            <dd>{form.name}</dd>
           </div>
-          <dl className="mt-3 grid gap-2 sm:grid-cols-2">
+          <div>
+            <dt>Solución consultada</dt>
+            <dd>{form.projectType === 'BaseLogic POS (Piloto)' ? 'BaseLogic POS' : form.projectType}</dd>
+          </div>
+          {form.company && (
             <div>
-              <dt className="text-xs text-slate-500">Contacto</dt>
-              <dd className="font-semibold text-slate-900">{form.name}</dd>
+              <dt>Empresa</dt>
+              <dd>{form.company}</dd>
             </div>
+          )}
+          {form.phone && (
             <div>
-              <dt className="text-xs text-slate-500">Solución consultada</dt>
-              <dd className="font-semibold text-slate-900">{form.projectType}</dd>
+              <dt>Teléfono</dt>
+              <dd>{form.phone}</dd>
             </div>
-            {form.company && (
-              <div>
-                <dt className="text-xs text-slate-500">Empresa</dt>
-                <dd className="font-semibold text-slate-900">{form.company}</dd>
-              </div>
-            )}
-            {form.phone && (
-              <div>
-                <dt className="text-xs text-slate-500">Teléfono</dt>
-                <dd className="font-semibold text-slate-900">{form.phone}</dd>
-              </div>
-            )}
-          </dl>
-        </div>
-
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={handleReset}
-            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-800 transition hover:border-brand-blue hover:text-brand-blue"
-          >
-            <RotateCcw className="h-4 w-4" />
-            Enviar otra consulta
-          </button>
-        </div>
-      </div>
+          )}
+        </dl>
+        <button type="button" onClick={handleReset} className="interior-button">
+          <RotateCcw width={16} height={16} aria-hidden="true" />
+          Enviar otra consulta
+        </button>
+      </section>
     );
   }
 
   return (
     <form
       id="formulario"
+      ref={formElement}
+      aria-labelledby="lead-form-title"
+      aria-busy={status === 'submitting'}
+      action="/api/contact"
+      method="post"
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm"
+      className="lead-panel"
     >
-      <div className="mb-6 border-b border-slate-100 pb-4">
-        <span className="font-mono text-xs font-semibold uppercase tracking-wider text-brand-blue">
-          Formulario directo · Claridad de alcance
-        </span>
-        <h2 className="mt-1 text-xl font-black text-slate-950 md:text-2xl">
-          Cuéntanos qué proceso o proyecto quieres evaluar
-        </h2>
-        <p className="mt-1 text-sm text-slate-600">
-          Los campos marcados con <span className="font-bold text-brand-blue">*</span> son obligatorios. Empresa y
-          teléfono son opcionales.
-        </p>
-      </div>
+      <header className="lead-panel__header">
+        <h2 id="lead-form-title">Detalles de tu consulta</h2>
+        <p className="lead-panel__description">Los campos con <span className="lead-required">*</span> son obligatorios.</p>
+      </header>
 
       {/* Honeypot oculto para bots automatizados */}
-      <div
-        className="pointer-events-none absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden opacity-0"
-        aria-hidden="true"
-      >
+      <div className="lead-honeypot" aria-hidden="true">
         <label htmlFor="lead-company-website">
           Sitio web corporativo (no completar)
           <input
@@ -299,25 +293,11 @@ export default function LeadForm() {
         </label>
       </div>
 
-      {status === 'error' && serverMessage && (
-        <div
-          role="alert"
-          className="mb-6 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900"
-        >
-          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
-          <div className="grid gap-1">
-            <p className="font-bold">Revisa el envío antes de continuar</p>
-            <p className="text-red-800">{serverMessage}</p>
-          </div>
-        </div>
-      )}
-
-      <div className="grid gap-5">
-        <div className="grid gap-4 md:grid-cols-2">
-          <label htmlFor="lead-name" className="grid gap-2 text-sm font-bold text-slate-700">
-            <span>
-              Nombre <span className="text-brand-blue">*</span>
-            </span>
+      <fieldset className="lead-fieldset">
+        <legend>Tus datos</legend>
+        <div className="lead-grid">
+          <div className="lead-field">
+            <label htmlFor="lead-name">Nombre <span className="lead-required" aria-hidden="true">*</span></label>
             <input
               id="lead-name"
               name="name"
@@ -326,16 +306,15 @@ export default function LeadForm() {
               placeholder="Ej. Carolina Rojas"
               value={form.name}
               aria-invalid={Boolean(fieldErrors.name)}
+              aria-describedby={fieldErrors.name ? 'lead-name-error' : undefined}
               onChange={(event) => updateField('name', event.target.value)}
-              className="rounded-xl border border-slate-200 px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
+              className="lead-control"
             />
-            {fieldErrors.name && <span className="text-xs font-semibold text-red-600">{fieldErrors.name}</span>}
-          </label>
+            <FieldError id="lead-name-error" error={fieldErrors.name} />
+          </div>
 
-          <label htmlFor="lead-email" className="grid gap-2 text-sm font-bold text-slate-700">
-            <span>
-              Correo electrónico <span className="text-brand-blue">*</span>
-            </span>
+          <div className="lead-field">
+            <label htmlFor="lead-email">Correo electrónico <span className="lead-required" aria-hidden="true">*</span></label>
             <input
               id="lead-email"
               name="email"
@@ -345,37 +324,31 @@ export default function LeadForm() {
               placeholder="nombre@empresa.cl"
               value={form.email}
               aria-invalid={Boolean(fieldErrors.email)}
+              aria-describedby={fieldErrors.email ? 'lead-email-error' : undefined}
               onChange={(event) => updateField('email', event.target.value)}
-              className="rounded-xl border border-slate-200 px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
+              className="lead-control"
             />
-            {fieldErrors.email && <span className="text-xs font-semibold text-red-600">{fieldErrors.email}</span>}
-          </label>
-        </div>
+            <FieldError id="lead-email-error" error={fieldErrors.email} />
+          </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label htmlFor="lead-company" className="grid gap-2 text-sm font-bold text-slate-700">
-            <span className="flex items-center justify-between">
-              <span>Empresa u organización</span>
-              <span className="text-xs font-normal text-slate-400">(opcional)</span>
-            </span>
+          <div className="lead-field">
+            <label htmlFor="lead-company">Empresa u organización <small>(opcional)</small></label>
             <input
               id="lead-company"
               name="company"
               autoComplete="organization"
-              placeholder="Nombre de tu empresa o proyecto"
+              placeholder="Nombre de tu empresa"
               value={form.company}
               aria-invalid={Boolean(fieldErrors.company)}
+              aria-describedby={fieldErrors.company ? 'lead-company-error' : undefined}
               onChange={(event) => updateField('company', event.target.value)}
-              className="rounded-xl border border-slate-200 px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
+              className="lead-control"
             />
-            {fieldErrors.company && <span className="text-xs font-semibold text-red-600">{fieldErrors.company}</span>}
-          </label>
+            <FieldError id="lead-company-error" error={fieldErrors.company} />
+          </div>
 
-          <label htmlFor="lead-phone" className="grid gap-2 text-sm font-bold text-slate-700">
-            <span className="flex items-center justify-between">
-              <span>Teléfono de contacto</span>
-              <span className="text-xs font-normal text-slate-400">(opcional)</span>
-            </span>
+          <div className="lead-field">
+            <label htmlFor="lead-phone">Teléfono de contacto <small>(opcional)</small></label>
             <input
               id="lead-phone"
               name="phone"
@@ -384,141 +357,130 @@ export default function LeadForm() {
               placeholder="+56 9 1234 5678"
               value={form.phone}
               aria-invalid={Boolean(fieldErrors.phone)}
+              aria-describedby={fieldErrors.phone ? 'lead-phone-error' : undefined}
               onChange={(event) => updateField('phone', event.target.value)}
-              className="rounded-xl border border-slate-200 px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
+              className="lead-control"
             />
-            {fieldErrors.phone && <span className="text-xs font-semibold text-red-600">{fieldErrors.phone}</span>}
-          </label>
+            <FieldError id="lead-phone-error" error={fieldErrors.phone} />
+          </div>
         </div>
+      </fieldset>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label htmlFor="lead-project-type" className="grid gap-2 text-sm font-bold text-slate-700">
-            <span>
-              ¿Qué necesitas resolver? <span className="text-brand-blue">*</span>
-            </span>
-            <select
-              id="lead-project-type"
-              name="projectType"
-              value={form.projectType}
-              aria-invalid={Boolean(fieldErrors.projectType)}
-              onChange={(event) => updateField('projectType', event.target.value)}
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
-            >
-              {projectTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-            {fieldErrors.projectType && (
-              <span className="text-xs font-semibold text-red-600">{fieldErrors.projectType}</span>
-            )}
-          </label>
-
-          <label htmlFor="lead-budget" className="grid gap-2 text-sm font-bold text-slate-700">
-            <span className="flex items-center justify-between">
-              <span>Presupuesto aproximado</span>
-              <span className="text-xs font-normal text-slate-400">(opcional)</span>
-            </span>
-            <select
-              id="lead-budget"
-              name="budget"
-              value={form.budget}
-              onChange={(event) => updateField('budget', event.target.value)}
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
-            >
-              {budgetRanges.map((range) => (
-                <option key={range} value={range}>
-                  {range}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-
-        <label htmlFor="lead-message" className="grid gap-2 text-sm font-bold text-slate-700">
-          <span>
-            Mensaje o contexto de tu operación <span className="text-brand-blue">*</span>
-          </span>
-          <textarea
-            id="lead-message"
-            name="message"
-            required
-            rows={4}
-            placeholder="Cuéntanos brevemente qué hace tu empresa, qué problema quieres resolver y en qué etapa estás..."
-            value={form.message}
-            aria-invalid={Boolean(fieldErrors.message)}
-            onChange={(event) => updateField('message', event.target.value)}
-            className="resize-y rounded-xl border border-slate-200 px-4 py-3 font-medium text-slate-950 outline-none transition focus:border-brand-blue focus:ring-4 focus:ring-brand-blue/10"
-          />
-          {fieldErrors.message && <span className="text-xs font-semibold text-red-600">{fieldErrors.message}</span>}
-        </label>
-
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-3.5">
-          <label htmlFor="lead-privacy" className="flex cursor-pointer items-start gap-3 text-xs leading-5 text-slate-700">
-            <input
-              id="lead-privacy"
-              name="privacyAccepted"
-              type="checkbox"
-              required
-              checked={form.privacyAccepted}
-              aria-invalid={Boolean(fieldErrors.privacyAccepted)}
-              onChange={(event) => updateField('privacyAccepted', event.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brand-blue focus:ring-brand-blue"
-            />
-            <span>
-              Acepto el tratamiento de mis datos de contacto para evaluar esta solicitud conforme a la{' '}
-              <a
-                href="/legal/privacidad"
-                className="font-semibold text-brand-blue underline hover:text-slate-950"
+      <fieldset className="lead-fieldset">
+        <legend>Tu proyecto</legend>
+        <div className="lead-grid">
+          <div className="lead-field">
+            <label htmlFor="lead-project-type">¿Qué necesitas resolver? <span className="lead-required" aria-hidden="true">*</span></label>
+            <div className="lead-select">
+              <select
+                id="lead-project-type"
+                name="projectType"
+                required
+                value={form.projectType}
+                aria-invalid={Boolean(fieldErrors.projectType)}
+                aria-describedby={fieldErrors.projectType ? 'lead-project-type-error' : undefined}
+                onChange={(event) => updateField('projectType', event.target.value)}
+                className="lead-control"
               >
-                Política de Privacidad
-              </a>{' '}
-              de BaseLogic (SENAS TECNOLOGÍAS SpA). No enviamos correo masivo ni compartimos tu información con
-              terceros. <span className="font-bold text-brand-blue">*</span>
-            </span>
-          </label>
-          {fieldErrors.privacyAccepted && (
-            <p className="mt-1.5 pl-7 text-xs font-semibold text-red-600">{fieldErrors.privacyAccepted}</p>
-          )}
+                {projectTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type === 'BaseLogic POS (Piloto)' ? 'BaseLogic POS' : type}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown width={17} height={17} aria-hidden="true" />
+            </div>
+            <FieldError id="lead-project-type-error" error={fieldErrors.projectType} />
+          </div>
+
+          <div className="lead-field">
+            <label htmlFor="lead-budget">Presupuesto aproximado <small>(opcional)</small></label>
+            <div className="lead-select">
+              <select
+                id="lead-budget"
+                name="budget"
+                value={form.budget}
+                aria-invalid={Boolean(fieldErrors.budget)}
+                aria-describedby={fieldErrors.budget ? 'lead-budget-error' : undefined}
+                onChange={(event) => updateField('budget', event.target.value)}
+                className="lead-control"
+              >
+                {budgetRanges.map((range) => <option key={range} value={range}>{range}</option>)}
+              </select>
+              <ChevronDown width={17} height={17} aria-hidden="true" />
+            </div>
+            <FieldError id="lead-budget-error" error={fieldErrors.budget} />
+          </div>
+
+          <div className="lead-field lead-field--wide">
+            <label htmlFor="lead-message">Mensaje o contexto de tu operación <span className="lead-required" aria-hidden="true">*</span></label>
+            <textarea
+              id="lead-message"
+              name="message"
+              required
+              rows={4}
+              placeholder="Cuéntanos qué problema quieres resolver y en qué etapa está tu proyecto."
+              value={form.message}
+              aria-invalid={Boolean(fieldErrors.message)}
+              aria-describedby={fieldErrors.message ? 'lead-message-error' : undefined}
+              onChange={(event) => updateField('message', event.target.value)}
+              className="lead-control"
+            />
+            <FieldError id="lead-message-error" error={fieldErrors.message} />
+          </div>
         </div>
+      </fieldset>
+
+      <div className="lead-consent">
+        <label htmlFor="lead-privacy">
+          <input
+            id="lead-privacy"
+            name="privacyAccepted"
+            type="checkbox"
+            required
+            checked={form.privacyAccepted}
+            aria-invalid={Boolean(fieldErrors.privacyAccepted)}
+            aria-describedby={fieldErrors.privacyAccepted ? 'lead-privacy-error' : undefined}
+            onChange={(event) => updateField('privacyAccepted', event.target.checked)}
+          />
+          <span>
+            <span className="lead-required" aria-hidden="true">* </span>
+            Acepto el tratamiento de mis datos de contacto para evaluar esta solicitud conforme a la{' '}
+            <a href="/legal/privacidad">Política de Privacidad</a>{' '}
+            de BaseLogic (SENAS TECNOLOGÍAS SpA). No enviamos correo masivo ni compartimos tu información con
+            terceros.
+          </span>
+        </label>
+        <FieldError id="lead-privacy-error" error={fieldErrors.privacyAccepted} />
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <button
-          type="submit"
-          disabled={status === 'submitting'}
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-70"
-        >
+      {status === 'error' && serverMessage && (
+        <div id="lead-error-summary" ref={errorSummary} tabIndex={-1} role="alert" className="lead-alert">
+          <AlertCircle width={19} height={19} aria-hidden="true" />
+          <div>
+            <p>No se pudo enviar la solicitud</p>
+            <p>{serverMessage}</p>
+          </div>
+        </div>
+      )}
+
+      <div className="lead-actions">
+        <button type="submit" disabled={status === 'submitting'} className="interior-button">
           {status === 'submitting' ? (
-            <>
-              Enviando solicitud...
-              <Loader2 className="h-5 w-5 animate-spin" />
-            </>
+            <>Enviando solicitud <Loader2 width={17} height={17} className="motion-safe:animate-spin" aria-hidden="true" /></>
           ) : (
-            <>
-              Enviar solicitud
-              <Send className="h-4 w-4" />
-            </>
+            <>Enviar solicitud <Send width={17} height={17} aria-hidden="true" /></>
           )}
         </button>
-
-        <a
-          href={mailtoHref}
-          className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-5 py-3.5 text-sm font-bold text-slate-700 transition hover:border-brand-blue hover:text-brand-blue"
-        >
-          <Mail className="h-4 w-4" />
+        <a href={mailtoHref} className="interior-link">
+          <Mail width={17} height={17} aria-hidden="true" />
           Abrir en correo
         </a>
       </div>
-
-      <div className="mt-4 flex items-center gap-2 text-xs text-slate-500">
-        <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-600" />
-        <span>
-          Recepción directa en <strong>contacto@baselogic.cl</strong> con protección antispam y validación en
-          servidor.
-        </span>
-      </div>
     </form>
   );
+}
+
+function FieldError({ id, error }: { id: string; error?: string }) {
+  return error ? <p id={id} className="lead-field-error">{error}</p> : null;
 }

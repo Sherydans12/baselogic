@@ -1,17 +1,19 @@
 ---
+import { BarChart3, ClipboardList, HardHat, Package, ShoppingCart, Warehouse, Workflow, Wrench } from 'lucide-react';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import ListingHero from '../../components/ListingHero.astro';
+import ProductHero from '../../components/ProductHero.astro';
+import ProductRelated from '../../components/ProductRelated.astro';
+import ProductWorkflow from '../../components/ProductWorkflow.astro';
+import HomeFaqSection from '../../components/HomeFaqSection.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
-import FaqBlock from '../../components/FaqBlock.astro';
-import FinalCtaSection from '../../components/FinalCtaSection.astro';
+import ContactBand from '../../components/ContactBand.astro';
 import { products } from '../../data/products';
 import { eamFaqs } from '../../data/faqs';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
 import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
-import { visualAssets } from '../../data/visualAssets';
 
 const product = products.find((item) => item.id === 'eam')!;
 const pageSeo = seo.eam;
@@ -19,27 +21,53 @@ const capabilities = [
   {
     title: 'Activos y hoja de vida',
     text: 'Mantén organizada la información técnica, historial y estado de cada equipo, vehículo o componente.',
+    icon: HardHat,
   },
   {
     title: 'Órdenes de trabajo',
     text: 'Registra trabajos, responsables, prioridades, avances y comentarios desde un flujo centralizado.',
+    icon: ClipboardList,
   },
   {
-    title: 'Mantenimiento preventivo',
-    text: 'Planifica mantenimientos y alertas para evitar que las tareas críticas dependan de planillas o recordatorios informales.',
+    title: 'Mantenimiento preventivo y correctivo',
+    text: 'Organiza pautas e intervenciones programadas o correctivas junto a la información de cada equipo.',
+    icon: Wrench,
   },
   {
-    title: 'Repuestos e inventario',
-    text: 'Controla existencias, movimientos y disponibilidad de repuestos en tus bodegas.',
+    title: 'Compras y proveedores',
+    text: 'Ordena solicitudes, proveedores y órdenes de compra para acompañar el abastecimiento de la operación.',
+    icon: ShoppingCart,
+  },
+  {
+    title: 'Recepción y bodegas',
+    text: 'Relaciona la recepción de materiales con existencias, movimientos y control de repuestos en bodega.',
+    icon: Warehouse,
+  },
+  {
+    title: 'Consumos y Kardex',
+    text: 'Consulta movimientos de inventario y consumos asociados al trabajo de mantenimiento.',
+    icon: Package,
   },
   {
     title: 'Trazabilidad operacional',
     text: 'Consulta qué se hizo, cuándo se realizó, quién participó y qué materiales fueron utilizados.',
+    icon: Workflow,
   },
   {
-    title: 'Indicadores de gestión',
-    text: 'Revisa el estado de activos, trabajos pendientes y actividad de mantenimiento desde una vista ordenada.',
+    title: 'Costos e información de gestión',
+    text: 'Relaciona materiales y costos con el trabajo para dar contexto a las decisiones de supervisión.',
+    icon: BarChart3,
   },
+];
+
+const steps = [
+  { title: 'Orden de trabajo', text: 'Identifica el activo, la intervención y su responsable.' },
+  { title: 'Requerimiento', text: 'Determina los repuestos y materiales necesarios.' },
+  { title: 'Compra', text: 'Coordina la solicitud con compras y proveedores.' },
+  { title: 'Recepción', text: 'Registra la llegada de los materiales.' },
+  { title: 'Bodega', text: 'Ubica existencias y movimientos de stock.' },
+  { title: 'Ejecución', text: 'Relaciona el consumo de repuestos con el trabajo.' },
+  { title: 'Costo y trazabilidad', text: 'Consulta los antecedentes y costos disponibles de la intervención.' },
 ];
 
 const miningUseCases = [
@@ -92,33 +120,53 @@ const schema = [
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.eam}>
   <SiteHeader />
   <main>
-    <ListingHero
-      eyebrow="BaseLogic EAM para minería y contratistas"
-      title="Controla el mantenimiento de equipos y activos críticos desde una sola plataforma"
-      text="Planifica mantenimientos, gestiona órdenes de trabajo y centraliza la trazabilidad de maquinaria pesada, flotas de apoyo, equipos de perforación, grúas, componentes y repuestos."
-      asset={visualAssets.products.eamHero}
-      ctaLabel="Cotizar EAM"
-      ctaHref="/contacto"
-      visualAspectRatio="aspect-[4/5] sm:aspect-[16/10]"
-      compactMobile={true}
-    />
+    <ProductHero productId="eam" title="Controla tus activos y conecta toda tu operación" description="Del mantenimiento a la compra y consumo de un repuesto: equipos, trabajos y abastecimiento con mayor trazabilidad." ctaLabel="Solicitar demostración" heroImageSrc="/images/productos/baselogic-eam-hero.webp" heroImageAlt="Panel de gestión BaseLogic EAM para órdenes de trabajo, activos y mantenimiento en faena minera." heroImageWidth={1536} heroImageHeight={1024} showVisualCaption={false} />
 
-    <section class="bg-white py-20">
+    <section id="funcionalidades" class="scroll-mt-24 bg-[#f4f8ff] py-20 md:py-24">
       <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <SectionHeading
-          eyebrow="Control operacional"
-          title="Más control para operaciones donde cada detención importa"
-          text="BaseLogic EAM reúne activos, mantenimientos, repuestos y actividad técnica en un solo lugar. Tu equipo puede organizar el trabajo, consultar el historial de cada activo y mantener información actualizada para tomar mejores decisiones operacionales."
-        />
-
-        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((capability) => (
-            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h3 class="text-xl font-black text-slate-950">{capability.title}</h3>
-              <p class="mt-3 leading-7 text-slate-600">{capability.text}</p>
-            </article>
-          ))}
+        <div class="grid items-end gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+          <div>
+            <p class="mb-5 inline-flex rounded-full bg-[#d9f7ff] px-4 py-2 text-sm font-extrabold uppercase tracking-[0.08em] text-[#075caa]">Control operacional</p>
+            <h2 class="max-w-4xl text-3xl font-black leading-[1.12] tracking-[-0.035em] text-[#0b1a4c] md:text-[2.6rem]">Más control para operaciones donde cada detención importa</h2>
+          </div>
+          <p class="max-w-2xl pb-1 text-base leading-7 text-[#405578] md:text-lg md:leading-8">BaseLogic EAM reúne información de activos, mantenimiento y abastecimiento. Conecta el trabajo técnico con compras, recepción, bodegas y consumos para dar más contexto a las decisiones de tu equipo.</p>
         </div>
+
+        <div class="mt-10 grid items-stretch gap-4 md:grid-cols-2 xl:mt-12 xl:grid-cols-4 xl:gap-5">
+          {capabilities.map((capability) => {
+            const CapabilityIcon = capability.icon;
+
+            return (
+              <article class="rounded-2xl bg-white p-6 shadow-[0_8px_24px_rgba(11,26,76,0.07)] sm:p-7">
+                <span class="flex size-16 items-center justify-center rounded-2xl bg-[#edf6ff] text-[#075be8]">
+                  <CapabilityIcon size={32} strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                <h3 class="mt-4 text-xl font-extrabold leading-tight tracking-[-0.025em] text-[#0b1a4c]">{capability.title}</h3>
+                <p class="mt-3 text-base leading-6 text-[#405578]">{capability.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <ProductWorkflow title="De la orden de trabajo al costo de la intervención" description="Un recorrido que conecta mantenimiento, abastecimiento, bodega y supervisión alrededor del activo." steps={steps} />
+
+    <section class="bg-white py-14 md:py-20">
+      <div class="mx-auto grid max-w-7xl items-center gap-8 px-5 md:px-8 lg:grid-cols-2 lg:gap-12">
+        <div class="space-y-7">
+          <div>
+            <h2 class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c]">Información para cada área de la operación</h2>
+            <p class="mt-4 max-w-xl leading-relaxed text-[#405578]">Supervisión coordina el trabajo; mantenimiento registra intervenciones; compras y bodega se ocupan de los materiales que las hacen posibles.</p>
+          </div>
+          <aside class="rounded-2xl bg-[#f1f6ff] p-6 sm:p-8">
+            <h3 class="text-xl font-extrabold text-[#0b1a4c]">Terreno y conectividad intermitente</h3>
+            <p class="mt-3 leading-relaxed text-[#405578]">Las faenas remotas, talleres y obras no siempre tienen señal estable. El diseño de la operación debe considerar la conectividad disponible y las necesidades de continuidad de cada equipo.</p>
+          </aside>
+        </div>
+        <figure class="overflow-hidden rounded-3xl shadow-[0_16px_40px_rgba(11,26,76,0.14)]">
+          <img src="/images/productos/eam-trabajo-en-terreno.webp" alt="Técnico minero consulta una tableta junto a un camión de alto tonelaje en terreno." width="1672" height="941" loading="lazy" decoding="async" class="aspect-[16/10] w-full object-cover" />
+        </figure>
       </div>
     </section>
 
@@ -162,8 +210,9 @@ const schema = [
       </div>
     </section>
 
-    <FaqBlock faqs={eamFaqs} />
-    <FinalCtaSection />
+    <HomeFaqSection faqs={eamFaqs} contactHref="/contacto?producto=eam#formulario" contactLabel="Consultar EAM" />
+    <ProductRelated current="eam" />
+    <ContactBand title="Conversemos sobre tu operación" text="Cuéntanos qué activos, trabajos y procesos de abastecimiento necesitas organizar para preparar una propuesta ajustada a tu operación." primaryLabel="Cotizar EAM" primaryHref="/contacto?producto=eam#formulario" secondaryLabel="Enviar correo" whatsappMessage={contact.whatsappMessages.eam} />
   </main>
   <SiteFooter />
 </Layout>

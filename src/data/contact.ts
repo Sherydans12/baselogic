@@ -41,6 +41,8 @@ export const contact = {
       'Hola BaseLogic, quiero consultar por BaseLogic EduPay para una institución educativa.',
     eam:
       'Hola BaseLogic, me interesa BaseLogic EAM para activos, mantenimiento e inventario.',
+    pos:
+      'Hola BaseLogic, quiero consultar por BaseLogic POS para mi comercio.',
     plans:
       'Hola BaseLogic, quiero orientación sobre los planes disponibles.',
     caseStudies:

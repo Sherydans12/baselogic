@@ -1,0 +1,302 @@
+{
+  "out": [
+    {
+      "route": "catalogo",
+      "size": "desktop",
+      "status": 200,
+      "title": "Productos y plataformas BaseLogic | Booking, EduPay, EAM y POS",
+      "description": "Conoce las plataformas BaseLogic para reservas, gestión educativa, activos, mantenimiento y operación comercial.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 0,
+      "errors": []
+    },
+    {
+      "route": "catalogo",
+      "size": "tablet",
+      "status": 200,
+      "title": "Productos y plataformas BaseLogic | Booking, EduPay, EAM y POS",
+      "description": "Conoce las plataformas BaseLogic para reservas, gestión educativa, activos, mantenimiento y operación comercial.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 0,
+      "errors": []
+    },
+    {
+      "route": "catalogo",
+      "size": "mobile",
+      "status": 200,
+      "title": "Productos y plataformas BaseLogic | Booking, EduPay, EAM y POS",
+      "description": "Conoce las plataformas BaseLogic para reservas, gestión educativa, activos, mantenimiento y operación comercial.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 0,
+      "errors": []
+    },
+    {
+      "route": "booking",
+      "size": "desktop",
+      "status": 200,
+      "title": "Sistema de reservas online para pymes | BaseLogic Booking",
+      "description": "Organiza servicios, profesionales, horarios y reservas en línea con BaseLogic Booking, una plataforma de agenda para pymes y profesionales en Chile.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 8,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "booking",
+      "size": "tablet",
+      "status": 200,
+      "title": "Sistema de reservas online para pymes | BaseLogic Booking",
+      "description": "Organiza servicios, profesionales, horarios y reservas en línea con BaseLogic Booking, una plataforma de agenda para pymes y profesionales en Chile.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 8,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "booking",
+      "size": "mobile",
+      "status": 200,
+      "title": "Sistema de reservas online para pymes | BaseLogic Booking",
+      "description": "Organiza servicios, profesionales, horarios y reservas en línea con BaseLogic Booking, una plataforma de agenda para pymes y profesionales en Chile.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 8,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "edupay",
+      "size": "desktop",
+      "status": 200,
+      "title": "Gestión escolar, familias y finanzas | BaseLogic EduPay",
+      "description": "Conoce EduPay, un ecosistema escolar para gestión académica, finanzas, comunidad educativa y portal de familias.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 6,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "edupay",
+      "size": "tablet",
+      "status": 200,
+      "title": "Gestión escolar, familias y finanzas | BaseLogic EduPay",
+      "description": "Conoce EduPay, un ecosistema escolar para gestión académica, finanzas, comunidad educativa y portal de familias.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 6,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "edupay",
+      "size": "mobile",
+      "status": 200,
+      "title": "Gestión escolar, familias y finanzas | BaseLogic EduPay",
+      "description": "Conoce EduPay, un ecosistema escolar para gestión académica, finanzas, comunidad educativa y portal de familias.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 6,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "eam",
+      "size": "desktop",
+      "status": 200,
+      "title": "Software de activos, abastecimiento y mantenimiento | BaseLogic EAM",
+      "description": "Gestiona activos, órdenes de trabajo, mantenimiento preventivo, abastecimiento, bodegas y trazabilidad operacional con BaseLogic EAM.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 7,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "eam",
+      "size": "tablet",
+      "status": 200,
+      "title": "Software de activos, abastecimiento y mantenimiento | BaseLogic EAM",
+      "description": "Gestiona activos, órdenes de trabajo, mantenimiento preventivo, abastecimiento, bodegas y trazabilidad operacional con BaseLogic EAM.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 7,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "eam",
+      "size": "mobile",
+      "status": 200,
+      "title": "Software de activos, abastecimiento y mantenimiento | BaseLogic EAM",
+      "description": "Gestiona activos, órdenes de trabajo, mantenimiento preventivo, abastecimiento, bodegas y trazabilidad operacional con BaseLogic EAM.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 7,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "pos",
+      "size": "desktop",
+      "status": 200,
+      "title": "Punto de venta e inventario | BaseLogic POS",
+      "description": "Organiza catálogo, presentaciones, caja, ventas en efectivo e inventario de tu comercio con BaseLogic POS.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 8,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "pos",
+      "size": "tablet",
+      "status": 200,
+      "title": "Punto de venta e inventario | BaseLogic POS",
+      "description": "Organiza catálogo, presentaciones, caja, ventas en efectivo e inventario de tu comercio con BaseLogic POS.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 8,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    },
+    {
+      "route": "pos",
+      "size": "mobile",
+      "status": 200,
+      "title": "Punto de venta e inventario | BaseLogic POS",
+      "description": "Organiza catálogo, presentaciones, caja, ventas en efectivo e inventario de tu comercio con BaseLogic POS.",
+      "h1": 1,
+      "overflow": 0,
+      "anchors": [],
+      "imgs": [],
+      "skip": [],
+      "faq": 8,
+      "faqOpened": true,
+      "faqKeyboardClosed": true,
+      "errors": []
+    }
+  ],
+  "contact": [
+    {
+      "product": "booking",
+      "selects": [
+        {
+          "name": "projectType",
+          "value": "BaseLogic Booking",
+          "text": "BaseLogic Booking"
+        },
+        {
+          "name": "budget",
+          "value": "Aún no lo tengo definido",
+          "text": "Aún no lo tengo definido"
+        }
+      ]
+    },
+    {
+      "product": "edupay",
+      "selects": [
+        {
+          "name": "projectType",
+          "value": "BaseLogic EduPay",
+          "text": "BaseLogic EduPay"
+        },
+        {
+          "name": "budget",
+          "value": "Aún no lo tengo definido",
+          "text": "Aún no lo tengo definido"
+        }
+      ]
+    },
+    {
+      "product": "eam",
+      "selects": [
+        {
+          "name": "projectType",
+          "value": "BaseLogic EAM",
+          "text": "BaseLogic EAM"
+        },
+        {
+          "name": "budget",
+          "value": "Aún no lo tengo definido",
+          "text": "Aún no lo tengo definido"
+        }
+      ]
+    },
+    {
+      "product": "pos",
+      "selects": [
+        {
+          "name": "projectType",
+          "value": "BaseLogic POS (Piloto)",
+          "text": "BaseLogic POS"
+        },
+        {
+          "name": "budget",
+          "value": "Aún no lo tengo definido",
+          "text": "Aún no lo tengo definido"
+        }
+      ]
+    }
+  ],
+  "brokenLinks": [],
+  "linkCount": 12
+}

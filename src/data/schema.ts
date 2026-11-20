@@ -23,7 +23,7 @@ export const organizationSchema = (): Schema => ({
   name: site.name,
   url: site.url,
   email: contact.email,
-  logo: absoluteUrl('/BaseLogic%20Logo.png'),
+  logo: absoluteUrl('/images/brand/baselogic-logo.png'),
   areaServed: site.serviceArea,
   description: site.description,
 });

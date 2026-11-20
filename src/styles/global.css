@@ -80,3 +80,177 @@ summary::-webkit-details-marker {
   filter: blur(120px); /* El blur gigante es la clave del efecto neón */
   mix-blend-mode: screen; /* Ayuda a que los colores se mezclen como luz */
 }
+
+/* Sistema compartido para las secciones de la página de inicio. */
+:root {
+  --bl-home-content-width: 80rem;
+  --bl-home-gutter: clamp(1.25rem, 2vw, 2rem);
+  --bl-home-section-space: clamp(2.5rem, 3.5vw, 3rem);
+  --bl-home-ink: #0b1a4c;
+  --bl-home-copy: #405578;
+  --bl-home-accent: #08c9e8;
+  --bl-home-border: #dce8f8;
+  --bl-home-card-radius: 1.5rem;
+}
+
+.bl-home-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(226 232 240 / 70%);
+  padding-block: var(--bl-home-section-space);
+  color: var(--bl-home-ink);
+  scroll-margin-top: 5rem;
+}
+
+.bl-home-section--soft {
+  background-color: #f7faff;
+}
+
+.bl-home-section--white {
+  background-color: #fff;
+}
+
+.bl-home-section--tinted {
+  background-color: #f1f6ff;
+}
+
+.bl-home-section__container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--bl-home-content-width));
+  margin-inline: auto;
+  padding-inline: var(--bl-home-gutter);
+}
+
+.bl-home-section__header {
+  display: grid;
+  align-items: end;
+  gap: 1.25rem;
+}
+
+.bl-home-section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  color: #315ba2;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.bl-home-section__eyebrow::before {
+  width: 2.25rem;
+  height: 3px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background-color: var(--bl-home-accent);
+  content: "";
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bl-home-section__title {
+  max-width: 42rem;
+  margin: 0.9rem 0 0;
+  color: var(--bl-home-ink);
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+.bl-home-section__lede {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--bl-home-copy);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.bl-home-card {
+  border: 1px solid var(--bl-home-border);
+  border-radius: var(--bl-home-card-radius);
+  box-shadow: 0 14px 36px -28px rgb(16 47 105 / 34%);
+}
+
+.bl-home-card--accent {
+  border-color: #7dd3fc;
+}
+
+.bl-home-card--interactive {
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+@media (min-width: 768px) {
+  .bl-home-section__header {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bl-home-section__header {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 2rem;
+  }
+
+  .bl-home-section__lede {
+    border-left: 1px solid #b9d2ff;
+    padding-left: 1.5rem;
+  }
+
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .bl-home-card--interactive:hover {
+    transform: translate3d(0, -3px, 0);
+    border-color: #b8d5fb;
+    box-shadow: 0 18px 38px -28px rgb(16 74 170 / 42%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.home-motion-ready [data-motion-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+    transition:
+      opacity 580ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--home-motion-delay, 0ms);
+  }
+
+  html.home-motion-ready [data-motion-reveal].is-visible,
+  html.home-motion-ready [data-motion-reveal]:focus-within {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  html.home-motion-ready .bl-home-section__header:not(.is-visible) .bl-home-section__eyebrow::before {
+    transform: scaleX(0.58);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .bl-home-card--interactive,
+  .bl-home-card--interactive img,
+  .bl-home-card--interactive svg,
+  .bl-home-section__eyebrow::before,
+  [data-motion-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

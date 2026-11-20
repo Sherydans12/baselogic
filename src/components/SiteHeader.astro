@@ -1,59 +1,445 @@
 ---
-import { Mail, Menu, X } from 'lucide-react';
-import { mainNavigation, navigationCtas } from '../data/navigation';
+import {
+  ArrowRight,
+  Calendar,
+  ChevronDown,
+  Code2,
+  FileText,
+  GraduationCap,
+  HardHat,
+  Layers,
+  Mail,
+  Menu,
+  Monitor,
+  Settings,
+  ShieldCheck,
+  Store,
+  X,
+  Zap,
+} from 'lucide-react';
+import { navigationCtas } from '../data/navigation';
 import { contact, createContactMailtoHref } from '../data/contact';
+import { products } from '../data/products';
+import { services } from '../data/services';
 
 const pathname = Astro.url.pathname;
 const contactHref = createContactMailtoHref(contact.whatsappMessages.general);
 
 const isActive = (href: string) => {
   if (href === '/') return pathname === '/';
-  return pathname === href || pathname.startsWith(`${href}/`);
+  return pathname === href || pathname.startsWith(href + '/');
 };
+
+const productIcons = {
+  booking: Calendar,
+  edupay: GraduationCap,
+  eam: Settings,
+  pos: Store,
+};
+
+const productDescriptions = {
+  booking: 'Agenda y reservas online para servicios profesionales.',
+  edupay: 'Gestión escolar, finanzas y comunidad educativa.',
+  eam: 'Activos, mantenimiento y abastecimiento para operaciones.',
+  pos: 'Punto de venta y control de stock para comercios.',
+};
+
+const productItems = products.map((product) => ({
+  title: product.name,
+  description: productDescriptions[product.id as keyof typeof productDescriptions],
+  href: product.href,
+  icon: productIcons[product.id as keyof typeof productIcons],
+  badge: undefined,
+}));
+
+const capabilities = [
+  {
+    title: 'Sitios web profesionales',
+    description: 'Presencia digital clara y confiable.',
+    href: '/servicios/paginas-web',
+    icon: Monitor,
+  },
+  {
+    title: 'Automatizaciones',
+    description: 'Flujos que reducen tareas manuales.',
+    href: '/servicios/automatizacion',
+    icon: Zap,
+  },
+  {
+    title: 'Sistemas a medida',
+    description: 'Software adaptado a tu operación.',
+    href: '/servicios/sistemas-para-pymes',
+    icon: Code2,
+  },
+  {
+    title: 'Integraciones',
+    description: 'Conecta herramientas y datos clave.',
+    href: '/servicios/automatizacion',
+    icon: Layers,
+  },
+];
+
+const focusAreas = [
+  {
+    title: 'Educación',
+    description: 'Pagos, mensualidades y cobranza para instituciones.',
+    href: '/productos/edupay',
+    icon: GraduationCap,
+  },
+  {
+    title: 'Comercio y pymes',
+    description: 'Ventas, stock y operación diaria.',
+    href: '/productos/pos',
+    icon: Store,
+  },
+  {
+    title: 'Operaciones e industria',
+    description: 'Activos, mantenimiento y trazabilidad.',
+    href: '/productos/eam',
+    icon: HardHat,
+  },
+  {
+    title: 'Claridad operacional',
+    description: 'Tecnología que conecta y simplifica.',
+    href: '/#claridad-operacional',
+    icon: Layers,
+  },
+];
+
+const resourceLinks = [
+  {
+    title: 'Casos de uso',
+    description: 'Escenarios de aplicación por rubro.',
+    href: '/casos-de-exito',
+    icon: Layers,
+  },
+  {
+    title: 'Preguntas frecuentes',
+    description: 'Respuestas sobre procesos y servicios.',
+    href: '/preguntas-frecuentes',
+    icon: FileText,
+  },
+];
+
+const legalLinks = [
+  {
+    title: 'Privacidad',
+    description: 'Cómo se trata la información de contacto.',
+    href: '/legal/privacidad',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Términos',
+    description: 'Condiciones generales de los servicios.',
+    href: '/legal/terminos',
+    icon: FileText,
+  },
+  {
+    title: 'Enviar correo',
+    description: contact.email,
+    href: contactHref,
+    icon: Mail,
+  },
+];
+
+const serviceDescriptions: Record<string, string> = {
+  'paginas-web': 'Presencia digital clara, adaptable y lista para recibir consultas.',
+  'landing-pages': 'Páginas enfocadas en una oferta y una acción principal.',
+  wordpress: 'Sitios editables desde un panel simple.',
+  'webs-estaticas': 'Sitios livianos, rápidos y con menor mantenimiento.',
+  'sistemas-para-pymes': 'Software para ordenar reservas, pagos, stock y procesos.',
+  automatizacion: 'Conecta herramientas y reduce tareas manuales.',
+  'soporte-digital': 'Mantención, respaldos y mejoras continuas.',
+};
+
+const serviceById = (id: string) => {
+  const service = services.find((item) => item.id === id);
+  if (!service) throw new Error('Servicio no encontrado: ' + id);
+  return service;
+};
+
+const serviceItem = (id: string, icon: typeof Monitor) => {
+  const service = serviceById(id);
+  return {
+    title: service.shortTitle,
+    description: serviceDescriptions[id],
+    href: service.href,
+    icon,
+  };
+};
+
+const megaMenus = [
+  {
+    id: 'productos',
+    label: 'Productos',
+    activePaths: ['/productos'],
+    groups: [
+      { heading: 'Productos', items: [
+        { title: 'Ver todos los productos', description: 'Conoce las plataformas BaseLogic.', href: '/productos', icon: Layers },
+        ...productItems,
+      ] },
+      { heading: 'Capacidades', items: capabilities },
+      { heading: 'Enfoque', items: focusAreas },
+    ],
+  },
+  {
+    id: 'servicios',
+    label: 'Servicios',
+    activePaths: ['/servicios'],
+    groups: [
+      {
+        heading: 'Presencia digital',
+        items: [
+          {
+            title: 'Ver todos los servicios',
+            description: 'Explora todas nuestras soluciones y servicios.',
+            href: '/servicios',
+            icon: Layers,
+          },
+          serviceItem('paginas-web', Monitor),
+          serviceItem('landing-pages', Code2),
+          serviceItem('wordpress', FileText),
+        ],
+      },
+      {
+        heading: 'Automatización y software',
+        items: [
+          serviceItem('automatizacion', Zap),
+          serviceItem('sistemas-para-pymes', Settings),
+          serviceItem('webs-estaticas', Monitor),
+        ],
+      },
+      {
+        heading: 'Continuidad',
+        items: [
+          serviceItem('soporte-digital', ShieldCheck),
+          {
+            title: 'Planes y precios',
+            description: 'Opciones de soporte y evolución por etapas.',
+            href: '/planes',
+            icon: FileText,
+          },
+          {
+            title: 'Cotizar un servicio',
+            description: 'Cuéntanos qué necesitas resolver.',
+            href: '/contacto',
+            icon: Mail,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'recursos',
+    label: 'Recursos',
+    activePaths: ['/casos-de-exito', '/preguntas-frecuentes', '/legal'],
+    groups: [
+      { heading: 'Explorar', items: resourceLinks },
+      { heading: 'Información', items: legalLinks },
+      {
+        heading: 'Contacto',
+        items: [
+          {
+            title: 'Formulario de contacto',
+            description: 'Solicita orientación para tu proyecto.',
+            href: '/contacto',
+            icon: Mail,
+          },
+          {
+            title: 'Soluciones por rubro',
+            description: 'Revisa escenarios para distintas operaciones.',
+            href: '/casos-de-exito',
+            icon: Store,
+          },
+          {
+            title: 'BaseLogic',
+            description: 'Tecnología que conecta y simplifica.',
+            href: '/',
+            icon: Layers,
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const featuredItems = [
+  {
+    title: 'Soluciones propias',
+    description: 'Reservas, educación, comercio y gestión de activos.',
+    href: '/productos',
+    image: '/images/generated/home/hero-variant-2-frontal-showcase.jpg',
+    alt: 'Plataforma de gestión representada en una computadora y un teléfono.',
+  },
+  {
+    title: 'Claridad operacional',
+    description: 'Conecta procesos y reduce el trabajo manual.',
+    href: '/#claridad-operacional',
+    image: '/images/generated/home/after-operational-clarity.jpg',
+    alt: 'Profesional revisando indicadores en una plataforma de gestión.',
+  },
+];
 ---
 
-<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] transition-all">
-  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
-    <a href="/" class="group flex items-center gap-3 transition-transform duration-200 hover:scale-[1.01] active:scale-[0.99]" aria-label="BaseLogic inicio">
-      <img src="/BaseLogic%20Logo%20Cropped.png" alt="BaseLogic" class="h-10 sm:h-11 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-90" />
+<header
+  data-site-header
+  class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.06)] backdrop-blur-md"
+>
+  <div class="site-header-inner mx-auto flex min-h-20 max-w-[1780px] items-center justify-between gap-5 px-5 md:px-8">
+    <a
+      href="/"
+      class="group flex shrink-0 items-center transition-transform duration-200 hover:scale-[1.01] active:scale-[0.99]"
+      aria-label="BaseLogic inicio"
+    >
+      <img
+        src="/images/brand/baselogic-logo.png"
+        alt="BaseLogic"
+        width="2152"
+        height="731"
+        class="h-auto w-[168px] object-contain transition-opacity group-hover:opacity-90 sm:w-[190px] md:w-[210px]"
+      />
     </a>
 
-    <nav class="hidden items-center gap-1.5 text-sm font-medium text-slate-600 lg:flex" aria-label="Navegación principal">
-      {mainNavigation.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            'rounded-full px-3.5 py-1.5 transition-all duration-200',
-            isActive(item.href)
-              ? 'bg-blue-50/80 font-semibold text-brand-blue'
-              : 'text-slate-600 hover:bg-slate-100/70 hover:text-slate-900',
-          ]}
-        >
-          {item.label}
-        </a>
+    <nav class="hidden flex-1 items-center justify-center gap-1 text-sm font-medium text-slate-700 xl:flex" aria-label="Navegación principal">
+      {megaMenus.map((menu) => (
+        <details class="desktop-mega group" data-desktop-menu>
+          <summary
+            aria-controls={'header-menu-' + menu.id}
+            class:list={[
+              'desktop-mega-trigger flex cursor-pointer list-none items-center gap-2 rounded-full px-4 py-3 transition-colors duration-150',
+              menu.activePaths.some(isActive)
+                ? 'bg-blue-50 text-brand-ink'
+                : 'text-slate-800 hover:bg-slate-100 hover:text-slate-950',
+            ]}
+          >
+            <span>{menu.label}</span>
+            <ChevronDown class="menu-chevron h-4 w-4 text-slate-800" aria-hidden="true" />
+          </summary>
+
+          <div
+            id={'header-menu-' + menu.id}
+            role="region"
+            aria-label={menu.label + ' menú'}
+            aria-hidden="true"
+            inert
+            class="mega-panel rounded-[24px] border border-blue-100/90 bg-white p-3 shadow-[0_24px_64px_-32px_rgba(0,78,190,0.38)] md:p-4"
+          >
+            <div class="grid gap-x-0 gap-y-7 md:grid-cols-2 xl:grid-cols-[0.95fr_0.95fr_0.95fr_1fr]">
+              {menu.groups.map((group, index) => (
+                <section
+                  class:list={[
+                    'min-w-0',
+                    index < 2 ? 'xl:border-r xl:border-slate-200/90 xl:pr-6' : '',
+                    index > 0 && index < 3 ? 'xl:pl-6' : '',
+                  ]}
+                >
+                  <h2 class="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-600">
+                    {group.heading}
+                  </h2>
+                  <ul class="grid gap-1">
+                    {group.items.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <li>
+                          <a
+                            href={item.href}
+                            data-menu-link
+            class="mega-link group/item flex min-w-0 items-start gap-3 rounded-xl px-1.5 py-2.5 transition-colors hover:bg-blue-50/70 focus-visible:bg-blue-50/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50"
+                          >
+                            <span class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-blue ring-1 ring-blue-100/90 transition-colors group-hover/item:bg-white">
+                              <Icon class="h-[19px] w-[19px]" aria-hidden="true" />
+                            </span>
+                            <span class="min-w-0 pt-0.5">
+                              <span class="flex flex-wrap items-center gap-2 text-[15px] font-bold leading-snug tracking-[-0.015em] text-slate-950">
+                                {item.title}
+                                {'badge' in item && item.badge && (
+                                  <span class="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-800 ring-1 ring-amber-200">
+                                    {item.badge}
+                                  </span>
+                                )}
+                              </span>
+                              <span class="mt-1 block text-[13px] leading-[1.45] text-slate-600">
+                                {item.description}
+                              </span>
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ))}
+
+              <section class="min-w-0 md:col-span-2 xl:col-span-1 xl:pl-6">
+                <h2 class="mb-3 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-600">
+                  Destacados
+                </h2>
+                <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+                  {featuredItems.map((item) => (
+                    <a
+                      href={item.href}
+                      data-menu-link
+                      class="group/feature min-w-0 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50"
+                    >
+                      <div class="mega-feature-frame overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 via-cyan-400 to-blue-700">
+                        <img
+                          src={item.image}
+                          alt={item.alt}
+                          loading="lazy"
+                          class="mega-feature-image h-full w-full object-cover transition-transform duration-300 group-hover/feature:scale-[1.03]"
+                        />
+                      </div>
+                      <span class="mt-2 flex items-start justify-between gap-3">
+                        <span>
+                          <span class="block text-[15px] font-bold leading-snug tracking-[-0.015em] text-slate-950">
+                            {item.title}
+                          </span>
+                          <span class="mt-1 block text-[13px] leading-[1.45] text-slate-600">
+                            {item.description}
+                          </span>
+                        </span>
+                        <ArrowRight class="mt-0.5 h-4 w-4 shrink-0 text-brand-blue transition-transform group-hover/feature:translate-x-1" aria-hidden="true" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </div>
+        </details>
       ))}
+
+      <a
+        href="/planes"
+        class:list={[
+          'rounded-full px-4 py-3 transition-colors hover:bg-slate-100 hover:text-slate-950',
+          isActive('/planes') ? 'font-bold text-slate-950' : 'text-slate-800',
+        ]}
+      >
+        Precios
+      </a>
+      <a
+        href="/contacto"
+        class:list={[
+          'rounded-full px-4 py-3 transition-colors hover:bg-slate-100 hover:text-slate-950',
+          isActive('/contacto') ? 'font-bold text-slate-950' : 'text-slate-800',
+        ]}
+      >
+        Contacto
+      </a>
     </nav>
 
-    <div class="hidden items-center gap-3 lg:flex">
-      <a
-        href={contactHref}
-        class="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-2xs transition-all duration-200 hover:border-brand-blue/30 hover:bg-slate-50 hover:text-brand-blue"
-      >
-        <Mail class="h-4 w-4 text-slate-500" />
-        {navigationCtas.secondary.label}
-      </a>
-      <a
-        href={navigationCtas.primary.href}
-        class="inline-flex items-center rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-blue-600/20 transition-all duration-200 hover:bg-slate-950 hover:shadow-lg hover:shadow-slate-950/20 hover:-translate-y-0.5 active:translate-y-0"
-      >
-        {navigationCtas.primary.label}
-      </a>
-    </div>
+    <a
+      href={navigationCtas.primary.href}
+      class="hidden shrink-0 rounded-full border border-slate-900 px-5 py-2.5 text-sm font-bold text-brand-ink transition-colors hover:border-brand-blue hover:bg-blue-50 hover:text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50 focus-visible:ring-offset-2 xl:inline-flex"
+    >
+      {navigationCtas.primary.label}
+    </a>
 
-    <details class="group relative lg:hidden">
+    <details class="group xl:hidden" data-mobile-menu>
       <summary
-        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-800 shadow-sm transition hover:bg-slate-50 active:scale-95"
-        aria-label="Abrir menú"
+        aria-controls="mobile-navigation-panel"
+        class="flex h-11 min-w-11 cursor-pointer list-none items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3 text-slate-900 shadow-sm transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50"
       >
         <span class="mobile-menu-icon mobile-menu-icon-open" aria-hidden="true">
           <Menu class="h-5 w-5" />
@@ -61,34 +447,72 @@ const isActive = (href: string) => {
         <span class="mobile-menu-icon mobile-menu-icon-close" aria-hidden="true">
           <X class="h-5 w-5" />
         </span>
+        <span class="text-sm font-semibold">Menú</span>
       </summary>
-      <div class="absolute right-0 mt-3 w-[min(88vw,360px)] overflow-hidden rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-xl shadow-2xl shadow-slate-900/15">
-        <nav class="grid p-3 gap-1" aria-label="Navegación móvil">
-          {mainNavigation.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                'rounded-xl px-4 py-3 text-base font-semibold transition-all duration-150',
-                isActive(item.href) ? 'bg-blue-50 text-brand-blue font-bold' : 'text-slate-700 hover:bg-slate-50',
-              ]}
-            >
-              {item.label}
-            </a>
+
+      <div id="mobile-navigation-panel" class="mobile-menu-panel absolute top-full max-h-[78vh] w-[min(92vw,680px)] overflow-y-auto rounded-2xl border border-blue-100 bg-white p-3 shadow-[0_24px_64px_-32px_rgba(0,78,190,0.38)]">
+        <nav class="grid gap-1" aria-label="Navegación móvil">
+          {megaMenus.map((menu) => (
+            <details class="mobile-mega group rounded-xl border-b border-slate-100 last:border-b-0">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-3 rounded-lg px-3 py-3.5 text-base font-bold text-brand-ink transition hover:bg-blue-50/70">
+                <span>{menu.label}</span>
+                <ChevronDown class="menu-chevron h-4 w-4 shrink-0 text-slate-700" aria-hidden="true" />
+              </summary>
+              <div class="space-y-4 px-3 pb-4 pt-1">
+                {menu.groups.map((group) => (
+                  <section>
+                    <h2 class="mb-2 text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-600">
+                      {group.heading}
+                    </h2>
+                    <ul class="grid gap-1">
+                      {group.items.map((item) => (
+                        <li>
+                          <a
+                            href={item.href}
+                            data-menu-link
+                            class="block rounded-lg px-2 py-3 text-base font-semibold text-brand-ink transition hover:bg-blue-50 hover:text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50"
+                          >
+                            {item.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </details>
           ))}
+          <a
+            href="/planes"
+            data-menu-link
+            class="rounded-lg px-3 py-3 text-base font-bold text-brand-ink transition hover:bg-blue-50"
+          >
+            Precios
+          </a>
+          <a
+            href="/contacto"
+            data-menu-link
+            class="rounded-lg px-3 py-3 text-base font-bold text-brand-ink transition hover:bg-blue-50"
+          >
+            Contacto
+          </a>
         </nav>
-        <div class="grid gap-2 border-t border-slate-100 p-3 bg-slate-50/50">
+
+        <div class="mt-2 grid gap-2 border-t border-slate-200 p-2 pt-4">
           <a
             href={navigationCtas.primary.href}
-            class="rounded-xl bg-brand-blue px-4 py-3 text-center text-sm font-bold text-white shadow-md shadow-blue-600/15"
+            data-menu-link
+            class="rounded-xl bg-brand-blue px-4 py-3 text-center text-sm font-bold text-white shadow-md shadow-blue-600/15 transition hover:bg-blue-700"
           >
             {navigationCtas.primary.label}
           </a>
           <a
             href={contactHref}
-            class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-2xs"
+            data-menu-link
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-brand-ink transition hover:border-blue-200 hover:bg-blue-50"
           >
-            <Mail class="h-4 w-4" />
-            {navigationCtas.secondary.label}
+            <Mail class="h-4 w-4" aria-hidden="true" />
+            Enviar correo
           </a>
         </div>
       </div>
@@ -97,6 +521,133 @@ const isActive = (href: string) => {
 </header>
 
 <style>
+  .desktop-mega {
+    position: static;
+  }
+
+  .desktop-mega-trigger::-webkit-details-marker,
+  .mobile-mega > summary::-webkit-details-marker,
+  [data-mobile-menu] > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .desktop-mega-trigger::marker,
+  .mobile-mega > summary::marker,
+  [data-mobile-menu] > summary::marker {
+    content: '';
+  }
+
+  .desktop-mega[open] > .desktop-mega-trigger {
+    background-color: #eaf2ff;
+    color: #0f172a;
+  }
+
+  .site-header-inner {
+    position: relative;
+  }
+
+  @media (max-width: 767px) {
+    .site-header-inner {
+      padding-inline-start: max(1.25rem, env(safe-area-inset-left));
+      padding-inline-end: max(1.25rem, env(safe-area-inset-right));
+    }
+  }
+
+  .menu-chevron {
+    transition: transform 180ms ease-out;
+  }
+
+  details[open] > summary .menu-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mega-panel {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 60;
+    width: min(calc(100vw - 3rem), 1820px);
+    max-height: min(56vh, 640px);
+    margin-top: 0;
+    overflow-y: auto;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transform: translate(-50%, -1rem);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    will-change: opacity, transform;
+    transition:
+      opacity 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      visibility 0s linear 420ms;
+  }
+
+  .mega-feature-frame {
+    height: clamp(5.5rem, 15vh, 8.5rem);
+  }
+
+  @supports selector(details::details-content) {
+    .desktop-mega::details-content {
+      content-visibility: visible;
+    }
+  }
+
+  .desktop-mega[open] > .mega-panel {
+    transform: translate(-50%, 0);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .mega-link {
+    transition:
+      background-color 150ms ease-out,
+      transform 150ms ease-out;
+  }
+
+  .mobile-menu-panel {
+    left: 50%;
+    transform: translate(-50%, -0.35rem);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 120ms ease-out,
+      transform 150ms ease-out,
+      visibility 150ms;
+  }
+
+  [data-mobile-menu][open] > .mobile-menu-panel {
+    transform: translate(-50%, 0);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-duration: 190ms, 210ms, 190ms;
+  }
+
+  @supports (height: 1svh) {
+    .mega-panel {
+      max-height: min(56svh, 640px);
+    }
+
+    .mega-feature-frame {
+      height: clamp(5.5rem, 15svh, 8.5rem);
+    }
+
+    .mobile-menu-panel {
+      max-height: min(56svh, 640px);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .mega-link:hover {
+      transform: translateY(-1px);
+    }
+  }
+
   .mobile-menu-icon {
     display: inline-flex;
   }
@@ -105,11 +656,142 @@ const isActive = (href: string) => {
     display: none;
   }
 
-  details[open] > summary .mobile-menu-icon-open {
+  [data-mobile-menu][open] > summary .mobile-menu-icon-open {
     display: none;
   }
 
-  details[open] > summary .mobile-menu-icon-close {
+  [data-mobile-menu][open] > summary .mobile-menu-icon-close {
     display: inline-flex;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mega-panel,
+    .mobile-menu-panel,
+    .desktop-mega[open] > .mega-panel,
+    .menu-chevron,
+    .mega-link,
+    .mega-feature-image {
+      transition-duration: 0.01ms;
+      transition-delay: 0s;
+    }
+  }
 </style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const desktopMenus = Array.from(
+    header?.querySelectorAll<HTMLDetailsElement>('[data-desktop-menu]') ?? [],
+  );
+  const mobileMenu = header?.querySelector<HTMLDetailsElement>('[data-mobile-menu]');
+  const desktopHover = window.matchMedia('(min-width: 1280px)');
+  let closeTimer: number | undefined;
+
+  const clearCloseTimer = () => {
+    if (closeTimer !== undefined) window.clearTimeout(closeTimer);
+    closeTimer = undefined;
+  };
+
+  desktopMenus.forEach((menu) => {
+    const panel = menu.querySelector<HTMLElement>('.mega-panel');
+    const trigger = menu.querySelector<HTMLElement>('summary');
+    const syncPanelAvailability = () => {
+      if (!panel) return;
+      panel.inert = !menu.open;
+      panel.setAttribute('aria-hidden', String(!menu.open));
+    };
+
+    syncPanelAvailability();
+
+    trigger?.addEventListener('click', (event) => {
+      if (desktopHover.matches && menu.open && event.detail > 0) {
+        event.preventDefault();
+      }
+    });
+
+    menu.addEventListener('pointerenter', (event) => {
+      if (!desktopHover.matches || event.pointerType !== 'mouse') return;
+      clearCloseTimer();
+      menu.open = true;
+    });
+
+    menu.addEventListener('pointerleave', (event) => {
+      if (!desktopHover.matches || event.pointerType !== 'mouse') return;
+      clearCloseTimer();
+      closeTimer = window.setTimeout(() => {
+        if (!menu.matches(':hover') && !menu.contains(document.activeElement)) {
+          menu.open = false;
+        }
+      }, 110);
+    });
+
+    menu.addEventListener('focusout', (event) => {
+      if (!(event.relatedTarget instanceof Node) || !menu.contains(event.relatedTarget)) {
+        menu.open = false;
+      }
+    });
+
+    menu.addEventListener('toggle', () => {
+      syncPanelAvailability();
+      if (!menu.open) return;
+      desktopMenus.forEach((otherMenu) => {
+        if (otherMenu !== menu) otherMenu.open = false;
+      });
+    });
+  });
+
+  desktopHover.addEventListener('change', (event) => {
+    if (event.matches) return;
+    clearCloseTimer();
+    desktopMenus.forEach((menu) => {
+      menu.open = false;
+    });
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (!(event.target instanceof Element)) return;
+    if (!event.target.closest('[data-desktop-menu]')) {
+      desktopMenus.forEach((menu) => {
+        menu.open = false;
+      });
+    }
+    if (mobileMenu?.open && !event.target.closest('[data-mobile-menu]')) {
+      mobileMenu.open = false;
+      mobileMenu.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((menu) => {
+        menu.open = false;
+      });
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const openMenu = desktopMenus.find((menu) => menu.open);
+    if (openMenu) {
+      openMenu.open = false;
+      openMenu.querySelector('summary')?.focus();
+      return;
+    }
+    if (mobileMenu?.open) {
+      mobileMenu.open = false;
+      mobileMenu.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((menu) => {
+        menu.open = false;
+      });
+      mobileMenu.querySelector('summary')?.focus();
+    }
+  });
+
+  mobileMenu?.addEventListener('toggle', () => {
+    if (mobileMenu.open) return;
+    mobileMenu.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((menu) => {
+      menu.open = false;
+    });
+  });
+
+  mobileMenu?.querySelectorAll<HTMLAnchorElement>('a[data-menu-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.open = false;
+      mobileMenu.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((menu) => {
+        menu.open = false;
+      });
+    });
+  });
+</script>

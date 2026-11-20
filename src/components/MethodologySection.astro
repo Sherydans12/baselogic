@@ -1,0 +1,318 @@
+---
+/**
+ * MethodologySection.astro
+ * Cuatro etapas del proceso BaseLogic en un recorrido interactivo.
+ */
+import { Code2, Layers, Rocket, Search } from 'lucide-react';
+
+const steps = [
+  {
+    number: '1',
+    title: 'Entendemos tu operación',
+    description: 'Analizamos tus procesos actuales, cuellos de botella y objetivos comerciales.',
+    icon: Search,
+  },
+  {
+    number: '2',
+    title: 'Diseñamos la solución',
+    description: 'Definimos alcance técnico, arquitectura y plan de implementación por etapas.',
+    icon: Layers,
+  },
+  {
+    number: '3',
+    title: 'Desarrollamos e integramos',
+    description: 'Construcción iterativa, pruebas de calidad e integración con tus sistemas.',
+    icon: Code2,
+  },
+  {
+    number: '4',
+    title: 'Te acompañamos',
+    description: 'Puesta en marcha, soporte directo en Chile y evolución continua.',
+    icon: Rocket,
+  },
+];
+---
+
+<section
+  id="metodologia"
+  aria-labelledby="methodology-heading"
+  class="bl-home-section bl-home-section--tinted methodology-section scroll-mt-20"
+  data-methodology
+>
+  <div class="bl-home-section__container">
+    <header class="methodology-header text-center" data-motion-reveal>
+      <p class="bl-home-section__eyebrow justify-center">Nuestra metodología</p>
+      <h2 id="methodology-heading" class="methodology-title bl-home-section__title mx-auto">
+        Un proceso claro, <span class="text-[#0964ef]">resultados concretos</span>
+      </h2>
+      <p class="methodology-description bl-home-section__lede mx-auto">
+        Te acompañamos en cada etapa, desde el análisis hasta la puesta en marcha, con un enfoque práctico y orientado a resultados.
+      </p>
+    </header>
+
+    <div class="methodology-steps relative mt-8 grid items-stretch gap-4 sm:grid-cols-2 xl:mt-9 xl:grid-cols-4 xl:gap-5">
+      <div class="methodology-track" aria-hidden="true">
+        <span class="methodology-track-progress"></span>
+      </div>
+
+      {steps.map((step, index) => {
+        const StepIcon = step.icon;
+
+        return (
+          <button
+            type="button"
+            aria-pressed={index === 0 ? 'true' : 'false'}
+            data-methodology-step={index}
+            data-methodology-title={step.title}
+            data-motion-reveal
+            style={`--home-motion-delay: ${index * 70}ms`}
+            class="methodology-step group relative flex min-w-0 flex-col text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]"
+          >
+            <span class="methodology-step-number" aria-hidden="true">{step.number}</span>
+            <span class="methodology-step-icon flex h-14 w-14 items-center justify-center rounded-2xl">
+              <StepIcon class="h-7 w-7" strokeWidth={2} aria-hidden="true" />
+            </span>
+            <span class="methodology-step-title mt-5 block text-xl font-extrabold leading-tight tracking-[-0.025em] text-[#0b1a4c]">
+              {step.title}
+            </span>
+            <span class="mt-3 block text-base leading-relaxed text-[#405578]">
+              {step.description}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+
+    <p class="sr-only" aria-live="polite" aria-atomic="true" data-methodology-status>
+      Etapa 1 de 4: Entendemos tu operación
+    </p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-methodology]').forEach((section) => {
+    const steps = Array.from(
+      section.querySelectorAll<HTMLButtonElement>('[data-methodology-step]'),
+    );
+    const status = section.querySelector<HTMLElement>('[data-methodology-status]');
+    const initialActiveIndex = steps.findIndex(
+      (step) => step.getAttribute('aria-pressed') === 'true',
+    );
+    let activeIndex = initialActiveIndex >= 0 ? initialActiveIndex : 0;
+
+    const activateStep = (nextIndex: number) => {
+      if (nextIndex === activeIndex) return;
+
+      activeIndex = nextIndex;
+      steps.forEach((step, index) => {
+        step.setAttribute('aria-pressed', String(index === activeIndex));
+      });
+
+      section.style.setProperty(
+        '--methodology-progress-factor',
+        String(activeIndex / Math.max(steps.length - 1, 1)),
+      );
+
+      if (status) {
+        status.textContent = `Etapa ${activeIndex + 1} de ${steps.length}: ${steps[activeIndex]?.dataset.methodologyTitle ?? ''}`;
+      }
+    };
+
+    steps.forEach((step, stepIndex) => {
+      step.addEventListener('click', () => activateStep(stepIndex));
+      step.addEventListener('focusin', () => activateStep(stepIndex));
+    });
+
+    let scrollFrame: number | null = null;
+    const updateStepFromScroll = () => {
+      scrollFrame = null;
+      const sectionTop = section.getBoundingClientRect().top;
+      const sectionHeight = section.offsetHeight;
+      if (sectionHeight <= 0 || steps.length === 0) return;
+
+      // Advance as the section crosses the lower-middle reading line, so every
+      // state is reached while the section is still comfortably in view.
+      const readingLine = window.innerHeight * 0.68;
+      const progress = Math.min(1, Math.max(0, (readingLine - sectionTop) / sectionHeight));
+      const nextIndex = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+      activateStep(nextIndex);
+    };
+
+    const scheduleStepUpdate = () => {
+      if (scrollFrame !== null) return;
+      scrollFrame = window.requestAnimationFrame(updateStepFromScroll);
+    };
+
+    window.addEventListener('scroll', scheduleStepUpdate, { passive: true });
+    window.addEventListener('resize', scheduleStepUpdate, { passive: true });
+    window.addEventListener('pageshow', scheduleStepUpdate, { passive: true });
+    scheduleStepUpdate();
+  });
+</script>
+
+<style>
+  .methodology-header {
+    max-width: 68rem;
+    margin-inline: auto;
+  }
+
+  .methodology-title {
+    max-width: none;
+    margin-top: 0.85rem;
+    font-size: clamp(2rem, 3.3vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .methodology-description {
+    max-width: 54rem;
+    margin-top: 1rem;
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .methodology-track {
+    position: absolute;
+    z-index: 0;
+    inset-inline: 12.5%;
+    top: 50%;
+    height: 2px;
+    overflow: hidden;
+    background: #c9dbf6;
+    transform: translateY(-50%);
+  }
+
+  .methodology-track-progress {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #08b9db;
+    transform: scaleX(var(--methodology-progress-factor, 0));
+    transform-origin: left center;
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .methodology-step {
+    z-index: 1;
+    min-height: 18rem;
+    padding: 1.5rem;
+    border: 1px solid #dce8f8;
+    border-radius: 1.5rem;
+    background: #fff;
+    box-shadow: 0 14px 36px -28px rgb(16 47 105 / 34%);
+    transition:
+      transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 300ms ease-out,
+      background-color 300ms ease-out,
+      box-shadow 360ms ease-out;
+  }
+
+  .methodology-step-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c6d9f7;
+    border-radius: 999px;
+    background: #f7faff;
+    color: #1559c9;
+    font-size: 1.125rem;
+    font-weight: 900;
+    transition:
+      color 260ms ease-out,
+      border-color 260ms ease-out,
+      background-color 260ms ease-out,
+      transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .methodology-step-icon {
+    color: #0964ef;
+    background: #eaf3ff;
+    transition:
+      color 300ms ease-out,
+      background-color 300ms ease-out,
+      transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 340ms ease-out;
+  }
+
+  .methodology-step-title {
+    transition: color 260ms ease-out;
+  }
+
+  .methodology-step[aria-pressed='true'] {
+    border-color: #a9caff;
+    background: #fafdff;
+    box-shadow: 0 20px 42px -30px rgb(16 74 170 / 46%);
+  }
+
+  .methodology-step[aria-pressed='true'] .methodology-step-number {
+    border-color: #1262ed;
+    background: #1262ed;
+    color: #fff;
+  }
+
+  .methodology-step[aria-pressed='true'] .methodology-step-icon {
+    background: #e3f4ff;
+    color: #075be8;
+    box-shadow: 0 8px 18px -14px rgb(0 114 229 / 70%);
+  }
+
+  .methodology-step[aria-pressed='true'] .methodology-step-title {
+    color: #075be8;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .methodology-step:hover {
+      transform: translate3d(0, -4px, 0);
+      border-color: #b7d2fa;
+      box-shadow: 0 20px 42px -30px rgb(16 74 170 / 42%);
+    }
+
+    .methodology-step:hover .methodology-step-icon {
+      transform: translate3d(0, -2px, 0);
+      color: #075be8;
+      background: #e3f4ff;
+    }
+
+    .methodology-step:hover .methodology-step-number {
+      transform: translate3d(0, -1px, 0);
+      border-color: #6cafff;
+    }
+
+    .methodology-step:hover .methodology-step-title {
+      color: #075be8;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .methodology-track {
+      top: 46%;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .methodology-step {
+      min-height: 16rem;
+      padding: 1.25rem;
+    }
+
+    .methodology-step-number {
+      top: 0.875rem;
+      right: 0.875rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .methodology-step,
+    .methodology-step-number,
+    .methodology-step-icon,
+    .methodology-step-title,
+    .methodology-track-progress {
+      transition: none;
+    }
+  }
+</style>

@@ -188,10 +188,54 @@ export const services = [
     tag: 'Alto rendimiento',
     title: 'Webs estáticas rápidas',
     shortTitle: 'Webs rápidas',
-    href: '/servicios',
+    href: '/servicios/webs-rapidas',
     summary:
       'Sitios livianos, veloces y seguros para empresas que necesitan información clara y alto rendimiento técnico.',
+    detailTitle: 'Webs rápidas para una presencia digital clara y liviana',
+    detailSubtitle:
+      'Desarrollamos sitios estáticos para empresas que necesitan comunicar sus servicios con rapidez, una estructura clara y menor complejidad de mantenimiento.',
     benefits: ['Rapidez', 'Seguridad', 'Bajo mantenimiento', 'Buena base SEO'],
+    includes: [
+      'Diseño adaptable a computador, tablet y celular',
+      'Arquitectura estática y recursos optimizados para una carga liviana',
+      'Secciones informativas y navegación clara',
+      'Base SEO con títulos, descripciones y estructura organizada',
+      'Contacto mediante formulario o enlaces, según el proyecto',
+      'Posibilidad de soporte y evolución por etapas',
+    ],
+    idealFor: [
+      'Empresas que necesitan presentar servicios e información de contacto',
+      'Negocios cuyo contenido cambia con poca frecuencia',
+      'Profesionales que buscan una presencia digital clara',
+      'Proyectos que priorizan una estructura liviana',
+    ],
+    useCases: [
+      'Presentar una empresa y sus servicios',
+      'Publicar una página de campaña o lanzamiento',
+      'Recibir consultas desde un sitio adaptable a celular',
+      'Partir con una estructura simple y ampliarla por etapas',
+    ],
+    faqs: [
+      {
+        question: '¿Qué significa que una web sea estática?',
+        answer:
+          'Es una forma de construir y publicar páginas preparadas con anticipación. Puede ser una alternativa simple para sitios que no necesitan cambiar sus contenidos constantemente.',
+      },
+      {
+        question: '¿Puedo tener un formulario de contacto?',
+        answer:
+          'Sí. El formulario o los enlaces de contacto se definen según las necesidades y el alcance del proyecto.',
+      },
+      {
+        question: '¿Una web estática se puede actualizar?',
+        answer:
+          'Sí. Sus contenidos y secciones pueden actualizarse y evolucionar; también podemos evaluar apoyo de mantenimiento según el caso.',
+      },
+    ],
+    related: ['paginas-web', 'landing-pages', 'soporte-digital'],
+    primaryCta: 'Cotizar web rápida',
+    secondaryCta: 'Consultar por correo',
+    whatsappMessage: 'Hola BaseLogic, quiero consultar por una web rápida para mi negocio.',
     status: 'active',
   },
   {
@@ -309,10 +353,54 @@ export const services = [
     tag: 'Continuidad digital',
     title: 'Soporte y continuidad digital',
     shortTitle: 'Soporte',
-    href: '/planes',
+    href: '/servicios/soporte-digital',
     summary:
       'Mantención, hosting, respaldos, cambios menores y mejoras continuas para asegurar la continuidad de tu plataforma.',
+    detailTitle: 'Soporte y continuidad para tu presencia digital',
+    detailSubtitle:
+      'Acompañamos la mantención y evolución de tu sitio o plataforma con un alcance de soporte definido según lo que necesita tu negocio.',
     benefits: ['Acompañamiento mensual', 'Respaldos', 'Cambios menores', 'Mejoras continuas'],
+    includes: [
+      'Mantención de sitios y plataformas según el acuerdo',
+      'Respaldo de información y apoyo de continuidad',
+      'Cambios menores de contenido',
+      'Orientación sobre alojamiento y cuentas de correo',
+      'Revisión de mejoras y necesidades de evolución',
+      'Alcance y condiciones definidos para cada proyecto',
+    ],
+    idealFor: [
+      'Empresas con un sitio que necesita mantención',
+      'Negocios que requieren apoyo para cambios de contenido',
+      'Equipos que buscan continuidad para su plataforma',
+      'Proyectos que quieren evolucionar por etapas',
+    ],
+    useCases: [
+      'Mantener actualizada la información de una web',
+      'Organizar respaldos y soporte de una plataforma',
+      'Revisar alojamiento o cuentas de correo comercial',
+      'Planificar mejoras a partir de nuevas necesidades',
+    ],
+    faqs: [
+      {
+        question: '¿El soporte tiene un alcance fijo para todos los proyectos?',
+        answer:
+          'No. Revisamos tu plataforma y acordamos el alcance, los servicios y la modalidad de acompañamiento que correspondan a tu caso.',
+      },
+      {
+        question: '¿Pueden ayudar con respaldos y alojamiento?',
+        answer:
+          'Sí. Podemos evaluar mantención, respaldos y alojamiento como parte de un plan o acuerdo de soporte.',
+      },
+      {
+        question: '¿Puedo solicitar cambios o mejoras después de publicar?',
+        answer:
+          'Sí. Podemos apoyar con cambios menores y evaluar mejoras o nuevas etapas según el acuerdo y las prioridades del proyecto.',
+      },
+    ],
+    related: ['paginas-web', 'webs-estaticas', 'automatizacion'],
+    primaryCta: 'Consultar por soporte',
+    secondaryCta: 'Consultar por correo',
+    whatsappMessage: 'Hola BaseLogic, quiero consultar por soporte y continuidad digital.',
     status: 'active',
   },
 ];

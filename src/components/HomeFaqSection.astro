@@ -1,0 +1,79 @@
+---
+import { ArrowRight, ChevronDown, MessageCircle } from 'lucide-react';
+
+interface Faq {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: Faq[];
+  contactHref?: string;
+  contactLabel?: string;
+  showContactCard?: boolean;
+  allFaqsHref?: string;
+}
+
+const {
+  faqs,
+  contactHref = '/contacto#formulario',
+  contactLabel = 'Hablemos de tu proyecto',
+  showContactCard = true,
+  allFaqsHref,
+} = Astro.props;
+---
+
+<section id="preguntas-frecuentes" aria-labelledby="home-faq-heading" class="bl-home-section bl-home-section--soft">
+  <div class="bl-home-section__container">
+    <header class="bl-home-section__header">
+      <div>
+        <p class="bl-home-section__eyebrow">Resolución de dudas</p>
+        <h2 id="home-faq-heading" class="bl-home-section__title">
+          Preguntas <span class="text-brand-blue">frecuentes</span>
+        </h2>
+      </div>
+      <div class="bl-home-section__lede">
+        <p>Conoce cómo trabajamos y encuentra respuestas para dar el siguiente paso con mayor claridad.</p>
+        {allFaqsHref && (
+          <a href={allFaqsHref} class="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#0754c9] hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+            Ver todas las preguntas
+            <ArrowRight class="h-4 w-4" aria-hidden="true" />
+          </a>
+        )}
+      </div>
+    </header>
+
+    <div class:list={[
+      'mt-7 grid items-start gap-6 md:mt-8',
+      showContactCard && 'lg:grid-cols-[0.72fr_1.28fr] lg:gap-10',
+    ]}>
+      {showContactCard && <div class="order-2 rounded-3xl border border-[#dce8f8] bg-[#eaf2ff] p-6 sm:p-7 lg:order-1">
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#0964ef] ring-1 ring-[#d7e6fb]">
+          <MessageCircle class="h-6 w-6" aria-hidden="true" />
+        </span>
+        <h3 class="mt-5 text-xl font-extrabold tracking-[-0.025em] text-[#0b1a4c]">¿Tienes otra pregunta?</h3>
+        <p class="mt-3 max-w-sm text-base leading-relaxed text-[#405578]">
+          Cuéntanos qué necesitas resolver y conversemos sobre las opciones para tu proyecto.
+        </p>
+        <a href={contactHref} class="group mt-5 inline-flex min-h-11 items-center gap-2 font-bold text-[#0754c9] transition-colors hover:text-[#0b1a4c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+          {contactLabel}
+          <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        </a>
+      </div>}
+
+      <div class:list={['grid items-start gap-3', showContactCard ? 'order-1 lg:order-2' : 'lg:grid-cols-2 lg:gap-x-5']}>
+        {faqs.map((faq) => (
+          <details class="group rounded-2xl border border-[#dce8f8] bg-white transition-colors hover:border-[#abcaf5] open:border-[#abcaf5]">
+            <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left text-base font-bold leading-snug text-[#0b1a4c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#075be8] sm:px-6">
+              <span>{faq.question}</span>
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#edf5ff] text-[#0964ef] transition-colors group-open:bg-[#0964ef] group-open:text-white">
+                <ChevronDown class="h-4 w-4 transition-transform duration-200 group-open:rotate-180" aria-hidden="true" />
+              </span>
+            </summary>
+            <p class="mx-5 border-t border-[#e3ecf8] pb-5 pt-4 text-base leading-relaxed text-[#405578] sm:mx-6">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

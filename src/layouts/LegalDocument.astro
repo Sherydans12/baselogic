@@ -1,0 +1,303 @@
+---
+import { ArrowRight, Building2, ChevronRight, FileCheck2, ShieldCheck } from 'lucide-react';
+import Layout from './Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { contact } from '../data/contact';
+import type { SeoEntry } from '../data/seo';
+import { site } from '../data/site';
+import '../styles/interior-pages.css';
+
+interface Props {
+  seo: SeoEntry;
+  kind: 'privacy' | 'terms';
+  title: string;
+  intro: string;
+  sections: { id: string; title: string; text: string; contactLink?: boolean }[];
+  related: { href: string; label: string };
+}
+
+const { seo, kind, title, intro, sections, related } = Astro.props;
+const Icon = kind === 'privacy' ? ShieldCheck : FileCheck2;
+---
+
+<Layout title={seo.title} description={seo.description} canonicalPath={seo.path}>
+  <SiteHeader />
+  <main class:list={['interior-page', 'legal-document', `legal-document--${kind}`]}>
+    <div class="interior-shell">
+      <nav aria-label="Ruta de navegación" class="legal-trail">
+        <a href="/">Inicio</a>
+        <ChevronRight width={14} height={14} aria-hidden="true" />
+        <span>Legal</span>
+      </nav>
+
+      <header class="legal-hero">
+        <div>
+          <h1 id="legal-title" class="interior-title">{title}</h1>
+          <p class="interior-lede">{intro}</p>
+        </div>
+        <div class="legal-hero__art" aria-hidden="true">
+          <span><Icon width={60} height={60} strokeWidth={1.35} /></span>
+        </div>
+      </header>
+
+      <div class="legal-grid">
+        <aside class="legal-sidebar" aria-label="Navegación del documento">
+          <nav aria-label="En esta página" class="legal-index">
+            <h2>En esta página</h2>
+            <ol>
+              {sections.map((section, index) => (
+                <li><a href={`#${section.id}`}><span aria-hidden="true">{index + 1}.</span> {section.title}</a></li>
+              ))}
+            </ol>
+          </nav>
+          <a href={related.href} class="interior-link legal-related">
+            {related.label}
+            <ArrowRight width={16} height={16} aria-hidden="true" />
+          </a>
+        </aside>
+
+        <article class="legal-content" aria-labelledby="legal-title">
+          <div class="legal-identity">
+            <Building2 width={23} height={23} aria-hidden="true" />
+            <p><strong>Identidad corporativa:</strong> BaseLogic es una marca de <strong>{site.legalEntity}</strong> ({site.serviceArea}).</p>
+          </div>
+
+          {sections.map((section, index) => (
+            <section id={section.id} aria-labelledby={`${section.id}-titulo`}>
+              <h2 id={`${section.id}-titulo`}><span>{index + 1}.</span> {section.title}</h2>
+              <p>
+                {section.text}{section.contactLink && <> <a href={`mailto:${contact.email}`}>{contact.email}</a>.</>}
+              </p>
+            </section>
+          ))}
+        </article>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>
+
+<style>
+  .legal-document {
+    padding-block: 0.75rem clamp(3rem, 6vw, 5rem);
+  }
+
+  .legal-trail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.375rem;
+    color: var(--interior-copy);
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .legal-trail a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    color: var(--interior-link);
+  }
+
+  .legal-trail a:hover {
+    text-decoration: underline;
+  }
+
+  .legal-hero {
+    display: grid;
+    align-items: center;
+    gap: 2rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 4.75vw, 4rem);
+    background:
+      radial-gradient(ellipse at 90% 75%, #c9e2ff, transparent 68%),
+      #edf5ff;
+  }
+
+  .legal-document--terms .legal-hero {
+    --interior-lede-color: #dfebff;
+
+    background:
+      radial-gradient(ellipse at 95% 50%, #2059a7, transparent 65%),
+      var(--interior-navy);
+    color: white;
+  }
+
+  .legal-hero h1 {
+    font-size: clamp(2.25rem, 4.7vw, 4.25rem);
+    text-wrap: pretty;
+  }
+
+  .legal-hero .interior-lede {
+    max-width: 57ch;
+    margin-top: 0.875rem;
+  }
+
+  .legal-hero__art {
+    position: relative;
+    display: none;
+    min-height: 9rem;
+    place-items: center;
+    color: #0c59bd;
+  }
+
+  .legal-hero__art::before,
+  .legal-hero__art::after {
+    position: absolute;
+    inset: 10% 3%;
+    transform: rotate(-20deg);
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.28;
+    content: '';
+  }
+
+  .legal-hero__art::after {
+    inset: -2% 13%;
+    transform: rotate(21deg);
+  }
+
+  .legal-hero__art span {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 6.5rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 1rem;
+    background: #f7fbff;
+    box-shadow: 0 16px 32px -20px #19468280;
+  }
+
+  .legal-document--terms .legal-hero__art {
+    color: #a5e7ff;
+  }
+
+  .legal-document--terms .legal-hero__art span {
+    background: #102f5c;
+    box-shadow: 0 16px 32px -20px #071224b3;
+  }
+
+  .legal-grid {
+    display: grid;
+    gap: 2rem;
+    padding-top: clamp(1.75rem, 4vw, 3.5rem);
+  }
+
+  .legal-index {
+    border-radius: 0.875rem;
+    padding: 1rem 0.75rem;
+    background: var(--interior-ice);
+  }
+
+  .legal-index h2 {
+    margin: 0 0.5rem 0.375rem;
+    font-weight: 800;
+  }
+
+  .legal-index a {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    color: var(--interior-copy);
+    font-size: 0.9375rem;
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  .legal-index a:hover {
+    background: #e3efff;
+    color: var(--interior-link);
+  }
+
+  .legal-index a span,
+  .legal-content h2 span {
+    flex: none;
+    color: var(--interior-link);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .legal-related {
+    margin: 0.5rem 0.25rem 0;
+    font-size: 0.9375rem;
+  }
+
+  .legal-content {
+    min-width: 0;
+    max-width: 74ch;
+  }
+
+  .legal-identity {
+    display: flex;
+    align-items: start;
+    gap: 0.875rem;
+    padding-bottom: 1.375rem;
+    color: var(--interior-copy);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .legal-identity svg {
+    flex: none;
+    color: var(--interior-link);
+  }
+
+  .legal-content section {
+    border-top: 1px solid var(--interior-border);
+    padding-block: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .legal-content h2 {
+    display: flex;
+    gap: 0.625rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  .legal-content section:target h2 {
+    color: var(--interior-link);
+  }
+
+  .legal-content section p {
+    margin-top: 0.75rem;
+    color: var(--interior-copy);
+    line-height: 1.75;
+  }
+
+  .legal-content section a {
+    color: var(--interior-link);
+    font-weight: 700;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 42rem) {
+    .legal-hero {
+      grid-template-columns: minmax(0, 1fr) minmax(9rem, 0.5fr);
+    }
+
+    .legal-hero__art {
+      display: grid;
+    }
+  }
+
+  @media (min-width: 56rem) {
+    .legal-grid {
+      grid-template-columns: minmax(15rem, 0.45fr) minmax(0, 1fr);
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .legal-sidebar {
+      position: sticky;
+      top: var(--interior-anchor-offset);
+    }
+  }
+</style>

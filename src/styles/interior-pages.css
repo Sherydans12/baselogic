@@ -1,0 +1,87 @@
+.interior-page {
+  --interior-ink: var(--bl-home-ink);
+  --interior-copy: var(--bl-home-copy);
+  --interior-border: var(--bl-home-border);
+  --interior-link: #0754c9;
+  --interior-blue: #0964ef;
+  --interior-ice: #f4f8ff;
+  --interior-navy: #071a36;
+  --interior-anchor-offset: 7rem;
+
+  background: white;
+  color: var(--interior-ink);
+}
+
+.interior-shell {
+  width: min(100%, 75rem);
+  margin-inline: auto;
+  padding-inline: var(--bl-home-gutter);
+}
+
+.interior-title {
+  font-size: clamp(2.4rem, 5.4vw, 4.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.03;
+  text-wrap: balance;
+}
+
+.interior-lede {
+  color: var(--interior-lede-color, var(--interior-copy));
+  font-size: clamp(1rem, 1.4vw, 1.1875rem);
+  line-height: 1.65;
+}
+
+.interior-heading {
+  font-size: clamp(1.625rem, 3vw, 2.375rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+
+.interior-page :where(a, button, summary):focus-visible {
+  outline: 2px solid var(--interior-focus, var(--interior-blue));
+  outline-offset: 3px;
+}
+
+.interior-page :where([id]) {
+  scroll-margin-top: var(--interior-anchor-offset);
+}
+
+.interior-link,
+.interior-button {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.625rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.interior-link {
+  color: var(--interior-link);
+}
+
+.interior-link:hover {
+  text-decoration: underline;
+}
+
+.interior-button {
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.125rem;
+  background: var(--interior-button-bg, var(--interior-link));
+  color: var(--interior-button-text, white);
+  transition: background-color 160ms ease-out;
+}
+
+.interior-button:hover {
+  background: var(--interior-button-hover, #10376e);
+}
+
+.interior-link svg,
+.interior-button svg {
+  flex: none;
+}

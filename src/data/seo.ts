@@ -31,6 +31,12 @@ export const seo = {
       'Sitios WordPress profesionales para empresas que necesitan editar textos, imágenes y contenidos desde un panel simple.',
     path: '/servicios/wordpress',
   },
+  fastWebsites: {
+    title: 'Webs rápidas y livianas para empresas | BaseLogic',
+    description:
+      'Sitios web estáticos, rápidos y adaptables para empresas que necesitan una presencia clara y de bajo mantenimiento.',
+    path: '/servicios/webs-rapidas',
+  },
   pymeSystems: {
     title: 'Sistemas a medida para pymes y empresas | BaseLogic',
     description:
@@ -43,16 +49,22 @@ export const seo = {
       'Automatizamos tareas repetitivas para pymes y empresas: formularios, notificaciones, recordatorios, seguimiento y reportes.',
     path: '/servicios/automatizacion',
   },
+  digitalSupport: {
+    title: 'Soporte y continuidad digital para empresas | BaseLogic',
+    description:
+      'Mantención, respaldos, cambios menores y evolución para sitios y plataformas, con un alcance definido según cada proyecto.',
+    path: '/servicios/soporte-digital',
+  },
   products: {
     title: 'Productos y plataformas BaseLogic | Booking, EduPay, EAM y POS',
     description:
-      'Conoce las plataformas de BaseLogic para reservas online, gestión financiera escolar, control de activos y punto de venta e inventario en implementación piloto.',
+      'Conoce las plataformas BaseLogic para reservas, gestión educativa, activos, mantenimiento y operación comercial.',
     path: '/productos',
   },
   pos: {
-    title: 'Punto de venta e inventario (Piloto) | BaseLogic POS',
+    title: 'Punto de venta e inventario | BaseLogic POS',
     description:
-      'BaseLogic POS es un sistema en desarrollo e implementación piloto para comercios que necesitan ordenar catálogo, presentaciones de precio, caja, ventas en efectivo y saldos de inventario.',
+      'Organiza catálogo, presentaciones, caja, ventas en efectivo e inventario de tu comercio con BaseLogic POS.',
     path: '/productos/pos',
   },
   booking: {
@@ -62,9 +74,9 @@ export const seo = {
     path: '/productos/booking',
   },
   edupay: {
-    title: 'Gestión financiera y cobranza escolar | BaseLogic EduPay',
+    title: 'Gestión escolar, familias y finanzas | BaseLogic EduPay',
     description:
-      'BaseLogic EduPay ayuda a colegios, jardines e instituciones educativas a ordenar mensualidades, pagos, cobranza, conciliación y seguimiento administrativo.',
+      'Conoce EduPay, un ecosistema escolar para gestión académica, finanzas, comunidad educativa y portal de familias.',
     path: '/productos/edupay',
   },
   eam: {
@@ -78,6 +90,12 @@ export const seo = {
     description:
       'Escenarios de aplicación y soluciones digitales por rubro para empresas en Chile: reservas, presencia web, gestión financiera escolar, automatización y control de activos.',
     path: '/casos-de-exito',
+  },
+  faq: {
+    title: 'Preguntas frecuentes | BaseLogic',
+    description:
+      'Respuestas sobre cómo iniciar un proyecto con BaseLogic, cotizar un plan, solicitar soporte y explorar soluciones por rubro.',
+    path: '/preguntas-frecuentes',
   },
   plans: {
     title: 'Planes web y continuidad digital para empresas | BaseLogic',

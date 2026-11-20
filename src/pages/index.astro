@@ -3,35 +3,96 @@ import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import HomeHero from '../components/HomeHero.astro';
-import WhatWeDoSection from '../components/WhatWeDoSection.astro';
 import OperationalClaritySection from '../components/OperationalClaritySection.astro';
 import MainServicesSection from '../components/MainServicesSection.astro';
 import ProductsPreviewSection from '../components/ProductsPreviewSection.astro';
-import IndustriesUseCasesSection from '../components/IndustriesUseCasesSection.astro';
+import MethodologySection from '../components/MethodologySection.astro';
 import PlansPreviewSection from '../components/PlansPreviewSection.astro';
 import FinalCtaSection from '../components/FinalCtaSection.astro';
-import FaqBlock from '../components/FaqBlock.astro';
+import HomeFaqSection from '../components/HomeFaqSection.astro';
 import { seo } from '../data/seo';
-import { generalFaqs } from '../data/faqs';
+import { homeFaqs } from '../data/faqs';
 import { contact } from '../data/contact';
 import { baseSchema, faqSchema } from '../data/schema';
 
 const pageSeo = seo.home;
-const schema = [...baseSchema(pageSeo.description), faqSchema(generalFaqs)];
+const schema = [...baseSchema(pageSeo.description), faqSchema(homeFaqs)];
 ---
 
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.general}>
   <SiteHeader />
   <main>
     <HomeHero />
-    <WhatWeDoSection />
-    <OperationalClaritySection />
-    <MainServicesSection />
-    <ProductsPreviewSection />
-    <IndustriesUseCasesSection />
-    <PlansPreviewSection />
-    <FaqBlock faqs={generalFaqs} />
-    <FinalCtaSection />
+    <div class="home-content">
+      <OperationalClaritySection />
+      <MainServicesSection />
+      <ProductsPreviewSection />
+      <MethodologySection />
+      <PlansPreviewSection />
+      <HomeFaqSection faqs={homeFaqs} showContactCard={false} allFaqsHref={seo.faq.path} />
+      <FinalCtaSection />
+    </div>
   </main>
   <SiteFooter />
 </Layout>
+
+<style>
+  @media (min-width: 1024px) {
+    .home-content {
+      --bl-home-content-width: 72rem;
+      --bl-home-section-space: 2.5rem;
+      --bl-home-card-radius: 1.25rem;
+    }
+
+    .home-content :global(.bl-home-section__title),
+    .home-content :global(.methodology-title) {
+      font-size: clamp(1.875rem, 2.6vw, 2.5rem);
+    }
+
+    .home-content :global(.bl-home-section__lede) {
+      font-size: 1rem;
+    }
+
+    .home-content :global(.methodology-step) {
+      min-height: 14rem;
+      padding: 1.25rem;
+    }
+
+    .home-content :global(.methodology-step-title),
+    .home-content :global(.service-card-title) {
+      font-size: 1.125rem;
+    }
+
+    .home-content :global(.home-final-cta) {
+      padding-block: 3rem;
+    }
+
+    .home-content :global(.home-final-cta h2) {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+<script>
+  const homeMotionTargets = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-motion-reveal]'),
+  );
+  const homeMotionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (homeMotionAllowed && homeMotionTargets.length && 'IntersectionObserver' in window) {
+    const homeRevealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px 120px 0px' },
+    );
+
+    homeMotionTargets.forEach((target) => homeRevealObserver.observe(target));
+    document.documentElement.classList.add('home-motion-ready');
+  }
+</script>

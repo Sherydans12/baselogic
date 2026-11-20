@@ -1,51 +1,37 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import ListingHero from '../../components/ListingHero.astro';
+import LegalDocument from '../../layouts/LegalDocument.astro';
 import { seo } from '../../data/seo';
-import { contact } from '../../data/contact';
-import { site } from '../../data/site';
 
-const pageSeo = seo.terms;
+const sections = [
+  {
+    id: 'alcance-y-propuestas',
+    title: 'Alcance y propuestas comerciales',
+    text: 'Cada proyecto, implementación o servicio se rige por una propuesta comercial o acuerdo específico donde se definen el alcance técnico, etapas, plazos estimados, entregables, valores y responsabilidades de ambas partes.',
+  },
+  {
+    id: 'valores-y-servicios-externos',
+    title: 'Valores referenciales y servicios externos',
+    text: 'Los valores publicados en el sitio web son referenciales. El presupuesto definitivo puede variar según el alcance acordado, integraciones, soporte requerido y servicios externos tales como alojamiento (hosting), registro de dominios, cuentas de correo, pasarelas de pago o licencias de terceros.',
+  },
+  {
+    id: 'soporte-y-continuidad',
+    title: 'Soporte, continuidad y evolución',
+    text: 'El soporte técnico, la mantención periódica y las mejoras o nuevos módulos posteriores a la entrega se definen según el plan contratado o el acuerdo específico vigente con cada cliente.',
+  },
+  {
+    id: 'contacto',
+    title: 'Contacto',
+    text: 'Para consultas sobre estos términos puedes escribir a',
+    contactLink: true,
+  },
+];
 ---
 
-<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path}>
-  <SiteHeader />
-  <main>
-    <ListingHero
-      eyebrow="Legal"
-      title="Términos de servicio"
-      text="Condiciones generales aplicables a propuestas, servicios, soporte y soluciones digitales entregadas por BaseLogic (marca de SENAS TECNOLOGÍAS SpA)."
-    />
-
-    <section class="bg-white py-16">
-      <div class="mx-auto max-w-4xl px-5 text-lg leading-8 text-slate-700 md:px-8">
-        <p class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-base text-slate-600">
-          <strong>Identidad corporativa:</strong> BaseLogic es una marca de <strong>{site.legalEntity}</strong> ({site.serviceArea}).
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">1. Alcance y propuestas comerciales</h2>
-        <p class="mt-4">
-          Cada proyecto, implementación o servicio se rige por una propuesta comercial o acuerdo específico donde se definen el alcance técnico, etapas, plazos estimados, entregables, valores y responsabilidades de ambas partes.
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">2. Valores referenciales y servicios externos</h2>
-        <p class="mt-4">
-          Los valores publicados en el sitio web son referenciales. El presupuesto definitivo puede variar según el alcance acordado, integraciones, soporte requerido y servicios externos tales como alojamiento (hosting), registro de dominios, cuentas de correo, pasarelas de pago o licencias de terceros.
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">3. Soporte, continuidad y evolución</h2>
-        <p class="mt-4">
-          El soporte técnico, la mantención periódica y las mejoras o nuevos módulos posteriores a la entrega se definen según el plan contratado o el acuerdo específico vigente con cada cliente.
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">4. Contacto</h2>
-        <p class="mt-4">
-          Para consultas sobre estos términos puedes escribir a <a href={`mailto:${contact.email}`} class="font-bold text-brand-blue hover:underline">{contact.email}</a>.
-        </p>
-      </div>
-    </section>
-  </main>
-  <SiteFooter />
-</Layout>
+<LegalDocument
+  seo={seo.terms}
+  kind="terms"
+  title="Términos de servicio"
+  intro="Condiciones generales aplicables a propuestas, servicios, soporte y soluciones digitales entregadas por BaseLogic (marca de SENAS TECNOLOGÍAS SpA)."
+  sections={sections}
+  related={{ href: seo.privacy.path, label: 'Ver política de privacidad' }}
+/>

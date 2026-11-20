@@ -1,58 +1,380 @@
 ---
+import { ArrowDown, ArrowRight, Check, Info, Layers3, Mail, Monitor, Settings2 } from 'lucide-react';
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import ListingHero from '../components/ListingHero.astro';
-import FinalCtaSection from '../components/FinalCtaSection.astro';
 import { plans, plansNotes } from '../data/plans';
 import { seo } from '../data/seo';
-import { contact } from '../data/contact';
+import { contact, createContactMailtoHref } from '../data/contact';
 import { baseSchema } from '../data/schema';
+import '../styles/interior-pages.css';
 
 const pageSeo = seo.plans;
 const schema = baseSchema(pageSeo.description);
+const planIcons = { 'presencia-digital': Monitor, 'pyme-activa': Layers3, 'operacion-digital': Settings2 };
 ---
 
 <Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.plans}>
   <SiteHeader />
-  <main>
-    <ListingHero
-      eyebrow="Planes"
-      title="Planes web y continuidad digital para partir con claridad"
-      text="Estos valores son referencias iniciales para orientar una cotización. Cada proyecto se define según alcance, contenido, integraciones y soporte requerido."
-    />
+  <main class="interior-page">
+    <section class="plans-overview" aria-labelledby="plans-title">
+      <div class="interior-shell">
+        <header class="plans-intro">
+          <h1 id="plans-title" class="interior-title">Planes y <span>precios</span></h1>
+          <p class="interior-lede">
+            Compara qué incluye cada plan y sus valores de referencia para lanzar tu web o digitalizar parte de tu operación.
+          </p>
+        </header>
 
-    <section class="bg-white py-20">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid gap-5 lg:grid-cols-3">
+        <nav class="plans-mobile-index" aria-label="Ver precios y saltar a un plan">
           {plans.map((plan) => (
-            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h2 class="text-3xl font-black text-slate-950">{plan.name}</h2>
-              <p class="mt-4 text-sm font-semibold uppercase tracking-wide text-slate-500">Desde</p>
-              <p class="mt-1 text-4xl font-black text-brand-blue">{plan.price}</p>
-              <p class="mt-5 leading-7 text-slate-600">{plan.summary}</p>
-              <p class="mt-4 text-sm font-bold text-slate-700">{plan.idealFor}</p>
-              <ul class="mt-6 space-y-3 text-sm text-slate-700">
-                {plan.includes.map((item) => (
-                  <li class="flex gap-2">
-                    <span class="mt-2 h-1.5 w-1.5 rounded-full bg-brand-cyan"></span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contacto" class="mt-8 inline-flex rounded-full bg-brand-blue px-5 py-3 text-sm font-bold text-white hover:bg-slate-950">
-                Cotizar este plan
-              </a>
-            </article>
+            <a href={`#plan-${plan.id}`}>
+              <span>{plan.name}</span>
+              <strong>Desde {plan.price}</strong>
+              <ArrowDown width={15} height={15} aria-hidden="true" />
+            </a>
           ))}
+        </nav>
+
+        <div class="plan-board">
+          {plans.map((plan) => {
+            const Icon = planIcons[plan.id as keyof typeof planIcons];
+            return (
+              <article id={`plan-${plan.id}`} aria-labelledby={`titulo-${plan.id}`} class:list={['plan', `plan--${plan.id}`]}>
+                <header class="plan__header">
+                  <Icon className="plan__icon" width={28} height={28} strokeWidth={1.65} aria-hidden="true" />
+                  <h2 id={`titulo-${plan.id}`}>{plan.name}</h2>
+                  <p class="plan__price"><span>Desde</span><strong>{plan.price}</strong></p>
+                </header>
+
+                <p class="plan__summary">{plan.summary}</p>
+
+                <div class="plan__features">
+                  <h3>Qué incluye</h3>
+                  <ul>
+                    {plan.includes.map((item) => (
+                      <li><Check width={17} height={17} aria-hidden="true" />{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="plan__audience">
+                  <h3>Ideal para</h3>
+                  <p>{plan.idealFor}</p>
+                </div>
+
+                <div class="plan__action">
+                  <a href={`/contacto?plan=${plan.id}#formulario`} class="interior-button" aria-label={`Cotizar este plan, ${plan.name}`}>
+                    Cotizar este plan
+                    <ArrowRight width={17} height={17} aria-hidden="true" />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
-        <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-6 text-base leading-8 text-slate-600 shadow-sm">
-          {plansNotes.map((note) => <p>{note}</p>)}
-        </div>
+
+        <aside class="plans-note" aria-label="Condiciones de los valores referenciales">
+          <Info width={21} height={21} aria-hidden="true" />
+          <div>{plansNotes.map((note) => <p>{note}</p>)}</div>
+        </aside>
       </div>
     </section>
 
-    <FinalCtaSection />
+    <section class="plans-contact" aria-labelledby="plans-contact-title">
+      <div class="interior-shell plans-contact__layout">
+        <div>
+          <h2 id="plans-contact-title" class="interior-heading">¿Necesitas un alcance distinto?</h2>
+          <p class="interior-lede">Cuéntanos qué quieres resolver y evaluamos contigo cómo combinar desarrollo, automatización y soporte.</p>
+        </div>
+        <div class="plans-contact__actions">
+          <a href="/contacto#formulario" class="interior-button">
+            Solicitar orientación
+            <ArrowRight width={17} height={17} aria-hidden="true" />
+          </a>
+          <a href={createContactMailtoHref(contact.whatsappMessages.plans)} class="interior-link">
+            <Mail width={17} height={17} aria-hidden="true" />
+            Escribir por correo
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
   <SiteFooter />
 </Layout>
+
+<style>
+  .plans-overview {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2.5rem, 5vw, 4rem);
+    background: linear-gradient(180deg, #eaf4ff, white 29rem);
+  }
+
+  .plans-intro {
+    display: grid;
+    align-items: end;
+    gap: 0.875rem 3rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2.75rem);
+  }
+
+  .plans-intro h1 span {
+    color: var(--interior-link);
+  }
+
+  .plans-intro .interior-lede {
+    max-width: 46ch;
+  }
+
+  .plans-mobile-index {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 1.5rem;
+    border: 1px solid #cfdef3;
+    border-radius: 0.75rem;
+    background: white;
+  }
+
+  .plans-mobile-index a {
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    justify-items: center;
+    gap: 0.375rem;
+    padding: 0.75rem 0.25rem;
+    color: var(--interior-link);
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .plans-mobile-index a + a {
+    border-inline-start: 1px solid #cfdef3;
+  }
+
+  .plans-mobile-index a:hover {
+    background: var(--interior-ice);
+  }
+
+  .plans-mobile-index a span {
+    align-self: end;
+    color: var(--interior-ink);
+    font-weight: 650;
+    text-wrap: balance;
+  }
+
+  .plan-board {
+    display: grid;
+    gap: 1.125rem;
+  }
+
+  .plan {
+    --plan-gutter: clamp(1.25rem, 2.65vw, 2rem);
+    --plan-header-bg: #edf5ff;
+    --plan-price: var(--interior-link);
+    --plan-header-copy: var(--interior-copy);
+    --plan-glyph: #3574cf;
+
+    display: grid;
+    min-width: 0;
+    overflow: clip;
+    border: 1px solid #cfdef3;
+    border-radius: 1rem;
+    background: white;
+  }
+
+  .plan--pyme-activa {
+    --plan-header-bg: #dcecff;
+  }
+
+  .plan--operacion-digital {
+    --plan-header-bg: #0a2753;
+    --plan-header-ink: white;
+    --plan-header-copy: #c7dffe;
+    --plan-price: #a4e9ff;
+    --plan-glyph: #8bdfff;
+  }
+
+  .plan:target .plan__header {
+    box-shadow: inset 0 4px #4098f7;
+  }
+
+  .plan__header {
+    position: relative;
+    padding: 1.5rem var(--plan-gutter);
+    background: var(--plan-header-bg);
+    color: var(--plan-header-ink, var(--interior-ink));
+  }
+
+  .plan__icon {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--plan-glyph);
+  }
+
+  .plan__header h2 {
+    font-size: clamp(1.375rem, 2.25vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .plan__price {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    color: var(--plan-header-copy);
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .plan__price strong {
+    color: var(--plan-price);
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .plan__summary,
+  .plan__features,
+  .plan__audience,
+  .plan__action {
+    margin-inline: var(--plan-gutter);
+  }
+
+  .plan__summary,
+  .plan__audience p {
+    color: var(--interior-copy);
+    line-height: 1.55;
+  }
+
+  .plan__summary {
+    padding-block: 1.25rem;
+  }
+
+  .plan__features,
+  .plan__audience {
+    border-top: 1px solid var(--interior-border);
+    padding-block: 1.125rem;
+  }
+
+  .plan h3 {
+    font-size: 0.9375rem;
+    font-weight: 800;
+  }
+
+  .plan__features ul {
+    display: grid;
+    gap: 0.625rem;
+    margin-top: 0.625rem;
+  }
+
+  .plan__features li {
+    display: flex;
+    align-items: start;
+    gap: 0.625rem;
+    color: var(--interior-copy);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .plan__features svg {
+    flex: none;
+    margin-top: 0.125rem;
+    color: var(--interior-link);
+  }
+
+  .plan__audience p {
+    margin-top: 0.375rem;
+    font-size: 0.9375rem;
+  }
+
+  .plan__action {
+    align-self: end;
+    padding-block: 0.25rem 1.5rem;
+  }
+
+  .plan__action .interior-button {
+    width: 100%;
+    font-size: 0.9375rem;
+  }
+
+  .plans-note {
+    display: flex;
+    align-items: start;
+    gap: 0.875rem;
+    margin-top: 1.5rem;
+    color: var(--interior-copy);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .plans-note p + p {
+    margin-top: 0.375rem;
+  }
+
+  .plans-note svg {
+    flex: none;
+    margin-top: 0.15rem;
+    color: var(--interior-link);
+  }
+
+  .plans-contact {
+    border-top: 1px solid var(--interior-border);
+    padding-block: clamp(2rem, 5vw, 3.25rem);
+    background: var(--interior-ice);
+  }
+
+  .plans-contact__layout {
+    display: grid;
+    align-items: center;
+    gap: 1.25rem 3rem;
+  }
+
+  .plans-contact .interior-lede {
+    max-width: 56ch;
+    margin-top: 0.625rem;
+  }
+
+  .plans-contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 48rem) {
+    .plans-intro {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
+
+    .plans-contact__layout {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+  }
+
+  @media (min-width: 54rem) {
+    .plans-mobile-index {
+      display: none;
+    }
+
+    .plan-board {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      overflow: clip;
+      border: 1px solid #cfdef3;
+      border-radius: 1rem;
+    }
+
+    .plan {
+      grid-row: span 5;
+      grid-template-rows: subgrid;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .plan + .plan {
+      border-inline-start: 1px solid #cfdef3;
+    }
+  }
+</style>

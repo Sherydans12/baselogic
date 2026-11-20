@@ -1,0 +1,222 @@
+---
+import { ArrowDown, ArrowRight, BriefcaseBusiness, Layers3, MessagesSquare, ReceiptText } from 'lucide-react';
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import FaqBlock from '../components/FaqBlock.astro';
+import { caseStudyFaqs, generalFaqs, quoteFaqs } from '../data/faqs';
+import { seo } from '../data/seo';
+import { baseSchema } from '../data/schema';
+import '../styles/interior-pages.css';
+
+const pageSeo = seo.faq;
+const topics = [
+  { id: 'proyectos-y-soporte', label: 'Proyectos y soporte', icon: BriefcaseBusiness, faqs: generalFaqs },
+  { id: 'planes-y-cotizacion', label: 'Planes y cotización', icon: ReceiptText, faqs: quoteFaqs },
+  { id: 'casos-de-uso', label: 'Casos de uso', icon: Layers3, faqs: caseStudyFaqs },
+];
+const schema = baseSchema(pageSeo.description);
+---
+
+<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema}>
+  <SiteHeader />
+  <main class="interior-page">
+    <header class="faq-intro">
+      <div class="interior-shell">
+        <h1 class="interior-title">Preguntas <span>frecuentes</span></h1>
+        <p class="interior-lede">Encuentra respuestas para iniciar un proyecto, entender los planes y conocer el soporte de BaseLogic.</p>
+
+        <nav aria-label="Temas de las preguntas frecuentes">
+          <ul class="faq-topics">
+            {topics.map(({ id, label, icon: Icon }) => (
+              <li>
+                <a href={`#${id}`}>
+                  <Icon width={19} height={19} aria-hidden="true" />
+                  {label}
+                  <ArrowDown class="faq-topics__arrow" width={15} height={15} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="interior-shell faq-content">
+      <div class="faq-sections">
+        {topics.map(({ id, label, faqs }) => (
+          <section id={id} aria-labelledby={`${id}-titulo`}>
+            <h2 id={`${id}-titulo`} class="interior-heading">{label}</h2>
+            <FaqBlock faqs={faqs} />
+          </section>
+        ))}
+      </div>
+
+      <aside class="faq-side" aria-label="Más ayuda">
+        <div class="faq-contact">
+          <MessagesSquare width={30} height={30} aria-hidden="true" />
+          <h2>¿Tienes otra pregunta?</h2>
+          <p>Cuéntanos qué necesitas resolver y conversemos sobre las opciones para tu proyecto.</p>
+          <a href="/contacto#formulario" class="interior-button">
+            Hablemos de tu proyecto
+            <ArrowRight width={17} height={17} aria-hidden="true" />
+          </a>
+        </div>
+
+        <nav class="faq-related" aria-label="Recursos relacionados">
+          <h2>Ver más detalles</h2>
+          <a href="/planes" class="interior-link">Planes y precios <ArrowRight width={16} height={16} aria-hidden="true" /></a>
+          <a href="/servicios/soporte-digital" class="interior-link">Soporte y continuidad <ArrowRight width={16} height={16} aria-hidden="true" /></a>
+          <a href="/casos-de-exito" class="interior-link">Escenarios por rubro <ArrowRight width={16} height={16} aria-hidden="true" /></a>
+        </nav>
+      </aside>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>
+
+<style>
+  .faq-intro {
+    border-bottom: 1px solid var(--interior-border);
+    padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(1.75rem, 4vw, 3rem);
+    background:
+      radial-gradient(ellipse at 50% 0%, #d7eaff, transparent 76%),
+      var(--interior-ice);
+  }
+
+  .faq-intro h1 span {
+    color: var(--interior-link);
+  }
+
+  .faq-intro .interior-lede {
+    max-width: 53ch;
+    margin-top: 0.875rem;
+  }
+
+  .faq-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: clamp(1.375rem, 3vw, 2.125rem);
+  }
+
+  .faq-topics a {
+    display: inline-flex;
+    min-height: 2.875rem;
+    align-items: center;
+    gap: 0.625rem;
+    border: 1px solid #bfd8fb;
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    background: white;
+    color: var(--interior-link);
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: background-color 160ms ease-out;
+  }
+
+  .faq-topics a:hover {
+    background: #e4efff;
+  }
+
+  .faq-topics__arrow {
+    margin-left: 0.25rem;
+  }
+
+  .faq-content {
+    display: grid;
+    gap: 2.75rem;
+    padding-block: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .faq-sections {
+    display: grid;
+    gap: clamp(2.125rem, 5vw, 3.75rem);
+  }
+
+  .faq-sections h2 {
+    margin-bottom: 1.125rem;
+  }
+
+  .faq-sections section:target h2 {
+    color: var(--interior-link);
+  }
+
+  .faq-contact {
+    --interior-focus: #7fe5ff;
+    --interior-button-bg: white;
+    --interior-button-text: #0a326f;
+    --interior-button-hover: #ddecff;
+
+    border-radius: 1rem;
+    padding: clamp(1.375rem, 2.5vw, 1.875rem);
+    background: linear-gradient(155deg, #103b7c, var(--interior-navy) 85%);
+    color: white;
+  }
+
+  .faq-contact > svg {
+    color: #8bdfff;
+  }
+
+  .faq-contact h2 {
+    margin-top: 0.875rem;
+    font-size: 1.375rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  .faq-contact p {
+    margin-top: 0.5rem;
+    color: #deebff;
+    line-height: 1.6;
+  }
+
+  .faq-contact .interior-button {
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .faq-related {
+    display: grid;
+    margin-top: 1.75rem;
+  }
+
+  .faq-related h2 {
+    margin-bottom: 0.25rem;
+    font-weight: 800;
+  }
+
+  .faq-related .interior-link {
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--interior-border);
+    font-size: 0.9375rem;
+  }
+
+  @media (min-width: 48rem) {
+    .faq-intro {
+      text-align: center;
+    }
+
+    .faq-intro .interior-lede {
+      margin-inline: auto;
+    }
+
+    .faq-topics {
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .faq-content {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+      gap: clamp(3rem, 6vw, 5.75rem);
+      align-items: start;
+    }
+
+    .faq-side {
+      position: sticky;
+      top: var(--interior-anchor-offset);
+    }
+  }
+</style>

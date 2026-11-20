@@ -1,51 +1,37 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import ListingHero from '../../components/ListingHero.astro';
+import LegalDocument from '../../layouts/LegalDocument.astro';
 import { seo } from '../../data/seo';
-import { contact } from '../../data/contact';
-import { site } from '../../data/site';
 
-const pageSeo = seo.privacy;
+const sections = [
+  {
+    id: 'informacion-que-recopilamos',
+    title: 'Información que recopilamos',
+    text: 'Podemos recopilar nombre, correo electrónico, teléfono, empresa, tipo de proyecto y mensaje cuando una persona solicita información, cotización, evaluación técnica o soporte.',
+  },
+  {
+    id: 'uso-de-la-informacion',
+    title: 'Uso de la información',
+    text: 'Usamos la información para responder solicitudes, preparar propuestas, coordinar reuniones, entregar soporte y mantener comunicación relacionada con los servicios o productos de BaseLogic.',
+  },
+  {
+    id: 'resguardo-de-datos',
+    title: 'Cuidado y resguardo de datos',
+    text: 'No vendemos datos personales. Solo compartimos información con proveedores tecnológicos necesarios para operar formularios, correo electrónico, alojamiento o herramientas de gestión comercial cuando corresponda.',
+  },
+  {
+    id: 'derechos-y-contacto',
+    title: 'Derechos y contacto',
+    text: 'Puedes solicitar acceso, rectificación o eliminación de tus datos escribiendo a',
+    contactLink: true,
+  },
+];
 ---
 
-<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path}>
-  <SiteHeader />
-  <main>
-    <ListingHero
-      eyebrow="Legal"
-      title="Política de privacidad"
-      text="Información general sobre cómo BaseLogic (marca de SENAS TECNOLOGÍAS SpA) trata los datos de contacto recibidos a través del sitio y sus canales comerciales."
-    />
-
-    <section class="bg-white py-16">
-      <div class="mx-auto max-w-4xl px-5 text-lg leading-8 text-slate-700 md:px-8">
-        <p class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-base text-slate-600">
-          <strong>Identidad corporativa:</strong> BaseLogic es una marca de <strong>{site.legalEntity}</strong> ({site.serviceArea}).
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">1. Información que recopilamos</h2>
-        <p class="mt-4">
-          Podemos recopilar nombre, correo electrónico, teléfono, empresa, tipo de proyecto y mensaje cuando una persona solicita información, cotización, evaluación técnica o soporte.
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">2. Uso de la información</h2>
-        <p class="mt-4">
-          Usamos la información para responder solicitudes, preparar propuestas, coordinar reuniones, entregar soporte y mantener comunicación relacionada con los servicios o productos de BaseLogic.
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">3. Cuidado y resguardo de datos</h2>
-        <p class="mt-4">
-          No vendemos datos personales. Solo compartimos información con proveedores tecnológicos necesarios para operar formularios, correo electrónico, alojamiento o herramientas de gestión comercial cuando corresponda.
-        </p>
-
-        <h2 class="mt-10 text-2xl font-black text-slate-950">4. Derechos y contacto</h2>
-        <p class="mt-4">
-          Puedes solicitar acceso, rectificación o eliminación de tus datos escribiendo a <a href={`mailto:${contact.email}`} class="font-bold text-brand-blue hover:underline">{contact.email}</a>.
-        </p>
-      </div>
-    </section>
-  </main>
-  <SiteFooter />
-</Layout>
+<LegalDocument
+  seo={seo.privacy}
+  kind="privacy"
+  title="Política de privacidad"
+  intro="Información general sobre cómo BaseLogic (marca de SENAS TECNOLOGÍAS SpA) trata los datos de contacto recibidos a través del sitio y sus canales comerciales."
+  sections={sections}
+  related={{ href: seo.terms.path, label: 'Ver términos de servicio' }}
+/>

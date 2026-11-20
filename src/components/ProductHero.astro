@@ -1,0 +1,82 @@
+---
+import { ArrowRight, CalendarDays, GraduationCap, Settings, Store } from 'lucide-react';
+import Breadcrumbs from './Breadcrumbs.astro';
+import { products } from '../data/products';
+
+interface Props {
+  productId: 'booking' | 'edupay' | 'eam' | 'pos';
+  title: string;
+  description: string;
+  ctaLabel: string;
+  heroImageSrc?: string;
+  heroImageAlt?: string;
+  heroImageWidth?: number;
+  heroImageHeight?: number;
+  heroImageZoom?: number;
+  showVisualCaption?: boolean;
+}
+
+const {
+  productId,
+  title,
+  description,
+  ctaLabel,
+  heroImageSrc,
+  heroImageAlt,
+  heroImageWidth = 1040,
+  heroImageHeight = 620,
+  heroImageZoom = 1,
+  showVisualCaption = true,
+} = Astro.props;
+const product = products.find((item) => item.id === productId)!;
+const visuals = {
+  booking: { icon: CalendarDays, image: '/images/productos/baselogic-booking.webp', alt: 'Calendario y reloj que representan la gestión de reservas' },
+  edupay: { icon: GraduationCap, image: '/images/productos/baselogic-edupay.webp', alt: 'Birrete y libros que representan la gestión educativa' },
+  eam: { icon: Settings, image: '/images/productos/baselogic-eam.webp', alt: 'Casco y engranaje que representan activos y mantenimiento' },
+  pos: { icon: Store, image: '/images/productos/baselogic-pos.webp', alt: 'Terminal de punto de venta e impresora de comprobantes' },
+};
+const visual = visuals[productId];
+const Icon = visual.icon;
+const imageSrc = heroImageSrc ?? visual.image;
+const imageAlt = heroImageAlt ?? visual.alt;
+---
+
+<Breadcrumbs items={[{ label: 'Inicio', href: '/' }, { label: 'Productos', href: '/productos' }, { label: product.name }]} />
+<section class="border-b border-[#dce8f8] bg-[#f7faff] py-10 sm:py-12 lg:py-14">
+  <div class:list={['mx-auto grid grid-cols-1 max-w-7xl items-center gap-9 px-5 md:px-8 lg:gap-14', heroImageZoom > 1 ? 'lg:grid-cols-[0.92fr_1.08fr]' : 'lg:grid-cols-[1fr_0.92fr]']}>
+    <div class="min-w-0">
+      <p class="inline-flex items-center gap-2 text-sm font-bold text-[#1558c6]">
+        <Icon class="h-4 w-4" aria-hidden="true" /> {product.name}
+      </p>
+      <h1 class="mt-4 max-w-2xl text-3xl font-black leading-[1.1] tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl xl:text-[2.8rem]">{title}</h1>
+      <p class="mt-5 max-w-2xl text-base leading-relaxed text-[#405578] sm:text-lg">{description}</p>
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a href={`/contacto?producto=${productId}#formulario`} class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0964ef] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#064bb7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">
+          {ctaLabel}<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        </a>
+        <a href="#funcionalidades" class="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#c9daf1] bg-white px-5 py-3 text-sm font-bold text-[#0754c9] transition-colors hover:border-[#0964ef] hover:bg-[#edf5ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]">Ver funcionalidades</a>
+      </div>
+    </div>
+    <div class="min-w-0 overflow-hidden rounded-3xl border border-[#d9e7f8] bg-white">
+      <img src={imageSrc} alt={imageAlt} width={heroImageWidth} height={heroImageHeight} fetchpriority="high" decoding="async" class:list={['block h-auto w-full', heroImageZoom > 1 && 'product-hero-image-zoom']} style={heroImageZoom > 1 ? `--product-hero-image-zoom:${heroImageZoom};` : undefined} />
+      {showVisualCaption && (
+        <div class="flex items-start gap-4 border-t border-[#e5edf8] px-5 py-5 sm:px-6">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eaf2ff] text-[#0964ef]"><Icon class="h-5 w-5" aria-hidden="true" /></span>
+          <div>
+            <p class="font-extrabold text-[#0b1a4c]">{product.name}</p>
+            <p class="mt-1 text-sm leading-relaxed text-[#405578]">{product.tagline}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    .product-hero-image-zoom {
+      transform: scale(var(--product-hero-image-zoom));
+      transform-origin: 100% 30%;
+    }
+  }
+</style>

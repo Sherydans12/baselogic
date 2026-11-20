@@ -1,11 +1,15 @@
 ---
+import { Boxes, Calculator, CircleDollarSign, ClipboardList, Package, Store } from 'lucide-react';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import ListingHero from '../../components/ListingHero.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import FaqBlock from '../../components/FaqBlock.astro';
-import FinalCtaSection from '../../components/FinalCtaSection.astro';
+import ProductHero from '../../components/ProductHero.astro';
+import ProductFeatureGrid from '../../components/ProductFeatureGrid.astro';
+import ProductWorkflow from '../../components/ProductWorkflow.astro';
+import ProductAudience from '../../components/ProductAudience.astro';
+import ProductRelated from '../../components/ProductRelated.astro';
+import HomeFaqSection from '../../components/HomeFaqSection.astro';
+import ContactBand from '../../components/ContactBand.astro';
 import { products } from '../../data/products';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
@@ -13,105 +17,49 @@ import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } fr
 
 const product = products.find((item) => item.id === 'pos')!;
 const pageSeo = seo.pos;
-
-const verifiedCapabilities = [
-  {
-    code: '01 · CATÁLOGO',
-    title: 'Catálogo de productos y presentaciones',
-    text: 'Organización de productos con soporte para distintas presentaciones y niveles de precio (por unidad, pack o formato de venta).',
-  },
-  {
-    code: '02 · SESIÓN DE CAJA',
-    title: 'Apertura y control de caja',
-    text: 'Registro estructurado de apertura de sesión de caja con monto inicial y trazabilidad de las operaciones registradas en el turno.',
-  },
-  {
-    code: '03 · VENTAS',
-    title: 'Registro de ventas en efectivo',
-    text: 'Flujo de venta ágil orientado a mostrador con cálculo de totales, vuelto y asociación directa de cada ítem vendido.',
-  },
-  {
-    code: '04 · KARDEX Y SALDOS',
-    title: 'Movimientos de inventario y saldos',
-    text: 'Actualización de existencias a partir de entradas, salidas y ventas registradas, manteniendo visibilidad sobre el stock disponible.',
-  },
+const features = [
+  { title: 'Catálogo de productos', text: 'Organización de productos para mantener clara la oferta de tu comercio.', icon: Package },
+  { title: 'Presentaciones y precios', text: 'Distintos formatos de venta y precios, como unidades o packs.', icon: Boxes },
+  { title: 'Apertura de caja', text: 'Registro de la sesión de caja y el monto inicial del turno.', icon: Store },
+  { title: 'Ventas en efectivo', text: 'Registro de productos, totales y vuelto para la venta de mostrador.', icon: CircleDollarSign },
+  { title: 'Movimientos de inventario', text: 'Organización de entradas y salidas de productos mediante movimientos de stock.', icon: ClipboardList },
+  { title: 'Saldos de inventario', text: 'Consulta de existencias para apoyar el control de productos.', icon: Calculator },
 ];
-
-const posFaqs = [
-  {
-    question: '¿En qué etapa se encuentra BaseLogic POS?',
-    answer:
-      'BaseLogic POS se encuentra actualmente en etapa de desarrollo activo e implementación piloto supervisada. Evaluamos cada comercio caso a caso para asegurar que el alcance actual cubra su operación diaria.',
-  },
-  {
-    question: '¿Qué capacidades están verificadas hoy en el piloto?',
-    answer:
-      'El núcleo verificado abarca administración de catálogo y presentaciones de precio, apertura de caja, registro de ventas en efectivo, movimientos de inventario y consulta de saldos de stock.',
-  },
-  {
-    question: '¿Cómo puedo postular o evaluar una implementación piloto?',
-    answer:
-      'Puedes enviarnos tu contexto mediante el formulario de contacto seleccionando «BaseLogic POS (Piloto)». Revisamos el tipo de comercio, volumen de productos y requerimientos antes de definir la puesta en marcha.',
-  },
+const steps = [
+  { title: 'Organiza tu catálogo', text: 'Define productos, presentaciones y precios según tu comercio.' },
+  { title: 'Prepara la caja', text: 'Registra la apertura de la sesión y su monto inicial.' },
+  { title: 'Registra la venta', text: 'Selecciona productos y registra la operación en efectivo.' },
+  { title: 'Revisa el inventario', text: 'Consulta movimientos y saldos de los productos.' },
 ];
-
+const faqs = [
+  { question: '¿Para qué tipo de comercio está pensado BaseLogic POS?', answer: 'Está orientado a comercios con venta presencial, como almacenes, tiendas especializadas y distribuidoras locales.' },
+  { question: '¿Cómo conecta la venta con el inventario?', answer: 'El catálogo, la venta en efectivo y los movimientos de stock forman parte de la operación de mostrador presentada.' },
+  { question: '¿Puedo organizar productos en distintos formatos?', answer: 'El catálogo contempla presentaciones comerciales como unidades y packs, para adaptar los productos a la forma de venta.' },
+  { question: '¿Cómo se relacionan compras, clientes y fiado?', answer: 'La propuesta de gestión comercial considera abastecimiento, proveedores, clientes y cuentas por cobrar como parte del recorrido del negocio.' },
+  { question: '¿Cómo se integra la documentación tributaria?', answer: 'El recorrido propuesto contempla conectar un proveedor de emisión para gestionar boletas o facturas. La venta y su pago son procesos distintos de la emisión tributaria.' },
+  { question: '¿Puedo usar mis dispositivos?', answer: 'La implementación considera las necesidades del puesto de trabajo, sus dispositivos y la forma en que atiende tu equipo.' },
+  { question: '¿Cómo se organiza el turno de caja?', answer: 'La operación parte con la apertura y un monto inicial. La propuesta comercial aborda también los procesos de seguimiento y cierre del turno.' },
+  { question: '¿Cómo se define el valor para mi comercio?', answer: 'Conversamos sobre tus cajas, catálogo, usuarios, dispositivos e inventario para preparar una propuesta acorde al alcance.' },
+];
 const schema = [
   ...baseSchema(pageSeo.description),
-  breadcrumbSchema([
-    { label: 'Inicio', href: '/' },
-    { label: 'Productos', href: '/productos' },
-    { label: 'BaseLogic POS', href: pageSeo.path },
-  ]),
+  breadcrumbSchema([{ label: 'Inicio', href: '/' }, { label: 'Productos', href: '/productos' }, { label: 'BaseLogic POS', href: pageSeo.path }]),
   softwareApplicationSchema(product, pageSeo),
-  faqSchema(posFaqs),
+  faqSchema(faqs),
 ];
 ---
-
-<Layout
-  title={pageSeo.title}
-  description={pageSeo.description}
-  canonicalPath={pageSeo.path}
-  schema={schema}
-  whatsappMessage={contact.whatsappMessages.products}
->
+<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.pos}>
   <SiteHeader />
   <main>
-    <ListingHero
-      eyebrow="BaseLogic POS · En desarrollo e implementación piloto"
-      title="Control de catálogo, apertura de caja, ventas en efectivo y saldos de inventario"
-      text="Plataforma de punto de venta e inventario diseñada para comercios que necesitan dejar atrás los cuadernos y planillas sueltas mediante una implementación piloto acompañada."
-      ctaLabel="Consultar piloto POS"
-      ctaHref="/contacto?producto=pos#formulario"
-    />
-
-    <section class="bg-white py-20 border-b border-slate-200/80">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-amber-900">
-          Estado del producto: En desarrollo · Implementación piloto supervisada
-        </div>
-
-        <SectionHeading
-          eyebrow="Capacidades verificadas"
-          title="Alcance funcional actual del núcleo POS"
-          text="Comunicamos con transparencia las funcionalidades reales que hoy componen el sistema para evaluar su calce con la operación de tu local."
-        />
-
-        <div class="mt-10 grid gap-6 md:grid-cols-2">
-          {verifiedCapabilities.map((item) => (
-            <article class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <span class="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue">
-                {item.code}
-              </span>
-              <h3 class="mt-2 text-xl font-black text-slate-950">{item.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <FaqBlock faqs={posFaqs} />
-    <FinalCtaSection />
+    <ProductHero productId="pos" title="Vende, controla tu inventario y ordena tu negocio" description="Conecta la venta de mostrador, la caja y los productos con una gestión comercial más clara." ctaLabel="Solicitar demostración" heroImageSrc="/images/productos/baselogic-pos-hero.webp" heroImageAlt="Terminal BaseLogic POS para ventas de mostrador, con lector de códigos e impresora de comprobantes." heroImageWidth={1536} heroImageHeight={1024} showVisualCaption={false} />
+    <ProductFeatureGrid title="Las piezas de tu operación comercial" description="Un recorrido claro para la venta de mostrador, desde el catálogo hasta la consulta de productos." features={features} />
+    <ProductWorkflow title="Un recorrido para la venta de mostrador" description="Desde el catálogo hasta la consulta de inventario, el flujo se organiza alrededor de las tareas cotidianas del comercio." steps={steps} />
+    <ProductAudience title="Pensado para comercios" description="Una alternativa para negocios que buscan ordenar la información de su venta presencial." audience={['Almacenes y negocios de barrio', 'Tiendas especializadas', 'Comercios con distintos formatos de venta', 'Distribuidoras locales y equipos de mostrador']} useCases={['Organizar productos y presentaciones de precio', 'Preparar una sesión de caja para el turno', 'Registrar ventas en efectivo', 'Consultar movimientos y saldos de inventario']} />
+    <section class="bg-[#f7faff] py-14 md:py-16"><div class="mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-2 lg:gap-12"><div><h2 class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c]">Una operación comercial de principio a fin</h2><p class="mt-4 max-w-xl leading-relaxed text-[#405578]">Más allá del mostrador, la propuesta de POS reúne los procesos que un comercio necesita coordinar para comprar, vender y dar seguimiento a su actividad.</p></div><div class="rounded-2xl border border-[#dce8f8] bg-white p-6 sm:p-8"><h3 class="text-xl font-extrabold text-[#0b1a4c]">Los procesos del negocio</h3><ul class="mt-5 grid gap-4 text-sm leading-relaxed text-[#405578]"><li><strong class="text-[#0b1a4c]">Compras y abastecimiento:</strong> proveedores, recepción y reposición de productos.</li><li><strong class="text-[#0b1a4c]">Clientes y fiado:</strong> seguimiento de compromisos y cuentas por cobrar.</li><li><strong class="text-[#0b1a4c]">Gestión del comercio:</strong> turnos de caja, usuarios y reportes de actividad.</li></ul></div></div></section>
+    <section class="bg-white py-14 md:py-16" aria-labelledby="documentos-tributarios"><div class="mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-2 lg:gap-12"><div><h2 id="documentos-tributarios" class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c]">De la venta al documento tributario</h2><p class="mt-4 max-w-xl leading-relaxed text-[#405578]">Una venta, su pago y la emisión de una boleta o factura son procesos diferentes. La propuesta de POS contempla conectarlos mediante un proveedor de documentación electrónica para simplificar la gestión del comercio.</p><p class="mt-4 text-sm font-semibold text-[#315b98]">Recorrido de integración propuesto</p></div><ol class="grid gap-3 text-sm leading-relaxed text-[#405578]"><li class="rounded-xl bg-[#f1f6ff] p-4"><strong class="text-[#0b1a4c]">1. Venta:</strong> registra los productos y el total de la operación.</li><li class="rounded-xl bg-[#f1f6ff] p-4"><strong class="text-[#0b1a4c]">2. Pago:</strong> identifica cómo se paga y su resultado.</li><li class="rounded-xl bg-[#f1f6ff] p-4"><strong class="text-[#0b1a4c]">3. Documento:</strong> el proveedor de emisión gestiona el documento que corresponda al comercio.</li><li class="rounded-xl bg-[#f1f6ff] p-4"><strong class="text-[#0b1a4c]">4. Seguimiento:</strong> conserva la referencia del documento junto a la venta.</li></ol></div></section>
+    <HomeFaqSection faqs={faqs} contactHref="/contacto?producto=pos#formulario" contactLabel="Consultar POS" />
+    <ProductRelated current="pos" />
+    <ContactBand title="Dale más orden a las ventas de tu comercio" text="Cuéntanos cómo vendes, cuántas cajas utilizas y cómo controlas tus productos para revisar la configuración y los módulos de tu operación." primaryLabel="Cotizar POS" primaryHref="/contacto?producto=pos#formulario" secondaryLabel="Enviar correo" whatsappMessage={contact.whatsappMessages.pos} />
   </main>
   <SiteFooter />
 </Layout>

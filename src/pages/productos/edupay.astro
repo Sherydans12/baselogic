@@ -1,89 +1,64 @@
 ---
+import { BarChart3, BookOpen, GraduationCap, HeartHandshake, UsersRound, WalletCards } from 'lucide-react';
 import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import DetailHero from '../../components/DetailHero.astro';
-import BenefitsList from '../../components/BenefitsList.astro';
-import FeatureList from '../../components/FeatureList.astro';
-import ProcessSteps from '../../components/ProcessSteps.astro';
-import FaqBlock from '../../components/FaqBlock.astro';
-import RelatedItems from '../../components/RelatedItems.astro';
+import ProductHero from '../../components/ProductHero.astro';
+import ProductFeatureGrid from '../../components/ProductFeatureGrid.astro';
+import ProductWorkflow from '../../components/ProductWorkflow.astro';
+import ProductAudience from '../../components/ProductAudience.astro';
+import ProductRelated from '../../components/ProductRelated.astro';
+import HomeFaqSection from '../../components/HomeFaqSection.astro';
 import ContactBand from '../../components/ContactBand.astro';
 import { products } from '../../data/products';
-import { services, serviceProcess } from '../../data/services';
 import { seo } from '../../data/seo';
 import { contact } from '../../data/contact';
 import { baseSchema, breadcrumbSchema, faqSchema, softwareApplicationSchema } from '../../data/schema';
 
-const product = products.find((item) => item.id === 'edupay') as any;
+const product = products.find((item) => item.id === 'edupay');
+if (!product || !('faqs' in product)) throw new Error('Missing EduPay content');
 const pageSeo = seo.edupay;
-const whatsappMessage = contact.whatsappMessages.edupay;
-const relatedItems = [
-  products.find((item) => item.id === 'booking'),
-  services.find((item) => item.id === 'sistemas-para-pymes'),
-  services.find((item) => item.id === 'automatizacion'),
-].filter(Boolean).map((item: any) => ({
-  title: item.name ?? item.title,
-  href: item.href,
-  summary: item.summary,
-}));
-
-const breadcrumbItems = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Productos', href: '/productos' },
-  { label: 'EduPay' },
+const features = [
+  { title: 'EduPay Académico', text: 'Cursos, asignaturas y participantes para organizar el trabajo académico y acompañar el año escolar.', icon: GraduationCap },
+  { title: 'EduPay Finanzas', text: 'Mensualidades, registro de pagos y reportes para dar claridad al seguimiento financiero.', icon: WalletCards },
+  { title: 'Portal EduPay', text: 'Un espacio para que las familias encuentren sus compromisos y la información que necesitan.', icon: UsersRound },
+  { title: 'EduPay Comunidad', text: 'Una intranet pensada para reunir comunicaciones, documentos y actividades institucionales.', icon: BookOpen },
+  { title: 'EduPay Bienestar', text: 'Un espacio propuesto para convivencia, orientación y coordinación del apoyo educativo.', icon: HeartHandshake },
+  { title: 'Dirección y análisis', text: 'Una perspectiva institucional para reunir información académica, administrativa y financiera.', icon: BarChart3 },
+];
+const steps = [
+  { title: 'La familia ingresa', text: 'El apoderado accede a su espacio desde el teléfono o computador.' },
+  { title: 'Revisa su mensualidad', text: 'Consulta el estado de cuenta y selecciona el compromiso que quiere resolver.' },
+  { title: 'Gestiona el pago', text: 'El recorrido contempla registrar el pago y acceder al comprobante correspondiente.' },
+  { title: 'Administración da seguimiento', text: 'El equipo financiero revisa el movimiento junto con los demás compromisos.' },
 ];
 const schema = [
   ...baseSchema(pageSeo.description),
   softwareApplicationSchema(product, pageSeo),
   faqSchema(product.faqs),
-  breadcrumbSchema(breadcrumbItems),
+  breadcrumbSchema([{ label: 'Inicio', href: '/' }, { label: 'Productos', href: '/productos' }, { label: 'BaseLogic EduPay', href: pageSeo.path }]),
 ];
 ---
-
-<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={whatsappMessage}>
+<Layout title={pageSeo.title} description={pageSeo.description} canonicalPath={pageSeo.path} schema={schema} whatsappMessage={contact.whatsappMessages.edupay}>
   <SiteHeader />
   <main>
-    <Breadcrumbs items={breadcrumbItems} />
-    <DetailHero
-      eyebrow={product.eyebrow}
-      title="BaseLogic EduPay: pagos y cobranza para instituciones educativas"
-      text="EduPay ayuda a colegios, jardines, academias e instituciones educativas a ordenar pagos, cobranza, comunicación financiera y seguimiento administrativo."
-      primaryLabel="Consultar por EduPay"
-      secondaryLabel="Solicitar evaluación"
-      whatsappMessage={whatsappMessage}
-    />
-    <BenefitsList
-      title="Pensado para reducir trabajo manual"
-      text="La solución se evalúa según el contexto de cada institución, con foco en ordenar información financiera y mejorar la experiencia de apoderados."
-      items={product.benefits}
-    />
-    <FeatureList
-      title="Qué puede incluir"
-      text="EduPay se conversa como una solución vertical evaluable, no como una promesa cerrada sin revisar necesidades reales."
-      items={product.features}
-    />
-    <FeatureList
-      title="Casos de uso"
-      text="Escenarios habituales donde una institución educativa puede necesitar más orden y seguimiento."
-      items={product.useCases}
-      variant="white"
-    />
-    <ProcessSteps
-      title="Evaluación e implementación por etapas"
-      text="Primero entendemos el flujo actual de pagos y cobranza. Luego proponemos una implementación acorde al tamaño, urgencia y procesos de la institución."
-      steps={serviceProcess}
-    />
-    <FaqBlock faqs={product.faqs} />
-    <RelatedItems items={relatedItems} />
-    <ContactBand
-      title="Conversemos sobre EduPay"
-      text="Si tu institución necesita ordenar pagos, mensualidades, recordatorios o reportes, podemos revisar el caso y proponer una ruta realista."
-      primaryLabel="Consultar por EduPay"
-      secondaryLabel="Solicitar evaluación"
-      whatsappMessage={whatsappMessage}
-    />
+    <ProductHero productId="edupay" title="Todo tu colegio conectado en un mismo ecosistema" description="Gestión académica, finanzas, familias y comunidad educativa: una propuesta integral para organizar la vida escolar." ctaLabel="Solicitar demostración" heroImageSrc="/images/productos/baselogic-edupay-hero.webp" heroImageAlt="Panel de gestión BaseLogic EduPay en laptop y móvil, con módulos académicos, financieros y familiares." heroImageWidth={1536} heroImageHeight={1024} heroImageZoom={1.12} showVisualCaption={false} />
+    <div id="ecosistema" class="scroll-mt-24"><div id="modulos" class="scroll-mt-24"><ProductFeatureGrid title="Una plataforma para toda la comunidad educativa" description="EduPay reúne espacios de gestión y una experiencia propuesta para conectar a quienes participan en la vida escolar." features={features} /></div></div>
+    <section class="bg-[#f1f6ff] py-14 md:py-16" aria-labelledby="portal-edupay">
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 md:px-8 lg:grid-cols-2 lg:gap-16">
+        <div><h2 id="portal-edupay" class="text-3xl font-black tracking-[-0.03em] text-[#0b1a4c] sm:text-4xl">Portal EduPay: un lugar para las familias</h2><p class="mt-5 max-w-xl leading-relaxed text-[#405578]">Un espacio pensado para que los apoderados consulten mensualidades, vencimientos, pagos y comprobantes desde el teléfono o computador, con información escolar a su alcance.</p><p class="mt-4 max-w-xl leading-relaxed text-[#405578]">La experiencia busca conectar a las familias con administración y simplificar el seguimiento de cada compromiso. El pago en línea se plantea mediante un servicio de cobro; registrar un pago es una gestión distinta.</p><p class="mt-5 text-sm font-semibold text-[#315b98]">Diseño conceptual con datos ilustrativos · flujo de pago propuesto</p></div>
+        <div class="rounded-2xl border border-[#d3e3f7] bg-white p-5 sm:p-7" aria-label="Ejemplo conceptual del estado de cuenta para una familia">
+          <div class="flex items-start justify-between gap-4 border-b border-[#e3ecf8] pb-5"><div><p class="text-sm font-bold text-[#0754c9]">Portal EduPay</p><h3 class="mt-1 text-xl font-extrabold text-[#0b1a4c]">Estado de cuenta</h3></div><span class="rounded-full bg-[#eaf2ff] px-3 py-1 text-xs font-bold text-[#0754c9]">Ejemplo</span></div>
+          <div class="mt-5 rounded-xl bg-[#f1f6ff] p-4"><p class="text-sm text-[#405578]">Resumen de deuda · próximo compromiso</p><p class="mt-1 font-extrabold text-[#0b1a4c]">Mensualidad escolar</p><p class="mt-2 text-sm text-[#405578]">Vencimiento y saldo por consultar</p></div>
+          <div class="mt-5 grid gap-3 text-sm text-[#405578]"><div class="flex justify-between gap-4 border-b border-[#e3ecf8] pb-3"><span>Estado del pago</span><strong class="text-[#0b1a4c]">Seguimiento</strong></div><div class="flex justify-between gap-4 border-b border-[#e3ecf8] pb-3"><span>Historial</span><strong class="text-[#0b1a4c]">Movimientos</strong></div><div class="flex justify-between gap-4"><span>Comprobantes</span><strong class="text-[#0b1a4c]">Consulta</strong></div></div>
+        </div>
+      </div>
+    </section>
+    <ProductWorkflow title="De una mensualidad al seguimiento" description="Un recorrido ilustrativo que muestra cómo se busca conectar la gestión de una familia con el trabajo de administración. El pago online requiere una integración habilitada." steps={steps} />
+    <ProductAudience title="Una experiencia para cada integrante" description="El acceso institucional, los perfiles y permisos dan contexto a las tareas de cada persona." audience={['Dirección y coordinación académica', 'Administración y finanzas', 'Docentes y estudiantes', 'Apoderados y equipos de apoyo']} useCases={['Dirección: panorama de la institución', 'Docentes: cursos y actividades académicas', 'Familias: compromisos e información escolar', 'Equipos de apoyo: coordinación y seguimiento reservado']} />
+    <HomeFaqSection faqs={product.faqs} contactHref="/contacto?producto=edupay#formulario" contactLabel="Consultar EduPay" />
+    <ProductRelated current="edupay" />
+    <ContactBand title="Conectemos la gestión de tu institución" text="Cuéntanos cómo trabajan tus equipos y qué procesos quieres organizar. Revisaremos los módulos y la configuración adecuados para tu comunidad." primaryLabel="Cotizar EduPay" primaryHref="/contacto?producto=edupay#formulario" secondaryLabel="Enviar correo" whatsappMessage={contact.whatsappMessages.edupay} />
   </main>
   <SiteFooter />
 </Layout>

@@ -1,7 +1,8 @@
 export const caseStudies = [
   {
+    id: 'belleza-y-bienestar',
     title: 'Barbería o centro estético',
-    label: 'Escenario de aplicación · Servicios por hora',
+    sector: 'Belleza y bienestar',
     problem: 'Agenda desordenada por mensajes sueltos, horarios duplicados y consultas repetitivas sobre disponibilidad.',
     solution: 'Sitio web comercial integrado con BaseLogic Booking para estructurar servicios, profesionales, disponibilidad y reservas.',
     expectedResult: 'Reservas organizadas sin superposición, menor carga de coordinación manual y mejor experiencia para el cliente.',
@@ -9,8 +10,9 @@ export const caseStudies = [
     relatedLabel: 'Conocer BaseLogic Booking',
   },
   {
+    id: 'gastronomia',
     title: 'Restaurante o cafetería',
-    label: 'Escenario de aplicación · Gastronomía y comercio',
+    sector: 'Gastronomía',
     problem: 'Carta dispersa, consultas repetidas, dependencia de redes sociales y poca información centralizada.',
     solution: 'Página web con menú o catálogo, horarios, ubicación, secciones comerciales y CTA de contacto.',
     expectedResult: 'Presencia más profesional, contacto más claro y menos fricción para clientes nuevos.',
@@ -18,8 +20,9 @@ export const caseStudies = [
     relatedLabel: 'Ver páginas web',
   },
   {
+    id: 'salud-y-consultoria',
     title: 'Consulta médica o servicio profesional',
-    label: 'Escenario de aplicación · Salud y consultoría',
+    sector: 'Salud y consultoría',
     problem: 'Falta de respaldo institucional en línea, coordinación manual de horas y dificultad para presentar especialidades.',
     solution: 'Sitio web o landing profesional con estructura clara de servicios, agenda de horas y canales de contacto formalizados.',
     expectedResult: 'Mayor confianza para pacientes o clientes, mejor organización de la agenda y captación ordenada de consultas.',
@@ -27,8 +30,9 @@ export const caseStudies = [
     relatedLabel: 'Ver landing pages',
   },
   {
+    id: 'educacion',
     title: 'Colegio, jardín infantil o institución educativa',
-    label: 'Escenario de aplicación · Educación',
+    sector: 'Educación',
     problem: 'Mensualidades, seguimiento de cobranza, conciliación y comunicación financiera gestionados en planillas fragmentadas.',
     solution: 'Evaluación e implementación de BaseLogic EduPay para estructurar aranceles, cuotas, estados de pago y visibilidad administrativa.',
     expectedResult: 'Trazabilidad financiera clara para la administración y una experiencia más ordenada para los apoderados.',
@@ -36,8 +40,9 @@ export const caseStudies = [
     relatedLabel: 'Conocer BaseLogic EduPay',
   },
   {
+    id: 'industria',
     title: 'Contratista minero o empresa intensiva en activos',
-    label: 'Escenario de aplicación · Operaciones e industria',
+    sector: 'Industria',
     problem: 'Control de maquinaria, órdenes de trabajo, compras y repuestos de bodega repartido en planillas sin trazabilidad unificada.',
     solution: 'Implementación de BaseLogic EAM para conectar hoja de vida de activos, planificación de mantenimiento, abastecimiento y Kardex de bodega.',
     expectedResult: 'Control operacional centralizado, trazabilidad técnica y de costos por equipo, e información confiable para jefaturas.',

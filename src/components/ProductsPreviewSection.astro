@@ -1,257 +1,174 @@
 ---
 /**
  * ProductsPreviewSection.astro
- * Sección 5 de la Home: Nuestros Productos (Booking, EduPay, EAM, POS).
- * Cada tarjeta presenta título, descripción ejecutiva, vista previa visual
- * de su interfaz y enlace directo a su ficha individual.
+ * Vista de los productos BaseLogic con acceso directo a cada ficha.
  */
-import { ArrowRight, Calendar, GraduationCap, Settings, Store } from 'lucide-react';
+import {
+  ArrowRight,
+  CalendarDays,
+  GraduationCap,
+  Layers,
+  Package,
+  ShoppingBasket,
+  Settings,
+  Store,
+  UsersRound,
+  Wrench,
+} from 'lucide-react';
+
+const products = [
+  {
+    name: 'BaseLogic Booking',
+    href: '/productos/booking',
+    image: '/images/productos/baselogic-booking.webp',
+    imageAlt: 'Calendario de reservas con un reloj para gestionar horarios',
+    icon: CalendarDays,
+    description:
+      'Gestión de reservas y disponibilidad para negocios de servicios y atención por turnos.',
+    features: [
+      { label: 'Reservas', icon: CalendarDays },
+      { label: 'Profesionales y servicios', icon: UsersRound },
+      { label: 'Horarios y recursos', icon: CalendarDays },
+    ],
+  },
+  {
+    name: 'BaseLogic EduPay',
+    href: '/productos/edupay',
+    image: '/images/productos/baselogic-edupay.webp',
+    imageAlt: 'Birrete de graduación sobre libros para una plataforma educativa',
+    icon: GraduationCap,
+    description:
+      'Un ecosistema escolar para conectar gestión académica, finanzas y familias.',
+    features: [
+      { label: 'Comunidad educativa', icon: UsersRound },
+      { label: 'Gestión académica', icon: GraduationCap },
+      { label: 'Registro de pagos', icon: Layers },
+    ],
+  },
+  {
+    name: 'BaseLogic EAM',
+    href: '/productos/eam',
+    image: '/images/productos/baselogic-eam.webp',
+    imageAlt: 'Casco industrial y engranaje para gestión de activos y mantención',
+    icon: Settings,
+    description:
+      'Gestión de activos, mantenimiento, compras y bodega para operaciones, minería e industria.',
+    features: [
+      { label: 'Activos y equipos', icon: Layers },
+      { label: 'Mantención y OT', icon: Wrench },
+      { label: 'Bodega e inventario', icon: Package },
+    ],
+  },
+  {
+    name: 'BaseLogic POS',
+    href: '/productos/pos',
+    image: '/images/productos/baselogic-pos.webp',
+    imageAlt: 'Terminal de punto de venta con impresora de tickets',
+    icon: Store,
+    description:
+      'Punto de venta para organizar catálogo, caja, ventas en efectivo y saldos de inventario.',
+    features: [
+      { label: 'Ventas y caja', icon: ShoppingBasket },
+      { label: 'Saldos de inventario', icon: Package },
+      { label: 'Catálogo y precios', icon: Layers },
+    ],
+  },
+];
 ---
 
-<section id="productos-destacados" class="bg-gradient-to-b from-[#eff8fb]/80 via-[#f6fbfe] to-white py-16 md:py-22 border-b border-slate-200/70">
-  <div class="mx-auto max-w-7xl px-5 md:px-8">
-    <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+<section
+  id="productos-destacados"
+  aria-labelledby="products-heading"
+  class="bl-home-section bl-home-section--soft scroll-mt-20"
+>
+  <div class="products-section-background pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+  <div class="bl-home-section__container">
+    <header class="bl-home-section__header" data-motion-reveal>
       <div>
-        <p class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-500">
-          Nuestros productos
-        </p>
-        <h2 class="mt-2.5 text-3xl font-black leading-[1.1] tracking-tight text-slate-950 md:text-4xl">
-          Soluciones propias para operaciones reales
+        <p class="bl-home-section__eyebrow">Nuestros productos</p>
+        <h2 id="products-heading" class="bl-home-section__title">
+          Soluciones propias para <span class="text-[#1162f5]">operaciones reales</span>
         </h2>
       </div>
 
-      <a
-        href="/productos"
-        class="inline-flex items-center gap-1.5 text-sm font-bold text-brand-blue transition hover:text-slate-950"
-      >
-        <span>Conoce todos los productos</span>
-        <ArrowRight class="h-4 w-4" />
-      </a>
-    </div>
+      <p class="bl-home-section__lede">
+        Plataformas de software diseñadas por BaseLogic para resolver necesidades reales en educación, operaciones, comercio y servicios.
+      </p>
+    </header>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      <!-- 1. BaseLogic Booking -->
-      <a
-        href="/productos/booking"
-        class="group flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_35px_-15px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/35 hover:shadow-[0_22px_45px_-16px_rgba(0,102,255,0.16)]"
-      >
-        <div>
-          <div class="flex items-center gap-3">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-blue ring-1 ring-blue-100">
-              <Calendar class="h-5 w-5" />
-            </span>
-            <h3 class="text-base font-black tracking-tight text-slate-950">
-              BaseLogic Booking
-            </h3>
-          </div>
-          <p class="mt-3 text-xs leading-relaxed text-slate-600">
-            Gestión de reservas, disponibilidad y pagos online para negocios de servicios y atención por turnos.
-          </p>
+    <div class="mt-7 grid items-stretch gap-4 sm:grid-cols-2 sm:gap-5 xl:mt-8 xl:grid-cols-4 xl:gap-4">
+      {products.map((product, index) => {
+        const ProductIcon = product.icon;
 
-          <!-- Vista previa visual: Calendario y agenda de reservas -->
-          <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50 p-2.5">
-            <div class="rounded-xl border border-slate-200/70 bg-white p-2.5 shadow-2xs">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                <span class="h-2 w-14 rounded-full bg-slate-200"></span>
-                <span class="rounded bg-blue-50 px-1.5 py-0.5 text-[8px] font-bold text-brand-blue">Agenda</span>
-              </div>
-              <div class="mt-2 grid grid-cols-5 gap-1">
-                <div class="space-y-1">
-                  <div class="h-4 rounded bg-blue-100/80"></div>
-                  <div class="h-6 rounded bg-brand-blue/90"></div>
-                  <div class="h-3 rounded bg-slate-100"></div>
-                </div>
-                <div class="space-y-1">
-                  <div class="h-5 rounded bg-cyan-100"></div>
-                  <div class="h-4 rounded bg-slate-100"></div>
-                  <div class="h-5 rounded bg-brand-blue/80"></div>
-                </div>
-                <div class="space-y-1">
-                  <div class="h-3 rounded bg-slate-100"></div>
-                  <div class="h-7 rounded bg-brand-blue"></div>
-                  <div class="h-4 rounded bg-emerald-100"></div>
-                </div>
-                <div class="space-y-1">
-                  <div class="h-6 rounded bg-blue-500/85"></div>
-                  <div class="h-3 rounded bg-slate-100"></div>
-                  <div class="h-5 rounded bg-cyan-200/80"></div>
-                </div>
-                <div class="space-y-1">
-                  <div class="h-4 rounded bg-slate-100"></div>
-                  <div class="h-5 rounded bg-brand-blue/75"></div>
-                  <div class="h-5 rounded bg-blue-100"></div>
-                </div>
-              </div>
+        return (
+          <a
+            href={product.href}
+            aria-label={`Ver detalles de ${product.name}`}
+            data-motion-reveal
+            style={`--home-motion-delay: ${Math.min(index * 55, 165)}ms`}
+            class="bl-home-card bl-home-card--interactive product-card group flex min-w-0 flex-col overflow-hidden bg-white/85 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#b8d5fb] hover:shadow-[0_22px_44px_-30px_rgba(16,74,170,0.38)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#075be8]"
+          >
+            <div class="product-card-visual relative aspect-[1.85] overflow-hidden">
+              <img
+                src={product.image}
+                alt={product.imageAlt}
+                width="1040"
+                height="620"
+                loading="lazy"
+                decoding="async"
+                class="product-card-image h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.035]"
+              />
             </div>
-          </div>
-        </div>
 
-        <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue group-hover:text-slate-950">
-          <span>Ver más</span>
-          <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </div>
-      </a>
-
-      <!-- 2. BaseLogic EduPay -->
-      <a
-        href="/productos/edupay"
-        class="group flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_35px_-15px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/35 hover:shadow-[0_22px_45px_-16px_rgba(0,102,255,0.16)]"
-      >
-        <div>
-          <div class="flex items-center gap-3">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-blue ring-1 ring-blue-100">
-              <GraduationCap class="h-5 w-5" />
-            </span>
-            <h3 class="text-base font-black tracking-tight text-slate-950">
-              BaseLogic EduPay
-            </h3>
-          </div>
-          <p class="mt-3 text-xs leading-relaxed text-slate-600">
-            Gestión financiera escolar, cobro de aranceles y conciliación para colegios e instituciones educativas.
-          </p>
-
-          <!-- Vista previa visual: Panel financiero escolar -->
-          <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50 p-2.5">
-            <div class="rounded-xl border border-slate-200/70 bg-white p-2.5 shadow-2xs">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-1.5">
-                <span class="h-2 w-16 rounded-full bg-slate-200"></span>
-                <span class="rounded bg-emerald-50 px-1.5 py-0.5 text-[8px] font-bold text-emerald-600">Conciliado</span>
+            <div class="flex flex-1 flex-col p-4 sm:p-5">
+              <div class="flex min-h-12 items-center gap-3">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#d7e5f8] bg-white/90 text-[#0964ef] shadow-[0_5px_14px_-12px_rgba(0,77,180,0.45)]">
+                  <ProductIcon class="h-7 w-7" aria-hidden="true" />
+                </span>
+                <h3 class="min-w-0 flex-1 text-lg font-black leading-tight tracking-[-0.025em] text-[#0b1a4c]">
+                  {product.name}
+                </h3>
               </div>
-              <div class="mt-2 grid grid-cols-2 gap-1.5">
-                <div class="rounded-lg bg-blue-50/70 p-1.5">
-                  <div class="h-1.5 w-10 rounded bg-blue-200"></div>
-                  <div class="mt-1.5 h-2.5 w-14 rounded bg-brand-blue"></div>
-                </div>
-                <div class="rounded-lg bg-cyan-50/70 p-1.5">
-                  <div class="h-1.5 w-10 rounded bg-cyan-200"></div>
-                  <div class="mt-1.5 h-2.5 w-12 rounded bg-cyan-600"></div>
-                </div>
-              </div>
-              <div class="mt-2 space-y-1">
-                <div class="flex items-center justify-between rounded bg-slate-50 px-2 py-1">
-                  <span class="h-1.5 w-16 rounded bg-slate-300"></span>
-                  <span class="h-2 w-6 rounded-full bg-emerald-400"></span>
-                </div>
-                <div class="flex items-center justify-between rounded bg-slate-50 px-2 py-1">
-                  <span class="h-1.5 w-14 rounded bg-slate-300"></span>
-                  <span class="h-2 w-6 rounded-full bg-brand-blue"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue group-hover:text-slate-950">
-          <span>Ver más</span>
-          <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </div>
-      </a>
+              <p class="mt-3 text-[0.96rem] leading-[1.5] text-[#31466d]">
+                {product.description}
+              </p>
 
-      <!-- 3. BaseLogic EAM -->
-      <a
-        href="/productos/eam"
-        class="group flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_35px_-15px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/35 hover:shadow-[0_22px_45px_-16px_rgba(0,102,255,0.16)]"
-      >
-        <div>
-          <div class="flex items-center gap-3">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-blue ring-1 ring-blue-100">
-              <Settings class="h-5 w-5" />
-            </span>
-            <h3 class="text-base font-black tracking-tight text-slate-950">
-              BaseLogic EAM
-            </h3>
-          </div>
-          <p class="mt-3 text-xs leading-relaxed text-slate-600">
-            Gestión de activos, mantención, órdenes de trabajo y bodega para operaciones, minería e industria.
-          </p>
+              <div class="mt-4 flex flex-col items-start gap-2">
+                {product.features.map((feature) => {
+                  const FeatureIcon = feature.icon;
 
-          <!-- Vista previa visual: Control de activos y flota -->
-          <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200/80 bg-[#0a0f14] p-2.5 text-white">
-            <div class="rounded-xl border border-white/10 bg-[#111923] p-2.5">
-              <div class="flex items-center justify-between border-b border-white/10 pb-1.5">
-                <span class="h-2 w-14 rounded-full bg-white/25"></span>
-                <span class="rounded bg-brand-blue/30 px-1.5 py-0.5 text-[8px] font-bold text-brand-cyan">OT & Activos</span>
+                  return (
+                    <span class="inline-flex max-w-full items-center gap-2.5 rounded-full bg-[#eaf1fb] px-3 py-1.5 text-sm font-semibold leading-tight text-[#102556]">
+                      <FeatureIcon class="h-4 w-4 shrink-0 text-[#0964ef]" aria-hidden="true" />
+                      <span class="min-w-0">{feature.label}</span>
+                    </span>
+                  );
+                })}
               </div>
-              <div class="mt-2 grid grid-cols-2 gap-1.5">
-                <div class="rounded-lg bg-white/[0.06] p-1.5">
-                  <div class="h-1.5 w-10 rounded bg-brand-cyan/70"></div>
-                  <div class="mt-1.5 h-2 w-full rounded bg-brand-blue"></div>
-                </div>
-                <div class="rounded-lg bg-white/[0.06] p-1.5">
-                  <div class="h-1.5 w-8 rounded bg-emerald-400/70"></div>
-                  <div class="mt-1.5 h-2 w-4/5 rounded bg-emerald-400"></div>
-                </div>
-              </div>
-              <div class="mt-2 space-y-1">
-                <div class="flex items-center justify-between rounded bg-white/[0.04] px-2 py-1">
-                  <span class="h-1.5 w-16 rounded bg-white/30"></span>
-                  <span class="h-2 w-7 rounded-full bg-brand-cyan/80"></span>
-                </div>
-                <div class="flex items-center justify-between rounded bg-white/[0.04] px-2 py-1">
-                  <span class="h-1.5 w-12 rounded bg-white/20"></span>
-                  <span class="h-2 w-7 rounded-full bg-emerald-400/80"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue group-hover:text-slate-950">
-          <span>Ver más</span>
-          <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </div>
-      </a>
-
-      <!-- 4. BaseLogic POS -->
-      <a
-        href="/productos/pos"
-        class="group flex flex-col justify-between rounded-3xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_35px_-15px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/35 hover:shadow-[0_22px_45px_-16px_rgba(0,102,255,0.16)]"
-      >
-        <div>
-          <div class="flex items-center justify-between gap-2">
-            <div class="flex items-center gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-blue ring-1 ring-blue-100">
-                <Store class="h-5 w-5" />
+              <span class="mt-auto flex items-center justify-between border-t border-[#dce6f5] pt-4 text-lg font-extrabold text-[#0964ef]">
+                <span>Ver más</span>
+                <ArrowRight class="product-card-arrow h-6 w-6 transition-transform duration-300 ease-out group-hover:translate-x-1" aria-hidden="true" />
               </span>
-              <h3 class="text-base font-black tracking-tight text-slate-950">
-                BaseLogic POS
-              </h3>
             </div>
-            <span class="rounded-full bg-amber-50 px-2 py-0.5 text-[9px] font-bold text-amber-700 ring-1 ring-amber-200/80">
-              Piloto
-            </span>
-          </div>
-          <p class="mt-3 text-xs leading-relaxed text-slate-600">
-            Punto de venta moderno, control de caja e inventario en tiempo real conectado con tu operación comercial.
-          </p>
-
-          <!-- Vista previa visual: Grilla de productos + Ticket de caja -->
-          <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50 p-2.5">
-            <div class="grid grid-cols-[1.2fr_0.8fr] gap-1.5 rounded-xl border border-slate-200/70 bg-white p-2 shadow-2xs">
-              <div class="grid grid-cols-3 gap-1">
-                <div class="h-6 rounded bg-blue-50 ring-1 ring-blue-100"></div>
-                <div class="h-6 rounded bg-cyan-50 ring-1 ring-cyan-100"></div>
-                <div class="h-6 rounded bg-slate-100"></div>
-                <div class="h-6 rounded bg-slate-100"></div>
-                <div class="h-6 rounded bg-blue-50 ring-1 ring-blue-100"></div>
-                <div class="h-6 rounded bg-emerald-50 ring-1 ring-emerald-100"></div>
-              </div>
-              <div class="flex flex-col justify-between rounded-lg bg-[#0a0f14] p-1.5 text-white">
-                <div class="space-y-1">
-                  <div class="h-1.5 w-full rounded bg-white/25"></div>
-                  <div class="h-1.5 w-3/4 rounded bg-white/20"></div>
-                </div>
-                <div class="mt-2 h-3.5 w-full rounded bg-brand-blue"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue group-hover:text-slate-950">
-          <span>Ver más</span>
-          <ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </div>
-      </a>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>
+
+<style>
+  .products-section-background {
+    background-image: url('/images/productos/fondo-productos.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .product-card-visual {
+    background: rgba(255, 255, 255, 0.34);
+  }
+</style>

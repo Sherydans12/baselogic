@@ -1,67 +1,94 @@
 ---
-import { Mail, MapPin } from 'lucide-react';
-import { mainNavigation } from '../data/navigation';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { services } from '../data/services';
 import { products } from '../data/products';
 import { contact } from '../data/contact';
 import { site } from '../data/site';
 
 const visibleServices = services.filter((item) => item.status === 'active');
+const footerGroups = [
+  {
+    title: 'Servicios',
+    links: [
+      { label: 'Ver todos los servicios', href: '/servicios' },
+      ...visibleServices.map((item) => ({ label: item.shortTitle, href: item.href })),
+      { label: 'Planes y precios', href: '/planes' },
+    ],
+  },
+  {
+    title: 'Productos',
+    links: [
+      { label: 'Ver todos los productos', href: '/productos' },
+      ...products.map((item) => ({ label: item.name, href: item.href })),
+    ],
+  },
+  {
+    title: 'Recursos',
+    links: [
+      { label: 'Casos de uso', href: '/casos-de-exito' },
+      { label: 'Preguntas frecuentes', href: '/preguntas-frecuentes' },
+      { label: 'Privacidad', href: '/legal/privacidad' },
+      { label: 'Términos y condiciones', href: '/legal/terminos' },
+    ],
+  },
+];
 ---
 
-<footer class="border-t border-slate-200 bg-slate-950 text-white">
-  <div class="mx-auto max-w-7xl px-5 py-14 md:px-8">
-    <div class="grid gap-10 lg:grid-cols-[1.4fr_2fr]">
-      <div>
-        <img src="/BaseLogic%20Logo%20Cropped.png" alt="BaseLogic" class="mb-5 h-13 md:h-15 w-auto object-contain" />
-        <p class="max-w-md text-base leading-7 text-slate-300">
+<footer class="bg-[#07142c] text-white">
+  <div class="mx-auto max-w-7xl px-5 pb-7 pt-14 md:px-8 md:pt-16">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2.4fr)] lg:gap-12">
+      <div class="max-w-sm">
+        <a href="/" aria-label="BaseLogic inicio" class="inline-flex rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+          <img
+            src="/images/brand/baselogic-logo-dark.png"
+            alt="BaseLogic"
+            width="2172"
+            height="724"
+            class="block h-auto w-[190px] object-contain md:w-[210px]"
+          />
+        </a>
+        <p class="mt-5 text-base leading-relaxed text-[#c3d2e7]">
           {site.tagline} Trabajamos con pymes y empresas en Chile que necesitan vender mejor, ordenar procesos y recibir soporte claro.
         </p>
-        <div class="mt-6 grid gap-3 text-sm text-slate-300">
-          <a href={`mailto:${contact.email}`} class="inline-flex items-center gap-2 hover:text-brand-cyan">
-            <Mail class="h-4 w-4" />
+
+        <div class="mt-6 grid gap-3 text-sm leading-relaxed text-[#c3d2e7]">
+          <a href={`mailto:${contact.email}`} class="inline-flex w-fit items-center gap-2.5 rounded-sm transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+            <Mail class="h-4 w-4 shrink-0 text-[#54c8ff]" aria-hidden="true" />
             {contact.email}
           </a>
-          <span class="inline-flex items-center gap-2">
-            <MapPin class="h-4 w-4" />
+          <span class="inline-flex items-start gap-2.5">
+            <MapPin class="mt-0.5 h-4 w-4 shrink-0 text-[#54c8ff]" aria-hidden="true" />
             {site.serviceArea}
           </span>
         </div>
+
+        <a href="/contacto#formulario" class="group mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-white transition-colors hover:text-[#67d7ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+          Conversemos sobre tu proyecto
+          <ArrowRight class="h-4 w-4 text-[#54c8ff] transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        </a>
       </div>
 
-      <div class="grid gap-8 sm:grid-cols-3">
-        <div>
-          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Navegación</h2>
-          <ul class="space-y-3 text-sm">
-            {mainNavigation.map((item) => (
-              <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.label}</a></li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Servicios</h2>
-          <ul class="space-y-3 text-sm">
-            {visibleServices.map((item) => (
-              <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.shortTitle}</a></li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 class="mb-4 text-sm font-bold uppercase tracking-wide text-slate-400">Productos</h2>
-          <ul class="space-y-3 text-sm">
-            {products.map((item) => (
-              <li><a href={item.href} class="text-slate-300 hover:text-brand-cyan">{item.name.replace('BaseLogic ', '')}</a></li>
-            ))}
-            <li><a href="/legal/privacidad" class="text-slate-300 hover:text-brand-cyan">Privacidad</a></li>
-            <li><a href="/legal/terminos" class="text-slate-300 hover:text-brand-cyan">Términos</a></li>
-          </ul>
-        </div>
-      </div>
+      <nav aria-label="Navegación del pie de página" class="grid grid-cols-2 gap-x-6 gap-y-9 xl:grid-cols-3 xl:gap-x-5">
+        {footerGroups.map((group) => (
+          <div>
+            <h2 class="text-sm font-bold text-white">{group.title}</h2>
+            <ul class="mt-4 grid gap-3 text-sm leading-snug">
+              {group.links.map((link) => (
+                <li>
+                  <a href={link.href} class="inline-block rounded-sm text-[#c3d2e7] transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
     </div>
 
-    <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs text-slate-400">
-      <p>BaseLogic © 2026. BaseLogic es una marca de {site.legalEntity}.</p>
-      <p class="mt-1 text-slate-500">{site.serviceArea}</p>
+    <div class="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-sm leading-relaxed text-[#a9bdd8] sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <p>© {new Date().getFullYear()} BaseLogic. Una marca de {site.legalEntity}.</p>
+      <p>Desde la Región de Coquimbo para todo Chile.</p>
     </div>
   </div>
 </footer>
